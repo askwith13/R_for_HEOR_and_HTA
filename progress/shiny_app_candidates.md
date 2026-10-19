@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 40 across 19 chapters** 
+**Total candidates so far: 42 across 20 chapters** 
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -304,12 +304,26 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
-## Standing note for future chapters (21-35)
+## Chapter 22. Discrete Event Simulation and Dynamic Models
+
+### M/M/1 Queue Utilisation Explorer
+- **Section:** 22.2
+- **What it does:** Sliders for mean inter-arrival time and mean service time (equivalently, arrival rate lambda and service rate mu) drive a live `simmer` re-run of the §22.2 single-nurse clinic model; the app shows simulated average wait, average queue length, and nurse utilisation updating live, alongside the closed-form M/M/1 benchmark lines (W_q, L_q, L) computed from the same sliders — directly visualises the non-linear blow-up in wait time as utilisation rho approaches 1 (queueing theory's well-known non-monotonic/explosive behaviour near saturation), which is far more vivid watched live than read as a formula.
+- **Likely packages:** `shiny, simmer, ggplot2`
+
+### SEIR Epidemic Curve and Herd-Effect Explorer
+- **Section:** 22.4/22.6
+- **What it does:** Sliders for R0 (beta/gamma), the latent-period rate sigma, and the intervention effectiveness `ve` re-run the §22.4/22.6 `deSolve::ode()` SEIR model live, re-plotting the infectious-compartment curve for both the baseline and intervention arms on one chart and recalculating cumulative infections averted. Makes the compounding/indirect-protection effect from the §22.4 pitfall directly visible: small changes in `ve` produce disproportionately large changes in the final epidemic size once R0 is close to 1, a genuinely non-linear relationship that a single static worked example cannot convey.
+- **Likely packages:** `shiny, deSolve, ggplot2`
+
+---
+
+## Standing note for future chapters (23-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Coverage currently extends through Chapter 21. Natural strong 
+rebuilding it from scratch. Coverage currently extends through Chapter 22. Natural strong 
 candidates expected ahead: Chapter 25 (PSA — tornado diagrams, CEACs, the Dirichlet/
 Cholesky machinery flagged but deferred from Ch.19 §19.8), Chapter 26 (VOI/EVPI/EVPPI), 
 and the budget-impact-model chapters, all of which are classically well-suited to live 

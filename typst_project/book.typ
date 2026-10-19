@@ -76,6 +76,7 @@
 #include "chapters/ch19_markov_cohort.typ"
 #include "chapters/ch20_partitioned_survival.typ"
 #include "chapters/ch21_microsimulation.typ"
+#include "chapters/ch22_des_dynamic_models.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

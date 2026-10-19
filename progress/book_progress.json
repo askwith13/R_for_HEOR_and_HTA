@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 22,
+  "next_chapter_number": 23,
   "total_chapters": 35,
   "chapters": [
     {
@@ -162,7 +162,7 @@
       "num": 22,
       "title": "Discrete Event Simulation and Dynamic Models",
       "part": "IV. Decision-Analytic Modelling",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 23,
@@ -244,6 +244,11 @@
     }
   ],
   "run_log": [
+    {
+      "timestamp": "2026-10-20T04:30:00+05:30",
+      "action": "Wrote Chapter 22 (twenty-second book-writer cron tick) -- sixth and final chapter of Part IV; readability passed on the first draft, one revision pass needed on agency_grounding",
+      "details": "Drafted ch22_des_dynamic_models.typ covering all 6 TOC subsections: DES concepts (events, event queue, resources, capacity, attributes, trajectories), picking up Chapter 21s closing transition that microsimulation still simulates patients independently while DES/dynamic models let them interact; DES with simmer including a worked single-nurse TB-screening M/M/1 clinic queue verified by hand against the closed-form M/M/1 benchmark; competing-events/time-to-event racing mechanics operationalising Chapter 10s competing-risks framing as literal DES mechanics, with simmers lack of a native race-and-take-minimum primitive flagged honestly; infectious disease transmission models with real SIR/SEIR ODEs, deSolve ode() worked toy SIR example, EpiModel dcm/icm/netsim/netest for agent-based/network alternatives, and linking transmission-model output to cost-effectiveness accounting; a model-choice decision framework comparing Markov, microsimulation, DES and dynamic transmission as a ref-table; and a worked TB screening/preventive-therapy SEIR intervention example. Delegated to 2 parallel sub-agents, assembled into one Typst file. Caught and fixed a real error during assembly: the 22.3 sub-agent draft called a non-existent simmer get_global_mgr function inside a branch option function, replaced with the real documented get_attribute(env, name) pattern. Independently re-ran every stated numeric claim via Rscript before finalizing: the toy SIR example (R0=2, N=10000: peak day 45, 15.3 percent peak infectious, 79.7 percent final attack rate) and the TB SEIR worked example (4979 vs 873 cumulative infections per 100000 at 10 years, 4106 averted, 82.5 percent reduction, peak 1417 vs 153) -- every number matched the draft exactly, no corrections needed. Fixed two Typst compile errors during assembly: an unclosed-delimiter error from single-letter emphasis markup on S/I/R/E compartment letters, and a missing-argument error from two difficult-terminology calls using the old single-bracket signature. Compiled cleanly after fixes (377 pages, up from 363). First Jev score FAILED only agency_grounding (4.87/10); coverage 8.31, technical_correctness 6.86, code_validity 6.81, internal_consistency 8.33 all passed. Readability (prose-only method) PASSED on the first pass at 7.15/10. Did one revision pass targeting agency_grounding only: added a new named ISPOR-SMDM Task Force-4 agency-note (Karnon and colleagues, 2012, Value in Health 15(5):821-827, verified real via live web search) to section 22.1, and a cross-reference agency-note in 22.5 tying the model-choice decision framework explicitly back to the already-established Siebert and colleagues (2012) Task Force-3 report plus the chapters own new Task Force-4 and existing Task Force-5 citations. Re-scored: agency_grounding rose to 7.3/10 (PASSED); coverage 8.44, technical_correctness 6.91, code_validity 6.82, internal_consistency 8.35. All six dimensions now clear the 6/10 threshold. Image check: logged Track-1 candidate C18 and Track-2 candidate T24 as Pending. Table check: one report-table and one ref-table, correctly distinguished. Shiny scan: two genuine candidates added, running total updated to 42 across 20 chapters. Ran extract_chapter_code.py and generate_chapter_renvlock.py for chapter 22. Wrote Chapter Markdowns summary with a closing transition to Chapter 23 (Budget Impact Analysis). Updated book_progress.json: chapter 22 marked complete, next_chapter_number advanced to 23. No new Part divider needed -- Chapter 22 is the last chapter of Part IV."
+    },
     {
       "timestamp": "2026-10-19T19:05:00+05:30",
       "action": "Difficult-terminology retrofit: inserted 67 boxed callouts (covering all 70 audited terms) across Chapters 1-21",
