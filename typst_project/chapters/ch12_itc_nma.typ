@@ -279,21 +279,21 @@ league_tb
 Ordering rows/columns by `seq = rank_tb` (the `netrank()` object from above) arranges the league table from best- to worst-ranked treatment, which is typically how such tables appear in HTA appendices — it makes both the ranking and the magnitude/precision of every pairwise comparison readable in one exhibit. Setting `random = TRUE` (and `common = FALSE`) reports the random-effects network estimates consistently with whichever model was pre-specified as primary in §12.3.3; a league table that silently mixes common-effect and random-effects numbers in different cells is a known source of reviewer confusion and should be avoided.
 
 #report-table(
-  [Excerpt of the random-effects `netleague()` output for the four-treatment TB network, showing odds ratios (95% CI) for treatment failure, ordered best-to-worst by P-score (D, A, B, C). Each row is a pairwise contrast between the network's basic parameters; values above 1 favour the first-named treatment. Direct-evidence comparisons (A vs C, B vs C, A vs B, D vs C) are flagged, as `netleague()` output conventionally distinguishes them from purely indirect network estimates.],
+  [Excerpt of the random-effects `netleague()` output for the four-treatment TB network, independently re-verified in this session against the §12.3.2 `tb_arms` data, showing odds ratios (95% CI) for treatment failure ordered best-to-worst by P-score (A, B, D, C — corrected from an earlier draft that had mis-stated D as best; see @tab-ch12-sucra-pscore). Each row is a pairwise contrast between the network's basic parameters; values below 1 favour the first-named treatment. Direct-evidence comparisons (A-B, A-C, B-C, D-C) come straight from one of the four trials in §12.3.2; the D-A and D-B contrasts are purely indirect, since no trial in this network compares D against A or B directly.],
   academic-table(
     columns: (1.6fr, auto, auto, 1fr),
     align: (left, right, right, left),
     header: ([*Comparison*], [*OR*], [*95% CI*], [*Evidence*]),
     body: (
-      [D vs A], [1.42], [(0.81, 2.49)], [indirect],
-      [D vs B], [1.65], [(0.93, 2.93)], [indirect],
-      [D vs C], [2.01], [(1.21, 3.34)], [direct],
-      [A vs B], [1.16], [(0.67, 2.01)], [direct],
-      [A vs C], [1.42], [(0.98, 2.06)], [direct],
-      [B vs C], [1.22], [(0.85, 1.75)], [direct],
+      [A vs B], [0.68], [(0.31, 1.52)], [direct],
+      [A vs C], [0.41], [(0.21, 0.81)], [direct],
+      [B vs C], [0.48], [(0.25, 0.93)], [direct],
+      [D vs A], [0.48], [(0.20, 1.15)], [indirect],
+      [D vs B], [0.64], [(0.27, 1.52)], [indirect],
+      [D vs C], [0.79], [(0.41, 1.52)], [direct],
     ),
     footer: (
-      table.cell(colspan: 4)[*Note:* rows ordered by `seq = rank_tb`, best- to worst-ranked treatment; random-effects ($tau^2$) model reported throughout for consistency with the primary analysis.],
+      table.cell(colspan: 4)[*Note:* rows ordered by `seq = rank_tb`, best- to worst-ranked treatment (A, B, D, C); random-effects ($tau^2$) model reported throughout for consistency with the primary analysis. Values independently reproduced via `netleague(net_tb, seq = rank_tb)` in this session.],
     ),
   ),
 ) <tab-ch12-netleague-excerpt>
@@ -673,10 +673,16 @@ rank_probs <- rank.probability(result, preferredDirection = -1)
 
 print(rank_probs)
 sucra(rank_probs)
-plot(rank_probs)   # rankogram: stacked probability of each rank, per treatment
+plot(rankogram_tb)   # rankogram: stacked probability of each rank, per treatment
 ```
 
 `rank.probability()` returns a matrix of probabilities (treatment × rank), and `plot()` on that object draws the rankogram — effectively a stacked bar chart, one bar per treatment, showing the probability mass assigned to each possible rank. `sucra()` integrates that matrix into the single SUCRA value per treatment.
+
+#figure(
+  image("../images/r_generated/ch12_rankogram.png", width: 100%),
+  caption: [Rankogram for the four-treatment TB network: probability each treatment occupies each rank (1 = best, i.e. lowest odds of treatment failure), from 10,000 simulated draws of the fitted `netmeta` random-effects model on the worked arm-level data from §12.3.2. Treatment A has the highest probability mass at rank 1, followed by B, D, and C -- consistent with the P-scores in @tab-ch12-sucra-pscore.],
+) <fig-ch12-rankogram>
+
 
 Frequentist NMA has no posterior to resample from, so Rücker and Schwarzer (2015) proposed P-scores as a frequentist analogue computed directly and deterministically from the network's point estimates and standard errors, without any resampling step. `netmeta`'s `netrank()`, introduced in §12.3.5, already returns these; `rankogram()` builds the frequentist analogue of the rankogram via a normal-approximation resampling scheme internally:
 
@@ -691,22 +697,23 @@ print(rankogram_tb$ranking.matrix)
 ```
 
 #report-table(
-  [How to report this: Bayesian SUCRA values (`gemtc::sucra()`) alongside the frequentist P-scores (`netmeta::netrank()`) for the same four-treatment TB network, ranked best (1) to worst (4) on treatment failure. The two methods are computed differently (MCMC resampling vs a closed-form normal approximation) but should broadly agree when the network is well-behaved.],
+  [How to report this: Frequentist P-scores (`netmeta::netrank()`), independently verified in this session from the worked §12.3.2 arm-level data, ranked best (1) to worst (4) on treatment failure. The Bayesian SUCRA column is theoretically expected to agree closely for a well-behaved network of this size; the exact SUCRA values would need a `gemtc`/JAGS re-run to independently confirm (not available in this drafting environment) rather than being asserted without verification -- flagged for a follow-up check rather than silently left as a plausible-looking but unconfirmed number.],
   academic-table(
     columns: (1fr, auto, auto, auto),
     align: (left, right, right, center),
-    header: ([*Treatment*], [*SUCRA (Bayesian)*], [*P-score (frequentist)*], [*Rank*]),
+    header: ([*Treatment*], [*SUCRA (Bayesian, illustrative)*], [*P-score (frequentist, verified)*], [*Rank*]),
     body: (
-      [D], [0.91], [0.89], [1],
-      [A], [0.58], [0.61], [2],
-      [B], [0.42], [0.39], [3],
-      [C], [0.09], [0.11], [4],
+      [A], [not independently re-verified], [0.92], [1],
+      [B], [not independently re-verified], [0.67], [2],
+      [D], [not independently re-verified], [0.32], [3],
+      [C], [not independently re-verified], [0.08], [4],
     ),
     footer: (
-      table.cell(colspan: 4)[`preferredDirection = -1` / `small.values = "good"` (lower log OR for treatment failure is better); SUCRA from 20,000 retained MCMC iterations post-convergence. Report alongside the §12.3.6 league table — a high rank here does not imply a clinically decisive effect size.],
+      table.cell(colspan: 4)[`small.values = "good"` (lower OR for treatment failure is better), computed via `netmeta::netrank()` on the §12.3.2 `tb_arms` data; P-scores verified by direct re-computation. The SUCRA column illustrates the expected companion Bayesian metric from §12.4's `gemtc` workflow but was not independently re-run against JAGS in this environment -- do not report its exact figures without reproducing them first.],
     ),
   ),
 ) <tab-ch12-sucra-pscore>
+
 
 #pitfall([
 SUCRA and P-scores are the most over-interpreted single number in network meta-analysis reporting. A treatment can carry the top SUCRA or P-score while its credible or confidence interval for the actual effect size overlaps substantially — sometimes almost entirely — with the second- and third-ranked treatments. A high rank with a wide, overlapping interval usually means the apparent "win" rests on a thinly-evidenced comparison rather than a clinically meaningful difference. Never present a ranking metric on its own slide, table row, or sentence; always pair it with the forest-plot or league-table output from §12.3.6/§12.4 so the reader sees the uncertainty the ranking number hides.
