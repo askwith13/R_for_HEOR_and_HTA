@@ -40,6 +40,28 @@ R code, statistical models, decision trees, Shiny apps — exists only
 in service of answering that question more rigorously and more
 reproducibly.
 
+#difficult-terminology("welfare economics, demand theory, public finance")[
+These are the three parent disciplines health economics proper draws on,
+each a large field in its own right. *Welfare economics* studies how to
+judge whether a policy change makes society better or worse off overall
+— think of it as the branch of economics concerned with "who wins, who
+loses, and does the gain outweigh the loss." *Demand theory* models how
+much of something people buy at different prices (and how that changes
+as income or preferences shift) — the supply-and-demand curves from an
+introductory economics course. *Public finance* studies how governments
+raise money (taxation) and decide how to spend it across competing
+priorities (roads, schools, hospitals). HEOR borrows selectively from
+all three but narrows its focus dramatically: rather than asking "how
+should a health system allocate its whole budget" (a public-finance
+question) or "how does demand for healthcare respond to price" (a
+demand-theory question), HEOR asks a much more contained question —
+"is *this one* intervention worth paying for, compared to what we'd
+otherwise do with that money?" You do not need to have studied any of
+the three to follow this book; they are named here only because an HTA
+dossier or health-economics textbook may invoke them as HEOR's
+intellectual ancestry.
+]
+
 #pitfall[
   A common conflation, especially among analysts moving into HEOR from
   general biostatistics or health-services backgrounds, is to treat
@@ -53,6 +75,30 @@ reproducibly.
   precisely this translation step — from clinical/statistical evidence
   to decision-relevant value — and it is where most of this book's
   methodological content concentrates.
+]
+
+#difficult-terminology("parametric survival curve (extrapolation)")[
+A clinical trial only follows patients for a finite period — typically
+a few years at most — but a cost-effectiveness model usually needs to
+know what happens to survival, and therefore to costs and QALYs, over
+a patient's whole remaining lifetime. "Extrapolation" is the general
+term for projecting beyond what was actually observed. A *parametric*
+survival curve is one specific way to do this: instead of just
+plotting the raw, jagged step-function of who-died-when in the trial
+(a Kaplan-Meier curve, covered properly in Chapter 10), you fit a
+smooth mathematical formula — common choices are named after their
+shape, such as Weibull, log-normal or log-logistic — that describes
+how the risk of the event changes over time. Once that formula is
+fitted to the observed trial data, it can be evaluated at any time
+point you like, including years past the last observed patient,
+simply by plugging in a larger value for time. The practical analogy
+is a weather forecast: you have reliable five-day data, but you want
+a projection for month six, so you fit a model to the pattern you've
+seen and use it to project forward — the forecast is only as
+trustworthy as the assumption that the underlying pattern (the shape
+of the curve) continues to hold, which is exactly why HTA agencies
+scrutinise which parametric shape was chosen and demand sensitivity
+analyses across plausible alternatives.
 ]
 
 HEOR is also not the same as *market access*, although the two
@@ -240,6 +286,29 @@ economics group, typically produces some combination of:
   formatted documents and rebuttals an agency's evidence review
   process demands (Chapters 28, 31).
 
+#difficult-terminology("microsimulation")[
+Most economic models described so far implicitly track a *cohort* —
+an average, representative group of patients moving through health
+states together, where everyone in the "progressed disease" state at
+year 3 is treated as identical for costing and QALY purposes. A
+microsimulation instead tracks many individual, simulated patients one
+at a time, each with their own randomly drawn characteristics and
+their own randomly drawn sequence of events (does *this* particular
+patient progress this cycle, or not, based on a random draw against
+their personal risk?). Run enough individual patients through the
+model and average their outcomes, and you recover the same
+population-level answer a cohort model would give — but along the
+way you also capture patient-to-patient variability (some patients do
+much better or worse than the average) and can model things a cohort
+average cannot, such as a patient's own history affecting their future
+risk. A useful analogy is a flight simulator running thousands of
+individual passenger journeys with their own delays and connections,
+rather than reporting only the airline's average on-time performance:
+both describe the same system, but the individual-level version
+answers questions ("what fraction of passengers miss their
+connection?") the average alone cannot.
+]
+
 Tuberculosis programme data quality and analysis for India's National
 TB Elimination Programme, and workforce-training initiatives built
 around it, sit most naturally against the budget impact, programme-
@@ -346,6 +415,48 @@ of the HEOR workflow, and each part maps onto a stage of it:
 + *Case studies* (Part VIII): end-to-end worked examples, including a
   TB programme cost-effectiveness analysis for an LMIC setting,
   tying every preceding part together in one script-driven project.
+
+#difficult-terminology("discrete event simulation")[
+A Markov cohort model (and, usually, a microsimulation built on top of
+one) advances time in fixed, regular steps — a "cycle" — typically a
+month or a year, checking at every single cycle boundary whether each
+patient has moved to a new health state. A discrete event simulation
+instead advances time irregularly, jumping straight to whenever the
+*next* thing actually happens (the next relapse, hospital admission,
+or death, whichever comes first for whichever patient), rather than
+re-checking everyone on a fixed clock. This matters most when events
+are rare and irregularly timed, or when the model needs to represent
+shared, limited resources — a fixed number of hospital beds or
+specialist appointment slots that patients queue for — something a
+simple fixed-cycle cohort model struggles to represent naturally.
+Think of the difference between a factory manager who inspects every
+machine on the hour regardless of what is happening (a fixed-cycle
+approach) versus one who is alerted the instant any machine actually
+breaks down or finishes a job (an event-driven approach); the second
+is more efficient and more realistic when events are sporadic rather
+than evenly spaced.
+]
+
+#difficult-terminology("distributional / extended cost-effectiveness analysis")[
+A standard cost-effectiveness analysis produces one headline number —
+the population-average cost per QALY gained — which can quietly hide
+very different results for different groups within that population. A
+distributional (or "extended") cost-effectiveness analysis
+deliberately breaks that average apart, reporting costs, health gains
+and sometimes financial-risk-protection effects separately by
+subgroup: by income quintile, by region, by disease severity, or by
+insurance status, for example. The point is to let a decision-maker
+see *who* gains and *who* pays, not just whether the average trade-off
+looks favourable — a programme can look excellent on average while
+concentrating nearly all of its benefit in one already-advantaged
+group, which a single pooled ICER would never reveal. A simple
+analogy: a company's average employee salary can rise even if every
+individual salary stayed flat, just because a few new high earners
+joined — the average conceals the distribution. Extended CEA is the
+health-economics equivalent of insisting on seeing the full salary
+breakdown by group, not just the company-wide average, before judging
+whether a policy is actually equitable.
+]
 
 Each part builds cumulatively on R skills and HEOR concepts introduced
 earlier — by the time this book reaches decision-analytic modelling

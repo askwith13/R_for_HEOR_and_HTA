@@ -1,4 +1,4 @@
-# Extracted from ch05_data_sources.typ, lines 261-270
+# Extracted from ch05_data_sources.typ, lines 286-295
 # Section: === Clinical trial and survey formats with `haven`
 # Chapter: 5
 

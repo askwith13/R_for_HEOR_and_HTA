@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 646-672
+# Extracted from ch10_survival_analysis.typ, lines 658-684
 # Section: === Using `IPDfromKM`
 # Chapter: 10
 

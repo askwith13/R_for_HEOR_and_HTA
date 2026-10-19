@@ -1,4 +1,4 @@
-# Extracted from ch09_costs_resource_use.typ, lines 246-263
+# Extracted from ch09_costs_resource_use.typ, lines 254-271
 # Section: === Two-part (hurdle-style) models for zero-inflated costs
 # Chapter: 9
 

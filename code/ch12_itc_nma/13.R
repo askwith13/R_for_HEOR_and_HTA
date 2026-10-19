@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 532-541
+# Extracted from ch12_itc_nma.typ, lines 540-549
 # Section: === Interpreting shrinkage of heterogeneity and inconsistency
 # Chapter: 12
 

@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 320-332
+# Extracted from ch10_survival_analysis.typ, lines 328-340
 # Section: == 10.6 Model selection: AIC/BIC, visual fit, clinical plausibility
 # Chapter: 10
 

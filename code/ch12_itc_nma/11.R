@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 418-431
+# Extracted from ch12_itc_nma.typ, lines 426-439
 # Section: === Node-splitting: direct vs indirect evidence on one edge
 # Chapter: 12
 

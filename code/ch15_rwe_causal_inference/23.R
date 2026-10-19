@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 757-785
+# Extracted from ch15_rwe_causal_inference.typ, lines 785-813
 # Section: == 15.11 Using external control arms and synthetic control arms
 # Chapter: 15
 

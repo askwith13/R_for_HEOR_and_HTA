@@ -1,4 +1,4 @@
-# Extracted from ch03_r_essentials.typ, lines 339-346
+# Extracted from ch03_r_essentials.typ, lines 411-418
 # Section: == 3.5 Performance: profiling, `Rcpp`, parallelisation (`future`, `furrr`)
 # Chapter: 3
 

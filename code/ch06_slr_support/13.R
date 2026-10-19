@@ -1,4 +1,4 @@
-# Extracted from ch06_slr_support.typ, lines 501-523
+# Extracted from ch06_slr_support.typ, lines 509-531
 # Section: == 6.6 Text mining and ML-assisted screening
 # Chapter: 6
 

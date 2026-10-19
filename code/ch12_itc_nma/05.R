@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 249-252
+# Extracted from ch12_itc_nma.typ, lines 253-256
 # Section: === 12.3.5 Ranking treatments: `netrank()`
 # Chapter: 12
 

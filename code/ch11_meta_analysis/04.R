@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 141-149
+# Extracted from ch11_meta_analysis.typ, lines 157-165
 # Section: == 11.3 Publication bias and small-study effects
 # Chapter: 11
 

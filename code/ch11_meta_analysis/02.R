@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 55-66
+# Extracted from ch11_meta_analysis.typ, lines 63-74
 # Section: == 11.1 Fixed-effect and random-effects models
 # Chapter: 11
 

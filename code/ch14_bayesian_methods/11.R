@@ -1,4 +1,4 @@
-# Extracted from ch14_bayesian_methods.typ, lines 407-447
+# Extracted from ch14_bayesian_methods.typ, lines 415-455
 # Section: === Posterior draws as PSA input: the direct pipeline
 # Chapter: 14
 

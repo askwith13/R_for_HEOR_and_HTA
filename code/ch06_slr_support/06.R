@@ -1,4 +1,4 @@
-# Extracted from ch06_slr_support.typ, lines 239-246
+# Extracted from ch06_slr_support.typ, lines 243-250
 # Section: == 6.3 PRISMA flow diagrams in R
 # Chapter: 6
 

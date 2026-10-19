@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 295-304
+# Extracted from ch10_survival_analysis.typ, lines 299-308
 # Section: == 10.5 Piecewise and landmark models
 # Chapter: 10
 

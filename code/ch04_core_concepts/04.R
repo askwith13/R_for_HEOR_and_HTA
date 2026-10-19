@@ -1,4 +1,4 @@
-# Extracted from ch04_core_concepts.typ, lines 159-164
+# Extracted from ch04_core_concepts.typ, lines 230-235
 # Section: == 4.4 ICERs, net monetary benefit (NMB) and net health benefit (NHB)
 # Chapter: 4
 

@@ -1,4 +1,4 @@
-# Extracted from ch03_r_essentials.typ, lines 196-202
+# Extracted from ch03_r_essentials.typ, lines 222-228
 # Section: == 3.4 Writing functions, parameter lists and defensive programming
 # Chapter: 3
 

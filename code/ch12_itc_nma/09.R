@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 351-357
+# Extracted from ch12_itc_nma.typ, lines 359-365
 # Section: === gemtc: the NICE DSU TSD 2 reference implementation
 # Chapter: 12
 

@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 602-649
+# Extracted from ch12_itc_nma.typ, lines 622-669
 # Section: === Single-study building block with flexsurv, and the bespoke network step
 # Chapter: 12
 

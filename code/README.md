@@ -24,3 +24,6 @@ Regenerate after any chapter edit: this script deletes and rewrites each chapter
 | ch16_regression_models | `code/ch16_regression_models/` | 8 |
 | ch17_decision_modelling | `code/ch17_decision_modelling/` | 3 |
 | ch18_decision_trees | `code/ch18_decision_trees/` | 3 |
+| ch19_markov_cohort | `code/ch19_markov_cohort/` | 7 |
+| ch20_partitioned_survival | `code/ch20_partitioned_survival/` | 5 |
+| ch21_microsimulation | `code/ch21_microsimulation/` | 9 |

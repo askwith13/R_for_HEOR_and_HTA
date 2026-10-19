@@ -6,8 +6,8 @@
 | 2 | `02.R` | == 21.3 Efficient implementation: vectorisation, data.table, parallel computing | 85-97 |
 | 3 | `03.R` | == 21.3 Efficient implementation: vectorisation, data.table, parallel computing | 103-112 |
 | 4 | `04.R` | == 21.3 Efficient implementation: vectorisation, data.table, parallel computing | 118-123 |
-| 5 | `05.R` | == 21.6 Using `hesim` for individual-level models | 177-192 |
-| 6 | `06.R` | == 21.6 Using `hesim` for individual-level models | 198-206 |
-| 7 | `07.R` | == 21.6 Using `hesim` for individual-level models | 212-215 |
-| 8 | `08.R` | == 21.6 Using `hesim` for individual-level models | 219-228 |
-| 9 | `09.R` | == 21.7 Worked example: a screening programme | 246-294 |
+| 5 | `05.R` | == 21.6 Using `hesim` for individual-level models | 203-218 |
+| 6 | `06.R` | == 21.6 Using `hesim` for individual-level models | 224-232 |
+| 7 | `07.R` | == 21.6 Using `hesim` for individual-level models | 238-241 |
+| 8 | `08.R` | == 21.6 Using `hesim` for individual-level models | 245-254 |
+| 9 | `09.R` | == 21.7 Worked example: a screening programme | 272-320 |

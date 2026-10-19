@@ -1,4 +1,4 @@
-# Extracted from ch03_r_essentials.typ, lines 398-402
+# Extracted from ch03_r_essentials.typ, lines 470-474
 # Section: == 3.7 Debugging and error handling
 # Chapter: 3
 

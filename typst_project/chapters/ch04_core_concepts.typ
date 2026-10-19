@@ -64,6 +64,47 @@ Not all economic evaluations measure "effect" the same way, and the choice of ef
   [*Cost-consequence analysis (CCA)* — deliberately avoids collapsing effects into a single ratio. Costs and multiple disaggregated effects (QALYs, specific clinical events, resource-use impacts) are presented side by side in a balance-sheet format, leaving the decision-maker to weigh trade-offs themselves. CCA is often used as a *supplementary* presentation alongside a CUA base case, especially where some important consequences resist being folded sensibly into a single utility number.],
 )
 
+#difficult-terminology("non-inferiority trial")[
+Most clinical trials are designed as *superiority* trials: they try to
+show a new treatment works better than an existing one (or than
+placebo). A non-inferiority trial sets out to answer a deliberately
+different question — not "is the new treatment better," but "is the
+new treatment not meaningfully worse," within a pre-agreed margin that
+both the trial's designers and the relevant regulator accept in
+advance as clinically unimportant. This design is typically chosen
+when the new treatment offers some other advantage — cheaper, more
+convenient to take, fewer side effects, easier to manufacture at scale
+— so that proving "just as good, clinically" is enough to justify
+switching, without needing to prove outright superiority on the
+primary clinical outcome. Because a non-inferiority trial cannot prove
+two treatments are *exactly* equal (no finite trial can rule out every
+conceivable tiny difference), its result is always "not worse by more
+than margin X," not "identical" — a distinction HEOR analysts must
+keep in mind before treating a non-inferiority result as licence for
+unqualified cost-minimisation.
+]
+
+#difficult-terminology("value-of-a-statistical-life estimate")[
+This sounds like it is pricing one specific, identified person's life,
+but it is not — it is a population-level monetary figure representing
+how much a group of people are collectively willing to pay to reduce
+everyone's risk of death by a small amount. It is typically derived
+either by observing how much extra pay workers demand to take
+measurably riskier jobs (a *revealed preference* method, explained
+further in §4.5 below), or by asking people directly in surveys how
+much they would pay for a small reduction in their own risk of dying
+(a *stated preference* method). The number is then extrapolated:
+if 100,000 people are each willing to pay \$50 for a reduction in risk
+that is expected to prevent one death across that group, the
+value-of-a-statistical-life estimate for that context is \$5 million —
+not the value of any one real, identified person's life, but the
+aggregate amount a population puts toward preventing one anonymous,
+statistical death among them. It is the standard tool cost-benefit
+analysis (CBA, described just above) uses to convert mortality risk
+reduction into a monetary figure that can be added alongside other
+costs and benefits.
+]
+
 In practice, CUA with QALYs has become the de facto default that HTA agencies worldwide demand for formal technology appraisal, and it is worth being explicit about *why*: a finite health budget has to allocate across wildly different disease areas — oncology, rare disease, cardiovascular prevention, mental health — and only a generic outcome measure makes those allocation decisions comparable on a common scale. A natural-units CEA cost per "case averted" cannot inform whether money is better spent on cancer or on diabetes; a QALY-denominated CUA, at least nominally, can.
 
 #agency-note[
@@ -83,6 +124,36 @@ The *quality-adjusted life year (QALY)* combines duration of time in a health st
 $ "QALY" = sum_i t_i times u_i $
 
 where $t_i$ is the time (in years) spent in health state $i$, and $u_i$ is the utility weight for that state on a scale anchored at $u=1$ for full health and $u=0$ for dead. Crucially, the scale is not bounded below at zero: health states judged worse than death (severe, unremitting pain with no prospect of recovery, for example) can carry negative utility weights, reflecting that a respondent would trade some of their remaining life expectancy to avoid that state entirely, or would prefer death to it. Utility weights are typically elicited using standardized preference-based instruments (EQ-5D, SF-6D, HUI) administered to patients or to general-population samples, then converted to utilities via a country-specific value set derived from techniques such as time trade-off or standard gamble.
+
+#difficult-terminology("time trade-off / standard gamble")[
+Both are standard techniques for turning "how bad is this health
+state" into a number between 0 (dead) and 1 (full health) that a QALY
+calculation can use — they ask a respondent (patient or member of the
+public) to express that judgement through a concrete choice, rather
+than simply rating the state on an abstract scale. *Time trade-off*
+asks: given a fixed number of years to live in the impaired health
+state being valued, how many of those years would you be willing to
+give up in exchange for the remaining years being in full health
+instead? Someone willing to trade 2 years out of 10 to be fully
+healthy for the remaining 8 implies a utility of 0.8 for that state —
+the less of their remaining life they'd sacrifice, the closer to 1.0
+(full health) the implied utility. *Standard gamble* instead offers a
+choice between the impaired state for certain, versus a gamble: a
+probability $p$ of full, instant recovery to perfect health, and a
+probability $(1-p)$ of immediate death. The respondent's indifference
+point — the probability $p$ at which they can no longer decide whether
+they prefer the certain impaired state or the gamble — is taken as the
+utility value of that impaired state. A concrete worked example: if a
+respondent says they would accept a 25% chance of death in exchange
+for a 75% chance of being cured, rather than continuing to live with
+their current health problem for certain, their utility for that
+health state is read off as 0.75. Both methods are more cognitively
+demanding than simply asking someone to rate a state "out of 10," but
+are grounded in a formal economic theory of choice under uncertainty
+(standard gamble) or time preference (time trade-off), which is why
+country-specific EQ-5D value sets are built from large population
+samples answering one or the other.
+]
 
 ```r
 # Simple QALY calculation across two health states
@@ -201,6 +272,28 @@ For low- and middle-income countries (LMICs), the historically dominant heuristi
 
 This opportunity-cost framing sits opposite a second methodological tradition: stated- or revealed-preference willingness-to-pay surveys, which ask members of the public how much they would personally pay (or how much compensation they would require) for a given health gain, typically yielding higher thresholds than supply-side opportunity-cost estimates because they reflect individual valuation of health rather than a health system's binding budget constraint. The debate between these two schools — opportunity cost (what health is displaced if we fund this) versus willingness-to-pay (what society says health is worth) — remains unresolved and is one of the most active areas in health economics methods research; neither is "correct" in an absolute sense, and the choice has first-order consequences for which technologies get funded.
 
+#difficult-terminology("revealed preference")[
+"Stated preference" (used just above, and already described elsewhere
+in this section) means directly asking people what they would pay or
+accept — a survey. *Revealed preference* takes the opposite approach:
+instead of asking, it infers how much people value something by
+observing the actual trade-offs they make in real decisions. The
+classic example underlying value-of-a-statistical-life estimates
+(§4.2) is the "wage premium" study: researchers compare otherwise
+similar jobs that differ mainly in their on-the-job fatality risk
+(construction versus office work, for instance) and observe how much
+extra pay workers demand, on average, to accept the riskier job. That
+observed wage gap, scaled by the size of the risk difference, reveals
+an implicit price workers are putting on their own safety through
+real choices they actually made — not through a hypothetical
+questionnaire answer. The general principle extends beyond wages:
+any real-world choice where people visibly trade one thing for
+another (buying a safer but more expensive car, choosing a shorter but
+costlier commute) can, in principle, reveal an implicit valuation,
+provided the choice is genuinely free and the trade-off can be
+isolated from other confounding factors.
+]
+
 India's HTA body, HTAIn (Health Technology Assessment in India), operationalised a country-specific threshold rather than adopting the WHO GDP-multiple rule.
 
 #agency-note[
@@ -279,6 +372,31 @@ That debate concerns *differential discounting*: some health economists (echoing
 ) <tab-ch04-perspective-discounting>
 
 *Half-cycle correction* is a technical adjustment specific to Markov cohort models (introduced formally in Chapter 19), noted briefly here because it interacts directly with discounting and time horizon. A Markov model tracks a hypothetical cohort moving between health states in discrete cycles (e.g., annual cycles), and by convention accumulates costs and QALYs as if the entire cohort occupies its cycle-start health state for the whole cycle. In reality, transitions between states (e.g., disease progression, death) occur continuously throughout the cycle, so a naive cycle-start (or cycle-end) accounting overstates (or understates) time spent in each state by roughly half a cycle's worth. Half-cycle correction adjusts for this by assuming, on average, that transitions occur at the cycle midpoint — commonly implemented as a simple average of the cycle-start and cycle-end state occupancy, or via Simpson's-rule-weighted approaches for greater accuracy with longer cycle lengths. The correction typically has a modest but non-trivial effect on both costs and QALYs, and omitting it is a recognised, checkable error in submitted economic models. Full mechanics, including worked trace calculations and the Simpson's-rule variant, are deferred to Chapter 19's dedicated treatment of cohort Markov models in R.
+
+#difficult-terminology("Simpson's rule (half-cycle correction variant)")[
+Simpson's rule is a general numerical technique, unrelated to health
+economics specifically, for estimating the area under a curve more
+accurately than a plain average would. The simplest "half-cycle"
+correction described just above averages only two points per cycle —
+the state occupancy at the cycle's start and at its end — effectively
+approximating the true, continuously-curving occupancy over that
+cycle with a straight line between those two points. Simpson's rule
+improves on this by also using the occupancy at the cycle's *midpoint*
+and fitting a short parabolic (curved) segment through all three
+points rather than a straight line, which tracks a genuinely curving
+trend much more closely, particularly when cycles are long or the
+underlying transition probabilities change quickly. A practical
+analogy: estimating the distance a car travelled using only its speed
+at the start and end of an hour (the simple average) assumes it
+accelerated in a straight line; checking its speed at the halfway mark
+too, and fitting a smooth curve through all three readings (Simpson's
+rule), gives a noticeably better estimate if the car sped up and
+slowed down unevenly during that hour rather than changing speed at a
+constant rate. In R-based Markov models, this usually means sampling
+state-occupancy at an extra set of mid-cycle time points and combining
+them with a specific weighted-average formula, rather than performing
+any genuinely novel calculus.
+]
 
 #heor-practice[
   When reviewing someone else's Markov model, check three things together, since they interact: the time horizon is long enough (ideally lifetime for chronic disease), the discount rate matches the target jurisdiction's reference case (e.g., 3.5% equal discounting for a NICE submission), and half-cycle correction (or an equivalent continuous-time correction) has been applied. Getting the first two right while omitting the third still produces a systematically biased ICER.

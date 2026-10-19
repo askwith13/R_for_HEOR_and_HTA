@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 227-236
+# Extracted from ch12_itc_nma.typ, lines 231-240
 # Section: === 12.3.4 Visualising the evidence network: `netgraph()`
 # Chapter: 12
 

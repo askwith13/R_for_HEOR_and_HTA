@@ -301,6 +301,10 @@ Inside the Stan ecosystem, `rstan::monitor()` reports `n_eff` alongside R-hat fo
 
 As a rule of thumb, treat ESS below roughly 400 (across all chains combined) for any parameter you plan to report as a trigger to run the model longer or reparameterise it, regardless of how good your R-hat looks. For Stan models specifically, also check sampler-level diagnostics beyond R-hat and ESS — divergent transitions, which indicate the sampler is struggling with the geometry of the posterior (common with funnel-shaped hierarchical priors):
 
+#difficult-terminology("funnel-shaped hierarchical priors (Neal's funnel)")[
+In a hierarchical model, individual-level effects (e.g. each study's own effect) are usually written as "the overall average, plus a study-specific deviation whose size is controlled by one variance parameter." The trouble is that this variance parameter and the individual deviations are mathematically tangled together: when the variance parameter is estimated to be small, the deviations are forced to be tiny too, and when it's large, the deviations can range widely. Plotted together, the geometry of that joint space looks like a funnel — wide and open at one end (large variance, loosely-constrained deviations), narrowing to a tight neck at the other (small variance, tightly-constrained deviations). Samplers like Stan's HMC/NUTS struggle badly inside that narrow neck, because the step size that works well in the wide part of the funnel is too large to navigate the narrow part without "divergent transitions" (the sampler effectively crashing into the funnel's walls). It's a well-known pathology named after statistician Radford Neal, and the standard fix is a *non-centered parameterisation* — reformulating the model so the individual deviations are expressed as independent, unit-scaled quantities multiplied by the variance parameter afterwards, rather than directly tangled with it, which straightens the funnel out into geometry the sampler can explore efficiently.
+]
+
 ```r
 check_hmc_diagnostics(fit)
 ```
@@ -401,6 +405,10 @@ where $theta$ is the full vector of model parameters and $p(theta | D)$ is their
 === Posterior draws as PSA input: the direct pipeline
 
 In a conventional (non-Bayesian) PSA workflow, you fit each input parameter a distribution — a beta for a probability, a gamma for a cost, a normal for a log-hazard-ratio — usually justified by matching a point estimate and standard error from a single study or a frequentist meta-analysis, then draw independently from each one and hope the implied joint distribution across parameters is reasonable. Correlations between parameters, when they exist, have to be imposed by hand (e.g. via a multivariate normal on the log scale, or a Cholesky decomposition), which is awkward and frequently skipped.
+
+#difficult-terminology("Cholesky decomposition")[
+Suppose you want to simulate several correlated quantities at once (e.g. cost and utility that tend to move together) by starting from easy-to-generate independent random numbers. A Cholesky decomposition breaks a correlation (or covariance) matrix down into a single "square root" matrix that, when multiplied by a vector of independent random draws, produces a new vector with exactly the desired correlation structure baked in. It's the standard recipe for "injecting" a specified correlation pattern into otherwise-independent simulated numbers. A kitchen analogy: if independent random numbers are plain flour, water, and eggs, the Cholesky matrix is the recipe/ratios that combine them into a batter with the specific consistency (correlation) you wanted, rather than three separate unrelated ingredients. The point raised here is that doing this by hand, for every PSA parameter set, is exactly the fiddly step a genuine Bayesian joint posterior sample (the rest of this section) sidesteps entirely, because the posterior draws already come out correlated correctly without needing any decomposition trick.
+]
 
 A Bayesian evidence base sidesteps all of this. If your relative treatment effect comes from the NMA posterior sample built in §14.5, each row of that sample already is one coherent PSA iteration for the treatment-effect parameters, correlations and all. You use the rows directly as your PSA loop, rather than drawing from a distribution that was fitted _to_ that sample.
 

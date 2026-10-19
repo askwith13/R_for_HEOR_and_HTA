@@ -1,4 +1,4 @@
-# Extracted from ch21_microsimulation.typ, lines 219-228
+# Extracted from ch21_microsimulation.typ, lines 245-254
 # Section: == 21.6 Using `hesim` for individual-level models
 # Chapter: 21
 

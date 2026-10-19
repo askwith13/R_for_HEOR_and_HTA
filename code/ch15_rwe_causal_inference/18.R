@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 534-545
+# Extracted from ch15_rwe_causal_inference.typ, lines 562-573
 # Section: === Interrupted time series (ITS)
 # Chapter: 15
 

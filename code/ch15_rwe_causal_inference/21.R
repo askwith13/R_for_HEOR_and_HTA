@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 643-663
+# Extracted from ch15_rwe_causal_inference.typ, lines 671-691
 # Section: == 15.9 E-values and quantitative bias analysis
 # Chapter: 15
 

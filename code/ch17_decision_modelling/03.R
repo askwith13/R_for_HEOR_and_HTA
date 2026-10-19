@@ -1,4 +1,4 @@
-# Extracted from ch17_decision_modelling.typ, lines 220-257
+# Extracted from ch17_decision_modelling.typ, lines 241-278
 # Section: == 17.6 Modelling workflow in R: inputs -> engine -> outputs -> reporting
 # Chapter: 17
 

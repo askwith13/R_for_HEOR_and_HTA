@@ -1,4 +1,4 @@
-# Extracted from ch06_slr_support.typ, lines 303-340
+# Extracted from ch06_slr_support.typ, lines 307-344
 # Section: == 6.4 Data extraction templates and extraction QA
 # Chapter: 6
 

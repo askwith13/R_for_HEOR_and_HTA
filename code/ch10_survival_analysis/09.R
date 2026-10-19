@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 222-230
+# Extracted from ch10_survival_analysis.typ, lines 226-234
 # Section: == 10.4 Mixture-cure and non-mixture cure models
 # Chapter: 10
 

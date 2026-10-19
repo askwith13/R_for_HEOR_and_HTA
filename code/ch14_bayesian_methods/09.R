@@ -1,4 +1,4 @@
-# Extracted from ch14_bayesian_methods.typ, lines 314-320
+# Extracted from ch14_bayesian_methods.typ, lines 318-324
 # Section: === Posterior predictive checks
 # Chapter: 14
 

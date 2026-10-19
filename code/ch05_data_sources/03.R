@@ -1,4 +1,4 @@
-# Extracted from ch05_data_sources.typ, lines 155-171
+# Extracted from ch05_data_sources.typ, lines 180-196
 # Section: == 5.3 Published literature as a data source
 # Chapter: 5
 

@@ -160,6 +160,10 @@ nrow(conflicts)   # records requiring reconciliation discussion
 
 A kappa below roughly 0.6 is usually a sign the inclusion criteria need tightening before you burn reviewer time on full-text retrieval, not a problem to paper over with a third tie-breaking reviewer alone.
 
+#difficult-terminology("Cohen's kappa")[
+Cohen's kappa measures how much two reviewers agree with each other *beyond* what you would expect them to agree on by chance alone. A naive "percent agreement" is misleading here: if 90% of records are obvious excludes, two reviewers who each decide mostly at random (or even by flipping a coin on the hard ones) will still agree with each other roughly 80-90% of the time just by both landing on "exclude" most of the time. Kappa corrects for that baseline chance-agreement rate, so a kappa of 0.71 is a genuinely informative number, not just "71% of decisions matched." The rule-of-thumb bands you will see cited are: below 0.4 poor, 0.4-0.6 moderate, 0.6-0.8 substantial, above 0.8 near-perfect agreement — so 0.71 here is solid but not pristine, which is exactly why 115 conflicts still needed a reconciliation discussion. Think of it the way you'd think of a diagnostic test's performance over the baseline prevalence rate: two clinicians who both tend to diagnose a common condition will agree often just because the condition is common, not because they're applying identical criteria — kappa is the statistic that strips that artefact out.
+]
+
 #report-table(
   [Dual-reviewer title/abstract screening agreement, as reported in the SLR methods section],
   academic-table(
@@ -361,6 +365,10 @@ discrepancies
 ```
 
 `waldo::compare()` reports exactly which cells differ between the two tibbles — far more actionable for an adjudication meeting than a manual side-by-side read of two spreadsheets. For numeric fields where small rounding differences are expected (confidence intervals read off a forest plot, for instance), a `dplyr`-based tolerance check is often clearer than relying on `waldo`'s defaults:
+
+#difficult-terminology("forest plot")[
+A forest plot is the standard way to show a set of effect estimates — one per study — stacked one above the other so they can be compared at a glance. Each row is one study: a square or dot marks that study's point estimate (e.g. a risk ratio or odds ratio), and a horizontal line through it spans its 95% confidence interval, so wider lines mean less-precise studies. The rows are typically ordered by publication date or study size, and when the studies are later statistically pooled (Chapter 11 covers this in full), a diamond shape at the bottom shows the combined estimate, with the diamond's width showing the pooled interval's precision. Visually, it's the same idea as lining up several lab-test results for a patient on one chart with their error bars, so you can see at a glance which results are consistent with each other and which one is the outlier. You will not build a forest plot in this chapter — that machinery lives in Chapter 11 — but the term shows up here already because reconciling reviewer-extracted effect estimates (as in the `waldo::compare()` step above) is precisely the data-cleaning work that feeds into one later.
+]
 
 ```r
 joined <- inner_join(

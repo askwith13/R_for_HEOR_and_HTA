@@ -1,4 +1,4 @@
-# Extracted from ch16_regression_models.typ, lines 416-427
+# Extracted from ch16_regression_models.typ, lines 490-501
 # Section: == 16.5 Machine learning for prediction and heterogeneity of treatment effect
 # Chapter: 16
 

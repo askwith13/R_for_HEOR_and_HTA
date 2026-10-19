@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 92-101
+# Extracted from ch11_meta_analysis.typ, lines 104-113
 # Section: == 11.2 Heterogeneity and its quantification
 # Chapter: 11
 

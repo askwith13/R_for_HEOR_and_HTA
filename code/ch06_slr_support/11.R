@@ -1,4 +1,4 @@
-# Extracted from ch06_slr_support.typ, lines 432-448
+# Extracted from ch06_slr_support.typ, lines 440-456
 # Section: == 6.5 Risk of bias visualisation (`robvis`)
 # Chapter: 6
 

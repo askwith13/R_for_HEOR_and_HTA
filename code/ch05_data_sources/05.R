@@ -1,4 +1,4 @@
-# Extracted from ch05_data_sources.typ, lines 220-235
+# Extracted from ch05_data_sources.typ, lines 245-260
 # Section: === Spreadsheets with `readxl`
 # Chapter: 5
 

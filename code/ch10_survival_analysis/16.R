@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 461-467
+# Extracted from ch10_survival_analysis.typ, lines 473-479
 # Section: === Covariates on the location/scale parameter
 # Chapter: 10
 

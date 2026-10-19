@@ -1,4 +1,4 @@
-# Extracted from ch07_missing_data.typ, lines 300-309
+# Extracted from ch07_missing_data.typ, lines 304-313
 # Section: == 7.7 Reporting missing data handling for HTA
 # Chapter: 7
 

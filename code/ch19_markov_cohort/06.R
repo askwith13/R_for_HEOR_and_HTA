@@ -1,4 +1,4 @@
-# Extracted from ch19_markov_cohort.typ, lines 282-293
+# Extracted from ch19_markov_cohort.typ, lines 307-318
 # Section: == 19.8 Probabilistic transition matrices (Dirichlet) and Cholesky decomposition
 # Chapter: 19
 

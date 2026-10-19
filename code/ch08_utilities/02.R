@@ -1,4 +1,4 @@
-# Extracted from ch08_utilities.typ, lines 97-122
+# Extracted from ch08_utilities.typ, lines 101-126
 # Section: == 8.4 Analysing utility data: censoring, bounded distributions, beta regression, mixture models
 # Chapter: 8
 

@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 467-474
+# Extracted from ch15_rwe_causal_inference.typ, lines 491-498
 # Section: === Difference-in-differences (DiD)
 # Chapter: 15
 

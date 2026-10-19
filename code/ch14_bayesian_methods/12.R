@@ -1,4 +1,4 @@
-# Extracted from ch14_bayesian_methods.typ, lines 492-509
+# Extracted from ch14_bayesian_methods.typ, lines 500-517
 # Section: == 14.7 Expert elicitation methods (SHELF)
 # Chapter: 14
 

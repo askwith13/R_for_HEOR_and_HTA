@@ -1,4 +1,4 @@
-# Extracted from ch16_regression_models.typ, lines 72-104
+# Extracted from ch16_regression_models.typ, lines 92-124
 # Section: == 16.1 Generalised linear models
 # Chapter: 16
 

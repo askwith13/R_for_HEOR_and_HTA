@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 492-524
+# Extracted from ch12_itc_nma.typ, lines 500-532
 # Section: === Mechanics in gemtc
 # Chapter: 12
 

@@ -1,4 +1,4 @@
-# Extracted from ch09_costs_resource_use.typ, lines 313-337
+# Extracted from ch09_costs_resource_use.typ, lines 325-349
 # Section: == 9.5 Cost-of-illness and micro-costing studies
 # Chapter: 9
 

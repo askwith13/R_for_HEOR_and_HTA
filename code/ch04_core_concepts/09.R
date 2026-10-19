@@ -1,4 +1,4 @@
-# Extracted from ch04_core_concepts.typ, lines 365-389
+# Extracted from ch04_core_concepts.typ, lines 483-507
 # Section: == 4.8 Coding a first simple CEA in R
 # Chapter: 4
 

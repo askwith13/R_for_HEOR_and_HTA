@@ -1,4 +1,4 @@
-# Extracted from ch14_bayesian_methods.typ, lines 353-364
+# Extracted from ch14_bayesian_methods.typ, lines 357-368
 # Section: === Why this matters more as networks get more complex
 # Chapter: 14
 

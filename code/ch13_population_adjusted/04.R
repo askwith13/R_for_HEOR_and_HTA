@@ -1,4 +1,4 @@
-# Extracted from ch13_population_adjusted.typ, lines 143-161
+# Extracted from ch13_population_adjusted.typ, lines 147-165
 # Section: == 13.3 Simulated treatment comparison (STC)
 # Chapter: 13
 

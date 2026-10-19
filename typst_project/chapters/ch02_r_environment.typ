@@ -163,6 +163,97 @@ A `.gitignore` file needs particular care in this domain. Renv's `renv.lock` fil
 
 From Chapter 14 onward, this book moves into Bayesian methods — probabilistic sensitivity analysis built on posterior distributions, network meta-analysis, and survival extrapolation models that borrow strength across data sources via hierarchical structure. These techniques are typically fit not with a built-in R function but with a dedicated probabilistic programming language: Stan or, in older or legacy codebases, JAGS (Just Another Gibbs Sampler). Both let you write the statistical model directly as a set of distributional statements and delegate the hard work of sampling from the posterior to an efficient external sampler — Hamiltonian Monte Carlo (via the No-U-Turn Sampler) in Stan's case, and Gibbs sampling in JAGS's case.
 
+#difficult-terminology("posterior distribution")[
+In Bayesian statistics, you start with a *prior* — your belief about a
+parameter (say, a treatment's true effect size) before looking at the
+current data, which might be deliberately vague ("anywhere from a
+large harm to a large benefit is plausible") or informed by previous
+studies. You then combine that prior with the data actually observed
+in your trial or dataset, using the rules of probability, to get an
+updated belief: the *posterior distribution*. It is not a single
+number but a full distribution — a range of plausible values for the
+parameter, each with an associated probability — because Bayesian
+inference treats the parameter itself as uncertain and quantifies
+exactly how uncertain, before and after seeing data. A simple analogy:
+if your prior is "this coin is probably close to fair" and you then
+flip it 20 times and see 15 heads, your posterior shifts the
+diagnosis-of-fairness towards a biased coin, by an amount that depends
+on how strong your prior was and how much data you collected. The
+posterior is usually too mathematically complex to compute an exact
+formula for in any realistic health-economic model, which is exactly
+why dedicated samplers like Stan and JAGS exist — they approximate
+the posterior by drawing thousands of representative random samples
+from it rather than solving it analytically.
+]
+
+#difficult-terminology("hierarchical structure (\"borrowing strength\")")[
+A hierarchical (or "multi-level") model structure is used when your
+data naturally comes in related groups — for example, several
+different trials of similar drugs, or several hospitals reporting the
+same outcome. Rather than treating each group as completely separate
+(ignoring that they are related) or pooling all the data together as
+if the groups didn't exist (ignoring that they might genuinely differ),
+a hierarchical model does something in between: it estimates a
+group-specific effect for each group, but constrains those group
+estimates to be drawn from a shared, overarching distribution that the
+model also estimates. The practical consequence is "borrowing
+strength" — a group with very little data of its own (a small trial,
+or a hospital with few cases) gets pulled gently towards the overall
+average, because the model recognises it as one draw from the same
+underlying family as the data-rich groups, instead of relying purely
+on its own sparse, noisy numbers. A classroom analogy: if you want to
+estimate how good each of thirty schools' maths teaching is, but some
+schools only have five students' scores while others have five
+hundred, a hierarchical model lets the small schools' estimates
+"borrow" precision from the overall district pattern, rather than
+wildly over- or under-stating how good that one small school's
+teaching really is based on five noisy data points alone.
+]
+
+#difficult-terminology("Hamiltonian Monte Carlo / No-U-Turn Sampler (NUTS)")[
+Sampling from a posterior distribution (see the box above) means
+drawing many representative random values from it so you can
+summarise what the model believes, once data has been accounted for.
+Hamiltonian Monte Carlo (HMC) is a particular, physics-inspired
+algorithm for doing this efficiently in models with many parameters:
+rather than wandering around the parameter space in small, nearly
+random steps (which is slow and can get stuck), it simulates a
+"puck" sliding across the probability landscape as if under gravity
+and momentum, following smooth, informed trajectories that explore
+the most probable regions much faster. The one dial every HMC
+implementation needs is how far each simulated trajectory should run
+before stopping; get this wrong and the sampler either wastes time
+retracing its own path or stops too early to be useful. The No-U-Turn
+Sampler (NUTS) is the clever auto-tuning addition that solves this:
+it monitors the simulated trajectory and automatically stops it the
+moment it starts curving back on itself (making a "U-turn"), so the
+step length is chosen automatically rather than by manual trial and
+error. You do not need to understand the physics to use Stan, which
+implements HMC/NUTS under the hood — the practical takeaway is simply
+that this is why Stan is usually faster and more reliable than older
+samplers for complex Bayesian HEOR models, with little manual tuning
+required.
+]
+
+#difficult-terminology("Gibbs sampling")[
+Gibbs sampling is an older, simpler approach to the same sampling
+problem that Hamiltonian Monte Carlo solves (see above): drawing
+representative random values from a posterior distribution with
+several unknown parameters at once. Instead of moving all parameters
+together, it updates them one at a time, in turn: hold every other
+parameter fixed at its current value, draw a new random value for just
+one parameter conditional on those fixed values, then move on to the
+next parameter and repeat, cycling through all of them over and over.
+Over many such cycles, the sequence of values produced converges to
+representative draws from the full joint posterior. It is
+conceptually simple to implement and was, for a long time, the
+workhorse behind BUGS and JAGS-style Bayesian software in health
+economics and epidemiology, but it can be noticeably slower to explore
+complex models than Hamiltonian Monte Carlo/NUTS, particularly when
+parameters are strongly correlated with each other — one reason newer
+R-based Bayesian HEOR work has shifted increasingly towards Stan.
+]
+
 The practical consequence for an R-based HEOR workflow is that Stan model code is compiled to C++ before it runs. The R packages `rstan` and `cmdstanr` are interfaces that generate this C++, hand it to a compiler, and then call the resulting executable — they are not pure-R implementations. This means your machine needs a working C++ toolchain, which is rarely installed by default and is the single most common installation obstacle analysts moving from base R or `survival`/`flexsurv`-style modelling report when they first try Bayesian HEOR work.
 
 The toolchain requirement differs by operating system:
@@ -291,6 +382,28 @@ A few orientation notes on how these areas relate to one another in practice:
   [*Uncertainty analysis is usually the last mile, not a separate project.* `BCEA`, `dampack`, and `voi` all operate on the output of a probabilistic sensitivity analysis already run through a decision model — they do not run the model themselves. Chapters 25–26 assume you arrive with PSA output in hand.],
   [*Reporting tools are what turns a script into a deliverable.* Quarto (not a package in the traditional sense, but the rendering engine increasingly replacing R Markdown for this purpose) combined with `gt`, `gtsummary`, and `flextable` is how most modern HEOR teams produce submission-ready tables and reproducible reports directly from R code; chapter 28 builds a full reporting pipeline this way.],
 )
+
+#difficult-terminology("multi-state model")[
+A simple survival model only tracks one transition — alive to dead —
+and a basic Markov model usually tracks a small, fixed set of health
+states (e.g. well, progressed, dead). A multi-state model generalises
+both: it formally tracks a patient moving between any number of
+defined health states over time, estimating both the *probability* of
+each possible transition (e.g. from "stable disease" to "progression"
+versus to "death" directly) and the *timing* of when it happens, using
+the same survival-analysis machinery (hazard functions, covered in
+Chapter 10) applied separately to each possible transition in the
+diagram. A useful analogy is a subway map with multiple interchangeable
+lines and stations: a simple survival model only asks "did the train
+ever reach the depot (death)," while a multi-state model asks, for
+every station (health state) a train currently sits at, which of the
+several next stations it's most likely to travel to next, and how long
+that leg of the journey typically takes. `hesim`'s multi-state-model
+support (mentioned above) is what lets an R-based HEOR model represent
+disease pathways that are richer than a simple two- or three-state
+Markov structure — common, for example, in oncology models with
+distinct progression, response and relapse states.
+]
 
 #pitfall[
   Package names in this space are easy to confuse because several solve adjacent but distinct problems: `meta` and `metafor` are not interchangeable with `netmeta` (pairwise vs. network evidence), and `mice` (multiple imputation by chained equations) is a fundamentally different missing-data strategy from `missForest` (a random-forest-based single imputation method) — the choice between them has real implications for your estimates' standard errors, not just a difference in syntax. Confirm you are using the package appropriate to your actual evidence structure and missingness mechanism before trusting its defaults.

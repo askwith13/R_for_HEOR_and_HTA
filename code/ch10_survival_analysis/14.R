@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 393-400
+# Extracted from ch10_survival_analysis.typ, lines 405-412
 # Section: === Testing the proportional hazards assumption
 # Chapter: 10
 

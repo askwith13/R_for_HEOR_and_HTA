@@ -1,4 +1,4 @@
-# Extracted from ch09_costs_resource_use.typ, lines 273-283
+# Extracted from ch09_costs_resource_use.typ, lines 281-291
 # Section: === Smooths and flexible mean functions
 # Chapter: 9
 

@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 669-677
+# Extracted from ch12_itc_nma.typ, lines 693-701
 # Section: == 12.8 Ranking, SUCRA and rankograms
 # Chapter: 12
 
@@ -8,4 +8,4 @@ rank_probs <- rank.probability(result, preferredDirection = -1)
 
 print(rank_probs)
 sucra(rank_probs)
-plot(rank_probs)   # rankogram: stacked probability of each rank, per treatment
+plot(rankogram_tb)   # rankogram: stacked probability of each rank, per treatment

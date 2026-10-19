@@ -1,4 +1,4 @@
-# Extracted from ch16_regression_models.typ, lines 330-341
+# Extracted from ch16_regression_models.typ, lines 385-396
 # Section: == 16.4 Quantile and ordinal regression
 # Chapter: 16
 

@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 580-603
+# Extracted from ch10_survival_analysis.typ, lines 592-615
 # Section: === Data preparation and fitting with `mstate`
 # Chapter: 10
 

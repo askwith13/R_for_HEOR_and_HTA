@@ -1,4 +1,4 @@
-# Extracted from ch04_core_concepts.typ, lines 87-98
+# Extracted from ch04_core_concepts.typ, lines 158-169
 # Section: == 4.3 QALYs, DALYs and life-years
 # Chapter: 4
 

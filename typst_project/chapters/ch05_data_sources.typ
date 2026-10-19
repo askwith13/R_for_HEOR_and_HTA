@@ -150,6 +150,31 @@ The starting point is usually a systematic literature review (SLR), which Chapte
 
 Meta-analysis, covered properly in Chapter 11, is the statistical machinery for pooling effect estimates across multiple studies once a systematic review has identified them, and it exists partly as a defence against the limitations of any single trial's precision — but it is not a defence against publication bias itself; a meta-analysis of a biased set of published trials simply produces a precisely wrong pooled estimate. Funnel plots, Egger's test, and trial registry cross-checks (comparing published results against pre-registered trial protocols on registries such as ClinicalTrials.gov) are the standard tools for detecting whether publication bias is likely operating in a given evidence base, and an HEOR analyst pulling a hazard ratio from a published meta-analysis for use in a model should check whether the authors examined this at all before trusting the pooled number uncritically.
 
+#difficult-terminology("funnel plot / Egger's test")[
+Both are ways of checking whether a meta-analysis's pooled evidence
+base looks suspiciously incomplete — specifically, whether small
+studies with unfavourable results seem to be missing. A *funnel plot*
+is a scatter chart with each study's estimated effect size (e.g. a
+risk ratio) on one axis and a measure of that study's precision (often
+sample size, or the inverse of its standard error) on the other. If
+publication bias is absent, the plot should look like a roughly
+symmetric, upside-down funnel: small, imprecise studies scatter widely
+on both sides of the pooled average, while large, precise studies
+cluster tightly near it. If small studies showing an unfavourable or
+null result are more likely to go unpublished, the plot becomes
+visibly lopsided — small studies appear only on the "favourable" side,
+leaving a gap on the other, like a funnel with one side sheared off.
+*Egger's test* is the formal statistical counterpart: rather than
+eyeballing the plot for asymmetry, it runs a regression of each
+study's effect size against its precision and tests whether the
+resulting line is significantly tilted away from zero — a significant
+tilt is read as statistical evidence of the same asymmetry the funnel
+plot shows visually. Neither test proves publication bias exists (a
+real, genuine difference between small and large studies can also
+cause asymmetry), but both are the field's standard first-line checks
+before trusting a pooled estimate at face value.
+]
+
 In the interim, before Chapter 6's formal SLR methodology, a reasonable working discipline when extracting parameters from literature for a model is to keep a structured, auditable extraction log rather than copying numbers directly into model code — the same instinct that already governs good practice in extracting data from a clinical dataset applies to extracting data from a PDF.
 
 ```r
@@ -313,6 +338,28 @@ Two habits carry over directly from your SQL work and are worth keeping explicit
 )
 
 For parameterised queries — avoiding both SQL injection and the temptation to build query strings with `paste0()` — `DBI::dbGetQuery()` accepts a `params` argument with placeholders:
+
+#difficult-terminology("SQL injection")[
+SQL injection is a security flaw that arises whenever a program builds
+a database query by pasting untrusted text — commonly, text a user
+typed into a form — directly into the query string, rather than
+keeping the query's structure and the user-supplied values cleanly
+separate. If a patient ID field is pasted straight into a query like
+`"SELECT * FROM patients WHERE id = '" + user_input + "'"`, and a user
+(malicious or merely careless) enters something like
+`' OR '1'='1`, the resulting pasted-together query can end up
+selecting *every* row in the table rather than just one patient's
+record, or worse, running entirely different commands the original
+query never intended, because the database cannot tell the difference
+between "data the user supplied" and "instructions that are part of
+the query itself" once they've been concatenated into one string.
+Parameterised queries (as shown just below) avoid this entirely by
+sending the query's fixed structure and the user-supplied values to
+the database as two genuinely separate pieces, so a value like
+`' OR '1'='1` is always treated as a literal, harmless piece of data
+to search for — never as part of the query's logic — no matter what
+it contains.
+]
 
 ```r
 dbGetQuery(

@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 432-447
+# Extracted from ch15_rwe_causal_inference.typ, lines 456-471
 # Section: === Regression discontinuity
 # Chapter: 15
 

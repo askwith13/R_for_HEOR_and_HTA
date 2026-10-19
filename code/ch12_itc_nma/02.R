@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 165-187
+# Extracted from ch12_itc_nma.typ, lines 169-191
 # Section: === 12.3.2 Preparing contrast-level data: `pairwise()`
 # Chapter: 12
 

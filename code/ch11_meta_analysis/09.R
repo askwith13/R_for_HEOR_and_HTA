@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 320-327
+# Extracted from ch11_meta_analysis.typ, lines 348-355
 # Section: == 11.7 Meta-analysis of proportions and rates
 # Chapter: 11
 

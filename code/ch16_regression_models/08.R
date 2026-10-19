@@ -1,4 +1,4 @@
-# Extracted from ch16_regression_models.typ, lines 494-498
+# Extracted from ch16_regression_models.typ, lines 568-572
 # Section: == 16.6 Subgroup analysis and effect modification
 # Chapter: 16
 

@@ -1,4 +1,4 @@
-# Extracted from ch07_missing_data.typ, lines 270-286
+# Extracted from ch07_missing_data.typ, lines 274-290
 # Section: == 7.6 Missing data in cost and QALY data
 # Chapter: 7
 

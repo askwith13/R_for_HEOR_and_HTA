@@ -1,4 +1,4 @@
-# Extracted from ch18_decision_trees.typ, lines 143-197
+# Extracted from ch18_decision_trees.typ, lines 169-223
 # Section: == 18.3 Using `rdecision`
 # Chapter: 18
 

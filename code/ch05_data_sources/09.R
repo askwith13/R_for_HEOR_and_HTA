@@ -1,4 +1,4 @@
-# Extracted from ch05_data_sources.typ, lines 317-323
+# Extracted from ch05_data_sources.typ, lines 364-370
 # Section: === Databases with `DBI`
 # Chapter: 5
 

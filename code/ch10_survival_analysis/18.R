@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 494-497
+# Extracted from ch10_survival_analysis.typ, lines 506-509
 # Section: === Treatment-effect-specific extrapolation
 # Chapter: 10
 

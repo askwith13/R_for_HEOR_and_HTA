@@ -1,4 +1,4 @@
-# Extracted from ch13_population_adjusted.typ, lines 202-228
+# Extracted from ch13_population_adjusted.typ, lines 214-240
 # Section: == 13.4 Multilevel network meta-regression (ML-NMR)
 # Chapter: 13
 

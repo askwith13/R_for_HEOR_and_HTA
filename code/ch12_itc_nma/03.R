@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 195-211
+# Extracted from ch12_itc_nma.typ, lines 199-215
 # Section: === 12.3.3 Fitting the network: `netmeta()`
 # Chapter: 12
 

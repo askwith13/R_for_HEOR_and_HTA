@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 39-44
+# Extracted from ch10_survival_analysis.typ, lines 43-48
 # Section: == 10.1 Kaplan-Meier and life tables
 # Chapter: 10
 

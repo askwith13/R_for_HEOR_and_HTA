@@ -1,4 +1,4 @@
-# Extracted from ch03_r_essentials.typ, lines 362-369
+# Extracted from ch03_r_essentials.typ, lines 434-441
 # Section: == 3.6 Dates, durations and time-to-event data (`lubridate`)
 # Chapter: 3
 

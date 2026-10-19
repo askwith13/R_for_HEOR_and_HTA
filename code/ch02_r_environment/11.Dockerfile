@@ -1,4 +1,4 @@
-# Extracted from ch02_r_environment.typ, lines 211-233
+# Extracted from ch02_r_environment.typ, lines 302-324
 # Section: == 2.6 Containers (Docker) for reproducible models
 
 FROM rocker/r-ver:4.3.2

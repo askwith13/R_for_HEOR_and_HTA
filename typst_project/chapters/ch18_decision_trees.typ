@@ -136,6 +136,32 @@ Everything built in §18.2 -- nodes, branch probabilities, cost and QALY bookkee
 
 `rdecision` models a tree as a graph of R6-class objects rather than a data frame. The classes you will meet first are `DecisionNode` (a root-level choice point -- our "which algorithm?" node), `ChanceNode` (a point where nature decides -- "is the patient truly TB-positive?", "did the test read positive?"), and `LeafNode` (a terminal outcome, carrying an incremental `utility` and an `interval` over which it applies -- `rdecision`'s terminology for the per-path QALY contribution). Edges connecting them are `Action` objects (for branches out of a `DecisionNode`; constructor `Action$new(source_node, target_node, label, cost = 0, benefit = 0)` -- note `label` is required and `cost` is a named argument, not positional) and `Reaction` objects (for branches out of a `ChanceNode`; constructor `Reaction$new(source_node, target_node, p = 0, cost = 0, benefit = 0, label = "")`, where `p` is the conditional branch probability). The whole structure is assembled into a `DecisionTree` object from its vertex and edge lists, which exposes an `evaluate(setvars = "expected", by = "strategy")` method that walks the tree and returns a data frame of expected cost, benefit, and QALY per strategy -- doing the EV roll-back you wrote by hand in §18.2 internally.
 
+#difficult-terminology("R6 class / R6-class objects")[
+R6 is one of several systems R offers for *object-oriented
+programming* -- a style of coding where, instead of keeping your data
+in a plain data frame and writing separate functions that operate on
+it, you bundle data and the functions (called *methods*) that act on
+that data together into a single thing called an *object*. Each R6
+object is created from a *class* -- a blueprint describing what fields
+(data) and methods (behaviour) every object of that type will have.
+Concretely in this chapter: a `ChanceNode` object doesn't just sit
+there holding a probability value -- it is a self-contained thing that
+knows its own branches, can be asked to validate that its outgoing
+probabilities sum to 1, and participates in the tree's `evaluate()`
+walk without you writing a bespoke loop for it. The syntax tell-tale is
+the dollar sign: `Action$new(...)` *creates* a new object from the
+`Action` class (like calling a constructor), and once you have an
+object such as `ictstm` (seen later in Chapter 21), you call its
+methods the same way -- `ictstm$sim_disease()` -- reading as "ask this
+object to run its own disease-simulation method," as opposed to the
+more familiar R style of `sim_disease(ictstm)`, where the object is
+just a passive argument to a free-standing function. You do not need
+to write your own R6 classes to use `rdecision` -- you only need to
+recognise `Class$new(...)` as "build me an object of this type" and
+`object$method(...)` as "ask this object to do something," which is
+enough to read and adapt every `rdecision` example in this chapter.
+]
+
 These signatures (confirmed against the live CRAN reference manual for `rdecision`, not asserted from memory) resolve the hedge this chapter would otherwise need: argument order is `source_node, target_node` first, then the named `p=`/`cost=`/`benefit=`/`label=` arguments, and `rdecision` follows one `rdecision`-specific convention worth flagging explicitly for anyone used to the §18.1--18.2 convention of listing TP/FN/FP/TN as four separate branches per algorithm: it is idiomatic in `rdecision` vignettes to leave *one* reaction's probability as `p = NA_real_`, which the package then fills in at evaluation time as one minus the sum of the other reactions from that same chance node -- a built-in version of the "branch probabilities must sum to 1" check from §18.1, enforced by the package rather than by a manual `sum()` sanity check.
 
 Sketched against the TB running example -- smear-only vs Xpert, each branching first on true disease status then on test result -- the shape below reuses §18.1--18.2's exact numbers ($p = 0.30$ prevalence; smear sensitivity 0.60/specificity 0.98; Xpert sensitivity 0.90/specificity 0.96; costs and QALYs per outcome as tabulated in §18.1):

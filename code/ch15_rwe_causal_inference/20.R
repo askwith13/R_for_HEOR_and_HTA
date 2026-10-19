@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 594-629
+# Extracted from ch15_rwe_causal_inference.typ, lines 622-657
 # Section: == 15.8 Treatment switching and crossover adjustment (RPSFTM, IPCW)
 # Chapter: 15
 

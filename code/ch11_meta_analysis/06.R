@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 192-199
+# Extracted from ch11_meta_analysis.typ, lines 208-215
 # Section: == 11.4 Meta-regression
 # Chapter: 11
 

@@ -1,4 +1,4 @@
-# Extracted from ch04_core_concepts.typ, lines 251-258
+# Extracted from ch04_core_concepts.typ, lines 344-351
 # Section: == 4.6 Perspective, time horizon, discounting and half-cycle correction
 # Chapter: 4
 

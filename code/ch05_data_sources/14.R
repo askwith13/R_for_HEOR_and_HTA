@@ -1,4 +1,4 @@
-# Extracted from ch05_data_sources.typ, lines 439-464
+# Extracted from ch05_data_sources.typ, lines 486-511
 # Section: == 5.6 Data quality checks (`pointblank`, `assertr`, `validate`)
 # Chapter: 5
 

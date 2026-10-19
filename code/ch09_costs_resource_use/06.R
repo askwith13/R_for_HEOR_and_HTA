@@ -1,4 +1,4 @@
-# Extracted from ch09_costs_resource_use.typ, lines 150-181
+# Extracted from ch09_costs_resource_use.typ, lines 158-189
 # Section: == 9.3 Cost data features: skewness, zero-inflation, heavy tails
 # Chapter: 9
 

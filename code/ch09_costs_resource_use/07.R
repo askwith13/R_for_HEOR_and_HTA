@@ -1,4 +1,4 @@
-# Extracted from ch09_costs_resource_use.typ, lines 198-217
+# Extracted from ch09_costs_resource_use.typ, lines 206-225
 # Section: === Generalised linear models on the cost scale
 # Chapter: 9
 

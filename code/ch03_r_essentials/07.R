@@ -1,4 +1,4 @@
-# Extracted from ch03_r_essentials.typ, lines 152-169
+# Extracted from ch03_r_essentials.typ, lines 178-195
 # Section: == 3.3 Functional programming with `purrr` and vectorization
 # Chapter: 3
 

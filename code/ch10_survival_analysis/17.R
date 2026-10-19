@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 475-482
+# Extracted from ch10_survival_analysis.typ, lines 487-494
 # Section: === Covariates on ancillary (shape) parameters
 # Chapter: 10
 

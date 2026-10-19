@@ -181,6 +181,27 @@ The fitted shape parameters are alpha approx 165.68 and beta approx 29.24, and t
 Large alpha and beta values (as above) mean the beta distribution is tightly concentrated around the mean -- appropriate for a well-powered trial. A small trial arm (say n = 20) produces much smaller shape parameters and a visibly wider, sometimes skewed distribution. Always sanity-check the fitted alpha and beta against the sample size implied by the reported CI; a mismatch usually means the CI was log-scale or Wilson-interval, not the simple normal approximation used above.
 ]
 
+#difficult-terminology("Wilson interval (Wilson score interval)")[
+When you calculate a confidence interval around a proportion (like "85%
+of patients responded"), the simplest textbook method — the one most
+clinicians meet first — assumes the sampling distribution is roughly a
+symmetric bell curve and builds the interval as "estimate plus or minus
+some multiple of the standard error." That simple normal-approximation
+method breaks down badly when the proportion is close to 0% or 100%,
+or when the sample size is small: it can even produce a nonsensical
+interval that dips below 0% or climbs above 100%. The Wilson interval
+(also called the Wilson score interval) is an alternative formula that
+handles exactly these edge cases properly — it is derived slightly
+differently (by inverting a hypothesis-testing statistic rather than
+assuming symmetry) and stays within the valid 0-100% range, and gives
+more trustworthy coverage for small or extreme-proportion trial arms.
+As a working rule: if a reported trial result's confidence interval
+looks asymmetric around the point estimate, or the proportion is near
+0 or 1, suspect it was built with a Wilson-type method rather than the
+simple symmetric approximation, and account for that when back-fitting
+a Beta distribution as in the worked example above.
+]
+
 == 17.5 Model documentation and transparency
 
 A decision model that only its author can run is not fit for HTA submission, however correct its arithmetic. Two linked expectations govern this: external bodies expect the model's *logic* to be auditable, and they expect the model's *code* to actually execute on someone else's machine.

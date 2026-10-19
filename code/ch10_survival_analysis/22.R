@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 611-621
+# Extracted from ch10_survival_analysis.typ, lines 623-633
 # Section: === Parametric extrapolation of transition-specific hazards with `flexsurv`
 # Chapter: 10
 

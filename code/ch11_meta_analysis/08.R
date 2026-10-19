@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 264-278
+# Extracted from ch11_meta_analysis.typ, lines 280-294
 # Section: == 11.6 Diagnostic test accuracy meta-analysis
 # Chapter: 11
 

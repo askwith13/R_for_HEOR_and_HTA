@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 266-277
+# Extracted from ch12_itc_nma.typ, lines 270-281
 # Section: === 12.3.6 Full pairwise results: `netleague()`
 # Chapter: 12
 

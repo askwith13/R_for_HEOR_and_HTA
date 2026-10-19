@@ -1,4 +1,4 @@
-# Extracted from ch16_regression_models.typ, lines 159-185
+# Extracted from ch16_regression_models.typ, lines 179-205
 # Section: == 16.2 Mixed-effects and hierarchical models
 # Chapter: 16
 

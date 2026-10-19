@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 362-376
+# Extracted from ch15_rwe_causal_inference.typ, lines 370-384
 # Section: === G-methods
 # Chapter: 15
 

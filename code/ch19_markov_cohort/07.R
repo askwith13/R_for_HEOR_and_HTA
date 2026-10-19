@@ -1,4 +1,4 @@
-# Extracted from ch19_markov_cohort.typ, lines 344-371
+# Extracted from ch19_markov_cohort.typ, lines 369-396
 # Section: == 19.10 Worked example: a chronic-disease CEA
 # Chapter: 19
 

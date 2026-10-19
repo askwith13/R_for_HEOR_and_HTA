@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 140-146
+# Extracted from ch10_survival_analysis.typ, lines 144-150
 # Section: == 10.3 Flexible and spline-based models
 # Chapter: 10
 

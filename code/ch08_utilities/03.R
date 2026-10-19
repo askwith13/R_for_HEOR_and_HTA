@@ -1,4 +1,4 @@
-# Extracted from ch08_utilities.typ, lines 166-182
+# Extracted from ch08_utilities.typ, lines 174-190
 # Section: == 8.5 Utility decrements, age-adjusted utilities and background mortality
 # Chapter: 8
 

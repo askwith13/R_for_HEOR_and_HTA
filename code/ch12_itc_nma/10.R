@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 367-388
+# Extracted from ch12_itc_nma.typ, lines 375-396
 # Section: === multinma: a unified Stan-based alternative
 # Chapter: 12
 

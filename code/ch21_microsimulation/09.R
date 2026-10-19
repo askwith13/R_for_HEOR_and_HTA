@@ -1,4 +1,4 @@
-# Extracted from ch21_microsimulation.typ, lines 246-294
+# Extracted from ch21_microsimulation.typ, lines 272-320
 # Section: == 21.7 Worked example: a screening programme
 # Chapter: 21
 

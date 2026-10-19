@@ -48,6 +48,26 @@ fit?" becomes "which distribution matches my outcome's support, and
 which link makes the linear predictor behave?" — rather than a new
 method to memorise every time.
 
+#difficult-terminology("exponential family")[
+"Exponential family" is not a statement about exponential growth — it's
+a technical label for a whole group of probability distributions
+(normal/Gaussian, binomial, Poisson, negative binomial, gamma, and a
+handful of others) that all share the same underlying mathematical
+form once you write them out algebraically. That shared form is the
+reason a single piece of software machinery — the GLM-fitting
+algorithm — can estimate all of them: R doesn't need a bespoke fitting
+routine for "binary outcome regression" and a different one for "count
+outcome regression"; it needs one general algorithm plus a
+specification of *which* exponential-family distribution and *which*
+link function apply to your outcome. Practically, you never need to
+verify exponential-family membership yourself — the handful of
+distributions you'll actually use in HEOR work (binomial for yes/no
+outcomes, Poisson or negative binomial for counts, gamma for skewed
+positive costs, Gaussian for roughly symmetric continuous outcomes) are
+all members, which is precisely why `glm()` can fit all of them through
+the same `family = ` argument.
+]
+
 Three outcome types cover most HEOR regression work:
 
 - *Binary outcomes* (treatment success/failure, culture conversion,
@@ -311,6 +331,41 @@ deviance to degrees of freedom (well above 1 signals overdispersion) and
 tabulate the proportion of zeros before trusting a Poisson model.
 ])
 
+#difficult-terminology("Type I error")[
+A Type I error is the statistical term for a "false positive": you
+conclude there is a real effect or difference (e.g., a drug lowers
+cost, or a treatment changes outcomes) when, in the underlying truth,
+there is no such effect, and what you saw was just random noise in
+your particular sample. The conventional threshold of $alpha = 0.05$
+means you've agreed to accept a 5% chance of this kind of false alarm
+whenever a true null effect is tested. The problem flagged in the
+pitfall above is that bad standard errors (too small) make p-values
+look smaller than they should, so you end up crying wolf more than 5%
+of the time without realising it — the nominal 5% false-positive rate
+quietly becomes something larger, like 15-20%, because the model is
+overconfident about its own precision.
+]
+
+#difficult-terminology("residual deviance / degrees of freedom")[
+These are two separate numbers that, together, give you a quick
+diagnostic check. *Residual deviance* is a single number summarising
+how far the model's fitted values are from the actual observed data —
+think of it as a generalisation of "sum of squared errors" that works
+for GLMs, not just ordinary linear regression; smaller is a better fit.
+*Degrees of freedom* here is, roughly, the number of observations in
+your dataset minus the number of parameters your model estimated — it
+reflects how much independent information was left over after fitting.
+For a well-behaved Poisson model, textbook theory says these two
+numbers should come out roughly equal, so dividing deviance by degrees
+of freedom should give something close to 1. If that ratio comes out
+well above 1 (say, 3 or 5), it is a red flag that your data has more
+variability than a plain Poisson distribution assumes — this is called
+*overdispersion*, and it is exactly the kind of thing that inflates
+Type I error as described above. In R, both numbers are printed
+automatically at the bottom of `summary(my_glm_model)`, so the check
+costs nothing beyond glancing at output you already have.
+]
+
 == 16.4 Quantile and ordinal regression
 
 Chapter 9 made the case that cost data is skewed — a long right tail of
@@ -381,6 +436,25 @@ assumption clearly fails, consider a partial proportional-odds model or
 report cut-point-specific effects instead of a single pooled odds
 ratio.
 ])
+
+#difficult-terminology("Brant-type test")[
+The proportional-odds model (used for ordinal outcomes — things with a
+natural order but no fixed numeric scale, like a pain-severity rating
+of none/mild/moderate/severe) makes a strong simplifying assumption:
+that a predictor's effect is the *same* regardless of which cut-point
+of the outcome you look at (e.g., "mild-or-worse vs. none" and
+"severe vs. everything-else" are assumed to move by the same amount
+for a one-unit change in the predictor). A Brant-type test is a formal
+statistical check of that assumption — it compares the coefficients
+estimated separately at each cut-point (as described in the paragraph
+above) and produces a p-value testing whether those separate estimates
+are statistically consistent with coming from one shared, constant
+effect. A small p-value here is evidence the proportional-odds
+assumption is shaky for at least one predictor, and you should consider
+the alternatives mentioned above (a partial proportional-odds model, or
+reporting cut-point-specific effects) rather than trusting a single
+pooled odds ratio.
+]
 
 == 16.5 Machine learning for prediction and heterogeneity of treatment effect
 
@@ -522,6 +596,29 @@ each arm without the treatment's relative effect differing at all.
 Always check the interaction term before concluding that a subgroup's
 apparently different results reflect true effect modification rather
 than prognosis.
+
+#difficult-terminology("DAG (directed acyclic graph)")[
+A DAG is a diagram — boxes for variables, arrows for assumed
+cause-and-effect — that makes your causal assumptions explicit and
+checkable rather than leaving them implicit in your head. "Directed"
+means every arrow has a direction (cause → effect, not just "these two
+are associated"); "acyclic" means you can't follow the arrows in a loop
+back to where you started (no variable can be its own cause, directly
+or indirectly). For example, a simple DAG might show "disease severity
+→ treatment choice" and "disease severity → outcome" and "treatment
+choice → outcome": severity is a *confounder* here because it feeds
+into both the thing you're choosing (treatment) and the thing you're
+measuring (outcome), and you'd draw that structure before touching any
+data, based on clinical knowledge. Epidemiologists and causal-inference
+statisticians use DAGs precisely because they force you to commit, on
+paper, to which variables you believe are confounders (common causes of
+both exposure and outcome, which you must adjust for) versus which are
+simply downstream consequences of treatment (which you must *not*
+adjust for, since doing so can introduce bias rather than remove it).
+You don't need to draw formal DAGs to use this book's methods, but
+understanding that a DAG is simply "your causal assumptions, drawn out
+and made explicit" demystifies why Chapter 15 leans on them so heavily.
+]
 
 #agency-note([
 EMA's "Guideline on the investigation of subgroups in confirmatory

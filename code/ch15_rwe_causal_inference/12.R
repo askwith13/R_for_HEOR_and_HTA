@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 394-403
+# Extracted from ch15_rwe_causal_inference.typ, lines 406-415
 # Section: === Instrumental variables
 # Chapter: 15
 

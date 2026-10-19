@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 527-541
+# Extracted from ch10_survival_analysis.typ, lines 539-553
 # Section: === Background mortality as a plausibility bound
 # Chapter: 10
 

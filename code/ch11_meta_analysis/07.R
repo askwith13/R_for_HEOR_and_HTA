@@ -1,4 +1,4 @@
-# Extracted from ch11_meta_analysis.typ, lines 234-248
+# Extracted from ch11_meta_analysis.typ, lines 250-264
 # Section: == 11.5 Meta-analysis of time-to-event outcomes
 # Chapter: 11
 

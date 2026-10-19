@@ -16,6 +16,30 @@
   inset: 10pt, radius: 3pt, width: 100%,
 )[*Agency perspective.* #body]
 
+// Difficult Terminology box: inserted at the FIRST appearance of a
+// technical term (statistics, mathematics, epidemiology, R/programming,
+// or health-economics-specific) that is used in the surrounding prose
+// without being explained -- built Oct 2026 following a book-wide
+// terminology audit that found 70 such gaps across Chapters 1-21 (see
+// progress/terminology_audit.md). Distinct teal/cyan styling so it reads
+// differently from heor-practice (blue), pitfall (orange), agency-note
+// (green), and report-table (purple) at a glance.
+//
+// `term`: the term/phrase being defined, shown as the box's bold title.
+// `body`: the explanation -- should give a real plain-language
+//   definition pitched at the book's stated reader (SQL basic/rusty,
+//   medical/public-health background, not deeply technical in stats),
+//   and an analogy or worked example WHEREVER one genuinely helps
+//   (dense/abstract concepts like a hazard function, conjugate
+//   posterior, or exchangeability benefit strongly from one; a
+//   straightforward definitional term like "non-inferiority trial" may
+//   not need one -- use judgement, don't force an analogy that adds
+//   nothing). Keep to a tight paragraph or two, not a full subsection.
+#let difficult-terminology(term, body) = block(
+  fill: rgb("#ecfeff"), stroke: (left: 2pt + rgb("#0e7490")),
+  inset: 10pt, radius: 3pt, width: 100%,
+)[*Difficult terminology: #term.* #body]
+
 #let learning-objectives(items) = block(
   fill: rgb("#f7fafc"), stroke: 0.5pt + rgb("#cbd5e0"),
   inset: 10pt, radius: 3pt, width: 100%,

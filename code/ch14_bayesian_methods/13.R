@@ -1,4 +1,4 @@
-# Extracted from ch14_bayesian_methods.typ, lines 538-543
+# Extracted from ch14_bayesian_methods.typ, lines 546-551
 # Section: == 14.8 Bayesian health economic modelling workflows
 # Chapter: 14
 

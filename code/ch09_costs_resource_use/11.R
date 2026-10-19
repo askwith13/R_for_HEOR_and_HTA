@@ -1,4 +1,4 @@
-# Extracted from ch09_costs_resource_use.typ, lines 353-376
+# Extracted from ch09_costs_resource_use.typ, lines 365-388
 # Section: == 9.6 Handling censored cost data
 # Chapter: 9
 

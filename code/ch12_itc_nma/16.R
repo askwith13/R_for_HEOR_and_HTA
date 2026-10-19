@@ -1,4 +1,4 @@
-# Extracted from ch12_itc_nma.typ, lines 683-691
+# Extracted from ch12_itc_nma.typ, lines 713-721
 # Section: == 12.8 Ranking, SUCRA and rankograms
 # Chapter: 12
 

@@ -1,4 +1,4 @@
-# Extracted from ch15_rwe_causal_inference.typ, lines 701-743
+# Extracted from ch15_rwe_causal_inference.typ, lines 729-771
 # Section: == 15.10 OHDSI/OMOP workflows in R
 # Chapter: 15
 

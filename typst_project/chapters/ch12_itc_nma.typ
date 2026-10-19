@@ -158,6 +158,10 @@ Network meta-analysis (NMA) treats this whole graph as a single generalised line
 
 The `netmeta` package (Rücker, Schwarzer, Krahn & König) implements the *frequentist, graph-theoretical* approach to NMA developed by Rücker (2012), which treats the network as an electrical network analogue and solves for treatment effects by a weighted least-squares approach equivalent to a generalised Moore-Penrose pseudoinverse of the network's Laplacian-type matrix. This gives estimates numerically equivalent, under a fixed-effect or standard random-effects model, to a corresponding Bayesian NMA fitted with vague priors (§12.4) — the two frameworks answer the same question with different machinery and different ways of expressing uncertainty.
 
+#difficult-terminology("Moore-Penrose pseudoinverse / Laplacian-type matrix")[
+Ordinary matrix division (the matrix equivalent of "divide by X") only works when a matrix is square and well-behaved; the system of equations describing a treatment network is neither, because a network with indirect evidence routes has more than one algebraically valid way of distributing information between treatments. The Moore-Penrose pseudoinverse is a generalised "division" that still produces a single, best (least-squares) answer even when an ordinary inverse doesn't exist. The "Laplacian-type matrix" describing the network comes from exactly the same mathematics used to analyse an electrical circuit's resistor network — treatments are nodes, trials are wires connecting them, and "resistance" corresponds to each trial's imprecision (small, imprecise trials act like high-resistance wires). You don't need to follow the matrix algebra to use `netmeta()`, but it helps to know the headline intuition: solving for treatment effects in a network is mathematically the same problem as solving for voltage at every node of a circuit, which is why the method is sometimes called the "electrical network" approach to NMA.
+]
+
 === 12.3.2 Preparing contrast-level data: `pairwise()`
 
 `netmeta()` expects data in *contrast-based* (one row per treatment comparison per study) format, not arm-based (one row per arm). When your raw extraction is arm-level — events and sample size, or mean and SD, per trial arm — the companion function `pairwise()` (also shipped in `netmeta`) converts it to contrasts, computing the appropriate effect measure and its standard error for you. For binary outcomes such as MDR-TB treatment failure, a typical arm-level data frame looks like:
@@ -297,6 +301,10 @@ Ordering rows/columns by `seq = rank_tb` (the `netrank()` object from above) arr
     ),
   ),
 ) <tab-ch12-netleague-excerpt>
+
+#difficult-terminology("basic parameters (of a network)")[
+In a network of, say, four treatments (A, B, C, D), you don't need to separately estimate every possible pairwise comparison (A-B, A-C, A-D, B-C, B-D, C-D — six numbers) from scratch. Pick one treatment as a reference (say C), and the *basic parameters* are just the effects of each other treatment relative to that one reference (A-vs-C, B-vs-C, D-vs-C — three numbers for four treatments, i.e. always one fewer than the number of treatments). Every other comparison the league table reports (like D-vs-A) is then derived algebraically by subtracting one basic parameter from another (D-vs-A = D-vs-C minus A-vs-C), exactly the Bucher-method logic from earlier in this chapter, just generalised to every pair at once. Think of basic parameters as the minimal set of "exchange rates" against one reference currency, from which every other currency pair's exchange rate can be calculated without needing its own separate quote.
+]
 
 Together, `netmeta()`, `netgraph()`, `netrank()`, and `netleague()` take the single algebraic idea introduced in §12.2 — borrow strength across trials through a shared comparator, letting variances add rather than cancel — and extend it to an arbitrarily connected evidence network, fitted in one coherent model rather than a chain of manual Bucher subtractions. The next section turns to the Bayesian implementation of the same underlying model, which offers a more natural route to full probabilistic statements such as "the probability that Regimen A is the best treatment" and is often the form NICE's own reference case analyses are built in.
 
@@ -540,6 +548,10 @@ print(results_unadjusted$deviance$tau)
 print(results_regression$deviance$tau)
 ```
 
+#difficult-terminology("deviance / residual deviance")[
+Deviance is a single number summarising how badly a fitted model disagrees with the data it was fitted to — it's built directly from the log-likelihood (see Chapter 10's gloss on that concept) and, like a golf score, lower is better. "Residual" deviance is the deviance left over after the model has done its best to explain the data; comparing residual deviance between two candidate models (here, the unadjusted vs. covariate-adjusted network) tells you whether the more complex model is actually earning its extra parameters by fitting noticeably better, or whether it's just more complicated for no real gain. DIC (Deviance Information Criterion, already in the book's abbreviations list) is essentially deviance with a built-in penalty for model complexity bolted on, which is why the two are compared together here rather than deviance alone.
+]
+
 A drop in DIC alongside a materially smaller τ² is evidence the covariate is earning its place in the model; a drop in DIC driven mainly by better model fit to a handful of large studies, with little change in τ², is weaker evidence and should be reported cautiously.
 
 #heor-practice[
@@ -598,6 +610,14 @@ There is no widely adopted, actively maintained CRAN package that implements the
 === Single-study building block with flexsurv, and the bespoke network step
 
 The piece that *is* directly supported by a real, verified R function is the single-study, single-arm fractional-polynomial-style hazard fit, which `flexsurv` can produce via its generalised gamma, generalised F, or spline-based hazard models (Chapter 10), or via a direct Royston-Parmar / fractional-polynomial-on-the-log-cumulative-hazard specification fit arm-by-arm. A reasonable and honest workflow is:
+
+#difficult-terminology("generalized gamma / generalized F distributions")[
+These are two "flexible" families of mathematical curves for describing how long patients survive, each of which contains several simpler, more familiar curve shapes as special cases. The generalized gamma family, for example, can behave like an exponential curve, a Weibull curve, or a log-normal curve depending on its extra shape parameters — rather than committing upfront to one specific survival-curve shape (as Chapter 10's simpler models do), you let the data pick which of those shapes (or something in between) fits best. The generalized F distribution is even more flexible, adding a further parameter on top. The trade-off is the usual one with flexibility: these models need more data to estimate their extra parameters reliably, and are more prone to producing implausible long-term extrapolations if fitted to short follow-up, so they're best used as a model-selection safety net (checking whether a simpler curve is good enough) rather than a default first choice.
+]
+
+#difficult-terminology("Royston-Parmar spline model")[
+Instead of assuming survival follows one fixed mathematical formula (exponential, Weibull, etc.), a Royston-Parmar model fits a flexible curve built out of smoothly-joined pieces (splines) to the log cumulative hazard over time — similar in spirit to how a flexible French curve can be bent to trace almost any smooth shape, rather than being restricted to a straight line or a single fixed curve. The analyst chooses how many "knots" (joints between curve segments) to use, trading off flexibility against the risk of over-fitting noise in the data. It's especially useful for extrapolation when the observed survival data clearly doesn't follow any single standard parametric shape, since the spline can bend to track the data's actual pattern rather than forcing a mismatched formula onto it.
+]
 
 ```r
 library(flexsurv)
@@ -659,6 +679,10 @@ NICE DSU Technical Support Document 18 (Ouwens et al., "Network Meta-Analysis of
 ]
 
 Both extensions in this section share a single underlying vulnerability: they assume that whatever is pooled across the network — a treatment effect, a regression slope, a fractional-polynomial hazard-ratio function — is *exchangeable* across the trials contributing to it, once any measured covariates have been accounted for. That assumption is exactly the one that network meta-regression's ecological-bias caveat warns us not to take for granted, and it is the assumption that breaks down most visibly when the trials in a network enrol genuinely different patient populations on characteristics that are also effect modifiers — the kind of situation where no amount of study-level covariate adjustment can substitute for patient-level information. Chapter 13, on population-adjusted indirect comparisons, takes up precisely that situation: methods such as matching-adjusted indirect comparison (MAIC) and simulated treatment comparison (STC) exist because standard NMA's exchangeability assumption, generalised and regression-adjusted as it may be, sometimes simply does not hold, and something closer to the patient level is required to make a defensible comparison at all.
+
+#difficult-terminology("exchangeability")[
+Exchangeability is the technical backbone that justifies pooling studies together at all. It says: once you've accounted for any differences you've explicitly measured and adjusted for, you have no further reason to treat any one included study's "true" underlying effect as systematically different in kind from any other's — you could relabel/shuffle the studies' identities and the overall statistical model wouldn't need to change. A useful analogy: if you're averaging exam scores from several classrooms to estimate a school's performance, exchangeability is the assumption that, once you've adjusted for known differences (e.g. which grade each classroom is), there's nothing else systematically different about Classroom 3 that would make its true underlying ability fundamentally incomparable to Classroom 7's — any apparent difference left over is just random noise, not some hidden structural gap. When trials enrol patients who differ in ways you *haven't* measured or adjusted for (e.g. markedly different disease severity at baseline), exchangeability is violated, and pooling them — however statistically convenient — risks combining numbers that simply don't belong together.
+]
 
 == 12.8 Ranking, SUCRA and rankograms
 

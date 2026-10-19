@@ -1,4 +1,4 @@
-# Extracted from ch16_regression_models.typ, lines 242-247
+# Extracted from ch16_regression_models.typ, lines 262-267
 # Section: == 16.3 Count data and zero-inflated models
 # Chapter: 16
 

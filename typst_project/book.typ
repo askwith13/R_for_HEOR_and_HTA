@@ -26,7 +26,7 @@
 }
 
 // ---- Callout boxes used throughout chapters (shared, see common.typ) ----
-#import "common.typ": heor-practice, pitfall, agency-note, learning-objectives, report-table, ref-table, academic-table, part-divider
+#import "common.typ": heor-practice, pitfall, agency-note, learning-objectives, report-table, ref-table, academic-table, part-divider, difficult-terminology
 
 // ---- Front matter ----
 #include "front_matter/title_page.typ"

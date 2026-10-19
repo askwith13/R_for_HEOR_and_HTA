@@ -279,6 +279,31 @@ The natural fix is the *Dirichlet distribution*, the multivariate generalisation
 
 `dampack` exports a ready-to-use `rdirichlet()` function for this: given a row of counts, it returns PSA draws for that row that respect the sum-to-1 constraint by construction.
 
+#difficult-terminology("conjugate posterior")[
+In Bayesian statistics, you start with a *prior* distribution
+(your belief about a parameter before seeing data), combine it with
+observed data, and end up with a *posterior* distribution (your
+updated belief after seeing the data). In general, that combination
+step requires heavy computation — simulation methods like MCMC, as
+used elsewhere in this book. A "conjugate" prior is a special, lucky
+case where the prior and the data-generating distribution are
+mathematically matched so that the posterior comes out in the *same
+family* as the prior, with a simple formula instead of simulation.
+Concretely: if your prior for a success probability is a $"Beta"(a, b)$
+distribution (think of $a$ and $b$ as "pretend" prior counts of past
+successes and failures), and you then observe real data of $s$
+successes and $f$ failures, the posterior is just another Beta
+distribution — $"Beta"(a + s, b + f)$ — you simply add your observed
+counts onto the prior's pretend counts. No simulation, no numerical
+approximation, just arithmetic. That is exactly why Beta pairs so
+neatly with binomial (yes/no) data, and why its multivariate cousin,
+Dirichlet, pairs the same way with multinomial (more-than-two-outcome)
+data: both are conjugate to the kind of data a Markov transition
+matrix naturally produces, which is what makes `rdirichlet()`'s
+pseudo-count trick above work with a one-line function call rather
+than a full Bayesian model fit.
+]
+
 ```r
 library(dampack)
 

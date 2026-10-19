@@ -142,6 +142,32 @@ A microsimulation produces two kinds of randomness at once. Keeping them apart i
 
 The practical consequence: in a microsimulation, every second-order draw (every PSA iteration) itself requires simulating a population of individuals, and that population carries first-order noise. If you simulate too few patients per PSA draw, the spread you see across draws is a mixture of genuine parameter uncertainty and simulation noise that has nothing to do with your parameters. Simulating more patients per draw shrinks first-order noise, by the law of large numbers, but it does nothing to second-order uncertainty -- that depends only on how uncertain your parameter estimates are. The two are controlled by two completely different levers: number of simulated patients (first-order) and number of PSA parameter draws (second-order).
 
+#difficult-terminology("law of large numbers")[
+The law of large numbers is one of the oldest and most intuitive ideas
+in probability: if you repeat a random process many times and average
+the results, that average gets closer and closer to the "true"
+underlying expected value as you add more repetitions, even though any
+single repetition is unpredictable. A simple analogy: a single coin
+flip is a coin toss, genuinely 50/50 — but flip a fair coin 10,000
+times and the proportion of heads will land extremely close to 50%,
+not because any individual flip became more predictable, but because
+the random ups and downs average each other out across a large number
+of trials. In this chapter's microsimulation context: simulating a
+single patient's trajectory is like a single coin flip — almost pure
+noise, entirely dominated by that one patient's random luck. Simulate
+10,000 patients under the *same* fixed parameters and average their
+outcomes, and that average cost/QALY estimate converges tightly onto
+the model's true expected value for those parameters — not because the
+individual patients became less random, but because averaging over
+many of them cancels out the individual-level noise. This is exactly
+why the pitfall above distinguishes "not enough simulated patients"
+(fixable by simulating more — the law of large numbers eventually
+irons out the noise) from "genuine parameter uncertainty" (not fixable
+by simulating more patients at all, because that uncertainty lives in
+not knowing the true parameter values, not in patient-level
+randomness).
+]
+
 #pitfall([
 A PSA on a microsimulation model with too few simulated patients per iteration will show a cost-effectiveness acceptability curve that is noisier and flatter than the true parameter uncertainty justifies. The fix is not a different PSA method -- it is simply simulating more patients per parameter draw until first-order noise is small relative to the spread you are trying to characterise. Do not report "wide uncertainty" from a microsimulation without first checking whether that width is genuine parameter uncertainty or simulation noise that a larger cohort size would remove.
 ])
@@ -214,7 +240,7 @@ utility_model <- create_StateVals(tbl = utility_tbl, n = 1000, hesim_data = hesi
 cost_model    <- create_StateVals(tbl = cost_tbl,    n = 1000, hesim_data = hesim_dat)
 ```
 
-These pieces assemble into a single `IndivCtstm` object (an R6 class), which exposes the simulation methods in a fixed order:
+These pieces assemble into a single `IndivCtstm` object (an R6 class -- see Chapter 18 §18.3 for what that means if the `Class$new(...)` / `object$method(...)` syntax below is unfamiliar), which exposes the simulation methods in a fixed order:
 
 ```r
 ictstm <- IndivCtstm$new(trans_model   = trans_model,

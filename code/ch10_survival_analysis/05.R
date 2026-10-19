@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 113-117
+# Extracted from ch10_survival_analysis.typ, lines 117-121
 # Section: == 10.2 Parametric models
 # Chapter: 10
 

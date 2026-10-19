@@ -94,6 +94,32 @@ patient_dt[arm %in% c("Drug A", "Drug B"),
 
 Both snippets produce the same grouped summary, and once the `DT[i, j, by]` pattern is internalized it is no less readable than the pipe — it is simply denser. The practical difference that matters is performance and memory behavior at scale. `data.table` modifies data in place (via reference semantics and functions like `setDT()` and `:=` for in-place column assignment) and uses a highly optimized C-level radix sort and hash-based grouping, which makes it dramatically faster and more memory-efficient than `dplyr` once a dataset reaches into the millions of rows — exactly the regime of national claims databases, disease registries, or simulated patient-level microsimulation output with many replications. `dplyr`, by contrast, favors copy-on-modify semantics (it never silently alters your original object), which is safer for interactive, exploratory work but costs more memory and time as data grows.
 
+#difficult-terminology("radix sort / hash-based grouping")[
+Both are internal techniques for ordering or grouping rows of data
+fast, and the reason `data.table` can out-perform more general
+approaches at large scale. An ordinary comparison-based sort (the kind
+most languages use by default) repeatedly compares pairs of whole
+values against each other to decide their order, which gets slower as
+the dataset grows because the number of comparisons needed grows
+faster than the data itself. A *radix sort* instead orders data by
+processing one digit, character, or byte at a time — rather like
+sorting a stack of exam papers first by surname's first letter into
+26 piles, then re-sorting each pile by the second letter, and so on —
+which scales far better for the kinds of values (integers, short
+strings, factor-coded categories) common in claims and registry data.
+*Hash-based grouping* uses a related lookup-table trick for the
+`by =` step in `DT[i, j, by]`: rather than comparing every row against
+every other row to see which share a group, it computes a quick
+numeric "fingerprint" (a hash) for each row's grouping value and uses
+that fingerprint as a direct lookup key, finding matching rows nearly
+instantly instead of scanning the whole table repeatedly. Neither
+technique requires you to write any special code yourself — `data.table`
+applies them automatically whenever you sort or group — but knowing
+they exist explains *why* the same `DT[i, j, by]` syntax that looks
+unremarkable on a 500-row toy dataset becomes dramatically faster than
+`dplyr` once you are working with millions of claims records.
+]
+
 #list(
   [Prefer `tidyverse`/`dplyr` when the dataset is small-to-moderate (comfortably fits in memory with room to spare), when the code will be read and maintained by collaborators less fluent in R, or when the pipeline benefits from the broader tidyverse ecosystem (`tidyr` for reshaping, `ggplot2` for plotting the same tibbles downstream).],
   [Prefer `data.table` when working with claims-scale or registry-scale data (millions of rows, wide microsimulation outputs, repeated resampling such as probabilistic sensitivity analysis replications), when runtime or memory genuinely becomes a bottleneck, or when the same large table is updated repeatedly inside a loop, where `data.table`'s in-place `:=` avoids repeated full-table copies.],
@@ -203,6 +229,33 @@ run_model <- function(p_progress, p_death, cost_well, cost_sick,
 
 The more robust pattern is to bundle related parameters into a single named list (or, for larger models, a dedicated list-of-lists or a small S3/S4 object) and pass that one structured object into the function. Named access by `$` or `[[ ]]` makes every call self-documenting and immune to argument-order mistakes.
 
+#difficult-terminology("S3 / S4 objects")[
+R has more than one system for object-oriented programming — ways of
+bundling data together with the functions ("methods") that know how to
+act on it, so the data carries its own behaviour rather than living as
+a bare, anonymous list. S3 is the older, lightweight system: you
+simply attach a `class` attribute (a label) to an ordinary R object,
+and then write functions named in a particular pattern (e.g.
+`print.my_model`) that R automatically dispatches to whenever someone
+calls `print()` on an object of that class. There is no formal
+definition enforced anywhere — it works by convention and is
+easy to get wrong silently. S4 is a stricter, more formal system:
+you explicitly declare a class's structure in advance (which fields it
+must have, and what type each one is), and R then checks that any
+object you create actually conforms to that declaration, catching
+mistakes earlier. A filing-cabinet analogy helps: S3 is like labelling
+a folder "Patient Record" and trusting everyone to put the right kinds
+of documents inside it; S4 is like a pre-printed form with named,
+typed boxes for each field, which physically cannot be filled in with
+the wrong kind of information. Most of this book's own worked examples
+use plain named lists for simplicity, but model-parameter bundles,
+`survival` package model-fit objects, and several HEOR packages
+(`flexsurv`, `heemod`) use S3 or S4 objects internally, so recognising
+the pattern when you see `class(x)` or `methods(print)` in someone
+else's code is a practically useful skill even if you rarely need to
+*write* a new S4 class yourself.
+]
+
 ```r
 model_params <- list(
   p_progress     = 0.15,
@@ -280,6 +333,25 @@ A good discipline is to validate every input once, at the top of the function, r
 == 3.5 Performance: profiling, `Rcpp`, parallelisation (`future`, `furrr`)
 
 The first rule of optimisation is to not do it until you have evidence. R code that "feels slow" and R code that *is* slow in the place you think it is are often two different programs. Before touching a single line in the name of speed, profile it. `Rprof()` is the base-R sampling profiler — it periodically records the call stack while your code runs, and `summaryRprof()` turns that into a table of where time actually went. `profvis::profvis()` wraps the same mechanism in an interactive flame graph that is far easier to read:
+
+#difficult-terminology("flame graph")[
+A flame graph is a specific way of visualising where a program spent
+its execution time, and it reads differently from an ordinary bar
+chart. Each horizontal bar represents one function call, and its
+*width* shows how much total time that call took (wider = slower).
+Bars are stacked vertically to show the call hierarchy: a function
+sits directly above the bars representing the functions it called, so
+following a column straight down from any bar traces that call's
+entire chain of parent functions back to the top-level script. The
+name "flame graph" comes from the characteristic look of these stacked
+bars — varying widths at each level resembling flickering flame tips.
+Reading one is mostly about scanning for the *widest* bars, especially
+ones near the bottom of a tall stack (meaning a deeply nested
+function is eating a disproportionate share of total runtime) — those
+are the parts of the code actually worth optimising, as opposed to
+functions that are called often but individually fast, which will show
+up as many thin bars rather than one wide one.
+]
 
 ```r
 library(profvis)

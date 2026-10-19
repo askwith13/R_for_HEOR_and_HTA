@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 432-447
+# Extracted from ch10_survival_analysis.typ, lines 444-459
 # Section: === When PH fails: alternative hazard structures
 # Chapter: 10
 

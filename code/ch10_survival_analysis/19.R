@@ -1,4 +1,4 @@
-# Extracted from ch10_survival_analysis.typ, lines 511-521
+# Extracted from ch10_survival_analysis.typ, lines 523-533
 # Section: === Anchoring with external data
 # Chapter: 10
 
