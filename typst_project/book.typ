@@ -72,6 +72,7 @@
 // ---- Part IV: Decision-Analytic Modelling ----
 #include "chapters/ch17_decision_modelling.typ"
 #include "chapters/ch18_decision_trees.typ"
+#include "chapters/ch19_markov_cohort.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

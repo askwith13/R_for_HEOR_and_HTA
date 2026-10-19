@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 19,
+  "next_chapter_number": 20,
   "total_chapters": 35,
   "chapters": [
     {
@@ -144,7 +144,7 @@
       "num": 19,
       "title": "Markov Cohort Models",
       "part": "IV. Decision-Analytic Modelling",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 20,
@@ -244,6 +244,11 @@
     }
   ],
   "run_log": [
+    {
+      "timestamp": "2026-10-19T14:00:00+05:30",
+      "action": "Wrote Chapter 19 (nineteenth book-writer cron tick) -- third chapter of Part IV; all six Jev dimensions passed on the FIRST draft, no revision needed",
+      "details": "Drafted ch19_markov_cohort.typ covering all 10 TOC subsections (states/transitions/cycles with the 4-state TB structure reused verbatim from Ch.17's grViz() diagram and transition probabilities independently verified to sum to 1 per row; time-homogeneous vs time-dependent matrices; a full runnable base-R matrix-and-loop implementation with an independently-recomputed occupancy trace at cycles 0/5/10/20; heemod/hesim/dampack with real CRAN signatures verified via live documentation lookup (define_transition/define_state/define_strategy/run_model with the 'C' keyword and method= argument, hesim_data/define_tparams/tpmatrix/create_CohortDtstm as an architecture sketch, dampack::calculate_icers()); discounting and half-cycle correction tied explicitly to Ch.4 SS4.6 and to heemod's method='life-table' default, with an independently-recomputed 5-cycle QALY discounting example; tunnel states via heemod's real state_time variable; age-dependent background mortality via heemod's model_time variable and additive-hazard vs max-probability combination methods; Dirichlet distributions (dampack::rdirichlet()) for whole-row PSA sampling and Cholesky decomposition (chol(), heemod's mvnfast dependency) for correlated normals; calibration vs validation distinguished with a forward-pointer to Chapter 27; and a fully independently-verified worked chronic-disease (Well/Diseased/Dead) CEA comparing a disease-modifying therapy against standard care, with every arithmetic result recomputed before writing (SoC: discounted cost $29,317.05, QALYs 5.5522; DMT: discounted cost $56,917.97, QALYs 6.6704; ICER $24,685/QALY)). Delegated to 2 parallel sub-agents (19.1-19.5, 19.6-19.10), assembled into one Typst file; independently re-verified ALL stated arithmetic across both sub-agent drafts via a standalone Python verification script before finalizing (transition-matrix row sums, the 20-cycle occupancy trace, the discounting-stream example, and the full chronic-disease CEA total/ICER) -- every number checked out exactly as drafted, no corrections needed. Compiled cleanly on first pass (zero Typst errors). Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.36, technical_correctness 7.57, code_validity 7.9, agency_grounding 7.68, internal_consistency 8.38, readability 6.61 (prose-only method). Image check: logged Track-1 C15 (SS19.6 tunnel-state expansion flowchart, Pending, lower priority) and Track-2 T21 (SS19.3 full 20-cycle occupancy trace plot, Pending) in image_tracker.md, with a // TODO-IMAGE marker inserted at the exact point in the .typ file. 'How to report this' table check: two report-table insertions (SS19.3's occupancy trace, SS19.10's final CEA result) and one ref-table insertion (SS19.10's input transition-probability comparison, correctly classified as a non-computed input assumption rather than a computed result). Ran extract_chapter_code.py --chapter 19 (7 code blocks extracted) and generate_chapter_renvlock.py --chapter 19 (3 packages, 1 verified-installed, 2 unverified-in-this-environment) per the mandatory 11d/11e steps. Wrote Chapter Markdowns/ch19_markov_cohort.md. Updated book_progress.json: chapter 19 marked complete, next_chapter_number advanced to 20 (Partitioned Survival Models)."
+    },
     {
       "timestamp": "2026-10-19T05:40:00+05:30",
       "action": "Built the full companion repository: git, per-chapter renv.lock, top-level README, LICENSE, and the three remaining companion_website.typ-promised folders (data/, appendix-c-template/, solutions/)",
