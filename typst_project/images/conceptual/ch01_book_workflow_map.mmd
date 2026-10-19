@@ -1,0 +1,12 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#eef5ff', 'primaryBorderColor': '#2b6cb0', 'primaryTextColor': '#1a202c', 'lineColor': '#2b6cb0', 'fontFamily': 'Helvetica', 'fontSize': '14px'}}}%%
+flowchart LR
+    A["<b>Part I</b><br/>Foundations<br/><i>R env, R essentials,<br/>core HE concepts</i>"] --> B["<b>Part II</b><br/>Data for HEOR<br/><i>trial/registry data,<br/>SLR, utilities, costs</i>"]
+    B --> C["<b>Part III</b><br/>Statistical<br/>Methods<br/><i>survival, meta-analysis,<br/>NMA, Bayesian, RWE</i>"]
+    C --> D["<b>Part IV</b><br/>Decision-Analytic<br/>Modelling<br/><i>decision trees, Markov,<br/>PSM, microsim, DES</i>"]
+    D --> E["<b>Part V</b><br/>Uncertainty,<br/>VOI, Validation<br/><i>PSA, EVPI/EVPPI,<br/>calibration, QA</i>"]
+    E --> F["<b>Part VI</b><br/>Reporting &<br/>Deployment<br/><i>Quarto, Shiny,<br/>R packages</i>"]
+    F --> G["<b>Part VII</b><br/>HTA in<br/>Practice<br/><i>agency requirements,<br/>special topics</i>"]
+    G --> H["<b>Part VIII</b><br/>Case<br/>Studies<br/><i>end-to-end examples,<br/>incl. TB CEA</i>"]
+
+    classDef partStyle fill:#eef5ff,stroke:#2b6cb0,stroke-width:2px,color:#1a202c
+    class A,B,C,D,E,F,G,H partStyle

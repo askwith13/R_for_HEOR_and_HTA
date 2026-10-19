@@ -1,0 +1,78 @@
+{
+  "_comment": "This is an honest best-effort package manifest for this chapter's code, NOT a true renv::snapshot() lockfile. Packages with verified_installed_this_environment=true have a real version number confirmed on the machine that drafted this book. Packages with verified_installed_this_environment=false are referenced by the chapter's code but are not currently installed here -- their listed version is a placeholder, not a real pin. Install the package and re-run generate_chapter_renvlock.py to get a real version, then eventually run a true renv::snapshot() in this chapter's own project directory for a fully frozen lockfile before public release.",
+  "R": {
+    "Version": "4.6.0"
+  },
+  "Packages": {
+    "MASS": {
+      "Package": "MASS",
+      "Version": "7.3.65",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "broom": {
+      "Package": "broom",
+      "Version": "1.0.13",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "broom.mixed": {
+      "Package": "broom.mixed",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "glmnet": {
+      "Package": "glmnet",
+      "Version": "5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "grf": {
+      "Package": "grf",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "lme4": {
+      "Package": "lme4",
+      "Version": "2.0.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "pscl": {
+      "Package": "pscl",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "quantreg": {
+      "Package": "quantreg",
+      "Version": "6.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "tibble": {
+      "Package": "tibble",
+      "Version": "3.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    }
+  }
+}

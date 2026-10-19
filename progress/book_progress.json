@@ -1,0 +1,358 @@
+{
+  "book_title": "R for Health Economics and Outcomes Research (HEOR) and Health Technology Assessment (HTA)",
+  "book_root": "/home/aswath/R_for_HEOR_and_HTA",
+  "typst_project_dir": "/home/aswath/R_for_HEOR_and_HTA/typst_project",
+  "markdown_summary_dir": "/home/aswath/R_for_HEOR_and_HTA/Chapter Markdowns",
+  "toc_source": "/home/aswath/R_for_HEOR_and_HTA/R_for_HEOR_and_HTA_Table_of_Contents.md",
+  "pace": "1 chapter per cron tick (tick interval = 5 hours, cron job 'heor-hta-book-writer', job_id d2e1cd1b1ecf)",
+  "cadence_notes": "Each tick: (1) read this file to find next_chapter_number, (2) draft the chapter via sub-agent delegation per section, (3) write chapter .typ file + append #include to book.typ, (4) compile and fix errors, (5) self-critique + Jev score against the 6-dim rubric, (6) revise once if any dimension below 6/10, (7) write Chapter Markdowns summary .md file, (8) update this JSON, (9) report to Dr Aswath. Full procedure lives in the heor-hta-book-writer skill.",
+  "front_matter_status": "complete",
+  "front_matter_items": [
+    {
+      "name": "title_page",
+      "status": "complete"
+    },
+    {
+      "name": "foreword",
+      "status": "complete"
+    },
+    {
+      "name": "preface",
+      "status": "complete"
+    },
+    {
+      "name": "companion_website",
+      "status": "complete"
+    },
+    {
+      "name": "conventions",
+      "status": "complete"
+    }
+  ],
+  "next_chapter_number": 19,
+  "total_chapters": 35,
+  "chapters": [
+    {
+      "num": 1,
+      "title": "Introduction to HEOR and HTA",
+      "part": "I. Foundations",
+      "status": "complete"
+    },
+    {
+      "num": 2,
+      "title": "Setting Up an R Environment for HEOR",
+      "part": "I. Foundations",
+      "status": "complete"
+    },
+    {
+      "num": 3,
+      "title": "R Essentials for Health Economists",
+      "part": "I. Foundations",
+      "status": "complete"
+    },
+    {
+      "num": 4,
+      "title": "Core Concepts in Health Economics (with R Illustrations)",
+      "part": "I. Foundations",
+      "status": "complete"
+    },
+    {
+      "num": 5,
+      "title": "Data Sources and Data Management",
+      "part": "II. Data for HEOR",
+      "status": "complete"
+    },
+    {
+      "num": 6,
+      "title": "Systematic Literature Review (SLR) Support in R",
+      "part": "II. Data for HEOR",
+      "status": "complete"
+    },
+    {
+      "num": 7,
+      "title": "Missing Data",
+      "part": "II. Data for HEOR",
+      "status": "complete"
+    },
+    {
+      "num": 8,
+      "title": "Health-Related Quality of Life and Utilities",
+      "part": "II. Data for HEOR",
+      "status": "complete"
+    },
+    {
+      "num": 9,
+      "title": "Costs and Resource Use",
+      "part": "II. Data for HEOR",
+      "status": "complete"
+    },
+    {
+      "num": 10,
+      "title": "Survival Analysis for Economic Evaluation",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 11,
+      "title": "Meta-Analysis",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 12,
+      "title": "Indirect Treatment Comparisons and Network Meta-Analysis",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 13,
+      "title": "Population-Adjusted Indirect Comparisons",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 14,
+      "title": "Bayesian Methods for HEOR",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 15,
+      "title": "Real-World Evidence (RWE) and Causal Inference",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 16,
+      "title": "Regression Models for HEOR Data",
+      "part": "III. Statistical Methods",
+      "status": "complete"
+    },
+    {
+      "num": 17,
+      "title": "Principles of Decision Modelling",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "complete"
+    },
+    {
+      "num": 18,
+      "title": "Decision Trees",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "complete"
+    },
+    {
+      "num": 19,
+      "title": "Markov Cohort Models",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "pending"
+    },
+    {
+      "num": 20,
+      "title": "Partitioned Survival Models",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "pending"
+    },
+    {
+      "num": 21,
+      "title": "Individual-Level State-Transition Models (Microsimulation)",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "pending"
+    },
+    {
+      "num": 22,
+      "title": "Discrete Event Simulation and Dynamic Models",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "pending"
+    },
+    {
+      "num": 23,
+      "title": "Budget Impact Analysis",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "pending"
+    },
+    {
+      "num": 24,
+      "title": "Cost-Benefit, Distributional and Extended Cost-Effectiveness Analysis",
+      "part": "IV. Decision-Analytic Modelling",
+      "status": "pending"
+    },
+    {
+      "num": 25,
+      "title": "Handling Uncertainty",
+      "part": "V. Uncertainty, VOI and Validation",
+      "status": "pending"
+    },
+    {
+      "num": 26,
+      "title": "Value of Information Analysis",
+      "part": "V. Uncertainty, VOI and Validation",
+      "status": "pending"
+    },
+    {
+      "num": 27,
+      "title": "Model Calibration, Validation and Quality Assurance",
+      "part": "V. Uncertainty, VOI and Validation",
+      "status": "pending"
+    },
+    {
+      "num": 28,
+      "title": "Reproducible Reporting",
+      "part": "VI. Reporting, Communication, Deployment",
+      "status": "pending"
+    },
+    {
+      "num": 29,
+      "title": "Interactive Models and Web Applications with Shiny",
+      "part": "VI. Reporting, Communication, Deployment",
+      "status": "pending"
+    },
+    {
+      "num": 30,
+      "title": "R Packages and Pipelines for Model Development",
+      "part": "VI. Reporting, Communication, Deployment",
+      "status": "pending"
+    },
+    {
+      "num": 31,
+      "title": "Agency Requirements and Reference Cases",
+      "part": "VII. HTA in Practice",
+      "status": "pending"
+    },
+    {
+      "num": 32,
+      "title": "Special Topics",
+      "part": "VII. HTA in Practice",
+      "status": "pending"
+    },
+    {
+      "num": 33,
+      "title": "Patient-Reported Outcomes and Preference Research",
+      "part": "VII. HTA in Practice",
+      "status": "pending"
+    },
+    {
+      "num": 34,
+      "title": "Emerging Methods and the Future of HEOR in R",
+      "part": "VII. HTA in Practice",
+      "status": "pending"
+    },
+    {
+      "num": 35,
+      "title": "End-to-End Worked Case Studies",
+      "part": "VIII. Case Studies",
+      "status": "pending"
+    }
+  ],
+  "run_log": [
+    {
+      "timestamp": "2026-10-18T22:10:00+05:30",
+      "action": "Built the companion code repository (code/ folder), fulfilling front_matter/companion_website.typ's existing promise",
+      "details": "Dr Aswath asked how to best build a local repository folder for each chapter's code. Built ~/.hermes/scripts/extract_chapter_code.py: regexes every ```lang ... ``` fenced block out of each chapter's .typ file (194 R blocks + 2 bash + 1 dockerfile = 198 total across Chapters 1-18), writes each into code/chNN_slug/NN.ext as a standalone runnable file headed with a 2-line comment giving the exact source .typ line range and chapter section, writes a per-chapter block_index.md table, and writes a repo-level code/README.md index. Code-free chapters (Ch.1, narrative-only) get a folder with a README.md explicitly stating why it's empty rather than a silently-missing folder. Verified: no Typst syntax (#import, #heor-practice, code-fence markers) leaked into any extracted .R file across all 195 files; spot-checked ch04's block 3 (ICER calculation) for correct line-range attribution and section heading. The script is idempotent (always deletes+rewrites a chapter's folder fully from current .typ source, never accumulates stale snippets) and supports --chapter N for single-chapter refresh or no args for a full rebuild + README regeneration. Added a mandatory new per-tick step 11d to the skill (run after a chapter's .typ is finalized, alongside the existing image-tracking and table-tracking steps) and a dedicated 'Companion code repository' section documenting the design, naming conventions, and the hand-edit-is-forbidden rule (edit the .typ source, re-run the extractor, never edit inside code/ directly). This local code/ folder is the working draft of the eventual public GitHub companion repository that companion_website.typ already describes; not yet published anywhere."
+    },
+    {
+      "timestamp": "2026-10-19T12:00:00+05:30",
+      "action": "Wrote Chapter 18 (eighteenth book-writer cron tick) -- second chapter of Part IV; first chapter in the book needing a revision pass on code_validity specifically",
+      "details": "Drafted ch18_decision_trees.typ covering all 5 TOC subsections (structure/EV roll-back with a worked TB diagnostic-strategy example -- smear-only vs Xpert MTB/RIF, hand-computed and independently re-verified arithmetic: Smear EV cost $60.40/EV QALY 0.93302, Xpert EV cost $63.80/EV QALY 0.95454, ICER ~$158/QALY; building trees from scratch in R via a tibble/dplyr path-probability-product-and-sum approach reproducing the hand calculation exactly, with a report-table summarising the result; using the real CRAN package rdecision; generalising to the short-horizon model class per Ch.17 SS17.2's criterion with antenatal-screening and ED-triage examples; and the decision-tree-to-Markov-model handoff pattern forward-pointing to Chapter 19's TB regimen Markov model). Delegated to 2 parallel sub-agents (18.1-18.2, 18.3-18.5), assembled into one Typst file, deliberately used a DIFFERENT TB example (diagnostic strategy) than Ch.17's regimen-choice example to keep each chapter's worked example appropriately scoped to its own model type, with SS18.5 explicitly bridging the two. Compiled cleanly on first pass (zero Typst errors). First Jev score FAILED the revision threshold on code_validity only (5.57/10) -- all five other dimensions passed on first draft (coverage 8.24, technical_correctness 7.15, agency_grounding 7.0, internal_consistency 8.15, readability 7.25 prose-only). The first-draft SS18.3 had hedged rdecision's exact constructor argument names rather than asserting them. Did one revision pass: looked up the live CRAN reference manual and vignettes for rdecision (cran.r-project.org/web/packages/rdecision, rdrr.io) and confirmed real signatures -- Action$new(source_node, target_node, label, cost=0, benefit=0), Reaction$new(source_node, target_node, p=0, cost=0, benefit=0, label=blank), LeafNode$new(label, utility=1, interval=...), DecisionTree$new(V=,E=), evaluate(setvars=,by=) -- and replaced the hedged sketch with a fully worked, argument-exact R example reusing the package's own p=NA_real_ auto-complementary-probability idiom. Recompiled cleanly, re-scored: code_validity rose to 7.32/10, all six dimensions now pass (coverage 8.41, technical_correctness 7.53, agency_grounding 7.01, internal_consistency 8.22). New standing lesson recorded: a hedge disclosing uncertainty about a function signature does NOT itself satisfy code_validity -- always do the live documentation lookup before finalizing, even when the hedge language sounds appropriately cautious. Image check: no Track-1 or Track-2 candidates logged (tree structure fully captured by worked prose/code; no statistical plot output). Wrote Chapter Markdowns/ch18_decision_trees.md. Updated book_progress.json: chapter 18 marked complete, next_chapter_number advanced to 19."
+    },
+    {
+      "timestamp": "2026-10-18T20:55:00+05:30",
+      "action": "Wrote Chapter 17 (seventeenth book-writer cron tick) -- first chapter of Part IV: Decision-Analytic Modelling; second consecutive-from-first-draft readability pass since Chapter 16, breaking further into the new Part",
+      "details": "Drafted ch17_decision_modelling.typ covering all 7 TOC subsections (model conceptualisation/problem scoping with PICOTS and a model concept document; choosing a model type via a 5-question framework forward-pointing to Chapters 18-22 without explaining their mechanics, citing Siebert et al. 2012 ISPOR-SMDM Task Force-3 by name; structural assumptions and model diagrams with a real working DiagrammeR::grViz() DOT-syntax diagram of a 4-state TB Markov structure; parameter taxonomy and PSA distribution conventions with a worked Beta method-of-moments fit, arithmetic independently verified via Python during drafting -- mean=0.85, 95% CI (0.80,0.90) -> alpha=165.68, beta=29.24, round-trip confirmed; model documentation/transparency citing Eddy et al. 2012 and a 5-part TMD report structure; the book's inputs->engine->results->reporting R-project architecture with a generic run_model() skeleton, naming heemod and hesim as real CRAN packages without inventing their functions prematurely; and good-practice guidelines tying together the ISPOR-SMDM 7-paper series via Caro et al. 2012 as the umbrella paper plus the NICE reference case). Delegated to 3 parallel sub-agents (17.1-17.3, 17.4-17.5, 17.6-17.7 plus opening bridge/learning-objectives/closing transition), assembled into one Typst file. Deliberately applied the Ch.16 density-recovery lesson from the first draft: each subsection scoped to 2-3 core ideas with one worked example, explicit cross-references to Ch.4 (SS4.4/4.6), Ch.8, Ch.9, Ch.11-12 instead of re-deriving. TB regimen (4-month rifapentine-moxifloxacin vs 6-month standard) established as the chapter's running example and explicitly carried forward as a Chapter 19 commitment (SS17.2 resolves the model-type choice to Markov cohort for this exact example). Compiled cleanly on first pass after converting two sub-agent markdown-style double-asterisk-bold spans to Typst single-underscore emphasis (zero Typst errors, zero warnings in the final compile). Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.82, technical_correctness 7.97, code_validity 7.94, agency_grounding 8.01, internal_consistency 8.2, readability 7.05 (prose-only method). This is the second chapter since Chapter 9 to clear readability on the first draft (after Chapter 16), reinforcing the density-not-sentence-length hypothesis. Image check: logged Track-1 entry C14 as Done (the SS17.3 grViz() diagram is already live, executable R code, not a placeholder); no Track-2 entry (chapter is architecture/process-focused, no R-generated statistical output yet). 'How to report this' table check: zero report-table/ref-table insertions, explicitly justified (the one real table, SS17.1's PICOTS table, is a plain organisational table, not a computed result). Wrote Chapter Markdowns/ch17_decision_modelling.md. Updated book_progress.json: chapter 17 marked complete, next_chapter_number advanced to 18 (Decision Trees, continuing Part IV)."
+    },
+    {
+      "timestamp": "2026-10-18T19:35:00+05:30",
+      "action": "Retroactive readability re-score for Chapters 10 and 15, plus new standing prose-only readability scoring methodology",
+      "details": "Dr Aswath personally reviewed Chapter 10 and judged it readable despite its unresolved bundle-based Jev readability flag (5.95 -> 5.86 after one revision pass), and proposed testing whether scoring readability against the chapter's real prose -- rather than the compact bullet-point 'state' summary jev_score_chapter.py uses for the other 5 dimensions -- would change the result. Built jev_score_readability_prose.py: strips R code blocks, #figure() image blocks, and report-table()/ref-table() table blocks from a chapter's .typ file via balanced-paren matching, then sends the remaining real prose (headings/narrative/callout text) to Jev as the readability question's state. A/B test across 3 chapters confirmed this is a genuine scoring-methodology fix, not a blanket inflator: Chapter 10 rose from 5.86 (bundle) to 7.03-7.09 (prose, two separate runs) -- PASSES; Chapter 15 rose from 3.35 (bundle, the worst score in the book) to 7.21-7.22 (prose) -- PASSES decisively; Chapter 13 barely moved, 5.17 (bundle) to 5.32 (prose) -- STILL FAILS, confirming it has a real readability problem independent of the bundle artifact rather than being another false flag. Retroactively re-scored Chapters 10 and 15 under the new method and logged both to progress/jev_scores.csv with a method=prose_only tag (rows 28-29) distinguishing them from bundle-era rows. Removed the readability question from jev_score_chapter.py's QUESTIONS dict entirely (it now scores only the other 5 dimensions) to avoid future ambiguity about which script owns that dimension. Updated progress/chapter_quality_rubric.md and the heor-hta-book-writer skill with the new two-script-two-input procedure (step 9) and a dedicated 'Readability scoring' section documenting the rationale, the A/B test table, and the retroactive-resolution status. RESULT: Chapter 10's readability flag is RESOLVED (7.03-7.09, clears 6/10). Chapter 15's readability flag is RESOLVED (7.21-7.22, clears 6/10). Chapter 13's readability flag REMAINS OPEN (5.32, still below 6/10) -- genuinely needs attention, not a scoring artifact. Chapter 14 was intentionally NOT retroactively re-scored under the new method in this pass -- Dr Aswath is personally reviewing Chapters 13 and 14 together to decide on a fix before any further action on either."
+    },
+    {
+      "timestamp": "2026-10-14T12:55:00+05:30",
+      "action": "Initial project setup",
+      "details": "Created folder structure (typst_project/, Chapter Markdowns/, progress/), installed Typst 0.15.1 (musl static binary, ~/.local/bin/typst), built book.typ with page styling + 4 reusable callout functions, wrote and compiled all 5 front matter files (title page, foreword, preface, companion website, conventions) with zero Typst errors, wrote 6-dimension chapter_quality_rubric.md, built and smoke-tested jev_score_chapter.py against the live Jev API (confirmed working, score scale fixed from 0-10 to 1-10 after Jev's 10-level cap rejected the first attempt), created the heor-hta-book-writer Hermes skill encoding the full per-tick procedure, and created the heor-hta-book-writer cron job (job_id d2e1cd1b1ecf, every 5 hours, starting with Chapter 1)."
+    },
+    {
+      "timestamp": "2026-10-14T18:00:00+05:30",
+      "action": "Wrote Chapter 1 (first book-writer cron tick)",
+      "details": "Drafted ch01_intro_heor_hta.typ covering all 6 TOC subsections (HEOR definition/scope, HTA agency ecosystem incl. HTAIn and EU Joint Clinical Assessment, product-lifecycle evidence needs, typical deliverables, why-R case, book-workflow map), narrative-only with no R code (expected for an intro chapter). Refactored the four callout functions (heor-practice, pitfall, agency-note, learning-objectives) out of book.typ into a new shared typst_project/common.typ imported by book.typ and every chapter file, fixing an 'unknown variable' compile error caused by chapter files not having access to book.typ-local #let bindings. Compiled cleanly (zero errors) after the fix. Self-critique passed; Jev rubric scores (raw, 1-10 scale): coverage 8.24, technical_correctness 7.5, code_validity 8.9, agency_grounding 7.43, internal_consistency 8.88 (no prior chapters, default-high), readability 6.94 — all six dimensions above the 6/10 revision threshold, so no revision pass was needed. Wrote Chapter Markdowns/ch01_intro_heor_hta.md summary for downstream continuity. Updated book_progress.json: chapter 1 marked complete, next_chapter_number advanced to 2."
+    },
+    {
+      "timestamp": "2026-10-14T19:35:00+05:30",
+      "action": "Wrote Chapter 2 (second book-writer tick, done ahead of schedule at Dr Aswath's request)",
+      "details": "Drafted ch02_r_environment.typ covering all 7 TOC subsections (R/RStudio/Positron/Quarto install, HEOR project structure, renv, Git/GitHub, Stan/JAGS/C++ toolchains, Docker, package ecosystem overview table). Delegated section drafting to 3 parallel sub-agents (2.1-2.3, 2.4-2.5, 2.6-2.7), then assembled into one Typst file myself for consistency, fixing one sub-agent's invalid Quarto-style @sec-renv cross-reference into a plain 'Section 2.3' Typst-compatible reference. Compiled cleanly. First Jev score FAILED the revision threshold on agency_grounding (2.81/10 — too generic, 'agencies increasingly expect X' framing with no named documents). Did one revision pass: rewrote all 3 agency-note callouts (renv.lock, Stan/JAGS, Docker sections) with specific named guidance (NICE technology appraisal process + ERG model re-run requirement, NICE DSU TSD 2's NMA convergence-diagnostic reporting requirement cross-referenced to Ch.12, CADTH's Guidelines for Economic Evaluation requiring an electronic model copy). Re-scored: agency_grounding rose to 7.91/10, all six dimensions now pass. Wrote Chapter Markdowns/ch02_r_environment.md (flags forward commitments: Ch.10 must cite DSU TSD 14/21, Ch.12 must cite DSU TSD 2, and documents the lesson that agency-note callouts need named specific documents, not generic framing). Updated book_progress.json: chapter 2 marked complete, next_chapter_number advanced to 3."
+    },
+    {
+      "timestamp": "2026-10-14T19:46:00+05:30",
+      "action": "Built image tracking system + first conceptual diagram (out-of-band, between chapter ticks, at Dr Aswath's request)",
+      "details": "Created progress/image_tracker.md with two tracks: Track 1 (conceptual/Mermaid diagrams Claude creates) and Track 2 (R-generated statistical charts Dr Aswath supplies after running book code). Created typst_project/images/conceptual/ and images/r_generated/ folders. Reviewed Chapters 1-2 and logged 5 Track-1 candidates (EU JCA flowchart, product lifecycle timeline, book workflow map, Docker/renv reproducibility-layers diagram, package-ecosystem flow) plus confirmed Ch.1-2 have zero Track-2 entries (narrative/infrastructure only, no statistical output). Built the highest-priority diagram (book workflow map) via Mermaid CLI (npx @mermaid-js/mermaid-cli) and inserted into ch01_intro_heor_hta.typ §1.6 as Figure 1. Hit and documented two real rendering lessons now baked into the heor-hta-book-writer skill: (1) Mermaid's default SVG output uses <foreignObject> for text which Typst's SVG importer renders incorrectly -- must render PNG instead (-e png --scale 2); (2) an 8-node flowchart TD (top-down) produces an unreadably tall/narrow image -- flowchart LR (left-right) produces a usable landscape aspect ratio fitting one page. Updated the heor-hta-book-writer skill with a mandatory step 11b: every chapter must be checked for both image tracks going forward, with TODO-IMAGE comment discipline for Track 2 placeholders so the book keeps compiling."
+    },
+    {
+      "timestamp": "2026-10-15T01:10:00+05:30",
+      "action": "Wrote Chapter 3 (third book-writer tick, done ahead of schedule at Dr Aswath's request)",
+      "details": "Drafted ch03_r_essentials.typ covering all 7 TOC subsections (data structures, tidyverse/data.table, purrr/vectorization, functions/defensive programming, performance/Rcpp/parallelisation, lubridate, debugging/error handling). Delegated section drafting to 3 parallel sub-agents (3.1-3.2, 3.3-3.4, 3.5-3.7), assembled into one Typst file, stripped a stray markdown code-fence wrapper from one sub-agent's output. Compiled cleanly. Per the skill's new image-check step: reviewed for Track 1 (logged one diagram candidate as explicitly Skipped -- data-structure hierarchy judged unnecessary, prose+code sufficient) and Track 2 (logged one real entry -- a profvis flame-graph screenshot Dr Aswath will supply later -- with a TODO-IMAGE comment inserted at the exact code location; book still compiles cleanly with the marker present). First Jev score again FAILED agency_grounding (2.47/10 -- expected, since this is a pure R-skills chapter with few natural HEOR-agency touchpoints). Did one revision pass using the SAME fix pattern established in Chapter 2: anchored all 3 agency-note callouts back to already-established agency references (CHEERS 2022 item 29, NICE technology appraisal/ERG process, ISPOR-SMDM PSA transparency guidance -> Ch.27) rather than inventing new chapter-specific claims. Re-scored: agency_grounding rose to 7.34/10, all six dimensions now pass. Wrote Chapter Markdowns/ch03_r_essentials.md, explicitly generalizing the agency-grounding fix pattern for future methods-agnostic chapters. Updated book_progress.json: chapter 3 marked complete, next_chapter_number advanced to 4."
+    },
+    {
+      "timestamp": "2026-10-15T02:30:00+05:30",
+      "action": "Wrote Chapter 4 (fourth book-writer tick, done ahead of schedule at Dr Aswath's request) -- first health-econ content chapter, book's milestone first executed HEOR R calculation",
+      "details": "Drafted ch04_core_concepts.typ covering all 8 TOC subsections (opportunity cost, evaluation taxonomy, QALYs/DALYs, ICER/NMB/NHB, WTP thresholds, perspective/horizon/discounting/half-cycle, dominance/efficiency frontier, and SS4.8's first executed health-econ R code -- a complete dominance-pruning/incremental-frontier dplyr pipeline on a 4-treatment toy dataset). Delegated to 3 parallel sub-agents (4.1-4.3, 4.4-4.6, 4.7-4.8). CAUGHT AND FIXED a real arithmetic error during assembly: the SS4.4 sub-agent draft stated a worked-example ICER of ''7,467/QALY'' that did not match its own stated inputs (deltaC=16800, deltaE=0.28 actually computes to 60000) -- fixed throughout including the downstream NMB-consistency paragraph which had been written to reconcile against the wrong number. New standing lesson: always independently verify a sub-agent's STATED numeric result by doing the arithmetic, not just checking the code would plausibly run. Applied the agency-grounding lesson from Ch.2/Ch.3 PROACTIVELY this time (named specific documents -- NICE PMG36 Manual, HTAIn reference case, the real 2016 Bertram et al. WHO Bulletin critique, ISPOR-SMDM Caro et al. 2012 -- from the first draft rather than fixing in a revision pass). Compiled cleanly. Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.33, technical_correctness 8.33, code_validity 7.69, agency_grounding 8.85, internal_consistency 8.75, readability 6.97. This confirms the proactive-citation fix generalizes and avoids the revision cycle entirely when applied from the start. Image check: logged one Track-2 entry (a ggplot2 CE-plane plot of the chapter's own toy data, ch04_ce_plane_frontier.png) with a TODO-IMAGE marker in SS4.8; no Track-1 diagram needed this chapter. Wrote Chapter Markdowns/ch04_core_concepts.md. Updated book_progress.json: chapter 4 marked complete, next_chapter_number advanced to 5 (first chapter of Part II: Data for HEOR)."
+    },
+    {
+      "timestamp": "2026-10-15T08:10:00+05:30",
+      "action": "Wrote Chapter 5 (fifth book-writer tick) -- first chapter of Part II: Data for HEOR",
+      "details": "Drafted ch05_data_sources.typ covering all 7 TOC subsections (CDISC SDTM/ADaM concepts, registries/claims/EHR/surveys, published literature as a data source, readr/readxl/haven/DBI/API imports, data dictionaries/codebooks, data quality checks with pointblank/assertr/validate, data governance/privacy/de-identification). Delegated to 3 parallel sub-agents (5.1-5.3, 5.4-5.5, 5.6-5.7), assembled into one Typst file with one minor edit (removed a stray out-of-place reference to Chapter 4's QALY threshold range from the SS5.1 agency-note that didn't belong in this chapter). Notably, SS5.6 explicitly ties data validation (pointblank/assertr/validate on a cost/qaly tibble) back to Chapter 4's exact dominance-pruning pipeline pattern -- validating BEFORE running dominance logic -- fulfilling continuity rather than introducing a disconnected example. Compiled cleanly, zero errors. Image check: no Track-1 or Track-2 entries identified this chapter (import/governance/QA content, no natural diagram or R-generated statistical plot). Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.53, technical_correctness 7.95, code_validity 8.28, agency_grounding 8.21, internal_consistency 8.84, readability 7.35. This is the second consecutive chapter (after Ch.4) to pass on the first draft via proactive agency-grounding discipline (CDISC SDTM/ADaM Implementation Guides + FDA Data Standards Catalog, ICH E3, NICE PMG36, FDA RWE guidance, Cochrane Handbook, CDISC define.xml, ICH E6(R2) -- all real named documents, no fabrication, India's DPDPA 2023 described only at the level of verified general principles without inventing section numbers). Wrote Chapter Markdowns/ch05_data_sources.md. Updated book_progress.json: chapter 5 marked complete, next_chapter_number advanced to 6."
+    },
+    {
+      "timestamp": "2026-10-15T13:30:00+05:30",
+      "action": "Wrote Chapter 6 (sixth book-writer cron tick) -- first chapter requiring a Jev-triggered revision pass on code_validity",
+      "details": "Drafted ch06_slr_support.typ covering all 6 TOC subsections (search strategy documentation with litsearchr/PRISMA-S, deduplication and screening workflows with synthesisr/kappa agreement, PRISMA flow diagrams via the PRISMA2020 package, data extraction templates and dual-extraction QA with waldo, risk of bias visualisation via robvis, text mining and ML-assisted screening with tidytext/quanteda/revtools). Delegated to 2 parallel sub-agents (6.1-6.3, 6.4-6.6), assembled into one Typst file, opening with an explicit bridge paragraph from Ch.5's publication-bias foreshadowing rather than re-explaining it. Compiled cleanly on first pass. First Jev score FAILED the revision threshold on code_validity (4.75/10) with all five other dimensions passing (coverage 8.42, technical_correctness 7.75, agency_grounding 6.24, internal_consistency 8.27, readability 6.24). Investigated by independently checking the flagged R code against real CRAN package documentation (not just re-asserting plausibility) and found TWO real invented-function errors plus ONE real missing-argument error: (1) section 6.3 called a non-existent PRISMA2020_data() -- the real exported function is PRISMA_data(); (2) section 6.3 called a non-existent PRISMA_save() -- the package has no such function, corrected to its actual documented export route DiagrammeRsvg::export_svg()+rsvg::rsvg_svg(); (3) both robvis worked examples in section 6.5 (ROB2 and ROBINS-I) were missing the required final Weight column that rob_traffic_light()/rob_summary() expect per the package's real function signature and its own CRAN worked examples. Fixed all three, recompiled cleanly, re-scored: code_validity rose to 7.8/10, all six dimensions now pass (coverage 8.46, technical_correctness 7.58, code_validity 7.8, agency_grounding 6.19, internal_consistency 8.22, readability 6.25). New standing lesson recorded in the chapter markdown and worth generalizing: independently verify a sub-agent's claimed FUNCTION NAMES/signatures against real package documentation, not just that code 'looks plausible' for the package -- this generalizes the existing Ch.4 lesson about verifying stated NUMBERS to verifying stated function identities too. Image check: no Track-1 diagram needed (the two-stage screening funnel IS the PRISMA diagram, logged as Track 2); two Track-2 entries logged (PRISMA flow diagram render from SS6.3's code; robvis traffic-light/summary plots from SS6.5's code), both with TODO-IMAGE markers in the .typ file, book compiles cleanly with both present. Wrote Chapter Markdowns/ch06_slr_support.md. Updated book_progress.json: chapter 6 marked complete, next_chapter_number advanced to 7."
+    },
+    {
+      "timestamp": "2026-10-15T15:45:00+05:30",
+      "action": "Wrote Chapter 7 (seventh book-writer tick, manual request) -- second consecutive chapter to pass all six Jev dimensions on the FIRST draft",
+      "details": "Drafted ch07_missing_data.typ covering all 7 TOC subsections (MCAR/MAR/MNAR mechanisms, naniar/visdat missingness exploration, complete-case vs single imputation, mice/Amelia/missForest multiple imputation, tipping-point/pattern-mixture sensitivity analysis, missing cost/QALY data specifics, HTA reporting expectations). Delegated to 3 parallel sub-agents (7.1-7.2, 7.3-7.4, 7.5-7.7), assembled into one Typst file, opened with an explicit bridge from Ch.6's evidence-pool theme. Verified every claimed package function (naniar::vis_miss/gg_miss_var/gg_miss_upset/mcar_test, visdat::vis_dat/vis_miss, mice::mice/complete/with/pool with real method names pmm/logreg/polyreg, Amelia::amelia, missForest::missForest, rbmi as a real CRAN package used only at conceptual level per instruction) against real package documentation before accepting them -- continuing the Ch.6 standing lesson, zero invented functions found this time. Compiled cleanly on first pass (95 total book pages). Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.44, technical_correctness 7.58, code_validity 7.35, agency_grounding 6.56, internal_consistency 8.34, readability 6.89. Agency grounding proactively anchored to real named documents: Faria/Gomes/Epstein/White 2014 PharmacoEconomics missing-data guide, CHEERS 2022's missing-data reporting checklist item, ICH E9(R1) estimand framework -- no fabricated document names. Image check: no Track-1 or Track-2 entries identified this chapter (all R code produces console/summary output, not statistical plots; naniar/visdat visualisations are the taught content itself). Wrote Chapter Markdowns/ch07_missing_data.md with a closing transition to Chapter 8 (HRQoL and Utilities). Updated book_progress.json: chapter 7 marked complete, next_chapter_number advanced to 8."
+    },
+    {
+      "timestamp": "2026-10-15T17:10:00+05:30",
+      "action": "Wrote Chapter 8 (eighth book-writer tick, manual request) -- third consecutive chapter to pass all six Jev dimensions on the FIRST draft",
+      "details": "Drafted ch08_utilities.typ covering all 6 TOC subsections (generic vs disease-specific instruments EQ-5D/SF-6D/HUI, value sets and eq5d-package scoring, mapping/cross-walk algorithms, bounded-distribution utility analysis via censored/beta regression/mixture models, utility decrements and age-adjustment and background mortality, TTO/SG/DCE elicitation methods). Delegated to 3 parallel sub-agents (8.1-8.2, 8.3-8.4, 8.5-8.6), assembled into one Typst file, opened with a bridge from Ch.7's closing transition on missing utility data. Verified every claimed package/function before acceptance: eq5d::eq5d() described conceptually with the exact scoring call deliberately left commented pending ?eq5d verification (package argument spellings have evolved across releases) rather than asserting an unconfirmed signature -- a new, more cautious verification pattern beyond Ch.6-7's catch-after-the-fact approach. MASS::polr(), VGAM::vglm(), censReg::censReg(), betareg::betareg() (full worked example with Smithson-Verkuilen rescaling), flexmix, mlogit, survival::clogit() all confirmed real. Compiled cleanly on first pass (106 total book pages). Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.24, technical_correctness 7.08, code_validity 6.32 (closest to threshold but still a clean pass), agency_grounding 7.91, internal_consistency 8.26, readability 7.06. Agency grounding anchored to NICE's Health Technology Evaluations Manual (PMG36) on EQ-5D reference-case preference and utility-sourcing hierarchy, and the EuroQol Group's published EQ-5D-5L valuation protocol -- no fabricated document numbers; where PMG36's exact current wording was uncertain, the chapter explicitly directed the reader to check the live text rather than asserting a stale/invented detail. Image check: no Track-1 or Track-2 entries identified this chapter (conceptual distinctions better served by prose/lists at this length; all R code produces console output or is deliberately left as commented pseudocode). Wrote Chapter Markdowns/ch08_utilities.md with a closing transition to Chapter 9 (Costs and Resource Use). Updated book_progress.json: chapter 8 marked complete, next_chapter_number advanced to 9."
+    },
+    {
+      "timestamp": "2026-10-15T11:25:00+05:30",
+      "action": "Wrote Chapter 9 (ninth book-writer cron tick) -- first chapter of the book needing a revision pass since Chapter 6, caught again on agency_grounding",
+      "details": "Drafted ch09_costs_resource_use.typ covering all 6 TOC subsections (identifying/measuring/valuing resources, unit costs with inflation/PPP currency conversion, cost data skewness/zero-inflation/heavy tails, GLM/two-part/gamma regression models for costs, cost-of-illness and micro-costing studies, handling censored cost data). Delegated to 3 parallel sub-agents (9.1-9.2, 9.3-9.4, 9.5-9.6), assembled into one Typst file, opened with a bridge from Ch.8's closing transition (utilities and costs as the two halves of the cost/QALY pair). Explicit structural contrast drawn with Ch.8's bounded-utility treatment: costs are one-sided (bounded below at 0 only), unbounded-above, heavy-tailed with structural zero-inflation (not missing data per Ch.7), versus Ch.8's two-sided [0,1]-bounded utility with ceiling spike -- same family of 'OLS assumptions break down' problem, different geometry, explicitly flagged as deliberate parallel for internal consistency. Verified function names during assembly, including one live web search to confirm twopartm::tpm() is a real CRAN package/function (Belotti, Deb, Manning & Norton 2015) rather than relying on a sub-agent's unverified claim -- continuing the Ch.6-8 standing lesson. Compiled cleanly on first pass (zero Typst errors; fixed two minor markdown-bold-syntax warnings and converted two inline math expressions to Typst-safe prose/align blocks during cleanup). First Jev score FAILED the revision threshold on agency_grounding (5.57/10) -- the Section 9.2 and Section 9.5 agency-notes named 'NICE reference case' and \"WHO-CHOICE's costing guidance\" generically without a specific citable document, repeating the exact generic-framing mistake first caught in Ch.2/Ch.3. Did one revision pass: Section 9.2's agency-note now explicitly cites NICE's PMG36 manual (already established in Ch.8) and CHEERS 2022 (Husereau et al., Value in Health, 2022) by full authorship; Section 9.5's agency-note now names Tan-Torres Edejer et al. (2003) 'Making Choices in Health: WHO Guide to Cost-Effectiveness Analysis' (the real foundational WHO-CHOICE methodological reference) plus ISPOR's Good Research Practices for cost-of-illness/micro-costing studies. Re-scored: agency_grounding rose to 7.3/10, all six dimensions now pass: coverage 8.42, technical_correctness 7.57, code_validity 7.0, agency_grounding 7.3, internal_consistency 8.48, readability 6.58. This is now the third chapter (after Ch.2, Ch.3) needing this specific agency-grounding fix pattern -- reinforces that naming a real agency/programme alone (e.g. 'WHO-CHOICE', 'NICE reference case') is insufficient without a specific citable document/author/year attached every time. Image check: logged one Track-2 entry (a cost-distribution histogram of the chapter's own simulated tb_costs data, ch09_cost_distribution_histogram.png) with a TODO-IMAGE marker inserted in Section 9.3; no Track-1 diagram needed this chapter (conceptual contrasts served by prose/#list() blocks). Wrote Chapter Markdowns/ch09_costs_resource_use.md with a closing transition to Chapter 10 (Survival Analysis for Economic Evaluation) -- survival::survfit()/Kaplan-Meier machinery introduced here for IPCW censoring weights is the same machinery Ch.10 develops in full. Updated book_progress.json: chapter 9 marked complete, next_chapter_number advanced to 10 (first chapter of Part III: Statistical Methods for Evidence Synthesis and Analysis)."
+    },
+    {
+      "timestamp": "2026-10-15T20:30:00+05:30",
+      "action": "Wrote Chapter 10 (tenth book-writer cron tick) -- first chapter of Part III: Statistical Methods; first chapter with a flagged, unresolved low score (readability)",
+      "details": "Drafted ch10_survival_analysis.typ covering all 12 TOC subsections (Kaplan-Meier/life tables via survival/ggsurvfit/survminer, the six standard flexsurv parametric families, flexsurvspline Royston-Parmar models, flexsurvcure mixture/non-mixture cure models, piecewise/landmark models, AIC/BIC+visual+clinical-plausibility model selection, cox.zph PH diagnostics and non-PH alternatives, covariate-adjusted/anc= models, extrapolation with external data/background mortality/expert elicitation forward-pointer to Ch.14, mstate competing-risks/multi-state models on a 4-state TB pathway, IPDfromKM Guyot et al. 2012 IPD reconstruction, and the chapter's dedicated NICE DSU TSD 14/21 agency-grounding section fulfilling Ch.2's forward commitment). Delegated to 4 parallel sub-agents (10.1-10.3, 10.4-10.6, 10.7-10.9, 10.10-10.12), assembled into one Typst file. Compiled cleanly on first pass (zero errors). First Jev score FAILED the revision threshold on readability only (5.95/10) -- all five other dimensions passed (coverage 7.63, technical_correctness 7.55, code_validity 7.01, agency_grounding 8.3, internal_consistency 8.08). Did one revision pass targeted at readability: rewrote the chapter-opening bridge as an explicit section-by-section roadmap, simplified the SS10.7 PH-assumption sentence and named the PH acronym explicitly, reworked the SS10.10 competing-risks opening into shorter sentences, and restructured SS10.12's TSD 14/21 agency-note from dense bullet-embedded prose into plain-language 'four things it asks for'/'two ways it extends' framing. Re-scored: readability barely moved to 5.86/10 (still failed, essentially flat). Per the skill's stop-after-two-consecutive-low-scores rule, did NOT attempt a third revision -- flagged to Dr Aswath in the chapter markdown and cron report instead. Hypothesis recorded: Chapter 10 has the highest per-chapter R-package/function surface area of any chapter so far (12 subsections, each introducing at least one new package/function), which may need a structural fix (more worked examples, more scaffolding) rather than another prose-simplification pass. Image check: logged one Track-1 candidate (4-state TB pathway flowchart for SS10.10) and two Track-2 candidates (KM-vs-parametric-fits overlay plot, extrapolated-hazard-function plot for SS10.12) as Pending, no TODO-IMAGE markers inserted (numeric/code diagnostics already carry the pedagogical point). Wrote Chapter Markdowns/ch10_survival_analysis.md documenting the readability flag in full. Updated book_progress.json: chapter 10 marked complete (with the readability caveat noted), next_chapter_number advanced to 11."
+    },
+    {
+      "timestamp": "2026-10-15T22:40:00+05:30",
+      "action": "Wrote Chapter 11 (eleventh book-writer cron tick) -- second chapter needing a two-dimension revision pass (agency_grounding and readability together)",
+      "details": "Drafted ch11_meta_analysis.typ covering all 7 TOC subsections (fixed/random-effects models via meta and metafor, heterogeneity quantification with Q/tau^2/I^2, publication bias and small-study effects via funnel plots/Egger's test/trim-and-fill, meta-regression with rma(mods=), meta-analysis of time-to-event outcomes via pooled log(HR), diagnostic test accuracy meta-analysis via mada::reitsma(), meta-analysis of proportions and rates via metafor::escalc() PLO/PFT/IRLN transformations). Delegated to 2 parallel sub-agents (11.1-11.3, 11.4-11.7), assembled into one Typst file, opened with a bridge contrasting Ch.10's single-study IPD extrapolation against this chapter's multi-study pooling. Explicit mechanism established linking this chapter to Ch.10: a pooled log(HR) from SS11.5 becomes the multiplier on the Ch.10-selected flexsurv reference-arm hazard function (the HR method of extrapolation), cross-referencing Ch.10 SS10.11's Guyot et al. 2012 IPD reconstruction via the Cochrane Handbook's HR-extraction hierarchy. Compiled cleanly on first pass (zero Typst errors). First Jev score FAILED the revision threshold on TWO dimensions simultaneously: agency_grounding (5.8/10) and readability (5.69/10) -- all four other dimensions passed (coverage 7.97, technical_correctness 7.64, code_validity 7.56, internal_consistency 8.11). Did one revision pass targeting both: added a named NICE DSU Technical Support Document 1 (Dias et al., 2011) agency-note to SS11.1 on when fixed- vs random-effects pooling is justified, and a named CHEERS 2022 (Husereau et al., Value in Health, 2022) item-15 agency-note to SS11.7 on reporting synthesis method/heterogeneity when a pooled estimate feeds a later decision model -- continuing the Ch.2/3/9 established fix pattern of naming a specific document rather than a generic agency claim; for readability, simplified the chapter-opening roadmap paragraph into shorter sentences and split SS11.2's dense three-statistic (Q/tau^2/I^2) p... [truncated]"
+    },
+    {
+      "timestamp": "2026-10-17T00:00:00+05:30",
+      "action": "Wrote Chapter 12 (twelfth book-writer cron tick) -- fourth consecutive-from-first-draft pass since Ch.5/Ch.7/Ch.8, all six Jev dimensions clear on the FIRST pass",
+      "details": "Discovered an existing, substantially complete ch12_itc_nma.typ draft already on disk (not reflected in book_progress.json or book.typ's #include list, apparently written in an earlier unlogged session) covering subsections 12.1-12.7 in depth (Bucher method with worked TB arithmetic independently verified, netmeta frequentist NMA with a real supplied netgraph() PNG figure, Bayesian NMA via gemtc/multinma/bnma, node-splitting and design-by-treatment consistency checks, network meta-regression, and an honest fractional-polynomial survival-NMA section that explicitly flags no CRAN package implements the Jansen 2011/TSD18 model end-to-end rather than fabricating one). Rather than duplicate effort, extended this existing file with the two missing TOC subsections: 12.8 (ranking, SUCRA via gemtc::rank.probability()/sucra(), P-scores via netmeta::netrank()/rankogram(), with an explicit pitfall that a top ranking metric can coexist with wide overlapping intervals) and 12.9 (reporting per NICE DSU TSD 2's implied checklist, the ISPOR good-practice task force report (Jansen et al. 2014), and the PRISMA-NMA extension (Hutton et al. 2015) cross-referenced to Chapter 6's PRISMA2020 flow diagram). Added matching learning-objectives entries for both. Appended the chapter's #include to book.typ (removed a duplicate, differently-written ch12_nma.typ file I had independently drafted in parallel before discovering the existing one -- deleted to avoid two competing Chapter 12 drafts). Updated progress/image_tracker.md: logged Track-1 entry C10 as Skipped (network geometry already covered by the Track-2 netgraph() figure) and Track-2 entry T11 as Done (the already-supplied/embedded netgraph PNG). Compiled cleanly on first pass (zero Typst errors). Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.32, technical_correctness 8.09, code_validity 7.55, agency_grounding 8.17, internal_consistency 8.57, readability 6.29. Wrote Chapter Markdowns/ch12_itc_nma.md and updated book_progress.json (chapter 12 complete, next_chapter_number advanced to 13).\" }, { \"timestamp\": \"2026-10-17T05:00:00+05:30\", \"action\": \"Wrote Chapter 13 (thirteenth book-writer cron tick) -- second chapter in the book with an unresolved readability flag after two revision attempts (first was Chapter 10)\", \"details\": \"Drafted ch13_population_adjusted.typ covering all 5 TOC subsections (when population adjustment is needed, MAIC, STC, ML-NMR, limitations/agency expectations per NICE DSU TSD 18). Delegated to 2 parallel sub-agents, assembled picking up Ch.12 SS12.6's forward-pointer. Verified function names: stats::optim(), survival::coxph(weights=)/survfit(weights=) standard; multinma::set_ipd()/set_agd_arm()/nma() reused from Ch.12; multinma::add_integration() confirmed real via one live web search, exact argument syntax explicitly hedged as version-sensitive; the GitHub maic package flagged as NOT on CRAN/unreviewed. Compiled cleanly on first pass. First Jev score FAILED readability only (5.57/10) -- all five other dimensions passed (coverage 8.07, technical_correctness 7.52, code_validity 6.23, agency_grounding 7.78, internal_consistency 8.33). One revision pass targeted readability. Re-scored: readability 5.17/10 -- still failed, essentially flat (other five still passing). Per the stop-after-two-consecutive-low-scores rule, did NOT attempt a third revision -- flagged to Dr Aswath. Image check: logged Track-1 C11 and Track-2 T12 in image_tracker.md. Wrote Chapter Markdowns/ch13_population_adjusted.md. Updated book_progress.json: chapter 13 complete, next_chapter_number advanced to 14.\"downs/ch12_itc_nma.md documenting the pooled-log(HR)-as-multiplier mechanism's extension to full networks and to time-varying hazard ratios, and flagging the honest-about-tooling-gaps pattern from SS12.7 as a new standing lesson for future chapters where real R tooling doesn't yet cover a published method. Updated book_progress.json: chapter 12 marked complete, next_chapter_number advanced to 13."
+    },
+    {
+      "timestamp": "2026-10-17T05:00:00+05:30",
+      "action": "Wrote Chapter 13 (thirteenth book-writer cron tick) -- second chapter in the book with an unresolved readability flag after two revision attempts (first was Chapter 10)",
+      "details": "Drafted ch13_population_adjusted.typ covering all 5 TOC subsections (when population adjustment is needed -- effect modifiers vs prognostic factors distinction; matching-adjusted indirect comparison MAIC with odds-weighting via optim(), effective sample size, weighted coxph() for time-to-event outcomes; simulated treatment comparison STC with outcome regression and the non-collapsibility pitfall; multilevel network meta-regression ML-NMR as the multinma-package generalisation of STC to full IPD+AgD networks via add_integration(); limitations/agency expectations per NICE DSU TSD 18). Delegated to 2 parallel sub-agents (13.1-13.3, 13.4-13.5), assembled into one Typst file picking up directly from Ch.12 SS12.6's forward-pointer (network meta-regression is data-hungry/ecological -- this chapter closes that gap with patient-level data). Verified function names during assembly: stats::optim(), survival::coxph(weights=)/survfit(weights=) confirmed standard; multinma::set_ipd()/set_agd_arm()/nma() reused from Ch.12; multinma::add_integration() confirmed real via one live web search, but its exact covariate-distribution argument syntax explicitly hedged in the chapter text as version-sensitive rather than asserted as a fixed signature; the GitHub maic package explicitly flagged as NOT on CRAN/unreviewed rather than treated as equivalent software -- continuing the Ch.6/8/12 tooling-honesty lesson. Compiled cleanly on first pass (zero Typst errors; fixed several markdown-style double-asterisk-bold warnings by converting to Typst single-asterisk/underscore emphasis during cleanup -- cosmetic only, did not affect the exit-0 compile). First Jev score FAILED the revision threshold on readability only (5.57/10) -- all five other dimensions passed (coverage 8.07, technical_correctness 7.52, code_validity 6.23, agency_grounding 7.78, internal_consistency 8.33). Did one revision pass targeted at readability: rewrote the chapter-opening bridge into three shorter paragraphs instead of one dense one, broke up the SS13.1 opening sentence, and rewrote the SS13.3 non-collapsibility pitfall and MAIC-vs-STC trade-off paragraph into shorter, less deeply nested sentences. Re-scored: readability moved to 5.17/10 -- still failed, essentially flat/slightly lower (coverage 8.12, technical_correctness 7.30, code_validity 6.33, agency_grounding 7.69, internal_consistency 8.31 all still passing). Per the skill's stop-after-two-consecutive-low-scores rule, did NOT attempt a third revision -- flagged to Dr Aswath in the chapter markdown and cron report instead. Hypothesis recorded (consistent with the Ch.10 precedent): the chapter packs an unusually high density of tightly-coupled technical distinctions (effect modifier vs prognostic factor, MAIC vs STC model assumptions, non-collapsibility, ML-NMR's distributional vs point-mean matching, TSD 18's five-item checklist) into a short span with little narrative breathing room -- sentence-level simplification alone may not be the real fix; a future structural rewrite pass across both Ch.10 and Ch.13 together (more numbered sub-steps, explicit signposting) is worth considering rather than continued chapter-by-chapter patching. Image check: logged Track-1 entry C11 (MAIC/STC/ML-NMR method-decision flowchart, Pending, low priority) and Track-2 entry T12 (MAIC covariate-balance love plot, Pending, optional) in progress/image_tracker.md. Wrote Chapter Markdowns/ch13_population_adjusted.md. Updated book_progress.json: chapter 13 marked complete, next_chapter_number advanced to 14."
+    },
+    {
+      "timestamp": "2026-10-18T13:00:00+05:30",
+      "action": "Wrote Chapter 14 (fourteenth book-writer cron tick) -- third chapter in the book with an unresolved readability flag after two revision attempts (after Chapter 10 and Chapter 13)",
+      "details": "Drafted ch14_bayesian_methods.typ covering all 8 TOC subsections (Bayesian thinking for decision makers; informative/weakly-informative/vague priors with a worked Beta-Binomial conjugate update, arithmetic independently verified, and the chapter's first use of the new report-table helper for the prior-vs-posterior summary; MCMC with Stan/JAGS/brms fitting the identical toy model three ways; diagnostics -- R-hat/Gelman-Rubin, effective sample size, posterior predictive checks -- explicitly fulfilling Chapter 12's named forward-pointer that deferred full MCMC diagnostics to this chapter; Bayesian evidence synthesis explicitly building on Ch.12's gemtc/multinma/bnma NMA without re-deriving it; Bayesian decision analysis -- the chapter's core payoff, posterior draws used directly and unmodified as a PSA sample with correlation structure intact, no intermediate distribution-fitting step; expert elicitation via SHELF with SHELF::fitdist()/plotfit() used confidently and SHELF::feedback()'s exact signature explicitly hedged as not independently re-verified; and an 8-point end-to-end Bayesian workflow roadmap forward-pointing by chapter number to Ch.25 PSA and Ch.26 VOI/EVPI/EVPPI). Delegated to 3 parallel sub-agents (14.1-14.3, 14.4-14.6, 14.7-14.8), assembled into one Typst file. Verified function names during assembly: rstan::stan(), rjags::jags.model()/coda.samples(), brms::brm()/set_prior(), coda::gelman.diag()/effectiveSize(), bayesplot::mcmc_trace()/ppc_dens_overlay(), rstan::check_hmc_diagnostics()/monitor()/extract(), gemtc::relative.effect() (reused from Ch.12) -- all confirmed real; SHELF::fitdist()/plotfit() used directly, SHELF::feedback() explicitly hedged rather than asserted or omitted, continuing the Ch.8/12/13 cautious-uncertainty pattern. Compiled cleanly on first pass (zero Typst errors). First Jev score FAILED the revision threshold on readability only (5.44/10) -- all five other dimensions passed (coverage 8.2, technical_correctness 7.99, code_validity 7.82, agency_grounding 8.06, internal_consistency 8.22). Did one revision pass targeted at readability: rewrote the chapter-opening bridge into shorter paragraphs with an explicit bulleted section-arc list (same fix pattern as Ch.10/13), broke the dense 14.1 prior/likelihood/posterior paragraph into three short paragraphs, and rewrote the 14.3 Metropolis-Hastings/HMC/NUTS/Gibbs paragraph block into four short separated paragraphs. Re-scored: readability moved only to 5.5/10 (still FAILED, effectively flat +0.06) -- all other dimensions held steady (coverage 8.31, technical_correctness 8.03, code_validity 7.69, agency_grounding 8.03, internal_consistency 8.13). Per the skill's stop-after-two-consecutive-low-scores rule, did NOT attempt a third revision -- flagged to Dr Aswath in the chapter markdown and cron report instead. This is now a clear cross-chapter pattern (Ch.10, Ch.13, Ch.14 all flagged) rather than isolated incidents -- all three are the book's most mathematically/conceptually dense chapters so far, and sentence-splitting alone is not moving the score; a dedicated cross-chapter readability pass restructuring these three chapters together (more numbered sub-steps, more worked mini-examples, possibly more and shorter subsections) is increasingly the likely real fix rather than continued chapter-by-chapter patching. Image check: logged one new Track-1 candidate (C12, the 14.8 Bayesian workflow as a flowchart LR, medium priority, deferred) and three new Track-2 candidates with TODO-IMAGE markers inserted (T13 bayesplot::mcmc_trace(), T14 bayesplot::ppc_dens_overlay(), T15 SHELF::plotfit()). Wrote Chapter Markdowns/ch14_bayesian_methods.md. Updated book_progress.json: chapter 14 marked complete, next_chapter_number advanced to 15 (next chapter: Real-World Evidence and Causal Inference, still Part III)."
+    },
+    {
+      "timestamp": "2026-10-18T14:30:00+05:30",
+      "action": "Wrote Chapter 15 (fifteenth book-writer cron tick) -- fourth consecutive chapter in the book with an unresolved readability flag after two revision attempts (after Chapter 10, Chapter 13, and Chapter 14), and the worst-scoring of the four by a wide margin",
+      "details": "Drafted ch15_rwe_causal_inference.typ covering all 11 TOC subsections (fit-for-purpose RWD/RWE frameworks per FDA's relevance/reliability test and EMA's DARWIN EU; cohort/case-control/target trial emulation study designs with Hernan & Robins TTE and an explicit time_zero-vs-diagnosis_dt immortal-time-bias code demonstration; DAG-based confounding with dagitty::adjustmentSets() programmatically deriving the minimal sufficient adjustment set and correctly excluding a mediator; propensity score matching/weighting/stratification via MatchIt/WeightIt/cobalt with a hand-verified IPTW ATE worked example (60/6=10.000 treated mean, 23/6=3.833 control mean, ATE=6.167 -- independently re-verified during assembly); doubly robust AIPW estimators and g-methods for time-varying confounding; instrumental variables via ivreg and regression discontinuity via rdrobust; difference-in-differences with did::att_gt() for staggered adoption (Goodman-Bacon bias named) and interrupted time series via segmented; treatment-switching adjustment RPSFTM/IPCW per NICE DSU TSD 16 with the rpsftm and ipcwswitch CRAN packages; E-values via the EValue package with a report-table summary; OHDSI/OMOP workflows via DatabaseConnector/FeatureExtraction/CohortMethod; and external/synthetic control arms with explicit tooling-honesty flagging that no CRAN package specifically targets clinical synthetic control construction). Delegated to 3 parallel sub-agents (15.1-15.3, 15.4-15.7, 15.8-15.11), assembled into one Typst file explicitly continuing Ch.14's closing framing that RWE/causal-inference methods in this book are predominantly frequentist. Verified function names/packages during assembly: dagitty/ggdag, MatchIt/WeightIt/cobalt, AIPW, ivreg/AER, rdrobust/rddensity, did/segmented, rpsftm/ipcwswitch, EValue, and the real OHDSI DatabaseConnector/FeatureExtraction/CohortMethod packages -- all confirmed real; rpsftm and ipcwswitch both explicitly flagged as not covering every switching design variant; no fabricated synthetic-control-arm package claimed. Compiled cleanly on first pass (zero Typst errors). First Jev score FAILED the revision threshold on readability only, and badly (3.40/10) -- all five other dimensions passed (coverage 7.84, technical_correctness 7.55, code_validity 7.33, agency_grounding 6.56, internal_consistency 7.91). Did one revision pass targeted at readability: rewrote the chapter-opening bridge into four short paragraphs, and broke up the dense opening sentences of SS15.3, 15.5, and 15.9. Re-scored: coverage 7.93, technical_correctness 7.56, code_validity 7.38, agency_grounding 6.52, internal_consistency 7.99, readability 3.35 (still FAILED, essentially flat). Per the skill's stop-after-two-consecutive-low-scores rule, did NOT attempt a third revision. Flagged to Dr Aswath: this is the fourth consecutive chapter with an unresolved readability flag (after Ch.10, 13, 14) and clearly the worst of the four (3.35-3.40 vs the 5.17-5.95 range of the prior three) -- strong evidence the real driver is concept density (11 distinct causal-inference methods packed into one chapter) rather than sentence length, and that a dedicated cross-chapter readability/restructuring pass covering Ch.10, 13, 14, 15 together (possibly including splitting Ch.15 into two chapters in a future revision) is now clearly overdue rather than continuing to patch chapter-by-chapter. Wrote Chapter Markdowns/ch15_rwe_causal_inference.md with full detail on this flag. Updated image_tracker.md: logged 1 new Track-1 candidate (C13, cross-referencing a DAG render) and 4 new Track-2 candidates (T16-T19: DAG plot, love plot, RD plot, DiD event-study plot). Updated book_progress.json: chapter 15 marked complete, next_chapter_number advanced to 16."
+    },
+    {
+      "timestamp": "2026-10-18T19:30:00+05:30",
+      "action": "Wrote Chapter 16 (sixteenth book-writer cron tick) -- first chapter since Chapter 9 to pass readability on the FIRST draft, breaking the four-chapter readability-flag streak (Chapters 10, 13, 14, 15)",
+      "details": "Drafted ch16_regression_models.typ covering all 6 TOC subsections (GLMs unifying Ch.8/Ch.9's model families; mixed-effects/hierarchical models with lme4::glmer() and ICC; count/zero-inflated models with MASS::glm.nb()/pscl::zeroinfl()/hurdle() distinguished; quantile regression via quantreg::rq() explicitly complementing Ch.9's cost-GLM treatment, plus ordinal regression reusing Ch.8's MASS::polr() by cross-reference; ML for HTE via grf::causal_forest() framed as the nonparametric cousin of Ch.15's doubly-robust estimators, plus glmnet::glmnet() LASSO variable selection; subgroup analysis with pre-specified-vs-exploratory distinction, interaction-term effect-modification testing, and Ch.15 SS15.3's DAG-based prognostic-factor/effect-modifier distinction reused by name). Delegated to 3 parallel sub-agents (16.1-16.2, 16.3-16.4, 16.5-16.6 plus closing transition), each explicitly instructed per the Ch.10/13/14/15 readability-failure pattern to keep each subsection to 2-3 core ideas with one worked example apiece and to cross-reference rather than re-derive material already covered in Ch.8/9/11/15. Assembled into one Typst file; fixed one Typst syntax error during assembly (a sub-agent used #learning-objectives([...]) with single brackets, but the function's #list(..items) spread requires an array literal with double parens -- corrected to #learning-objectives((...)) matching the working pattern already used in ch15). Verified every claimed R function/package during assembly: glm()/broom::tidy()/predict.glm(), lme4::lmer()/glmer(), nlme::lme(), MASS::glm.nb(), pscl::zeroinfl()/hurdle(), quantreg::rq(), MASS::polr() (reused, not re-derived), ordinal::clm(), randomForest::randomForest(), ranger::ranger(), grf::causal_forest(), glmnet::glmnet()/cv.glmnet(), metafor::forest() (reused from Ch.11) -- all confirmed real; explicitly dropped a sub-agent's tentative countreg::hurdle() reference in favour of pscl::hurdle() only, since countreg is not a stable CRAN package, continuing the Ch.13/15 tooling-honesty pattern. Compiled cleanly on first pass after the learning-objectives fix (zero Typst errors). Agency grounding proactively anchored to three specific named documents: CHEERS 2022 items 20/26, NICE DSU TSD 3 (random-effects models under heterogeneity), and EMA/CHMP/539146/2013 (subgroup investigation guideline, verified as a real EMA document) -- extending the book's established TSD 1/2/14/16/18/21/33 family. Jev score passed ALL SIX dimensions on the FIRST pass -- no revision needed: coverage 8.38, technical_correctness 7.33, code_validity 7.13, agency_grounding 7.93, internal_consistency 8.00, readability 6.23 (clears the 6/10 threshold -- first chapter since Ch.9 to clear readability on the first draft, breaking the Ch.10/13/14/15 streak of readability failures). Readability-recovery hypothesis recorded: this chapter deliberately applied the 'fewer ideas, more depth, cross-reference instead of re-derive' guidance from the first draft rather than as a post-hoc fix, consistent with (though not conclusive proof of) the density-not-sentence-length hypothesis already recorded in Ch.10/13/14/15's markdowns; the dedicated cross-chapter readability pass for those four chapters remains a separately flagged, still-open item since this chapter does not retroactively fix them. Image check: no Track-1 diagram candidate identified; two Track-2 entries logged as Pending (a grf causal-forest tau_hat scatter from SS16.5, a subgroup forest plot from SS16.6). 'How to report this' table check: zero report-table/ref-table insertions, explicitly justified in the chapter markdown. Wrote 'Chapter Markdowns/ch16_regression_models.md'. Updated book_progress.json: chapter 16 marked complete, next_chapter_number advanced to 17 (first chapter of Part IV: Decision-Analytic Modelling)."
+    }
+  ]
+}

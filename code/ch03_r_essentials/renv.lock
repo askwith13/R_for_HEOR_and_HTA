@@ -1,0 +1,64 @@
+{
+  "_comment": "This is an honest best-effort package manifest for this chapter's code, NOT a true renv::snapshot() lockfile. Packages with verified_installed_this_environment=true have a real version number confirmed on the machine that drafted this book. Packages with verified_installed_this_environment=false are referenced by the chapter's code but are not currently installed here -- their listed version is a placeholder, not a real pin. Install the package and re-run generate_chapter_renvlock.py to get a real version, then eventually run a true renv::snapshot() in this chapter's own project directory for a fully frozen lockfile before public release.",
+  "R": {
+    "Version": "4.6.0"
+  },
+  "Packages": {
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.1.1.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "data.table": {
+      "Package": "data.table",
+      "Version": "1.18.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "furrr": {
+      "Package": "furrr",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "future": {
+      "Package": "future",
+      "Version": "1.80.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "lubridate": {
+      "Package": "lubridate",
+      "Version": "1.9.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "profvis": {
+      "Package": "profvis",
+      "Version": "0.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "purrr": {
+      "Package": "purrr",
+      "Version": "1.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "tidyverse": {
+      "Package": "tidyverse",
+      "Version": "2.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    }
+  }
+}

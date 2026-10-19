@@ -1,0 +1,35 @@
+timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity,agency_grounding,internal_consistency,readability,model
+2026-10-14T07:26:47.454074+00:00,0,Front Matter (smoke test),4.59,7.69,8.95,3.74,8.41,4.24,jev-1.13.0
+2026-10-14T12:31:56.291014+00:00,1,Introduction to HEOR and HTA,8.24,7.5,8.9,7.43,8.88,6.94,jev-1.13.0
+2026-10-14T14:05:48.817164+00:00,2,Setting Up an R Environment for HEOR,7.78,8.02,7.87,2.81,8.82,6.45,jev-1.13.0
+2026-10-14T14:06:43.293159+00:00,2,Setting Up an R Environment for HEOR (revision pass),7.51,7.84,7.55,7.91,8.68,6.46,jev-1.13.0
+2026-10-14T15:09:12.721611+00:00,3,R Essentials for Health Economists,8.49,8.19,8.14,2.47,8.56,6.8,jev-1.13.0
+2026-10-14T15:10:24.239812+00:00,3,R Essentials for Health Economists (revision pass),8.35,8.36,7.81,7.34,8.48,6.82,jev-1.13.0
+2026-10-14T15:20:34.507075+00:00,4,Core Concepts in Health Economics (with R Illustrations),8.33,8.33,7.69,8.85,8.75,6.97,jev-1.13.0
+2026-10-14T17:39:17.854369+00:00,5,Data Sources and Data Management,8.53,7.95,8.28,8.21,8.84,7.35,jev-1.13.0
+2026-10-15T00:38:53.137488+00:00,6,Systematic Literature Review (SLR) Support in R,8.42,7.75,4.75,6.24,8.27,6.24,jev-1.13.0
+2026-10-15T00:41:10.245658+00:00,6,Systematic Literature Review (SLR) Support in R,8.46,7.58,7.8,6.19,8.22,6.25,jev-1.13.0
+2026-10-15T05:02:10.500536+00:00,7,Missing Data,8.44,7.58,7.35,6.56,8.34,6.89,jev-1.13.0
+2026-10-15T05:08:46.325728+00:00,8,Health-Related Quality of Life and Utilities,8.24,7.08,6.32,7.91,8.26,7.06,jev-1.13.0
+2026-10-15T05:50:27.694334+00:00,9,Costs and Resource Use,8.31,7.5,7.07,5.57,8.46,6.55,jev-1.13.0
+2026-10-15T05:51:09.468224+00:00,9,Costs and Resource Use,8.42,7.57,7.0,7.3,8.48,6.58,jev-1.13.0
+2026-10-15T10:59:46.994513+00:00,10,Survival Analysis for Economic Evaluation,7.63,7.55,7.01,8.3,8.08,5.95,jev-1.13.0
+2026-10-15T11:00:46.664701+00:00,10,Survival Analysis for Economic Evaluation,7.68,7.54,6.9,8.31,8.13,5.86,jev-1.13.0
+2026-10-15T16:08:00.098943+00:00,11,Meta-Analysis,7.97,7.64,7.56,5.8,8.11,5.69,jev-1.13.0
+2026-10-15T16:09:12.300233+00:00,11,Meta-Analysis,8.03,7.55,7.59,7.87,8.02,6.49,jev-1.13.0
+2026-10-17T13:21:37.839294+00:00,12,Indirect Treatment Comparisons and Network Meta-Analysis,8.32,8.09,7.55,8.17,8.57,6.29,jev-1.13.0
+2026-10-17T18:30:32.545363+00:00,13,Population-Adjusted Indirect Comparisons,8.07,7.52,6.23,7.78,8.33,5.57,jev-1.13.0
+2026-10-17T18:31:25.794215+00:00,13,Population-Adjusted Indirect Comparisons,8.12,7.3,6.33,7.69,8.31,5.17,jev-1.13.0
+2026-10-17T23:44:32.582733+00:00,14,Bayesian Methods for HEOR,8.2,7.99,7.82,8.06,8.22,5.44,jev-1.13.0
+2026-10-17T23:45:23.987327+00:00,14,Bayesian Methods for HEOR,8.31,8.03,7.69,8.03,8.13,5.5,jev-1.13.0
+2026-10-18T04:57:40.947749+00:00,15,Real-World Evidence (RWE) and Causal Inference,7.84,7.55,7.33,6.56,7.91,3.4,jev-1.13.0
+2026-10-18T04:58:33.683641+00:00,15,Real-World Evidence (RWE) and Causal Inference,7.93,7.56,7.38,6.52,7.99,3.35,jev-1.13.0
+2026-10-18T10:06:20.662907+00:00,16,Regression Models for HEOR Data,8.38,7.33,7.13,7.93,8.0,6.23,jev-1.13.0
+2026-10-18T14:04:40.533285+00:00,10,Survival Analysis for Economic Evaluation,,,,,,7.09,jev-latest,"prose_only (retroactive re-score, replaces bundle-based 5.86 flag)"
+2026-10-18T14:04:41.348020+00:00,15,Real-World Evidence (RWE) and Causal Inference,,,,,,7.22,jev-latest,"prose_only (retroactive re-score, replaces bundle-based 3.35 flag)"
+2026-10-18T14:06:55.798716+00:00,14,Bayesian Methods for HEOR,,,,,,6.79,jev-latest,"prose_only (retroactive re-score, replaces bundle-based 5.5 flag)"
+2026-10-18T15:15:45.160268+00:00,17,Principles of Decision Modelling,8.82,7.97,7.94,8.01,8.2,jev-1.13.0
+2026-10-18T15:15:49.870301+00:00,17,Principles of Decision Modelling,,,,,,7.05,jev-latest,prose_only
+2026-10-18T20:24:11.931067+00:00,18,Decision Trees,8.24,7.15,5.57,7.0,8.15,jev-1.13.0
+2026-10-18T20:24:17.869841+00:00,18,Decision Trees,,,,,,7.25,jev-latest,prose_only
+2026-10-18T20:25:52.386306+00:00,18,Decision Trees,8.41,7.53,7.32,7.01,8.22,jev-1.13.0

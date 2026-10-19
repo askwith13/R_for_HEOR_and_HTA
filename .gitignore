@@ -1,0 +1,24 @@
+# OS/editor noise
+.DS_Store
+*.swp
+*~
+
+# Typst compile intermediates (book.pdf itself IS tracked -- it's the
+# deliverable, regenerated and committed after every chapter)
+*.typ.bak
+
+# R session/working-directory noise
+.Rhistory
+.RData
+.Rproj.user/
+
+# renv private library caches (the renv.lock manifests ARE tracked;
+# the actual downloaded package binaries are not)
+appendix-c-template/*/renv/library/
+appendix-c-template/*/renv/staging/
+appendix-c-template/*/renv/sandbox/
+
+# scratch/test compile output used during drafting sessions, never
+# the canonical book.pdf
+/tmp/
+*.tmp.pdf

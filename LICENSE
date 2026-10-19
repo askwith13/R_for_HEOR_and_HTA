@@ -1,0 +1,44 @@
+MIT License (applies to companion code only — see NOTICE below)
+
+Copyright (c) 2026 Aswath Karunakaran
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+NOTICE — Scope of this license
+
+This MIT license covers ONLY the companion code in this repository:
+the `code/`, `appendix-c-template/`, and `solutions/` folders (R
+scripts, lockfiles, and project-template files).
+
+It does NOT cover:
+- The book's prose, figures, and typeset content
+  (`typst_project/`, `Chapter Markdowns/`), which remains
+  All Rights Reserved pending a publishing decision by the author.
+- Any data placed in `data/`, which carries its own licensing terms
+  per `data/README.md` and the book's Appendix F data dictionary
+  once published.
+
+This split (permissive code license, reserved content rights) is
+standard practice for technical books with companion repositories,
+and is deliberately left open pending the author's choice of
+publisher vs. self-publication route — do not assume a book-content
+license has been decided; ask the author before stating one.

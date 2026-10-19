@@ -1,0 +1,27 @@
+{
+  "chapter_num": 7,
+  "chapter_title": "Missing Data",
+  "subsections": [
+    "7.1 Mechanisms: MCAR, MAR, MNAR",
+    "7.2 Exploring missingness (naniar, visdat, Shiny-based explorers)",
+    "7.3 Complete-case versus imputation",
+    "7.4 Multiple imputation (mice, Amelia, missForest)",
+    "7.5 Sensitivity analysis, including tipping-point and pattern-mixture approaches",
+    "7.6 Missing data in cost and QALY data",
+    "7.7 Reporting missing data handling for HTA"
+  ],
+  "key_claims_and_code": [
+    "7.1: Defines MCAR/MAR/MNAR per Rubin 1976; explains the mechanism cannot be confirmed from observed data alone; walks one EQ-5D non-response example through all three mechanisms; states complete-case unbiased only under MCAR, MI justified under MAR, MNAR needs selection/pattern-mixture models or sensitivity analysis.",
+    "7.2: Real naniar functions (vis_miss, gg_miss_var, gg_miss_upset, mcar_test for Little's test) and visdat (vis_dat, vis_miss); R code block applying these to a trial_econ dataset with facet by trial_arm; mentions Shiny as an interactive wrapper layer, not a new method. One #pitfall on mcar_test non-significance not proving MCAR. One #agency-note citing Faria, Gomes, Epstein & White 2014 PharmacoEconomics missing-data guide (real document).",
+    "7.3: Complete-case analysis / listwise deletion, defensible only under small-proportion MCAR; contrasts mean/median imputation and LOCF; R code simulating MAR-ish missingness and comparing naive mean-imputation SE vs mice-pooled SE on same toy data. One #pitfall on singly-imputed SE not reflecting true imputation uncertainty.",
+    "7.4: mice() workflow with m, method='pmm'/'logreg'/'polyreg', complete(), with()+pool() per Rubin's rules; full worked R example (heor_data tibble with cost/qaly missingness, mice+with+pool on lm). Discusses Amelia (EMB algorithm, longitudinal) and missForest (random forest, nonparametric, but NOT easily combinable via Rubin's rules - flagged as real limitation) as alternatives. One #heor-practice on disclosing m/method/pooled SE in methods sections.",
+    "7.5: Explains MI under MAR is not final - MNAR can't be ruled out; tipping-point analysis explained with R loop varying delta on imputed treatment-success values, tying to WTP threshold lambda from Ch.4; pattern-mixture models explained conceptually (stratify by missingness pattern, differing assumptions per pattern, jump-to-reference); mentions rbmi (real CRAN package, Roche-developed, reference-based MI) at conceptual level without inventing specific function names.",
+    "7.6: Cost data right-skewed/zero-inflated, utilities bounded ([-0.59,1]-ish); informative dropout as MNAR; naive mean imputation especially dangerous for skewed costs; mice post-processing to clamp imputed utility/cost to valid ranges, R code example; ties back explicitly to Chapter 4's treatment/cost/qaly dominance-pruning tibble pipeline as the downstream consumer of this data. One #pitfall on unconstrained imputation silently distorting pooled cost/QALY estimates feeding ICER calculations.",
+    "7.7: CHEERS 2022 missing-data reporting checklist item (amount/pattern by arm, assumed mechanism+justification, primary method with specificity, sensitivity analyses+robustness); R code sketch for a missingness-by-arm summary table; ICH E9(R1) estimand framework for intercurrent events tied to missing-data strategy. One #agency-note citing CHEERS 2022 and ICH E9(R1) together (both real documents). Closing transition paragraph to Chapter 8 (HRQoL and Utilities)."
+  ],
+  "prior_chapter_summaries": [
+    "Chapter 4 (Core Concepts in Health Economics): established ICER = deltaC/deltaE notation, QALYs/DALYs, WTP threshold lambda, and a treatment/cost/qaly tibble dominance-pruning/efficiency-frontier dplyr pipeline used as the canonical worked dataset referenced by later chapters.",
+    "Chapter 5 (Data Sources and Data Management): established CDISC SDTM/ADaM concepts, data import tooling (readr/readxl/haven/DBI), data quality checks via pointblank/assertr/validate on a cost/qaly tibble, and data governance/de-identification (HIPAA/GDPR/India DPDPA 2023).",
+    "Chapter 6 (Systematic Literature Review Support in R): established PRISMA 2020 search/screening/extraction workflow (litsearchr, synthesisr, PRISMA2020::PRISMA_data(), robvis with required Weight column), dual-extraction QA via waldo::compare(), and the standing lesson that sub-agent-stated function names/signatures must be independently verified against real package docs (two invented functions were caught and fixed in that chapter: PRISMA2020_data -> PRISMA_data, non-existent PRISMA_save -> DiagrammeRsvg/rsvg route)."
+  ]
+}

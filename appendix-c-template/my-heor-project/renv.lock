@@ -1,0 +1,20 @@
+{
+  "_comment": "Minimal starter lockfile for this template's own two placeholder scripts (dplyr, readr). Run renv::init() in a forked copy of this project to generate a real project-specific renv.lock reflecting whatever packages your actual analysis ends up using -- do not treat this file as frozen for your project.",
+  "R": {
+    "Version": "4.6.0"
+  },
+  "Packages": {
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN"
+    },
+    "readr": {
+      "Package": "readr",
+      "Version": "2.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN"
+    }
+  }
+}
