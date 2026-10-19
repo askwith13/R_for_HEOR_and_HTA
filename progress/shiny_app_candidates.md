@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-20 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-21 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 38 across 18 chapters** 
+**Total candidates so far: 40 across 19 chapters** 
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -290,12 +290,26 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
-## Standing note for future chapters (20-35)
+## Chapter 21. Individual-Level State-Transition Models (Microsimulation)
+
+### First-Order Noise Convergence Explorer
+- **Section:** 21.4
+- **What it does:** A slider for N (number of simulated patients, e.g. 100 to 50,000, log scale) re-runs the chapter's fixed-parameter microsimulation twice with two independent patient cohorts of that size and live-plots the gap between the two runs' headline outputs (mean cost, mean QALYs) shrinking as N grows — makes the first-order-vs-second-order distinction (§21.4) directly visible rather than asserted, and gives a concrete answer to "how many patients is enough?"
+- **Likely packages:** `shiny, ggplot2`
+
+### Common Random Numbers Variance-Reduction Demo
+- **Section:** 21.5
+- **What it does:** A toggle switches between independent-random-draws and common-random-numbers simulation of the same two-arm comparison; a live histogram of the incremental QALY difference across repeated simulation runs visibly narrows under CRN — directly demonstrates the variance-reduction claim in §21.5 rather than describing it in prose only.
+- **Likely packages:** `shiny, ggplot2`
+
+---
+
+## Standing note for future chapters (21-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Coverage currently extends through Chapter 20. Natural strong 
+rebuilding it from scratch. Coverage currently extends through Chapter 21. Natural strong 
 candidates expected ahead: Chapter 25 (PSA — tornado diagrams, CEACs, the Dirichlet/
 Cholesky machinery flagged but deferred from Ch.19 §19.8), Chapter 26 (VOI/EVPI/EVPPI), 
 and the budget-impact-model chapters, all of which are classically well-suited to live 

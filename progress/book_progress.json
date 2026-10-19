@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 21,
+  "next_chapter_number": 22,
   "total_chapters": 35,
   "chapters": [
     {
@@ -156,7 +156,7 @@
       "num": 21,
       "title": "Individual-Level State-Transition Models (Microsimulation)",
       "part": "IV. Decision-Analytic Modelling",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 22,
@@ -244,6 +244,11 @@
     }
   ],
   "run_log": [
+    {
+      "timestamp": "2026-10-19T23:50:00+05:30",
+      "action": "Wrote Chapter 21 (twenty-first book-writer cron tick) -- fifth chapter of Part IV; readability passed on the FIRST draft for the second chapter in a row (after Chapter 19), one revision pass needed on agency_grounding",
+      "details": "Drafted ch21_microsimulation.typ covering all 7 TOC subsections (when microsimulation is needed, picking up directly from Ch.19/Ch.20's shared closing-transition claim that cohort/PSM models track mean proportions rather than individuals; patient heterogeneity vs history dependence distinguished cleanly, anchored to hesim's real clock='forward'/'reset'/'mix' argument; vectorisation/data.table/parallel-computing performance craft for the three nested cycles x patients x PSA-samples loops; first-order vs second-order Monte Carlo uncertainty; common random numbers as a real variance-reduction technique, confirmed as a genuine hesim architectural property via hesim_data()/expand() tying patient x sample rows across strategies; a full real hesim individual-level CTSTM API walkthrough -- hesim_data(), expand(), create_IndivCtstmTrans(clock=), create_StateVals(), IndivCtstm$new(), $sim_disease()/$sim_stateprobs()/$sim_qalys(dr=)/$sim_costs(dr=) -- all verified real via live web search against hesim's own CRAN reference manual and vignettes since hesim is not installed in this environment; and a fully worked, newly-invented TB screening-programme microsimulation, N=1000, 5 states, common random numbers, deliberately avoiding a fabricated ICER and reporting only checkable detection-count arithmetic). Delegated to 2 parallel sub-agents (21.1-21.3, 21.4-21.7), assembled into one Typst file. Compiled cleanly on first pass (zero Typst errors). First Jev score (dimensions 1-5) FAILED only agency_grounding (5.73/10) -- coverage 8.21, technical_correctness 7.35, code_validity 6.66, internal_consistency 7.96 all passed. Readability (prose-only method) PASSED on the first pass: 6.33/10 -- the second consecutive chapter (after Ch.19) to clear readability without a revision, continuing the recovery from the Ch.10/13/14/15 streak. Did one revision pass targeting agency_grounding only: added a new named ISPOR-SMDM reference, Briggs et al. (2012) Task Force-6 'Model Parameter Estimation and Uncertainty' (Value in Health 15(5):835-842, confirmed real via live web search), as an agency-note in Section 21.4 -- this is the actual published source of the stochastic(first-order)/parameter(second-order)/heterogeneity three-way distinction the section teaches, a genuinely new companion citation to the book's already-established Siebert et al. (2012) Task Force-3. Re-scored: agency_grounding rose to 6.86/10 (PASSED), other four dimensions held steady (coverage 8.24, technical_correctness 7.63, code_validity 6.6, internal_consistency 7.96). All six dimensions now clear the 6/10 threshold -- no further revision needed. Image check: logged Track-1 candidate C17 (5-state TB screening structure diagram) as Skipped, Track-2 candidate T24 (grouped detection-outcome bar chart) as Pending. Table check: one report-table inserted (tab-ch21-screening) with the screening-programme detection-count result. Shiny scan: two genuine candidates added (First-Order Noise Convergence Explorer S21.4, Common Random Numbers Variance-Reduction Demo S21.5), file's running total updated 38->40 across 19 chapters, coverage line updated to 1-21. Ran extract_chapter_code.py --chapter 21 (9 code blocks extracted) and generate_chapter_renvlock.py --chapter 21 (3 packages: hesim/data.table/parallel, 2 verified installed, 1 -- hesim -- marked NOT_VERIFIED_IN_THIS_ENVIRONMENT since it is not installed here). Wrote Chapter Markdowns/ch21_microsimulation.md with full detail including the new Task Force-6 citation and a closing transition to Chapter 22 (Discrete Event Simulation and Dynamic Models) on independent vs interacting simulated individuals. Updated book_progress.json: chapter 21 marked complete, next_chapter_number advanced to 22. No new Part divider needed -- Chapter 21 continues Part IV per the established boundary table (next divider due at Chapter 25, Part V)."
+    },
     {
       "timestamp": "2026-10-19T21:35:00+05:30",
       "action": "Added full-color rankogram to Chapter 12 \u00a712.8; discovered and fixed a real pre-existing ranking error",

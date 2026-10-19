@@ -75,6 +75,7 @@
 #include "chapters/ch18_decision_trees.typ"
 #include "chapters/ch19_markov_cohort.typ"
 #include "chapters/ch20_partitioned_survival.typ"
+#include "chapters/ch21_microsimulation.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)
