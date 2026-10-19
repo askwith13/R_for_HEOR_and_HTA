@@ -26,7 +26,7 @@
 }
 
 // ---- Callout boxes used throughout chapters (shared, see common.typ) ----
-#import "common.typ": heor-practice, pitfall, agency-note, learning-objectives, report-table, ref-table, academic-table
+#import "common.typ": heor-practice, pitfall, agency-note, learning-objectives, report-table, ref-table, academic-table, part-divider
 
 // ---- Front matter ----
 #include "front_matter/title_page.typ"
@@ -45,13 +45,14 @@
 #counter(page).update(1)
 
 // ---- Part I: Foundations ----
-// Chapter includes are appended here as each chapter is drafted and approved.
+#part-divider("I", "Foundations")
 #include "chapters/ch01_intro_heor_hta.typ"
 #include "chapters/ch02_r_environment.typ"
 #include "chapters/ch03_r_essentials.typ"
 #include "chapters/ch04_core_concepts.typ"
 
 // ---- Part II: Data for HEOR ----
+#part-divider("II", "Data for HEOR")
 #include "chapters/ch05_data_sources.typ"
 #include "chapters/ch06_slr_support.typ"
 #include "chapters/ch07_missing_data.typ"
@@ -59,9 +60,8 @@
 #include "chapters/ch09_costs_resource_use.typ"
 
 // ---- Part III: Statistical Methods for Evidence Synthesis and Analysis ----
+#part-divider("III", "Statistical Methods for Evidence Synthesis and Analysis")
 #include "chapters/ch10_survival_analysis.typ"
-
-// ---- Part III continued ----
 #include "chapters/ch11_meta_analysis.typ"
 #include "chapters/ch12_itc_nma.typ"
 #include "chapters/ch13_population_adjusted.typ"
@@ -70,6 +70,7 @@
 #include "chapters/ch16_regression_models.typ"
 
 // ---- Part IV: Decision-Analytic Modelling ----
+#part-divider("IV", "Decision-Analytic Modelling")
 #include "chapters/ch17_decision_modelling.typ"
 #include "chapters/ch18_decision_trees.typ"
 #include "chapters/ch19_markov_cohort.typ"

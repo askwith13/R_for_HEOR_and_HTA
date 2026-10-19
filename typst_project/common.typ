@@ -101,3 +101,43 @@
   ..if footer != none { (table.hline(stroke: 0.6pt), ..footer) } else { () },
   table.hline(stroke: 1pt),
 )
+
+// Part divider: a full-page break introducing one of the book's 8 Parts
+// (Foundations, Data for HEOR, Statistical Methods, etc.), per the
+// structure already stated in the Table of Contents and the Preface's
+// "How to use this book" section -- which, until this was added, were
+// the ONLY two places a reader could see the Part structure at all (the
+// book.typ include list only had `// ---- Part N ----` Typst COMMENTS,
+// invisible in the compiled PDF, so Parts appeared in neither the TOC
+// nor between chapters -- fixed Oct 2026).
+//
+// Produces a real heading(level: 1, outlined: true, bookmarked: true),
+// so it: (a) triggers the existing level-1 show rule's page break +
+// large bold text, giving a genuine full-page divider in the body;
+// (b) appears as its own line in the front matter's #outline() Table
+// of Contents, in document order immediately before the chapters it
+// introduces -- Parts and Chapters are siblings at heading level 1
+// (chapters are NOT renumbered to level 2, since that would collide
+// with every chapter's existing level-2 `== N.M ...` section headings
+// and require touching all 20+ chapter files); (c) gets a PDF bookmark
+// entry, so a reader's PDF-viewer sidebar also shows Part breaks.
+//
+// `roman`: the Part's roman numeral as a string, e.g. "I", "IV".
+// `title`: the Part's title exactly as in the Table of Contents, e.g.
+//   "Foundations", "Decision-Analytic Modelling".
+//
+// Styled distinctly from a chapter heading (which also lives at level
+// 1) so a reader can tell a Part-divider page from a Chapter-opening
+// page at a glance: centered, a small "PART" label above the roman
+// numeral/title, and extra vertical space -- book.typ's existing
+// level-1 show rule still fires (page break + bold text), this just
+// adds Part-specific styling around that.
+#let part-divider(roman, title) = heading(
+  level: 1, outlined: true, bookmarked: true, numbering: none,
+)[
+  #align(center)[
+    #text(size: 13pt, tracking: 2pt, fill: rgb("#6b7280"))[PART #roman]
+    #v(0.3em)
+    #text(size: 26pt, weight: "bold")[#title]
+  ]
+]
