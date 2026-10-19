@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 20,
+  "next_chapter_number": 21,
   "total_chapters": 35,
   "chapters": [
     {
@@ -150,7 +150,7 @@
       "num": 20,
       "title": "Partitioned Survival Models",
       "part": "IV. Decision-Analytic Modelling",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 21,
@@ -244,6 +244,11 @@
     }
   ],
   "run_log": [
+    {
+      "timestamp": "2026-10-19T21:30:00+05:30",
+      "action": "Wrote Chapter 20 (twentieth book-writer cron tick) -- fourth chapter of Part IV; readability flag unresolved after one revision pass, fifth such case in the book",
+      "details": "Drafted ch20_partitioned_survival.typ covering all 6 TOC subsections (PSM 3-state structure PFS/Progressed/Death driven directly by two independently-fitted survival curves, with the curve-crossing structural flaw flagged as a pitfall; building PSMs from survival extrapolations reusing Chapter 10's flexsurvreg() across the 6 standard families; treatment waning and relative-effect assumptions grounded in NICE DSU TSD 14 (Latimer 2013, already established in Ch.10); hesim/flexsurv/custom-code modelling, with hesim's PSM-specific module deliberately left unasserted/hedged-via-pointer-to-vignette rather than risk an unverified signature, plus a full custom psm_occupancy() function using flexsurv's real summary(type='survival') method with a pmax(0,...) floor; limitations vs Chapter 19's Markov model -- curve crossing, fixed 3-state structure, weaker cross-arm mechanistic link, compounding extrapolation uncertainty; and a fully worked synthetic oncology CEA, new drug vs standard of care, Weibull PFS/OS curves, 20 six-month cycles, NICE 3.5% discounting). Delegated to 2 parallel sub-agents (20.1-20.3, 20.4-20.6), assembled into one Typst file. CAUGHT AND FIXED a real arithmetic error during assembly: the SS20.6 sub-agent draft stated an ICER of GBP 25,603/QALY that did not match its own stated inputs (incremental cost GBP 7,936.57, incremental QALY 0.3128 actually compute to GBP 25,371/QALY) -- independently re-verified via a standalone Python re-implementation of the full cycle-by-cycle R logic before finalizing; corrected throughout including the report-table and the closing heor-practice callout's worked division. Compiled cleanly on first pass after fixing several LaTeX-style math-mode dollar-sign issues in prose (Typst math mode parses bare dollar-sign as math delimiters; replaced with pound-sign plain-text amounts and math-mode-safe number literals). First Jev score on dimensions 1-5 passed ALL FIVE on the first pass: coverage 8.34, technical_correctness 7.22, code_validity 7.3, agency_grounding 7.8, internal_consistency 8.16. Readability (prose-only method) FAILED on first pass (5.73/10). Did one revision pass targeting dense sentences in the opening bridge and S20.1/20.4/20.5 (splitting long compound sentences). Re-scored: 5.69/10 -- essentially flat, still failed. Per the skill's stop-after-two-consecutive-low-scores rule, did not attempt a third revision; flagged to Dr Aswath. This is the fifth chapter in the book with an unresolved readability flag (after Chapters 10, 13, 14, 15 -- though 10 and 15 were later resolved via the prose-only re-scoring methodology fix). Image check: logged Track 1 candidate C16 (PSM 3-state structure diagram) as Skipped -- not needed given prose+formula+numeric-check coverage; logged Track 2 candidate T23 (stacked-area PFS/Progressed/Dead occupancy trace per arm) as Pending, no TODO-IMAGE marker since the worked arithmetic stands alone. Table check: one report-table inserted in S20.6 with the final corrected cost/QALY/ICER-per-arm result. Ran extract_chapter_code.py --chapter 20 (5 code blocks extracted) and generate_chapter_renvlock.py --chapter 20 (1 package, flexsurv, verified installed). Wrote Chapter Markdowns/ch20_partitioned_survival.md with a standing-lesson reminder that the Ch.4 arithmetic-verification lesson needs active re-application every single chapter, not just early on. Updated book_progress.json: chapter 20 marked complete, next_chapter_number advanced to 21."
+    },
     {
       "timestamp": "2026-10-19T16:05:00+05:30",
       "action": "Built Shiny app candidate inventory (progress/shiny_app_candidates.md) for Chapters 1-19",

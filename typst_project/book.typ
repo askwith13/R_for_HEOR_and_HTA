@@ -73,6 +73,7 @@
 #include "chapters/ch17_decision_modelling.typ"
 #include "chapters/ch18_decision_trees.typ"
 #include "chapters/ch19_markov_cohort.typ"
+#include "chapters/ch20_partitioned_survival.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

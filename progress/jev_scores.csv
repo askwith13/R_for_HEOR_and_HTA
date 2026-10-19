@@ -35,3 +35,6 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-18T20:25:52.386306+00:00,18,Decision Trees,8.41,7.53,7.32,7.01,8.22,jev-1.13.0
 2026-10-19T01:36:51.928012+00:00,19,Markov Cohort Models,8.36,7.57,7.9,7.68,8.38,jev-1.13.0
 2026-10-19T01:36:55.860152+00:00,19,Markov Cohort Models,,,,,,6.61,jev-latest,prose_only
+2026-10-19T06:48:18.270030+00:00,20,Partitioned Survival Models,8.34,7.22,7.3,7.8,8.16,jev-1.13.0
+2026-10-19T06:48:23.783105+00:00,20,Partitioned Survival Models,,,,,,5.73,jev-latest,prose_only
+2026-10-19T06:50:00.150875+00:00,20,Partitioned Survival Models,,,,,,5.69,jev-latest,prose_only
