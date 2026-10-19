@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-19 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-20 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 35 across 17 chapters** 
+**Total candidates so far: 38 across 18 chapters** 
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -260,6 +260,25 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ---
 
+## Chapter 20. Partitioned Survival Models
+
+### Curve-Crossing Explorer
+- **Section:** 20.1 & 20.5
+- **What it does:** Shape/scale sliders for independently-fit PFS and OS Weibull curves live-replot both survival curves plus the derived P(Progressed) = S_OS(t) - S_PFS(t) line across an extendable time horizon, with the region where it goes negative shaded in red. Makes the chapter's central structural-flaw pitfall (curve crossing happens far out in the tail, easy to miss on a quick plot) directly visible and draggable into existence rather than described in prose.
+- **Likely packages:** `shiny, ggplot2, base R (stats::pweibull or a hand-written weib_S())`
+
+### PSM Oncology ICER Dashboard
+- **Section:** 20.6
+- **What it does:** Sliders for each arm's PFS/OS shape+scale and state costs/utilities feed the chapter's own `run_arm()` discounting loop; discounted cost, QALYs, and ICER recompute live for both arms with a cost-effectiveness-plane point, while a crossing-check readout (min(p_progressed) across the horizon) flags red if either arm's curves ever cross — combines this chapter's two main teaching points (worked CEA mechanics + the crossing pitfall) into one app.
+- **Likely packages:** `shiny, flexsurv, dplyr, ggplot2`
+
+### Waning Assumption Visualizer
+- **Section:** 20.3
+- **What it does:** A toggle (no waning / linear waning) plus a waning-onset and waning-duration slider reshapes the intervention arm's OS extrapolation live against a fixed "no waning" reference curve, showing directly how much of the lifetime QALY gain depends on an untested post-trial assumption about whether the treatment's benefit persists indefinitely.
+- **Likely packages:** `shiny, flexsurv, ggplot2`
+
+---
+
 ## Chapters reviewed with no genuine candidates
 
 - **Chapter 1. Introduction to HEOR and HTA** — Definitional/institutional content (HEOR vs. market access, HTA agency landscape, lifecycle stages, why-R case). Nothing involves a continuously-varying parameter whose effect on a result benefits from live manipulation.
@@ -276,8 +295,8 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Natural strong candidates expected ahead: Chapter 20 
-(Partitioned Survival Models), Chapter 25 (PSA — tornado diagrams, CEACs, the Dirichlet/
+rebuilding it from scratch. Coverage currently extends through Chapter 20. Natural strong 
+candidates expected ahead: Chapter 25 (PSA — tornado diagrams, CEACs, the Dirichlet/
 Cholesky machinery flagged but deferred from Ch.19 §19.8), Chapter 26 (VOI/EVPI/EVPPI), 
 and the budget-impact-model chapters, all of which are classically well-suited to live 
 parameter exploration.
