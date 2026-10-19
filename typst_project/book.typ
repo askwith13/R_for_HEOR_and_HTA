@@ -77,6 +77,7 @@
 #include "chapters/ch20_partitioned_survival.typ"
 #include "chapters/ch21_microsimulation.typ"
 #include "chapters/ch22_des_dynamic_models.typ"
+#include "chapters/ch23_budget_impact.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

@@ -45,3 +45,5 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-19T17:14:52.350782+00:00,22,Discrete Event Simulation and Dynamic Models,,,,,,7.15,jev-latest,prose_only
 2026-10-19T17:16:05.978925+00:00,22,Discrete Event Simulation and Dynamic Models,8.39,6.84,6.91,7.14,8.34,jev-1.13.0
 2026-10-19T17:16:10.177205+00:00,22,Discrete Event Simulation and Dynamic Models,8.44,6.91,6.82,7.3,8.35,jev-1.13.0
+2026-10-19T22:24:37.082046+00:00,23,Budget Impact Analysis,8.25,7.82,7.25,7.55,8.32,jev-1.13.0
+2026-10-19T22:24:40.461033+00:00,23,Budget Impact Analysis,,,,,,6.89,jev-latest,prose_only

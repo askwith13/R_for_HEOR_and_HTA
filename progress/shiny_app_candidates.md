@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-21 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-23 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 42 across 20 chapters** 
+**Total candidates so far: 43 across 21 chapters**
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -318,7 +318,16 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
-## Standing note for future chapters (23-35)
+## Chapter 23. Budget Impact Analysis
+
+### Budget Impact Scenario Explorer
+- **Section:** 23.2-23.4
+- **What it does:** Sliders for terminal uptake share (the peak market-share parameter in the linear/logistic diffusion curves), new-drug list price, and the per-patient hospitalization offset drive a live re-run of the chapter's `build_bia()` function, instantly recomputing and redrawing the year-by-year and cumulative budget-impact table/chart. The non-linear interaction between uptake-curve shape and net price materially changes WHEN cumulative spend crosses a given affordability threshold — far more intuitive to explore live via slider than to read across three separate static scenario tables (base case, faster uptake, managed-entry agreement) as the chapter currently presents them.
+- **Likely packages:** `shiny, dplyr, ggplot2`
+
+---
+
+## Standing note for future chapters (24-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 

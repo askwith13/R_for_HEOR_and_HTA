@@ -146,4 +146,10 @@ this file).
 
 | C17 | Ch.21 | 21.7 Worked screening-programme example | Flowchart/state diagram | 5-state TB screening structure (Healthy/Undetected TB/Detected/Cured/Death) with the two detection routes (self-presentation vs screening) as parallel edges into Detected | Skipped — the §21.7 worked code and the report-table already make the structure and the two-arm comparison concrete; a diagram would duplicate rather than add | — |
 
+## Chapter 23 additions (Budget Impact Analysis)
+
+| C18 | Ch.23 | N/A (payer-accounting content) | None | Checked per skill step 11b — the reference-vs-new-scenario structure and eligible-population cascade are already made concrete by the chapter's own R code (`build_bia()`) and hand-verified worked arithmetic; no additional structural/process diagram judged necessary | Skipped (not needed) | — |
+
 | T24 | Ch.21 | 21.7 Worked screening-programme example | A grouped bar chart comparing "Detected via self-presentation" vs "Detected via screening" vs "Detected within 2 years of onset" across the two arms, from the chapter's own `run_arm()` simulation output | Pending — Dr Aswath to supply, no `TODO-IMAGE` marker inserted since the report-table already carries the comparable numeric result | `images/r_generated/ch21_screening_detection_bars.png` |
+| T25 | Ch.23 | 23.2 Uptake and diffusion over the time horizon | Two-line chart (linear vs logistic uptake curves) over a 5-year horizon, terminal share 0.35, from the §23.2 `ggplot2` code | Pending — Dr Aswath to supply, `TODO-IMAGE` marker inserted at the exact code location in `ch23_budget_impact.typ` | `images/r_generated/ch23_uptake_curves.png` |
+| T26 | Ch.23 | 23.5 Presenting results to payers | Combination bar-and-line chart: annual budget impact as bars ($600K to $6.6M), cumulative budget impact as an overlaid line (climbing to $18M by year 5), base-case scenario from Table 23.1/`<tab-ch23-bia-result>` | Pending — Dr Aswath to supply, `TODO-IMAGE` marker inserted at the exact code location in `ch23_budget_impact.typ` | `images/r_generated/ch23_annual_cumulative_bi.png` |
