@@ -322,9 +322,10 @@ uptake_curves |>
        title = "Illustrative uptake curves over a 5-year BIA horizon")
 ```
 
-// TODO-IMAGE: Two-line chart (linear vs logistic uptake curves) over a
-// 5-year horizon, terminal share 0.35, from the code block above --
-// Dr Aswath to supply after running the ggplot2 code.
+#figure(
+  image("../images/r_generated/ch23_uptake_curves.png", width: 85%),
+  caption: [Illustrative linear vs logistic (S-shaped) uptake curves over a 5-year BIA horizon, both reaching a terminal market share of 0.35, from the `ggplot2` code above. The logistic curve starts slower, accelerates through the middle years, and converges toward the same terminal share as the linear ramp.],
+) <fig-ch23-uptake-curves>
 
 Multiplying each year's eligible population (from the cascade above) by
 that year's uptake-adjusted market share, for both the reference and new
@@ -570,11 +571,10 @@ ggplot(plot_data, aes(x = year, y = amount, fill = measure)) +
   theme_minimal()
 ```
 
-// TODO-IMAGE: Combination bar-and-line chart showing annual budget
-// impact (bars, $600K to $6.6M rising left to right) with cumulative
-// budget impact overlaid as a line (climbing to $18M by year 5), x-axis
-// years 1-5, y-axis USD, base-case uptake scenario from Table 23.1 --
-// Dr Aswath to supply after running the ggplot2 code above.
+#figure(
+  image("../images/r_generated/ch23_annual_cumulative_bi.png", width: 85%),
+  caption: [Annual budget impact (bars, rising from \$600,000 in Year 1 to \$6,600,000 in Year 5) with cumulative budget impact overlaid as a line (climbing to \$18,000,000 by Year 5), base-case uptake scenario from Table 23.1 (`<tab-ch23-bia-result>`), from the `ggplot2` code above.],
+) <fig-ch23-annual-cumulative-bi>
 
 #agency-note[
 Most payer review templates (and many national BIA submission

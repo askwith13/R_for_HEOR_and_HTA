@@ -569,11 +569,10 @@ bias/overfitting trade-off, and should only be overridden with a
 specific, stated reason tied to what the residual plot actually shows.
 ]
 
-// TODO-IMAGE: GAM fit diagnostic plot -- scatter of raw incremental NMB
-// against p_ontx_fail (the PSA draws), with the fitted GAM smooth curve
-// overlaid, to visually check the smoothness choice is neither too rigid
-// nor too wiggly -- see progress/image_tracker.md Track 2 for this
-// chapter's entry.
+#figure(
+  image("../images/r_generated/ch26_gam_evppi_diagnostic.png", width: 85%),
+  caption: [GAM fit diagnostic: raw PSA draws (scatter) with the `mgcv::gam()` fitted smooth (red curve) overlaid. A genuinely strong, near-linear relationship between `p_ontx_fail` and incremental NMB -- the fitted curve tracks the scatter closely with no visible under- or over-fitting, consistent with the `method = "REML"` default. Running this fit on the actual PSA draws gives an EVPPI for `p_ontx_fail` of \$847.01 -- close to, and independently confirming, the \$900 illustrative figure used in the worked examples throughout this section and §26.4-26.6.]
+) <fig-ch26-gam-diagnostic>
 
 This same regression trick generalises in an obvious way to EVPPI for
 *more than one* parameter simultaneously -- fitting a multivariate GAM

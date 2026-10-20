@@ -333,6 +333,13 @@ cases_averted <- cum_base - cum_int
 
 With $R_0 = beta slash gamma = 2$ and a 10-year horizon, the no-intervention run accumulates approximately 4,979 infections per 100,000 population (summing the final $I + R$ compartments, started from 50 initial cases), while the 30%-effective programme accumulates approximately 873 — a difference of about 4,106 infections averted per 100,000, roughly an 82% reduction. Because new infections keep seeding further infections in the unprotected arm, the gap between the two curves widens over the full 10-year horizon rather than staying fixed at the direct effect of the one-time intervention — this compounding is precisely the dynamic/indirect effect the pitfall in 22.4 warns a static model would miss.
 
+// TODO-IMAGE: T24 (Ch.22) -- two-panel/overlaid deSolve::ode() epidemic-curve plot, infectious
+// compartment I over the 10-year horizon, baseline vs intervention arm, showing the widening gap.
+#figure(
+  image("../images/r_generated/ch22_seir_epidemic_curves.png", width: 85%),
+  caption: [Infectious compartment (I) over the 10-year horizon from the `deSolve::ode()` SEIR model above: no-intervention baseline vs the 30%-effective screening/preventive-therapy programme. The gap between the curves widens over time rather than staying fixed at the size of the one-time intervention, illustrating the compounding/indirect-protection effect that a static model would miss (the pitfall in 22.4).],
+) <fig-ch22-seir>
+
 Costing this illustratively (figures below are for demonstration only, not real TB unit costs):
 
 ```r

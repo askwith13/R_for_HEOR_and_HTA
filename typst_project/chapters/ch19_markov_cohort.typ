@@ -109,9 +109,10 @@ Running this loop (independently re-verified during assembly) gives the occupanc
 
 By cycle 20 (10 years), almost 21% of the original cohort has died (from TB or background causes) and the remainder has essentially settled in Cured, since Fail and On Treatment occupancy decays toward zero -- the expected long-run behaviour of a model with one absorbing state and no permanent non-absorbing "parking" state. This trace is the raw ingredient §19.5 will multiply by state costs and utilities, cycle by cycle, to get discounted costs and QALYs.
 
-// TODO-IMAGE: stacked-area or multi-line plot of the full 20-cycle occupancy
-// trace (all four states, cycles 0-20) produced by plotting the `trace`
-// matrix above -- see progress/image_tracker.md Track 2 entry T21.
+#figure(
+  image("../images/r_generated/ch19_markov_trace.png", width: 85%),
+  caption: [Full 20-cycle state-occupancy trace from the base-R cohort loop above, stacked by state. Mass drains rapidly out of On Treatment in the first 1-2 cycles, with most of it settling into Cured (the large green band) and a small residual passing through Treatment Failure before being re-absorbed; Death's share (grey) climbs monotonically across all 20 cycles, as it must for an absorbing state.],
+) <fig-ch19-trace>
 
 == 19.4 Using heemod, hesim and dampack
 

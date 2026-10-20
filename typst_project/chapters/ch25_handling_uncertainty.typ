@@ -301,10 +301,10 @@ ggplot(owsa_results, aes(y = parameter)) +
   theme_minimal()
 ```
 
-// TODO-IMAGE: tornado diagram (ggplot2 horizontal bar chart, one bar per
-// parameter, sorted by swing width descending, base-case NMB = $8,044 shown
-// as a dashed vertical reference line) built from the owsa_results table
-// above -- see progress/image_tracker.md Track 2 entry for this chapter.
+#figure(
+  image("../images/r_generated/ch25_tornado_diagram.png", width: 90%),
+  caption: [Tornado diagram: one-way sensitivity analysis on incremental net monetary benefit (New TB regimen vs SoC), WTP = \$50,000/QALY. Bars sorted by swing width descending; the dashed vertical line marks the base-case NMB of \$8,044.05.]
+) <fig-ch25-tornado>
 
 #pitfall[
 Two bars in the code above are built from `low`/`high` columns that are *not* consistently ordered -- the discount rate's "low" bound (1.5% annually) gives the *higher* NMB (\$8,690), because a lower discount rate means future QALY gains (which accrue mostly in the Cured state, reached mainly in later cycles) are discounted less, boosting their value disproportionately relative to up-front costs. A tornado-plotting script that blindly assumes "low parameter value always gives the low bar end" will silently mis-draw this bar backwards. The `pmin()`/`pmax()` wrapping in the `geom_segment()` call above is the fix -- it draws the bar between whichever end is numerically smaller and whichever is larger, regardless of which one came from the parameter's *low* versus *high* bound, and is standard defensive practice for any tornado-plotting code, not just this example.
@@ -567,10 +567,10 @@ ggplot(psa_df, aes(x = delta_qaly, y = delta_cost)) +
   theme_minimal()
 ```
 
-// TODO-IMAGE: CE-plane scatter plot of PSA draws (delta_qaly on x, delta_cost on
-// y), origin cross-hairs, and a WTP threshold line through the origin at
-// slope = $50,000/QALY -- see progress/image_tracker.md Track 2 for this
-// chapter's entry.
+#figure(
+  image("../images/r_generated/ch25_ce_plane.png", width: 85%),
+  caption: [Cost-effectiveness plane: 2,000 PSA draws (incremental QALY on x, incremental cost on y). The dotted line marks the WTP = \$50,000/QALY threshold; most draws fall below it, consistent with New's favourable base case.]
+) <fig-ch25-ce-plane>
 
 #difficult-terminology("cost-effectiveness acceptability curve (CEAC)")[
 A single CE-plane scatter shows every PSA draw at once but does not directly answer the most common practical question: "for a given willingness-to-pay threshold, what fraction of the time does this intervention come out cost-effective?" The CEAC answers exactly that, as a curve: for each candidate WTP value $k$ along the horizontal axis, it plots the *proportion* of PSA draws for which that draw's own incremental net monetary benefit is positive (equivalently, for which $k times "incremental QALY" - "incremental cost" > 0$) on the vertical axis. A CEAC near 1 at a given $k$ means the intervention is cost-effective in nearly every simulated parameter combination at that threshold; a CEAC near 0 means it almost never is. The curve typically rises from near 0 (at very low WTP, few draws favour spending more for a QALY gain) toward 1 (at very high WTP, almost any QALY gain looks worthwhile) as $k$ increases, though the exact shape depends entirely on the joint distribution of the PSA draws.
@@ -594,9 +594,10 @@ ggplot(ceac_df, aes(x = wtp, y = prob_ce)) +
   theme_minimal()
 ```
 
-// TODO-IMAGE: CEAC line plot, WTP threshold ($0-$100,000/QALY) on x, proportion
-// of PSA draws cost-effective (0-1) on y -- see progress/image_tracker.md
-// Track 2 for this chapter's entry.
+#figure(
+  image("../images/r_generated/ch25_ceac.png", width: 85%),
+  caption: [Cost-effectiveness acceptability curve (CEAC): proportion of the 2,000 PSA draws favouring New across a \$0-\$100,000/QALY willingness-to-pay range.]
+) <fig-ch25-ceac>
 
 #difficult-terminology("cost-effectiveness acceptability frontier (CEAF)")[
 A CEAC as defined above is built for a *single* pairwise comparison (new intervention versus one comparator). With three or more competing strategies, each pair has its own CEAC, and a decision-maker's actual question shifts from "is this specific intervention cost-effective against this specific comparator" to "which of *all* the available strategies is most likely to be cost-effective, at this WTP threshold" -- the answer can switch from one strategy to another as the threshold itself moves. The CEAF traces, for every WTP value along the horizontal axis, the acceptability-curve *value of whichever strategy currently has the highest probability of being optimal* at that threshold -- it is therefore not one continuous strategy's curve throughout, but a composite built by taking, at each threshold, the upper envelope across every strategy's own curve. BCEA's `multi.ce()` computes exactly this for a `bcea` object with more than two strategies, feeding `ceaf.plot()`.
@@ -624,9 +625,10 @@ ggplot(ceaf_long, aes(x = wtp, y = prob_best, colour = strategy)) +
   theme_minimal()
 ```
 
-// TODO-IMAGE: CEAF plot -- three faint per-strategy CEAC lines plus one bold
-// frontier line tracing the upper envelope across WTP thresholds -- see
-// progress/image_tracker.md Track 2 for this chapter's entry.
+#figure(
+  image("../images/r_generated/ch25_ceaf.png", width: 85%),
+  caption: [Cost-effectiveness acceptability frontier (CEAF): illustrative 3-strategy sketch extending the New-vs-SoC PSA draws with a hypothetical third strategy. Faint lines are each strategy's own CEAC; the bold line traces the upper envelope -- the strategy most likely to be optimal at each WTP threshold.]
+) <fig-ch25-ceaf>
 
 *Net monetary benefit (NMB) distribution.* Net monetary benefit converts a strategy's cost and QALY outcome into a single monetary figure at a chosen WTP threshold, $"NMB" = k times "QALY" - "cost"$, so that two strategies can be ranked by a single number instead of a cost/QALY pair. Because each PSA draw yields its own NMB value, the *distribution* of incremental NMB across all draws -- not just its mean -- is itself informative: a histogram shows at a glance both the central tendency (does the new strategy look favourable on average at this threshold) and the spread (how much of the distribution sits on the unfavourable side of zero).
 
@@ -642,9 +644,10 @@ ggplot(psa_df, aes(x = inmb)) +
   theme_minimal()
 ```
 
-// TODO-IMAGE: incremental-NMB histogram across PSA draws at a single WTP
-// threshold, with a vertical dashed reference line at zero -- see
-// progress/image_tracker.md Track 2 for this chapter's entry.
+#figure(
+  image("../images/r_generated/ch25_nmb_histogram.png", width: 85%),
+  caption: [Distribution of incremental net monetary benefit across the 2,000 PSA draws at WTP = \$50,000/QALY. The dashed line marks zero; the bulk of the distribution sits on the positive (New-favoured) side.]
+) <fig-ch25-nmb-hist>
 
 #heor-practice[
 Present all four views together, not just the headline ICER point estimate: the CE plane for the raw joint spread, the CEAC (and CEAF, if more than two strategies are compared) for the threshold-dependent probability of cost-effectiveness, and the NMB histogram for a single-threshold distributional summary. A payer asking "how confident should I be in this ICER" is really asking a CEAC-shaped question, and a bare point-estimate ICER with no PSA visualisation at all does not answer it.
@@ -774,13 +777,10 @@ Working through the 3-state structure's discounted cohort trace by hand (20 cycl
   )
 ) <tab-ch25-structural>
 
-// TODO-IMAGE: side-by-side state-transition diagrams comparing the two
-// structures (4-state: OnTx/Cured/Fail/Death with a Fail-to-OnTx
-// retreatment edge, vs the collapsed 3-state: OnTx/Cured/Death with
-// failure routed directly into a death-risk increment) -- a DiagrammeR
-// grViz() diagram pair, reusing the drawing convention established in
-// Chapter 17 Figure 1 and Chapter 19's Markov diagram -- see
-// progress/image_tracker.md Track 1 for this chapter's entry.
+#figure(
+  image("../images/conceptual/ch25_structural_comparison.png", width: 100%),
+  caption: [Side-by-side state-transition structures: the book's 4-state base case (left, with an explicit Fail-to-OnTx retreatment pathway) versus the collapsed 3-state alternative (right, where failure routes directly into an increased death risk with no separate Fail state).]
+) <fig-ch25-structural-diagram>
 
 The *direction* of the conclusion is robust: under both structures the New regimen is cheaper and more effective, and incremental NMB is positive at the \$50,000/QALY threshold -- the headline recommendation would not change if a reviewer insisted on the simpler structure. The *magnitude*, however, is clearly not robust -- the simpler structure understates New's advantage by roughly a third, because collapsing Fail into a direct mortality risk removes the costly, low-utility Fail state from the ledger for both arms, and New's lower failure probability (0.05 vs 0.08) is precisely the parameter that structure is most sensitive to. This is exactly the kind of finding Bilcke et al.'s guidance anticipates: report both, and let the reader see how much the answer depends on structural choices.
 
@@ -917,12 +917,10 @@ quantile(boot_nmb, c(0.025, 0.975))
 mean(boot_nmb > 0)   # bootstrap estimate of P(New is cost-effective at this WTP)
 ```
 
-// TODO-IMAGE: cost-effectiveness plane scatter of boot_inc_cost (y) against
-// boot_inc_qaly (x) for all 2000 bootstrap replicates, with the
-// WTP=$50,000 threshold line overlaid -- the trial-data analogue of the
-// PSA cloud built in §25.5, but from resampled real patients rather than
-// model PSA draws -- see progress/image_tracker.md Track 2 for this
-// chapter's entry.
+#figure(
+  image("../images/r_generated/ch25_bootstrap_ce_plane.png", width: 85%),
+  caption: [Cost-effectiveness plane built from 2,000 non-parametric bootstrap replicates of the simulated trial dataset (incremental QALY on x, incremental cost on y). The dotted line marks WTP = \$50,000/QALY; nearly all replicates fall below it, matching the 100%-positive-NMB result reported in @tab-ch25-bootstrap.]
+) <fig-ch25-bootstrap-ce-plane>
 
 Independently re-running this exact bootstrap procedure gives:
 

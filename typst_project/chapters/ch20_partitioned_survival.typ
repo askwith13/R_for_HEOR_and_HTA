@@ -192,4 +192,9 @@ $ "ICER" = 7936.57 / 0.3128 approx 25371 "£/QALY" $
 Keep the arithmetic traceable in any CEA you hand off: show cost and QALY totals per arm, the two increments, and the division that produces the ICER, exactly as above. A reviewer should be able to recompute 7936.57 divided by 0.3128 on a calculator and get your number -- if they can't, the model is the first thing they'll distrust, regardless of how defensible the clinical assumptions are.
 ]
 
+#figure(
+  image("../images/r_generated/ch20_psm_trace.png", width: 90%),
+  caption: [State-occupancy trace for the §20.6 PSM, SOC vs new drug, built directly from the same `weib_S()` PFS and OS curves used in the worked arithmetic above. Each arm's stacked area is bounded below by OS (PFS + Progressed + Dead always sums to 100%) and the PFS and Progressed/Dead boundaries never cross within either panel over the full 10-year horizon -- the visual counterpart of the no-crossing check reported alongside the discounted cost and QALY totals, and the structural condition §20.1 and §20.5 flag as the PSM's central fragility.],
+) <fig-ch20-psm-trace>
+
 Both this PSM and Chapter 19's Markov cohort model share one feature: they track the *mean* proportion of a hypothetical cohort in each state, cycle by cycle. That's enough when cost and outcomes depend only on current state. It breaks down once a patient's own history matters -- for example, cumulative treatment exposure, time already spent progression-free, or prior-line-dependent costs that no cohort-average state occupancy can capture. Chapter 21 introduces individual-level state-transition models (microsimulation) to handle exactly that case.
