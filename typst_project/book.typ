@@ -84,6 +84,7 @@
 #part-divider("V", "Uncertainty, Value of Information and Model Validation")
 #include "chapters/ch25_handling_uncertainty.typ"
 #include "chapters/ch26_voi.typ"
+#include "chapters/ch27_calibration_validation.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 54 across 24 chapters**
+**Total candidates so far: 56 across 25 chapters.**
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -394,14 +394,27 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
-## Standing note for future chapters (25-35)
+## Standing note for future chapters (28-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Coverage currently extends through Chapter 26. Natural strong 
-candidates expected ahead: Chapter 27 (Model Calibration, Validation and QA), which may 
-offer calibration-target/parameter-search interactivity.
+rebuilding it from scratch. Coverage currently extends through Chapter 27.
+
+## Chapter 27. Model Calibration, Validation and Quality Assurance
+
+### Calibration Target Search Explorer
+- **Section:** 27.1
+- **What it does:** A slider for the calibration target value (e.g. the registry's 5-year mortality rate, adjustable around the illustrative 32% base case) that live-reruns the `optim()` Nelder-Mead search for `p_hidden` and redraws both the random-search scatter and the converged value, letting a reader see how sensitive the calibrated parameter is to the exact target value chosen -- directly demonstrates why a calibration target's own uncertainty matters, not just its point estimate.
+- **Likely packages:** `shiny, ggplot2`
+
+### Extreme-Value Test Sandbox
+- **Section:** 27.3
+- **What it does:** A slider setting the "Well-on-treatment to Dead" transition probability anywhere from 0 to 1 (not just the extreme 0/1 values used in the chapter's own test), live-recomputing and plotting the resulting cohort survival trace, so a reader can watch the trace degrade continuously toward the mathematically predictable extreme and build intuition for why extreme-value testing works as a verification technique.
+- **Likely packages:** `shiny, ggplot2`
+
+Total candidates now: 56 across 25 chapters.
+
 
 ## When we build these
 

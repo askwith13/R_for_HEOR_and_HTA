@@ -11,6 +11,8 @@ Two separate tracks, per Dr Aswath's instruction (Oct 2026):
    R code examples. Live in `typst_project/images/r_generated/`.
    These are tracked here as PLACEHOLDERS until supplied.
 
+Covers Chapters 1-27 (current book progress).
+
 Both lists are checked and updated at the end of every chapter's
 drafting pass (see heor-hta-book-writer skill, which should reference
 this file).
@@ -175,3 +177,9 @@ this file).
 | C22 | Ch.26 | N/A (VOI concepts/methods content) | None | Checked per skill step 11b — the chapter's conceptual content (EVPI/EVPPI/EVSI/ENBS, moment-matching, value of implementation) is already made concrete via worked numeric examples and ref-tables; no additional structural/process diagram judged necessary | Skipped (not needed) | — |
 | T39 | Ch.26 | 26.3 GAM fit diagnostic | A scatter of raw incremental NMB against `p_ontx_fail` (the PSA draws), with the fitted GAM smooth curve overlaid, to visually check the smoothness choice is neither too rigid nor too wiggly | Done — rendered and visually verified| `images/r_generated/ch26_gam_evppi_diagnostic.png` |
 | T28 | Ch.24 | 24.3 Financial risk protection by quintile | A grouped bar chart of CHE cases averted and poverty cases averted by income quintile, from the chapter's own `ecea_frp()` worked example (Table `<tab-ch24-ecea-frp>`) | Pending — Dr Aswath to supply, no `TODO-IMAGE` marker inserted since the report-table already carries the comparable numeric result | `images/r_generated/ch24_ecea_frp_by_quintile.png` |
+
+## Chapter 27 additions (Model Calibration, Validation and Quality Assurance)
+
+| C23 | Ch.27 | 27.1-27.3 Calibration/verification content | None | Checked per skill step 11b — random-search/Nelder-Mead calibration, cross-validation, and unit/extreme-value/replication testing are each already made concrete via worked numeric R examples and a report-table; no structural/process diagram judged necessary | Skipped (not needed) | — |
+| T40 | Ch.27 | 27.1 Random search calibration landscape | A scatter of the 500 random-search `p_hidden` candidate draws (x-axis) against their squared distance from the 32% mortality target (y-axis), highlighting the `optim()`-converged minimum found in the Nelder-Mead subsection, so a reader can see the search space visually rather than only read the converged value | Pending — Dr Aswath to supply | `images/r_generated/ch27_calibration_search_landscape.png` |
+| T41 | Ch.27 | 27.6 External validity comparison | A simple bar chart comparing model-predicted 10-year survival (78%) against the illustrative observed cohort figure (74%), visualizing the report-table's absolute/relative gap computation | Pending — Dr Aswath to supply | `images/r_generated/ch27_external_validity_comparison.png` |
