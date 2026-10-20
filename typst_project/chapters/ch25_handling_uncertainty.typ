@@ -774,6 +774,14 @@ Working through the 3-state structure's discounted cohort trace by hand (20 cycl
   )
 ) <tab-ch25-structural>
 
+// TODO-IMAGE: side-by-side state-transition diagrams comparing the two
+// structures (4-state: OnTx/Cured/Fail/Death with a Fail-to-OnTx
+// retreatment edge, vs the collapsed 3-state: OnTx/Cured/Death with
+// failure routed directly into a death-risk increment) -- a DiagrammeR
+// grViz() diagram pair, reusing the drawing convention established in
+// Chapter 17 Figure 1 and Chapter 19's Markov diagram -- see
+// progress/image_tracker.md Track 1 for this chapter's entry.
+
 The *direction* of the conclusion is robust: under both structures the New regimen is cheaper and more effective, and incremental NMB is positive at the \$50,000/QALY threshold -- the headline recommendation would not change if a reviewer insisted on the simpler structure. The *magnitude*, however, is clearly not robust -- the simpler structure understates New's advantage by roughly a third, because collapsing Fail into a direct mortality risk removes the costly, low-utility Fail state from the ledger for both arms, and New's lower failure probability (0.05 vs 0.08) is precisely the parameter that structure is most sensitive to. This is exactly the kind of finding Bilcke et al.'s guidance anticipates: report both, and let the reader see how much the answer depends on structural choices.
 
 === From scenario analysis to model averaging

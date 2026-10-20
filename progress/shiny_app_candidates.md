@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 52 across 24 chapters**
+**Total candidates so far: 54 across 24 chapters**
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -362,6 +362,16 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **Section:** 25.6
 - **What it does:** Sliders for the new regimen's incremental QALY gain and the WTP threshold re-compute the breakeven total cost live via the chapter's rearranged ICER formula (reused from Ch.24 §24.5's value-based-pricing relationship), displaying the result as a single live number alongside a marker on a cost-vs-ICER line plot. A simple, low-engineering-cost app that makes the "threshold analysis solves backward for one parameter" idea tangible without needing a full PSA re-run per interaction.
 - **Likely packages:** `shiny`
+
+### Structural Model Averaging Weight Explorer
+- **Section:** 25.7
+- **What it does:** A single slider for the weight assigned to the 4-state structure (with the 3-state structure's weight auto-set to 1 minus that value), re-computing the model-averaged NMB live from the chapter's own two fixed structure-specific NMB values ($8,044.05 and $5,357.89). Makes concrete, interactively, how sensitive the final blended answer is to a largely judgement-based weighting choice -- a reader can drag from "trust the simple structure completely" to "trust the detailed structure completely" and watch the averaged NMB move smoothly between the two endpoints, directly illustrating the chapter's own caution that model-averaging weights are often expert judgement, not a hard empirical fact.
+- **Likely packages:** `shiny`
+
+### Bootstrap Resampling Method Comparator
+- **Section:** 25.8
+- **What it does:** A toggle between "correct" (row-preserving) and "incorrect" (independent-column) bootstrap resampling, re-running B=500 replicates live on the chapter's own simulated trial dataset and overlaying both resulting incremental-NMB distributions on one histogram. Makes the chapter's own pitfall box viscerally obvious -- a reader can watch the independent-column version visibly widen relative to the correct version in real time, rather than just reading the stated ~17% SD inflation figure.
+- **Likely packages:** `shiny, ggplot2`
 
 ---
 
