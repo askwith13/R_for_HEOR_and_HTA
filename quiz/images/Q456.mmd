@@ -1,0 +1,9 @@
+flowchart LR
+    W["Input widget<br/>(e.g. slider)"] --> RV["Reactive value<br/>(input$x)"]
+    RV --> RE["reactive({})<br/>cached, auto-updating<br/>calculation"]
+    RE --> OUT["render*({})<br/>output"]
+    OUT --> UI["Displayed in UI"]
+    RV -.->|"also triggers"| OE["observeEvent()<br/>side effect<br/>(e.g. logging)"]
+
+    style RE fill:#dcfce7,stroke:#15803d,stroke-width:2px
+    style OE fill:#fef3c7,stroke:#b45309,stroke-width:1.5px

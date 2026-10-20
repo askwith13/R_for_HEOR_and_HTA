@@ -4365,3 +4365,303 @@ A complete question bank for a quiz application, drawn from all 27 written chapt
 - D) Because face validity requires access to patient-level trial data
 - **Answer:** B
 **Explanation:** The difficult-terminology box states face validity is "the simplest and least rigorous form of validation" — a necessary first filter, since an implausible structure isn't worth numerically validating, but insufficient alone because a plausible-looking structure can still yield wrong outputs.
+
+### Q427 [Easy] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** According to the chapter, what is the key structural difference between Quarto and classic R Markdown?
+- A) Quarto is a standalone multi-language CLI publishing system, while R Markdown is built on the rmarkdown/knitr R packages
+- B) Quarto only supports PDF output, while R Markdown supports all formats
+- C) Quarto requires Python, while R Markdown requires only R
+- D) Quarto cannot use YAML front matter, while R Markdown requires it
+**Answer:** A
+**Explanation:** The chapter explains Quarto as a standalone, multi-language command-line publishing tool, in contrast to classic R Markdown which relies on the rmarkdown and knitr R packages.
+
+### Q428 [Easy] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** In a Quarto/.qmd document's code chunk options, what does the `echo` option control?
+- A) Whether the code chunk's source code is displayed in the rendered output
+- B) Whether the chunk is executed at all
+- C) Whether warnings are suppressed
+- D) The caption text shown under a table
+**Answer:** A
+**Explanation:** The chapter lists chunk options including echo, eval, warning, fig-cap, and tbl-cap; echo governs whether the underlying code itself appears in the rendered document (distinct from eval, which controls execution).
+
+### Q429 [Medium] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** Which mechanism does the chapter describe for overriding a Quarto report's `params:` values from the command line without editing the .qmd file?
+- A) `quarto render --execute-params` or `-P key:value`
+- B) Editing the rendered HTML file directly after render
+- C) Setting environment variables prefixed with QUARTO_PARAM_
+- D) Using `knitr::opts_chunk$set()` inside the YAML header
+**Answer:** A
+**Explanation:** The chapter describes using `quarto render --execute-params` or the shorthand `-P key:value` flag to override parameter defaults declared in the report's `params:` YAML block, without touching the source file.
+
+### Q430 [Medium] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** The chapter's pitfall box about parameterised reports warns about what specific risk?
+- A) Rendering interactively without supplying overrides can leave stale default `params` values baked into the output
+- B) Parameterised reports cannot be rendered to Word format
+- C) `quarto::quarto_render()` cannot be called from inside an R driver loop
+- D) Scenario data frames must be stored in a database, not a data frame
+**Answer:** A
+**Explanation:** The pitfall box specifically warns that rendering a parameterised report interactively (e.g., clicking "Render" in the IDE) without passing execution-time overrides will silently use the stale defaults declared in the YAML `params:` block.
+
+### Q431 [Easy] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** How does a Quarto document specify that it should render to multiple output formats (e.g., HTML, Word, and PDF) from one source file?
+- A) By listing multiple targets under the `format:` YAML key
+- B) By duplicating the .qmd file once per format
+- C) By setting `output: all` in the chunk options
+- D) By calling `rmarkdown::render()` three times with no arguments
+**Answer:** A
+**Explanation:** The chapter shows that listing several targets under the `format:` YAML key lets one .qmd source be rendered to HTML, Word, PDF, and PowerPoint as needed.
+
+### Q432 [Medium] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** What must be installed before a Quarto document can be rendered to PDF, per the chapter?
+- A) A LaTeX distribution, via `tinytex::install_tinytex()` or `tlmgr_install()`
+- B) The `officedown` package only
+- C) Microsoft Word
+- D) Nothing extra — PDF rendering works out of the box with no dependencies
+**Answer:** A
+**Explanation:** PDF output via Quarto requires a LaTeX engine, which the chapter sets up using `tinytex::install_tinytex()` or `tlmgr_install()` for missing LaTeX packages.
+
+### Q433 [Medium] [Image]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** IMAGE PLACEHOLDER: A comparison table listing four R table-formatting packages (gt, gtsummary, flextable, kableExtra) as rows and their primary use-case niche as a column. Based on the chapter's comparison, which package is described as the go-to choice specifically for Word/PPT-native editable table output?
+- A) flextable
+- B) gtsummary
+- C) kableExtra
+- D) gt
+**Answer:** A
+**Explanation:** The chapter's comparison table positions flextable as the package suited to Word/PPT-native output, versus gtsummary for clinical summaries, gt as a general-purpose table package, and kableExtra for lightweight LaTeX/HTML tables.
+
+### Q434 [Hard] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** Using the chapter's worked example with an incremental cost of -$844.14 and incremental QALYs of 0.1440, the ICER is calculated as -844.14/0.1440 ≈ -5862.08. What does this negative ICER indicate about the treatment being evaluated, per the chapter's terminology box?
+- A) The treatment is dominant — it is both cheaper and more effective, so there is no cost-effectiveness tradeoff to weigh
+- B) The treatment is cost-saving per QALY in the conventional sense that the ICER formula normally implies
+- C) The treatment is dominated and should be rejected
+- D) The negative sign indicates a calculation error that must be corrected before reporting
+**Answer:** A
+**Explanation:** The chapter's terminology box clarifies that a negative ICER here reflects dominance (lower cost AND higher effectiveness), not a per-QALY "cost-saving" ratio — a negative ICER is only meaningful as "dominant" when cost is negative and QALYs are positive, since there's no tradeoff being traded off.
+
+### Q435 [Medium] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** Using the chapter's base-case figures (incremental cost = -$844.14, incremental QALYs = 0.1440, WTP = $50,000/QALY), the net monetary benefit is calculated as NMB = 0.1440×50000 − (−844.14) = 8044.14. Which statement correctly describes the NMB calculation shown?
+- A) NMB equals (incremental QALYs × WTP threshold) minus incremental cost
+- B) NMB equals incremental cost divided by incremental QALYs
+- C) NMB equals WTP threshold minus incremental cost only
+- D) NMB is calculated independently of the WTP threshold
+**Answer:** A
+**Explanation:** The chapter's formula for NMB is incremental QALYs multiplied by the WTP threshold, minus incremental cost; subtracting the negative incremental cost of -844.14 adds it back, yielding 8044.14.
+
+### Q436 [Easy] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** What is `theme_heor()` in the chapter's publication-ready graphics section?
+- A) A reusable custom ggplot2 theme built on `theme_minimal()` and applied via `theme_set()`
+- B) A built-in viridis colour palette function
+- C) A CHEERS 2022 checklist template
+- D) A Quarto YAML output format
+**Answer:** A
+**Explanation:** The chapter builds `theme_heor()` as a reusable ggplot2 theme extending `theme_minimal()`, then applies it globally to plots using `theme_set()`.
+
+### Q437 [Hard] [Image]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** IMAGE PLACEHOLDER: A figure showing a simulated three-arm cost-effectiveness plane rendered twice — once under the ggplot2 default colour palette and once under the viridis palette — each shown under normal vision and under simulated deuteranopia (via colorspace::simulate_cvd()). Based on the chapter's description of this figure, what is the key finding demonstrated?
+- A) Under the default palette, two of the three treatment arms become visually indistinguishable under simulated deuteranopia, while all three remain distinguishable under viridis
+- B) The viridis palette makes all three arms indistinguishable under deuteranopia, while the default palette keeps them distinct
+- C) Colour palette choice has no effect on distinguishability under simulated colour-vision deficiency
+- D) Only tritanopia simulation reveals a difference between the two palettes
+**Answer:** A
+**Explanation:** The chapter describes this embedded figure as concretely demonstrating that two of three arms collapse into visually similar colours under the default ggplot2 palette once deuteranopia is simulated, whereas the colour-blind-safe viridis palette keeps all three arms distinguishable — moving the colour-blind-safe-palette argument from assertion to demonstration.
+
+### Q438 [Easy] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** Per the chapter, why is setting a `dpi` argument in `ggsave()` unnecessary for vector formats like PDF, EPS, or SVG?
+- A) Vector formats scale cleanly without a fixed resolution, unlike raster formats which need a resolution such as 300 dpi for print
+- B) Vector formats always default to 72 dpi regardless of the setting
+- C) `ggsave()` cannot export vector formats at all
+- D) Journals never accept vector formats for figures
+**Answer:** A
+**Explanation:** The chapter notes that 300 dpi is a common minimum for raster figures in print journals, but vector formats (PDF/EPS/SVG) have no resolution to set since they scale cleanly at any size.
+
+### Q439 [Medium] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** What is CHEERS 2022, as implemented in this chapter's `cheers_checklist` example?
+- A) A 28-item checklist for reporting health economic evaluations, published by Husereau, Drummond, Augustovski, et al. in Value in Health
+- B) A 28-chapter R package for building HEOR models
+- C) A statistical test for comparing ICERs across subgroups
+- D) A Quarto template specifically for PowerPoint output
+**Answer:** A
+**Explanation:** The chapter cites CHEERS 2022 (Husereau et al., Value in Health 2022;25(1):10-31) as a 28-item reporting checklist, and builds a `cheers_checklist` tracking data frame via `tribble()` to track item-by-item compliance programmatically rather than on paper.
+
+### Q440 [Medium] [MCQ]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** The chapter's pitfall box on Quarto dossiers built from child documents via `{{< include >}}` warns about which specific risk?
+- A) Shared R-session state means two child documents both creating an object named `results` can cause the second to silently overwrite the first
+- B) Child documents cannot access shared `params:` values set in the parent dossier
+- C) `{{< include >}}` only works for HTML output, never Word or PDF
+- D) Each child document must be rendered to a separate file before inclusion
+**Answer:** A
+**Explanation:** The chapter warns that because included child documents share the same R session/environment, object-name collisions (e.g., two children both defining `results`) can cause one to overwrite the other unless session state is carefully managed.
+
+### Q441 [Hard] [Image]
+**Chapter(s):** 28 — Reproducible Reporting
+**Question:** IMAGE PLACEHOLDER: A flowchart showing a batch-rendering loop: a data frame with one row per programme/district feeds into purrr::pwalk() (or an equivalent for-loop) calling quarto::quarto_render() once per row, with a tryCatch() wrapper shown around each individual render call. Based on the chapter's description, what is the purpose of the tryCatch() wrapper in this flow?
+- A) To ensure one failing district's report render does not halt the entire batch of remaining reports
+- B) To automatically retry failed renders exactly three times before giving up
+- C) To convert all rendering errors into successful HTML output
+- D) To replace the need for a scenarios data frame entirely
+**Answer:** A
+**Explanation:** The chapter's pitfall box on automating routine reports recommends wrapping each batch render call in `tryCatch()` specifically so that one district's failure doesn't stop the loop from rendering reports for the remaining districts/programmes.
+
+### Q442 [Easy] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** In the basic Shiny architecture for a model front-end, which statement correctly describes the roles of `ui` and `server`?
+- A) `ui` defines the layout and widgets the user sees; `server` contains the reactive logic that computes and renders outputs
+- B) `server` defines the layout; `ui` contains all the reactive calculations
+- C) `ui` and `server` are interchangeable names for the same object
+- D) `ui` runs once per session while `server` runs only once when the app starts
+**Answer:** A
+**Explanation:** Shiny apps are split into a `ui` object (layout/widgets) and a `server` function (reactive logic that produces outputs from inputs) — this ui/server split is the foundational structure described in 29.1.
+
+### Q443 [Easy] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** In the toy ICER calculator app, if `input$treatment_cost` is 5000, comparator cost is fixed at 2000, and QALY gain is 0.15, what ICER does the app compute?
+- A) $3,000 per QALY
+- B) $20,000 per QALY
+- C) $33,333 per QALY
+- D) $7,000 per QALY
+**Answer:** B
+**Explanation:** The incremental cost is 5000 − 2000 = 3000, and ICER = incremental cost / QALY gain = 3000 / 0.15 = $20,000 per QALY, exactly as worked through in 29.1.
+
+### Q444 [Medium] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** A developer writes `cost <- input$treatment_cost * 1.1` directly in the body of the server function, outside any `reactive({})`, `render*({})`, or `observe({})` block. What happens?
+- A) The code runs once at app startup and never updates
+- B) R throws "Error: Operation not allowed without an active reactive context."
+- C) It works fine because `input$x` is a plain list, not reactive
+- D) Shiny automatically wraps it in a reactive expression
+**Answer:** B
+**Explanation:** As described in the 29.1 pitfall, accessing a reactive value or expression outside an active reactive context (reactive, render*, or observe) throws exactly this error — reactive values can only be read from within reactive consumers.
+
+### Q445 [Easy] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** For a single-screen HEOR model tool with inputs on one side and results on the other, which layout does the chapter recommend as the default?
+- A) `navbarPage()`
+- B) `sidebarLayout()`
+- C) `bslib::page_navbar()`
+- D) `fluidRow()` with no layout function
+**Answer:** B
+**Explanation:** 29.2 recommends `sidebarLayout()` (inputs left, results right) as the right default for a single-screen tool, reserving `navbarPage()`/`bslib::page_navbar()` for multi-tab apps once there is more than one result view.
+
+### Q446 [Medium] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** A model parameter is "treatment regimen," with named options like "Standard 6-month" and "Shortened 4-month." Which widget best matches a non-programmer reviewer's mental model of this parameter?
+- A) `sliderInput()`, because regimens are ordered
+- B) `numericInput()`, so the reviewer types an exact code
+- C) `selectInput()` with descriptive labels rather than internal codes like "std"
+- D) `textInput()`, letting the reviewer type the regimen name freely
+**Answer:** C
+**Explanation:** 29.2 states widget choice should match the parameter's mental model — `selectInput()` for named categories — and explicitly warns against making a reviewer type an internal code like "std" when a label like "Standard 6-month" will do.
+
+### Q447 [Medium] [Image]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** IMAGE PLACEHOLDER: A comparison table with three columns (Plain Shiny modules, golem, rhino) and five rows (setup overhead, best-fit use case, testing convention, front-end styling, learning curve), showing plain modules as lowest overhead/easiest, golem as package-structured for apps reused across years of submissions, and rhino as the most opinionated with a first-class JS/Sass build pipeline. Based on this table, which framework should a team choose if the app needs custom JavaScript/CSS styling and has a larger development team?
+- A) Plain Shiny modules
+- B) golem
+- C) rhino
+- D) None of these support custom styling
+**Answer:** C
+**Explanation:** Per 29.3, rhino is the newer, more opinionated framework with a stricter folder structure and a JS/Sass build pipeline for custom front-end styling as a first-class feature, making it the best fit for larger teams needing custom styling, versus golem's fit for apps reused across years/submissions.
+
+### Q448 [Medium] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** A CE-summary module appears twice on the same page, once for the "standard regimen" scenario and once for the "shortened regimen" scenario. What Shiny mechanism prevents the two instances' input/output IDs from colliding?
+- A) Giving each instance a different R script file
+- B) `moduleServer()` combined with `NS(id)` namespacing
+- C) Running each instance in a separate Shiny session
+- D) Renaming all widgets manually with `paste0()` each time
+**Answer:** B
+**Explanation:** 29.3 explains that Shiny modules bundle a reusable UI+server pair using `moduleServer()` for server logic and `NS(id)` for namespacing, so IDs don't collide when the same module appears twice on one page.
+
+### Q449 [Hard] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** An app has a cheap deterministic ICER recalculation and an expensive 1,000+ draw Monte Carlo PSA. Why does the chapter recommend tying the PSA specifically to an `actionButton()` via `eventReactive()` rather than a plain `reactive({})`?
+- A) `eventReactive()` is required syntax for any calculation involving randomness
+- B) A plain `reactive({})` would re-run the expensive PSA on every slider tweak, whereas `eventReactive()` only recomputes when the button is explicitly clicked
+- C) `reactive({})` cannot call Monte Carlo functions at all
+- D) `eventReactive()` runs the PSA faster by parallelizing draws automatically
+**Answer:** B
+**Explanation:** 29.4 distinguishes cheap, continuously-updating calculations (plain `reactive({})`, fine to re-run on every tweak) from expensive ones like a full PSA, which are tied to an `actionButton()` via `eventReactive()` specifically to avoid re-running the costly computation on every input change.
+
+### Q450 [Medium] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** Why does the chapter recommend wrapping `req(psa_results())` inside `renderPlot()` for a PSA scatter plot?
+- A) It speeds up plot rendering
+- B) It holds the plot blank until the "Run PSA" button has been clicked at least once, rather than throwing an error
+- C) It forces the PSA to run automatically on app load
+- D) It validates that PSA results are numeric
+**Answer:** B
+**Explanation:** As described in 29.4, `req(psa_results())` inside `renderPlot()` silently holds the plot blank before the PSA has been triggered, avoiding an error state when no results exist yet.
+
+### Q451 [Easy] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** Using the book's base-case numbers (incremental cost −$844.14, incremental QALY 0.1440) at a willingness-to-pay of $50,000/QALY, what is the incremental net monetary benefit (NMB)?
+- A) $7,200.00
+- B) $8,044.14
+- C) $50,844.14
+- D) $844.14
+**Answer:** B
+**Explanation:** NMB = WTP × incremental QALY − incremental cost = 50000 × 0.1440 − (−844.14) = 7200 + 844.14 = $8,044.14, exactly the figure the chapter carries forward in its Shiny PSA example.
+
+### Q452 [Medium] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** Why does the chapter insist that a `downloadHandler()`'s content function call the SAME `quarto::quarto_render()` pipeline from Chapter 28, rather than a separate export route?
+- A) Quarto only works inside `downloadHandler()`
+- B) It guarantees the downloaded document matches exactly what the reviewer saw on screen
+- C) It reduces the app's memory footprint
+- D) Separate export routes are not technically possible in Shiny
+**Answer:** B
+**Explanation:** 29.5 states that reusing the identical Quarto pipeline, rather than an ad-hoc export route, guarantees the downloaded report matches exactly what was displayed in the app, which matters for audit integrity.
+
+### Q453 [Medium] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** An audit trail logs parameter changes and model runs keyed on Shiny's `session$token`. What pitfall does the chapter warn against regarding what gets logged?
+- A) `session$token` identifies the reviewer personally, so it should never be logged
+- B) Logging every input indiscriminately can silently write sensitive free-text content (e.g. a comment box) to a plain-text file with no access control
+- C) `session$token` changes every few seconds, making logs unreliable
+- D) CSV logs cannot store timestamps
+**Answer:** B
+**Explanation:** 29.5 warns that a blanket "log every input" habit can accidentally capture sensitive content if a future version adds a free-text or upload field; the fix is to log parameter values and event names only, not everything indiscriminately.
+
+### Q454 [Medium] [Image]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** IMAGE PLACEHOLDER: A comparison table with three columns (shinyapps.io, Posit Connect, Docker + own server) and six rows (setup effort, ongoing maintenance, cost, on-premises data residency, scheduled-reports support, typical IT/governance fit), showing shinyapps.io as minutes of setup with low maintenance and no on-premises data, and Docker+own server as full control but highest maintenance burden. Which deployment route natively supports hosting scheduled Quarto reports alongside a live Shiny explorer on the same server?
+- A) shinyapps.io
+- B) Posit Connect
+- C) Docker + a plain Linux server only
+- D) None of the three support scheduled reports
+**Answer:** B
+**Explanation:** 29.6 states that Posit Connect hosts Shiny apps alongside scheduled Quarto reports using the same mechanism from Chapter 28, letting a live explorer and a weekly automated PDF live on the identical server — a capability the table highlights as distinct from the other two routes.
+
+### Q455 [Hard] [MCQ]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** A discount-rate input is validated with `validate(need(rate >= 0 && rate <= 10, "Discount rate must be between 0% and 10%"))` inside the main results `reactive({})`. A separate `downloadHandler()` reads `input$rate` directly to build the report. What pitfall does the chapter flag here?
+- A) `validate()`/`need()` cannot be used with numeric inputs
+- B) `validate()`/`need()` only runs inside the reactive expression it's written in, so the unvalidated downloadHandler can let an out-of-range value slip into the downloaded report even though it was blocked on screen
+- C) `downloadHandler()` automatically inherits validation from any other reactive in the app
+- D) `req()` must be used instead of `validate()` in all cases
+**Answer:** B
+**Explanation:** 29.7's pitfall is precisely that validation is scoped to the reactive expression it's written in — a separate output reading the same raw input without its own validation can bypass the on-screen check, so the chapter recommends centralising validation rather than repeating ad-hoc per-output checks.
+
+### Q456 [Easy] [Image]
+**Chapter(s):** 29 — Interactive Models and Web Applications with Shiny
+**Question:** IMAGE PLACEHOLDER: A reactive-dependency diagram showing an input widget (e.g. a slider) feeding into a reactive value, which flows into a reactive({}) expression, which in turn feeds a render*({}) output displayed in the UI, with an observeEvent() shown branching off to trigger a side effect. Which component in this diagram is responsible for producing a cached, auto-updating calculation rather than a one-off side effect?
+- A) The input widget itself
+- B) `reactive({})`
+- C) `observeEvent()`
+- D) The UI output element
+**Answer:** B
+**Explanation:** 29.1 describes `reactive({})` expressions as producing cached, auto-updating calculations driven by reactive inputs, distinct from `observeEvent()`/`observe()`, which exist for triggering side effects rather than returning cached values.

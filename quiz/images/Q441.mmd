@@ -1,0 +1,12 @@
+flowchart LR
+    DF["District/programme<br/>data frame<br/>(1 row per district)"] --> PW["purrr::pwalk()<br/>(or equivalent for loop)"]
+    PW --> TC["tryCatch() wrapper<br/>around each render call"]
+    TC -->|"success"| QR["quarto::quarto_render()<br/>per-district report"]
+    TC -->|"error caught"| LOG["Log error,<br/>continue to next district"]
+    QR --> OUT["District report saved,<br/>loop continues"]
+    LOG --> NEXT["Next district<br/>in the data frame"]
+    OUT --> NEXT
+
+    style TC fill:#fef3c7,stroke:#b45309,stroke-width:2px
+    style LOG fill:#fee2e2,stroke:#b91c1c,stroke-width:1.5px
+    style QR fill:#dcfce7,stroke:#15803d,stroke-width:1.5px
