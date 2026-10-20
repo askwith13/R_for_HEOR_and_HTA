@@ -1,0 +1,13 @@
+# Extracted from ch28_reproducible_reporting.typ, lines 89-99
+# Section: === A worked example: rendering an HEOR summary report
+# Chapter: 28
+
+---
+title: "TB Treatment Cost-Effectiveness Summary"
+format:
+  html:
+    toc: true
+  docx: default
+execute:
+  echo: false
+---

@@ -1,0 +1,113 @@
+{
+  "_comment": "This is an honest best-effort package manifest for this chapter's code, NOT a true renv::snapshot() lockfile. Packages with verified_installed_this_environment=true have a real version number confirmed on the machine that drafted this book. Packages with verified_installed_this_environment=false are referenced by the chapter's code but are not currently installed here -- their listed version is a placeholder, not a real pin. Install the package and re-run generate_chapter_renvlock.py to get a real version, then eventually run a true renv::snapshot() in this chapter's own project directory for a fully frozen lockfile before public release.",
+  "R": {
+    "Version": "4.6.0"
+  },
+  "Packages": {
+    "colorspace": {
+      "Package": "colorspace",
+      "Version": "2.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "flextable": {
+      "Package": "flextable",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "ggplot2": {
+      "Package": "ggplot2",
+      "Version": "4.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "gt": {
+      "Package": "gt",
+      "Version": "1.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "kableExtra": {
+      "Package": "kableExtra",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "knitr": {
+      "Package": "knitr",
+      "Version": "1.52",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "officer": {
+      "Package": "officer",
+      "Version": "0.7.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "purrr": {
+      "Package": "purrr",
+      "Version": "1.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "quarto": {
+      "Package": "quarto",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "tarchetypes": {
+      "Package": "tarchetypes",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "targets": {
+      "Package": "targets",
+      "Version": "NOT_VERIFIED_IN_THIS_ENVIRONMENT",
+      "Source": "Repository",
+      "Repository": "CRAN (unconfirmed -- check before use)",
+      "verified_installed_this_environment": false
+    },
+    "tibble": {
+      "Package": "tibble",
+      "Version": "3.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "tinytex": {
+      "Package": "tinytex",
+      "Version": "0.59",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "viridis": {
+      "Package": "viridis",
+      "Version": "0.6.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    }
+  }
+}

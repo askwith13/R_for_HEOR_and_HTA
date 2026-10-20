@@ -86,6 +86,10 @@
 #include "chapters/ch26_voi.typ"
 #include "chapters/ch27_calibration_validation.typ"
 
+// ---- Part VI: Reporting, Communication and Deployment ----
+#part-divider("VI", "Reporting, Communication and Deployment")
+#include "chapters/ch28_reproducible_reporting.typ"
+
 // ---- Back matter ----
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Figures]

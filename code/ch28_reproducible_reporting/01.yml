@@ -1,0 +1,20 @@
+# Extracted from ch28_reproducible_reporting.typ, lines 37-54
+# Section: === R Markdown and Quarto: what changed and what didn't
+# Chapter: 28
+
+---
+title: "Cost-Effectiveness of New-Regimen TB Treatment vs Standard of Care"
+subtitle: "Base-case and scenario results, 4-state Markov cohort model"
+author: "HEOR Modelling Team"
+date: today
+format:
+  html:
+    toc: true
+    embed-resources: true
+  docx: default
+  pdf:
+    documentclass: article
+execute:
+  echo: false
+  warning: false
+---

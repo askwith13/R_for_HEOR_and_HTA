@@ -415,6 +415,19 @@ rebuilding it from scratch. Coverage currently extends through Chapter 27.
 
 Total candidates now: 56 across 25 chapters.
 
+## Chapter 28. Reproducible Reporting
+
+No genuine candidates identified. Checked per the mandatory per-tick scan: 28.1-28.8
+cover Quarto/R Markdown mechanics, multi-format rendering, publication tables/graphics,
+CHEERS checklist tracking, dossier assembly and report-automation scheduling -- all
+procedural/workflow content (how to render, format, and schedule a document) rather than
+a parameter whose live-varying effect on a model result is non-trivial or non-monotonic.
+The closest candidate considered and rejected: a "colour palette CVD simulator" slider for
+28.5 would only toggle between a small fixed set of simulation types rather than offering
+genuine continuous/non-trivial exploration, so it does not meet the selection bar.
+
+Total candidates remain 56 across 25 chapters with content (Chapter 28 adds a chapter with
+zero candidates, consistent with how Chapters 1-2 were handled).
 
 ## When we build these
 

@@ -1,0 +1,10 @@
+# Extracted from ch28_reproducible_reporting.typ, lines 272-279
+# Section: === Native editable Word and PowerPoint elements with officer/officedown
+# Chapter: 28
+
+---
+title: "TB Model Results -- Editable Word Report"
+output:
+  officedown::rdocx_document:
+    reference_docx: templates/heor_word_template.docx
+---

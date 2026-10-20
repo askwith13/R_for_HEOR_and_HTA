@@ -61,3 +61,5 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T02:54:25.505327+00:00,26,Value of Information Analysis,,,,,,5.75,jev-latest,prose_only
 2026-10-20T03:40:56.217986+00:00,27,"Model Calibration, Validation and Quality Assurance",8.46,7.58,7.52,6.68,8.55,jev-1.13.0
 2026-10-20T03:40:56.832267+00:00,27,"Model Calibration, Validation and Quality Assurance",,,,,,6.92,jev-latest,prose_only
+2026-10-20T08:52:48.913354+00:00,28,Reproducible Reporting,7.87,7.51,6.13,7.46,8.46,jev-1.13.0
+2026-10-20T08:52:53.521729+00:00,28,Reproducible Reporting,,,,,,7.16,jev-latest,prose_only

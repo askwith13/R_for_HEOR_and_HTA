@@ -1,0 +1,31 @@
+# Extracted from ch28_reproducible_reporting.typ, lines 606-634
+# Section: === Structuring the dossier as child documents
+# Chapter: 28
+
+---
+title: "HTA Submission Dossier -- New TB Regimen vs Standard of Care"
+format: pdf
+params:
+  country: "India"
+  perspective: "payer"
+---
+
+# Executive summary
+
+{{< include _executive_summary.qmd >}}
+
+# Appendix A: Clinical effectiveness evidence
+
+{{< include _appendix_clinical.qmd >}}
+
+# Appendix B: Markov model structure and assumptions
+
+{{< include _appendix_model_structure.qmd >}}
+
+# Appendix C: Cost inputs
+
+{{< include _appendix_costs.qmd >}}
+
+# Appendix D: Sensitivity and scenario analyses
+
+{{< include _appendix_sensitivity.qmd >}}

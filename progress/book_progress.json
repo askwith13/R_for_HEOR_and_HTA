@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 28,
+  "next_chapter_number": 29,
   "total_chapters": 35,
   "chapters": [
     {
@@ -198,7 +198,7 @@
       "num": 28,
       "title": "Reproducible Reporting",
       "part": "VI. Reporting, Communication, Deployment",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 29,
@@ -244,6 +244,11 @@
     }
   ],
   "run_log": [
+    {
+      "timestamp": "2026-10-20T16:30:00+05:30",
+      "action": "Wrote Chapter 28 (cron tick) -- Reproducible Reporting, first chapter of Part VI; a new Part VI divider inserted; all six Jev rubric dimensions passed on the FIRST draft, no revision needed",
+      "details": "Drafted ch28_reproducible_reporting.typ covering all 8 TOC subsections (Quarto/R Markdown fundamentals picking up directly on Chapter 27's closing line about validation evidence needing reproducible documentation; parameterised reports with params:/--execute-params and a looped quarto_render() driver; multi-format output (HTML/Word/PDF/PPTX) including the LaTeX/tinytex requirement and officedown/officer native Word elements; publication-ready tables comparing gt/gtsummary/flextable/kableExtra with a worked ICER/NMB example independently re-verified against Chapter 25/27's base case (icer=-844.14/0.1440=-5862.08, nmb=0.1440*50000-(-844.14)=8044.14, exact match); publication-ready ggplot2 graphics with a reusable theme_heor() and viridis/colorspace colour-blind-safe palettes; CHEERS 2022 (Husereau et al., Value in Health 2022;25(1):10-31) checklist implementation, deliberately restricting specific item-number claims to items 1/15/20/26 rather than fabricating all 28 items' wording, cross-referencing Chapter 11 and Chapter 16; automating HTA dossier appendices via Quarto child documents and {{< include >}}, explicitly analogized to this book's own book.typ #include structure; and automating routine district-level TB reports via purrr::pwalk()/a for loop plus a cron-vs-targets-pipeline scheduling discussion, with the district scenario explicitly flagged as fictional/illustrative). Delegated to 2 parallel sub-agents (28.1-28.4, 28.5-28.8), assembled into one Typst file myself -- fixed several syntax issues during assembly: both sub-agents used an incorrect difficult-terminology(term: \"...\")[...] keyword-argument call style instead of the real positional difficult-terminology(\"...\")[...] signature, and both used quoted-string captions plus nested-tuple table bodies for report-table()/ref-table() instead of the required [content] bracket caption and flat-cell-list academic-table() body -- all corrected before compile succeeded cleanly on first pass, zero warnings. Verified every stated numeric claim independently (ICER/NMB arithmetic exact match to Ch.25/27); CHEERS 2022 citation confirmed as a real published checklist, item-number claims deliberately limited to the four the sub-agent was confident about. Several uncertain R function signatures flagged by sub-agents (officedown::block_toc(), colorblindr::cvd_grid(), tarchetypes::tar_map()) were hedged explicitly in-text or kept only as illustrative non-runnable sketches rather than asserted as verified -- continuing the book's tooling-honesty discipline. Inserted the new real #part-divider(\"VI\", \"Reporting, Communication and Deployment\") call before this chapter's #include, per the skill's Part-boundary table. Jev scored all six dimensions above the 6/10 threshold on the first attempt: coverage 7.87, technical_correctness 7.51, code_validity 6.13, agency_grounding 7.46, internal_consistency 8.46, readability (prose-only) 7.16 -- no revision pass needed. Image check: 1 Track-1 skip (C24) plus 1 new Track-2 pending entry (T42, CVD-simulation colour-palette comparison grid). Shiny candidates: 0 new genuine candidates, explicitly logged with reasoning (a CVD-palette-toggle slider considered and rejected as insufficiently continuous/non-trivial); total remains 56 across 25 chapters-with-content. Code extraction: 27 code blocks to code/ch28_reproducible_reporting/. renv.lock: 15 packages (10 verified installed, 5 honestly marked NOT_VERIFIED_IN_THIS_ENVIRONMENT). Wrote Chapter Markdowns/ch28_reproducible_reporting.md. Compiled cleanly, book.pdf grew from 491 to 523 pages. Updated book_progress.json: chapter 28 marked complete, next_chapter_number advanced to 29 (Interactive Models and Web Applications with Shiny, second chapter of Part VI, no new Part divider needed)."
+    },
     {
       "timestamp": "2026-10-20T15:30:00+05:30",
       "action": "Rendered ALL remaining pending images across the whole book -- the image-rendering backlog is now fully cleared",

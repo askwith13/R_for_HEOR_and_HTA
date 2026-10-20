@@ -1,0 +1,12 @@
+# Extracted from ch28_reproducible_reporting.typ, lines 142-151
+# Section: == 28.2 Parameterised reports
+# Chapter: 28
+
+---
+title: "Cost-Effectiveness Results"
+format: html
+params:
+  scenario_name: "Base case"
+  wtp_threshold: 50000
+  drug_price_multiplier: 1.0
+---
