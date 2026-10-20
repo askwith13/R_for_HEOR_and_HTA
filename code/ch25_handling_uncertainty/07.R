@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 468-494
+# Extracted from ch25_handling_uncertainty.typ, lines 470-496
 # Section: == 25.4 Probabilistic sensitivity analysis: choosing distributions
 # Chapter: 25
 

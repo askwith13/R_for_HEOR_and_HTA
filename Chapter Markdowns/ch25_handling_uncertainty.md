@@ -3,15 +3,15 @@
 **Part V: Uncertainty, Value of Information and Model Validation** (first chapter of Part V — a new real Part V divider was inserted in `book.typ` immediately before this chapter's include, following the Part I–IV precedent built earlier in this session).
 
 ## Status
-Drafted manually on 2026-10-20, continuing Dr Aswath's direct request to accelerate rather than wait for the next cron tick (the same request that produced Chapter 24). All six Jev rubric dimensions passed on the first draft — third chapter in a row (after Ch.23, Ch.24) to do so.
+Drafted manually on 2026-10-20, continuing Dr Aswath's direct request to accelerate rather than wait for the next cron tick. **Revised same day** after discovering, while preparing Chapter 26, that the original draft covered only 6 of 8 TOC subsections — §25.7 (Structural uncertainty and model averaging) and §25.8 (Analysing patient-level cost-effectiveness trial data and bootstrapping) were missing. Both were drafted, independently verified, and inserted before Chapter 26 began. All six Jev rubric dimensions passed on both the original 6-section draft and the revised 8-section chapter.
 
-## Jev scores (raw, 1–10)
-- Coverage: 8.59
+## Jev scores (raw, 1–10) — final, all 8 subsections
+- Coverage: 8.68
 - Technical correctness: 7.63
-- Code validity: 7.87
-- Agency grounding: 6.21
-- Internal consistency: 8.16
-- Readability (prose-only): 6.32
+- Code validity: 7.88
+- Agency grounding: 6.29
+- Internal consistency: 8.4
+- Readability (prose-only): 6.0
 
 All six clear the 6/10 threshold — no revision pass needed.
 

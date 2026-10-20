@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 364-392
+# Extracted from ch25_handling_uncertainty.typ, lines 366-394
 # Section: == 25.3 Scenario analysis scripts
 # Chapter: 25
 

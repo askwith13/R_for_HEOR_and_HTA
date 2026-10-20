@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 129-175
+# Extracted from ch25_handling_uncertainty.typ, lines 131-177
 # Section: === Worked example: one-way sensitivity analysis on the TB regimen-choice model
 # Chapter: 25
 

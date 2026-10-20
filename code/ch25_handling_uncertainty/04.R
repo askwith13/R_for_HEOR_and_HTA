@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 273-300
+# Extracted from ch25_handling_uncertainty.typ, lines 275-302
 # Section: === Constructing the tornado diagram
 # Chapter: 25
 

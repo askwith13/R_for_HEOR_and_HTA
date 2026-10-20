@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 667-682
+# Extracted from ch25_handling_uncertainty.typ, lines 669-684
 # Section: == 25.6 Threshold analysis
 # Chapter: 25
 

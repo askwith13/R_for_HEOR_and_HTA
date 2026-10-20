@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 631-641
+# Extracted from ch25_handling_uncertainty.typ, lines 633-643
 # Section: == 25.5 Visualising uncertainty: CE plane, CEAC, CEAF, NMB distributions
 # Chapter: 25
 

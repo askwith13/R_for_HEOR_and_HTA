@@ -52,3 +52,5 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T01:53:46.925252+00:00,24,"Cost-Benefit, Distributional and Extended Cost-Effectiveness Analysis",,,,,,6.76,jev-latest,prose_only
 2026-10-20T02:16:51.489802+00:00,25,Handling Uncertainty,8.59,7.63,7.87,6.21,8.16,jev-1.13.0
 2026-10-20T02:16:55.395596+00:00,25,Handling Uncertainty,,,,,,6.32,jev-latest,prose_only
+2026-10-20T02:39:09.872043+00:00,25,Handling Uncertainty,8.68,7.63,7.88,6.29,8.4,jev-1.13.0
+2026-10-20T02:39:14.275341+00:00,25,Handling Uncertainty,,,,,,6.0,jev-latest,prose_only

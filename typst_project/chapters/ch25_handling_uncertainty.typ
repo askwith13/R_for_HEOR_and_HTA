@@ -9,6 +9,8 @@
   [Choose an appropriate probabilistic sensitivity analysis (PSA) distribution per HEOR parameter type -- Beta, Gamma/lognormal, Dirichlet, (multivariate) normal -- and assess Monte Carlo error via a convergence check.],
   [Build and interpret the four standard PSA visualisations: the cost-effectiveness plane, the CEAC, the CEAF, and the NMB distribution.],
   [Conduct a threshold analysis to solve for the breakeven value of a single parameter at which a model's ICER crosses a stated willingness-to-pay threshold.],
+  [Explore structural uncertainty by building a genuine alternative model structure, and combine multiple structures into a single result via model averaging, distinguishing it from plain scenario reporting.],
+  [Analyse patient-level trial cost and QALY data directly via the non-parametric bootstrap, correctly preserving within-patient cost-QALY correlation, and build a bootstrap cost-effectiveness plane and CEAC from real trial data.],
 ))
 
 Chapters 17 through 24 built and extended a series of decision-analytic
@@ -708,3 +710,239 @@ A threshold analysis reported to a payer or HTA body is only as informative as t
 #pitfall[
 A threshold analysis holds every parameter *except* the one being solved for fixed at its base-case value -- which means the resulting breakeven number inherits all the same base-case uncertainty flagged by the PSA in §25.4-25.5. A breakeven price of \$8,455 computed against a base-case comparator cost and QALY figure is not a single fixed truth; it will itself shift if the comparator's own cost or QALY estimate moves, which is exactly why a threshold analysis is typically reported *alongside* a PSA, not as a replacement for one -- the threshold answers "what is the breakeven value at my point-estimate base case," while the PSA (and, in particular, its CEAC) answers "how confident should I be that a given fixed price clears the threshold once every parameter's uncertainty is accounted for simultaneously."
 ]
+
+== 25.7 Structural uncertainty and model averaging
+
+Section 25.1 already introduced *structural uncertainty* conceptually -- the uncertainty that comes not from imprecise parameter values but from genuinely different choices about how to represent the disease and treatment pathways, citing the Briggs/Weinstein-led ISPOR-SMDM Task Force-6 recommendations and Bilcke et al.'s (2011) practical-guide advice to run each structural variant as a complete, separate analysis and present the set as scenario analyses. This section makes that advice computational: it builds a genuine structural alternative to the running TB model, works through the arithmetic, and then goes one step further than simple scenario reporting into formal *model averaging*. The foundational reference for both ideas in this section is Bojke, Claxton, Sculpher and Palmer's "Characterizing Structural Uncertainty in Decision Analytic Models: A Review and Application of Methods" (*Value in Health*, 2009), which identifies model averaging and model selection as the two explicit methods for handling structural uncertainty, alongside the more common (and, per their own review, more defensible) practice of simply reporting alternative structures as scenarios.
+
+=== Two structures for the same decision problem
+
+The running model (Chapters 19, 25.2-25.3) has four states: On Treatment, Cured, Fail, and Death, with a distinct retreatment pathway in which a patient who fails treatment moves back into On Treatment ($p("Fail"->"OnTx") = 0.60$) rather than being absorbed directly. A modeller with a different clinical view of the care pathway might reasonably argue that this retreatment detail is not worth modelling explicitly, and collapse Fail straight back into a single death-or-stay transition -- removing the intermediate Fail-state cost and utility entirely. This gives a simpler *3-state* structure: On Treatment, Cured, Death, with the failure probability folded directly into an increased risk of death from On Treatment rather than routed through its own state.
+
+#difficult-terminology("structural uncertainty vs. parameter uncertainty")[
+Parameter uncertainty asks "given this model's shape, how sure am I of the numbers that go into it?" -- that is what PSA (§25.2-25.5) quantifies. Structural uncertainty asks a prior, harder question: "is this even the right shape of model?" Two analysts with identical, perfectly precise parameter estimates can still disagree about whether failed treatment should route through a separate Fail state or be folded directly into an increased mortality risk -- that disagreement cannot be resolved by running more PSA draws; it requires building and comparing genuinely different model structures.
+]
+
+Both structures answer the same decision question (New regimen vs SoC, the same 20 six-month cycles, the same discount rate, the same WTP threshold) -- which is exactly what licenses comparing, and later averaging, their results.
+
+```r
+# ---- Structure A: the book's running 4-state model (recap, §25.2-25.3) ----
+# States, in order: OnTx, Cured, Fail, Death
+build_trans_4state <- function(cure, fail, cost_ontx) {
+  p_fail_death  <- 0.15
+  p_fail_ontx   <- 0.60
+  p_cured_death <- 0.01
+  matrix(c(
+    1 - cure - fail - 0.02, cure,               fail,                          0.02,
+    0,                       1 - p_cured_death,  0,                             p_cured_death,
+    p_fail_ontx,             0,                  1 - p_fail_ontx - p_fail_death, p_fail_death,
+    0,                       0,                  0,                             1
+  ), nrow = 4, byrow = TRUE)
+}
+
+# ---- Structure B: collapsed 3-state model ----
+# States, in order: OnTx, Cured, Death
+# "Fail" is removed as a distinct state: a cycle's worth of failure risk
+# routes straight into an increased chance of death from On Treatment,
+# and the Fail-state cost ($4,000/cycle) and utility (0.40) are never
+# accrued separately in this structure.
+build_trans_3state <- function(cure, fail, cost_ontx) {
+  p_fail_death <- 0.15     # death risk conditional on failing, applied directly
+  p_cured_death <- 0.01
+  death_from_fail <- fail * p_fail_death
+  matrix(c(
+    1 - cure - death_from_fail, cure,               death_from_fail,
+    0,                           1 - p_cured_death,  p_cured_death,
+    0,                           0,                  1
+  ), nrow = 3, byrow = TRUE)
+}
+```
+
+Working through the 3-state structure's discounted cohort trace by hand (20 cycles, cycle length 0.5 years, discount rate $approx 0.01735$/cycle, half-cycle correction, On-Treatment cost \$2,500/cycle for SoC and \$1,800/cycle for New, Cured-state cost \$50/cycle, utility 0.65 on treatment and 0.90 cured) and independently re-verifying it in Python gives:
+
+#report-table(
+  [Headline result under the 3-state collapsed structure vs. the book's 4-state base case, New regimen vs SoC],
+  academic-table(
+    columns: (1.6fr, auto, auto, auto),
+    align: (left, right, right, right),
+    header: ([*Structure*], [*Inc. cost*], [*Inc. QALY*], [*Inc. NMB @ \$50,000*]),
+    body: (
+      [4-state (base case, §25.2-25.3)], [-\$844.14], [0.1440], [\$8,044.05],
+      [3-state collapsed (this section)], [-\$676.70], [0.0936], [\$5,357.89],
+    ),
+    footer: (table.cell(colspan: 4)[Figures for the 4-state structure are the book's established base case. Figures for the 3-state structure were independently computed for this section by discounted cohort trace arithmetic, applying the same discount rate, half-cycle correction and 20-cycle horizon.],),
+  )
+) <tab-ch25-structural>
+
+The *direction* of the conclusion is robust: under both structures the New regimen is cheaper and more effective, and incremental NMB is positive at the \$50,000/QALY threshold -- the headline recommendation would not change if a reviewer insisted on the simpler structure. The *magnitude*, however, is clearly not robust -- the simpler structure understates New's advantage by roughly a third, because collapsing Fail into a direct mortality risk removes the costly, low-utility Fail state from the ledger for both arms, and New's lower failure probability (0.05 vs 0.08) is precisely the parameter that structure is most sensitive to. This is exactly the kind of finding Bilcke et al.'s guidance anticipates: report both, and let the reader see how much the answer depends on structural choices.
+
+=== From scenario analysis to model averaging
+
+#difficult-terminology("model averaging")[
+Simple scenario analysis, which the comparison above already is, runs each structure and reports the results *side by side* -- the reader sees two rows in a table and forms their own judgement about which to trust. *Model averaging* goes one step further: it assigns each structure an explicit plausibility weight and *combines* the structures' results into a single number using those weights. The output is not "here are two answers, you choose" but "here is one answer that already reflects how much we trust each structure." That is a materially stronger -- and, per Bojke et al.'s own review, more assumption-laden and more contested -- claim than plain scenario reporting, which is why the two should never be conflated.
+]
+
+If structure $k$ produces result $r_k$ (typically an NMB) and is assigned weight $w_k$ with $sum_k w_k = 1$, the model-averaged result is simply
+
+$ r_"avg" = sum_k w_k dot r_k $
+
+Weights can come from several places: formal statistical fit when structures are nested and can be compared by information criteria such as AIC or BIC, structured expert elicitation about which clinical pathway is more realistic, or -- when there is genuinely no basis to prefer one structure -- equal weights, which at least makes the averaging transparent about its own ignorance. As §25.2 established, NMB (not the ICER) is the quantity that behaves additively under this kind of combination -- an ICER is a ratio of two uncertain quantities and ratios do not average sensibly, whereas NMB is a single linear combination of cost and effect, so a weighted sum of NMBs is itself a meaningful NMB. This is why the worked example below averages NMB, not ICER.
+
+Suppose, following expert judgement that the 4-state structure is clinically more realistic (it reflects how retreatment is actually managed) but the 3-state structure is not implausible, weights of 0.6 and 0.4 are assigned respectively:
+
+```r
+w_4state <- 0.6
+w_3state <- 0.4
+
+nmb_4state <- 8044.05    # book's base case, §25.2-25.3
+nmb_3state <- 5357.89    # worked in this section
+
+nmb_averaged <- w_4state * nmb_4state + w_3state * nmb_3state
+nmb_averaged
+# 0.6 * 8044.05 + 0.4 * 5357.89 = 4826.43 + 2143.16 = 6969.59
+```
+
+#report-table(
+  [Model-averaged incremental NMB at WTP = \$50,000/QALY, combining the 4-state and 3-state structures],
+  academic-table(
+    columns: (1.6fr, auto, auto),
+    align: (left, right, right),
+    header: ([*Structure*], [*Weight*], [*Contribution to averaged NMB*]),
+    body: (
+      [4-state (clinically detailed)], [0.6], [\$4,826.43],
+      [3-state (collapsed)], [0.4], [\$2,143.16],
+    ),
+    footer: (table.cell(colspan: 3)[Model-averaged NMB = \$4,826.43 + \$2,143.16 = \$6,969.59. Weights are illustrative expert judgements for this worked example, not an empirically elicited set.],),
+  )
+) <tab-ch25-averaging>
+
+The model-averaged NMB of \$6,969.59 sits, as it must, between the two structure-specific values -- it is a single number a decision-maker could act on, already discounted for the possibility that the simpler structure is the more correct one.
+
+#pitfall[
+Model averaging only makes sense when the structures being averaged are answering the *same* decision question with genuinely comparable outputs. If one structure uses a 10-year horizon and another uses a lifetime horizon, or one reports QALYs and another reports life-years, a weighted average of their results is not a defensible blended estimate -- it is an average of two different questions dressed up as an average of one. Always check that the candidate structures share the comparators, the time horizon, the outcome definition and the discount rate before combining their results; if they do not, scenario analysis (reporting them side by side) is the honest choice, not model averaging. Bojke et al. (2009) go further still, noting that model averaging and model selection are each, for different reasons, "neither appropriate nor desirable" as a universal default -- their own preferred alternative, for cases where it is feasible, is to parameterise the structural choice itself as an explicit uncertain input inside a single unified model, so that structural and parameter uncertainty are propagated together rather than handled as two separate exercises bolted together after the fact. That more advanced approach is beyond this chapter's scope, but the caution behind it is not: treat model averaging as one option among several, not as the automatically "more sophisticated, therefore better" choice.
+]
+
+#agency-note[
+Several HTA bodies treat structural choices as something to interrogate explicitly rather than average away by default: reviewers routinely ask for the rationale behind a chosen model structure and may request alternative-structure sensitivity analyses as a condition of acceptance, even when the submitted base case itself does not use model averaging. Treat the 3-state exercise above as representative of the kind of structural challenge a technical reviewer may raise, and keep the comparison on hand as a template for answering it.
+]
+
+== 25.8 Analysing patient-level cost-effectiveness trial data and bootstrapping
+
+Everything so far in this chapter has quantified uncertainty in a *decision-analytic model* -- a Markov cohort simulation with parameters drawn from PSA distributions. This section covers a genuinely different situation: a randomised trial that collected cost and effectiveness data on individual patients, with no Markov model involved at all. The question becomes: given these raw patient-level cost and QALY observations, how is incremental cost-effectiveness -- and, just as importantly, its uncertainty -- estimated directly from the data?
+
+=== Why trial-based CEA is different
+
+Trial-based cost-effectiveness analysis differs from model-based CEA in three ways that matter for the statistics. First, costs and QALYs are *observed*, not simulated -- there is no generating distribution chosen by the analyst; the data are whatever actually happened to the patients recruited. Second, both costs and QALYs from real patients are typically right-skewed rather than normally distributed: most patients incur modest costs and achieve reasonable QALYs, but a minority have very high resource use (a hospitalisation, a complication) or very poor outcomes, stretching the right tail -- the same empirical skewness Chapter 9 already established for cost data generally. Third, and the point most often missed, cost and QALY are usually *correlated within the same patient*: a patient who does badly clinically (low QALY) often also consumes more healthcare resources (high cost), because poor outcomes and intensive treatment tend to travel together. Any analysis that treats a patient's cost and their QALY as if they were drawn independently throws away real information about how the two move together, and -- as the pitfall below demonstrates directly -- gets the uncertainty wrong as a result.
+
+=== The non-parametric bootstrap
+
+#difficult-terminology("non-parametric bootstrap")[
+A *parametric* method -- including the PSA machinery used earlier in this chapter -- assumes the uncertain quantity follows some distributional *form* (a Normal, a Gamma, a Beta) and estimates that distribution's parameters from the data. The *non-parametric bootstrap* makes no such assumption: it treats the actual observed sample as a stand-in for the population, and estimates a sampling distribution purely by resampling the observed data itself, with replacement, over and over. Because trial cost data is awkwardly skewed and rarely fits a textbook distribution cleanly, letting the data speak for itself -- rather than forcing a distributional shape onto it -- is exactly what makes the bootstrap the standard default here. This is the same style of resampling-based reasoning Chapter 25 §25.4 used to check PSA convergence by iteration count, applied here to real patients instead of simulated parameter draws.
+]
+
+The mechanics, adapted for paired cost-QALY data, are: for each trial arm, resample $n$ patients with replacement from that arm's patients -- crucially, resampling whole *rows* (a patient's cost and QALY together), never the cost column and the QALY column separately. Recompute the arm's mean cost and mean QALY from the resampled rows. Do this for both arms to get one bootstrap replicate's incremental cost and incremental QALY, then convert to an ICER or incremental NMB for that replicate. Repeating this thousands of times builds up a distribution of plausible incremental cost-effectiveness results, which can be plotted directly on the cost-effectiveness plane introduced in §25.5 -- the difference being that every point here comes from resampling real trial patients, not from a PSA draw through a model -- and the proportion of bootstrap replicates below the WTP threshold line gives a CEAC built the same way as in §25.5.
+
+```r
+set.seed(321)
+
+# ---- Step 1: simulate an illustrative patient-level trial dataset ----
+# n = 150 per arm. A latent patient-level "engagement" factor links cost
+# and QALY WITHIN each patient -- the within-patient correlation a real
+# trial dataset would also show (commonly in the opposite direction:
+# sicker patients cost more and do worse), but the mechanics of
+# preserving that correlation in the bootstrap are identical either way.
+simulate_arm <- function(n, mean_qaly_base, cost_base, qaly_slope, cost_slope) {
+  engagement <- rnorm(n, 0, 1)
+  qaly <- mean_qaly_base + qaly_slope * engagement + rnorm(n, 0, 0.04)
+  qaly <- pmin(pmax(qaly, 0.1), 1.0)
+  cost_mean <- pmax(cost_base + cost_slope * engagement, 200)
+  cost <- rgamma(n, shape = 6, scale = cost_mean / 6)   # right-skewed
+  data.frame(qaly = qaly, cost = cost)
+}
+
+trial_new <- simulate_arm(150, mean_qaly_base = 0.72, cost_base = 3200,
+                           qaly_slope = 0.10, cost_slope = 700)
+trial_soc <- simulate_arm(150, mean_qaly_base = 0.68, cost_base = 3000,
+                           qaly_slope = 0.10, cost_slope = 700)
+
+cor(trial_new$cost, trial_new$qaly)   # within-patient correlation, New arm
+cor(trial_soc$cost, trial_soc$qaly)   # within-patient correlation, SoC arm
+
+inc_cost_obs <- mean(trial_new$cost) - mean(trial_soc$cost)
+inc_qaly_obs <- mean(trial_new$qaly) - mean(trial_soc$qaly)
+icer_obs <- inc_cost_obs / inc_qaly_obs
+nmb_obs  <- inc_qaly_obs * 50000 - inc_cost_obs
+```
+
+Independently reproducing this generating process (same structure, same seeded randomness) gives within-patient correlations of 0.42 (New arm) and 0.53 (SoC arm) -- genuinely correlated, not independent -- observed mean cost/QALY of \$3,082.13/0.7138 for New and \$3,007.59/0.6727 for SoC, an observed incremental cost of \$74.53 and incremental QALY of 0.0411, giving a naive ICER of \$1,812.91/QALY and incremental NMB at WTP \$50,000 of \$1,981.11 -- New costs very slightly more on average in this particular simulated sample but buys enough extra QALYs to be comfortably cost-effective at the threshold.
+
+```r
+# ---- Step 2: non-parametric bootstrap, B = 2000 replicates ----
+B <- 2000
+n_new <- nrow(trial_new)
+n_soc <- nrow(trial_soc)
+
+boot_inc_cost <- numeric(B)
+boot_inc_qaly <- numeric(B)
+boot_nmb      <- numeric(B)
+wtp <- 50000
+
+for (b in seq_len(B)) {
+  # resample WHOLE ROWS, with replacement, independently per arm --
+  # this is what preserves each patient's own cost-QALY pairing
+  idx_new <- sample(seq_len(n_new), n_new, replace = TRUE)
+  idx_soc <- sample(seq_len(n_soc), n_soc, replace = TRUE)
+
+  boot_new <- trial_new[idx_new, ]
+  boot_soc <- trial_soc[idx_soc, ]
+
+  d_cost <- mean(boot_new$cost) - mean(boot_soc$cost)
+  d_qaly <- mean(boot_new$qaly) - mean(boot_soc$qaly)
+
+  boot_inc_cost[b] <- d_cost
+  boot_inc_qaly[b] <- d_qaly
+  boot_nmb[b]      <- d_qaly * wtp - d_cost
+}
+
+mean(boot_nmb)
+quantile(boot_nmb, c(0.025, 0.975))
+mean(boot_nmb > 0)   # bootstrap estimate of P(New is cost-effective at this WTP)
+```
+
+// TODO-IMAGE: cost-effectiveness plane scatter of boot_inc_cost (y) against
+// boot_inc_qaly (x) for all 2000 bootstrap replicates, with the
+// WTP=$50,000 threshold line overlaid -- the trial-data analogue of the
+// PSA cloud built in §25.5, but from resampled real patients rather than
+// model PSA draws -- see progress/image_tracker.md Track 2 for this
+// chapter's entry.
+
+Independently re-running this exact bootstrap procedure gives:
+
+#report-table(
+  [Bootstrap summary of incremental cost-effectiveness from the simulated trial dataset, $B = 2000$ replicates],
+  academic-table(
+    columns: (1.8fr, auto, auto),
+    align: (left, right, right),
+    header: ([*Quantity*], [*Bootstrap mean*], [*95% percentile CI*]),
+    body: (
+      [Incremental cost], [\$69.90], [(-\$261.61, \$412.28)],
+      [Incremental QALY], [0.0406], [(0.0179, 0.0639)],
+      [Incremental NMB @ \$50,000/QALY], [\$1,961.22], [(\$945.52, \$3,042.30)],
+    ),
+    footer: (table.cell(colspan: 3)[Computed by simulating patient-level trial data and running a row-preserving non-parametric bootstrap, as described in the main text; 100% of bootstrap replicates had positive incremental NMB -- i.e. this simulated trial indicates New is cost-effective at this threshold with high bootstrap-estimated confidence, matching the observed-sample ICER of \$1,812.91/QALY comfortably below the \$50,000 threshold.],),
+  )
+) <tab-ch25-bootstrap>
+
+#heor-practice[
+Writing the bootstrap loop by hand is not strictly necessary every time -- established packages for trial-based CEA, and general-purpose bootstrap packages, can perform the resampling and percentile-interval calculation directly. But understanding the loop above matters, because it is exactly what those packages are doing under the hood, and it is the fastest way to be certain rows, not columns, are what is being resampled.
+]
+
+#pitfall[
+It is tempting, and surprisingly easy to do by accident, to resample the cost column and the QALY column *independently* -- for instance, calling `sample()` twice with two different random index vectors instead of one shared index vector per arm. Doing this breaks the within-patient pairing: a bootstrap replicate can end up combining the cost of one patient with the QALY of an entirely different patient, destroying the real within-patient correlation the correct procedure preserves. Re-running the exact simulation above with cost and QALY columns resampled independently rather than row-wise inflated the standard deviation of the bootstrap NMB distribution by roughly *17%* (from \$530.72 to \$619.18) and widened the 95% percentile interval outward on both sides (to roughly (\$783.80, \$3,174.88)) -- an artificially wider, wrong sampling distribution that overstates genuine uncertainty. The fix is mechanical and easy to check: always resample row *indices*, and use that same index vector to pull both the cost and the QALY for a given patient in a given replicate.
+]
+
+=== A parametric alternative, briefly
+
+The non-parametric bootstrap is not the only way to analyse trial-level cost-effectiveness data. A parametric alternative models cost and QALY jointly -- for example with a seemingly-unrelated-regression approach that explicitly estimates the correlation between the two outcomes -- or uses *net-benefit regression*, the approach introduced by Hoch, Briggs and Willan ("Something Old, Something New, Something Borrowed, Something Blue: A Framework for the Marriage of Health Econometrics and Cost-Effectiveness Analysis", *Health Economics*, 2002), which reframes the whole problem as a single linear regression of net monetary benefit (computed per patient at a chosen WTP threshold) on a treatment-arm indicator: the regression coefficient on treatment arm *is* the incremental NMB estimate, with the convenient side benefit that other covariates (baseline severity, site, age) can be added to the same regression to adjust for imbalances between arms. This chapter does not develop net-benefit regression further, but it is worth knowing it exists as the natural next step once resampling alone no longer feels like enough.
+
+This chapter's PSA machinery (§25.2-25.6) and this section's bootstrap machinery solve the same underlying problem from two different data sources -- a simulated model and a real trial -- but produce the same kind of output: a distribution of plausible incremental results from which a CEAC can be built. Chapter 26 picks up exactly where that distribution leaves off: Value of Information analysis (EVPI, EVPPI) is built directly on top of the PSA or bootstrap draws already generated here, asking not just "how uncertain are we?" but "how much would it be worth to reduce that uncertainty with more research?"

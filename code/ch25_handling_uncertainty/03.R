@@ -1,4 +1,4 @@
-# Extracted from ch25_handling_uncertainty.typ, lines 240-250
+# Extracted from ch25_handling_uncertainty.typ, lines 242-252
 # Section: === Worked example: two-way sensitivity analysis
 # Chapter: 25
 
