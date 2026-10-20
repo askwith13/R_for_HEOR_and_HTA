@@ -496,6 +496,15 @@ Total candidates now 59 across 29 chapters with content.
 
 Total candidates now 61 across 30 chapters with content.
 
+## Chapter 34. Emerging Methods and the Future of HEOR in R
+
+### Random Forest Risk-Threshold / Confusion-Matrix Explorer
+- **Section:** 34.1
+- **What it does:** A slider for the predicted-probability cutoff used to classify a patient as "high-cost" (default 0.5, applied to the fitted random forest's predicted probabilities on the chapter's worked example), with a live-updating confusion matrix and accuracy/sensitivity/specificity figures recalculating as the threshold moves. Directly demonstrates a point the chapter's static accuracy figure can't show on its own -- that a single "78% accuracy" number hides a sensitivity/specificity trade-off that shifts as the decision threshold moves, which matters directly for how many case-management slots a predictive-targeting programme would actually trigger at a given cutoff.
+- **Likely packages:** `shiny, ggplot2, bslib, randomForest`
+
+Total candidates now 62 across 31 chapters with content.
+
 ## When we build these
 
 Each app, when built, should get its own folder under a new top-level `shiny_apps/` 

@@ -97,6 +97,7 @@
 #include "chapters/ch31_agency_requirements.typ"
 #include "chapters/ch32_special_topics.typ"
 #include "chapters/ch33_pro_preference_research.typ"
+#include "chapters/ch34_emerging_methods.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)
