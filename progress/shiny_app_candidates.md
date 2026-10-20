@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-25 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-26 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 49 across 23 chapters**
+**Total candidates so far: 52 across 24 chapters**
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -365,14 +365,33 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
+## Chapter 26 additions (Value of Information Analysis)
+
+### EVPI-vs-WTP Curve Explorer
+- **Section:** 26.1-26.2
+- **What it does:** A single WTP-threshold slider ($0-$150,000/QALY) re-running the chapter's `calculate_evpi()` function live against the existing Ch.25 PSA draws, redrawing the EVPI-vs-WTP curve and marking where the current slider value sits on it. Directly demonstrates the chapter's core finding that EVPI peaks near the WTP at which the CEAC crosses 50% -- a reader can drag the threshold and watch EVPI rise and fall in real time, making the EVPI-CEAC link far more concrete than a static table.
+- **Likely packages:** `shiny, ggplot2`
+
+### GAM EVPPI Smoothness Explorer
+- **Section:** 26.3
+- **What it does:** A slider for `mgcv::gam()`'s `k=` basis-dimension argument, re-fitting the GAM regression of incremental NMB on `p_ontx_fail` live and redrawing both the fitted smooth curve against the raw PSA scatter and the resulting EVPPI number. Makes the chapter's own pitfall box (k too small underestimates EVPPI, too large overestimates it) directly visible and interactive -- a reader can watch the curve go from under-fit to over-fit and see the EVPPI number swing accordingly, reinforcing why REML's automatic smoothness selection is the recommended default.
+- **Likely packages:** `shiny, mgcv, ggplot2`
+
+### ENBS Trial-Size Comparator
+- **Section:** 26.4, 26.6
+- **What it does:** Two side-by-side sliders (sample size and trial cost) for a proposed study targeting `p_ontx_fail`, re-computing the moment-matching EVSI and resulting ENBS live, so a reader can directly search for the sample size that maximises ENBS rather than assuming "bigger is always better." Operationalizes the chapter's own non-obvious finding (§26.6) that a larger, costlier trial can have lower, even negative, ENBS than a smaller one.
+- **Likely packages:** `shiny`
+
+---
+
 ## Standing note for future chapters (25-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Coverage currently extends through Chapter 25. Natural strong 
-candidates expected ahead: Chapter 26 (VOI/EVPI/EVPPI), which is classically well-suited to 
-live parameter exploration.
+rebuilding it from scratch. Coverage currently extends through Chapter 26. Natural strong 
+candidates expected ahead: Chapter 27 (Model Calibration, Validation and QA), which may 
+offer calibration-target/parameter-search interactivity.
 
 ## When we build these
 

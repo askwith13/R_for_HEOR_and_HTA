@@ -83,6 +83,7 @@
 // ---- Part V: Uncertainty, Value of Information and Model Validation ----
 #part-divider("V", "Uncertainty, Value of Information and Model Validation")
 #include "chapters/ch25_handling_uncertainty.typ"
+#include "chapters/ch26_voi.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)
