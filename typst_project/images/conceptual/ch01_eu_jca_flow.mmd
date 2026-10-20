@@ -1,0 +1,19 @@
+flowchart LR
+    MA["Marketing Authorisation<br/>(EMA, EU-wide)"] --> JCA["EU Joint Clinical<br/>Assessment<br/>(single EU-level<br/>clinical report)"]
+
+    JCA --> NICE["NICE<br/>(England & Wales)<br/>economic + pricing"]
+    JCA --> GBA["IQWiG / G-BA<br/>(Germany)<br/>economic + pricing"]
+    JCA --> HAS["HAS<br/>(France)<br/>economic + pricing"]
+    JCA --> OTHER["...other national<br/>HTA bodies<br/>economic + pricing"]
+
+    NICE --> NICEOUT["National<br/>reimbursement<br/>decision"]
+    GBA --> GBAOUT["National<br/>reimbursement<br/>decision"]
+    HAS --> HASOUT["National<br/>reimbursement<br/>decision"]
+    OTHER --> OTHEROUT["National<br/>reimbursement<br/>decision"]
+
+    style JCA fill:#fef3c7,stroke:#b45309,stroke-width:2px
+    style MA fill:#e0e7ff,stroke:#4338ca,stroke-width:1.5px
+    style NICE fill:#dcfce7,stroke:#15803d,stroke-width:1.5px
+    style GBA fill:#dcfce7,stroke:#15803d,stroke-width:1.5px
+    style HAS fill:#dcfce7,stroke:#15803d,stroke-width:1.5px
+    style OTHER fill:#dcfce7,stroke:#15803d,stroke-width:1.5px

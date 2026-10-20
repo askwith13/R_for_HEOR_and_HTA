@@ -196,6 +196,11 @@ character of each:
   evidence goes into which document and on what timeline.
 ]
 
+#figure(
+  image("../images/conceptual/ch01_eu_jca_flow.png", width: 90%),
+  caption: [Since 2025, the EU Joint Clinical Assessment produces a single shared clinical-assessment report that feeds into multiple still-separate national economic and pricing appraisals — each national body (NICE, IQWiG/G-BA, HAS, and others) runs its own economic evaluation and reaches its own reimbursement decision from the same upstream clinical evidence base.],
+) <fig-ch01-eu-jca-flow>
+
 A single technology can therefore face half a dozen or more
 functionally distinct appraisal processes across markets, each with
 its own reference case, discount rate convention, preferred
