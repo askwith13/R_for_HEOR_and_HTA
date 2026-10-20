@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 32,
+  "next_chapter_number": 33,
   "total_chapters": 35,
   "chapters": [
     {
@@ -222,7 +222,7 @@
       "num": 32,
       "title": "Special Topics",
       "part": "VII. HTA in Practice",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 33,
@@ -508,6 +508,10 @@
       "revision_detail": "code_validity scored 5.5 on first draft (below 6/10 threshold) -- likely driven by this policy-heavy chapter's thin code density (only 2 short R blocks across 6 subsections) with undocumented cross-chapter function calls (run_cea_model(), run_tb_model()). Fixed by explicitly annotating both code blocks to state they call already-established functions from Chapters 17-27/30, not newly-invented undefined functions. Re-scored to 6.15, cleared threshold.",
       "book_pdf_pages": "556 -> 568",
       "notes": "Caught and fixed a real rendering bug independent of the Jev revision: the Section 31.5 agency-comparison ref-table was originally too tall for one page and visually overlapped its own caption -- compressed cell text, re-verified clean on a single page. Verified TSD 12=PSA and PBAC Guidelines v5.0 citations match Chapter 29's established precedent exactly (not newly fabricated). 4 difficult-terminology boxes. 1 new image-tracker entry (C27, NICE TA process flowchart, deferred as low priority -- already explained in prose multiple times across Ch.27-30). 1 new Shiny candidate (Cross-Agency Decision Explorer, total now 57 across 28 chapters). Code extraction: 2 blocks (genuinely low for this policy-heavy chapter). renv.lock: 1 package (quarto, genuinely not installed, correctly flagged unverified)."
+    },
+    {
+      "timestamp": "2026-10-21T00:10:00+05:30",
+      "summary": "Drafted, compiled, scored, and committed Chapter 32: Special Topics (second and final chapter of Part VII: HTA in Practice; no new Part divider needed). Delegated 32.1-32.4 and 32.5-32.8 to two parallel sub-agents, assembled into one Typst file. Zero revision passes needed -- all six Jev rubric dimensions passed on first scoring (coverage 8.25, technical correctness 7.77, code validity 7.66, agency grounding 8.65, internal consistency 8.62, readability 6.56). Independently executed and verified all 4 R code examples (flexsurvcure mixture cure model, single-arm vs historical control Cox model, 3-scenario durability/waning-of-effect model, TB cascade-of-care attrition) rather than just checking plausibility. Caught and fixed one real table-rendering bug (cascade-of-care report-table column widths causing severe word-wrap cramping due to auto-width headers claiming excessive space). Cross-checked every cross-chapter claim against real source files: Ch.19 Markov states, Ch.22 SEIR/deSolve content, Ch.24 outcomes-based MEA box, flexsurvcure's real function signature. 10 difficult-terminology boxes inserted, confirmed none duplicate earlier chapters. 2 new Shiny candidates logged (durability explorer, cascade attrition explorer), 1 new Track-1 image candidate logged (TB cascade flowchart, Pending). book.pdf grew 568->590 pages. Paused heor-hta-book-writer cron during drafting (next tick was ~00:16 IST) and resumed after commit."
     }
   ]
 }

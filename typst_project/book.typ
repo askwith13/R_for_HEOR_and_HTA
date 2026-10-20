@@ -95,6 +95,7 @@
 // ---- Part VII: HTA in Practice ----
 #part-divider("VII", "HTA in Practice")
 #include "chapters/ch31_agency_requirements.typ"
+#include "chapters/ch32_special_topics.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

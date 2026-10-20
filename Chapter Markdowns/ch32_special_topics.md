@@ -1,0 +1,52 @@
+# Chapter 32: Special Topics
+
+**Part VII: HTA in Practice** (second and final chapter of this Part — no new Part divider needed, Part VII was opened by Chapter 31).
+
+## Status
+Drafted via interactive session (2026-10-21), delegating 32.1-32.4 and 32.5-32.8 to two parallel sub-agents, assembled into one Typst file. ZERO revision passes needed — all six Jev rubric dimensions passed on the first scoring run.
+
+## Jev scores (raw, 1-10, no revision)
+- Coverage: 8.25
+- Technical correctness: 7.77
+- Code validity: 7.66
+- Agency grounding: 8.65
+- Internal consistency: 8.62
+- Readability (prose-only): 6.56
+
+All six clear the 6/10 threshold on first pass.
+
+## What the chapter covers
+
+**32.1 Oncology: immuno-oncology, long-term survival and cure assumptions.** Immature survival data as the central oncology-HTA challenge; parametric extrapolation choices cross-referenced to Chapter 12 (not re-derived); NICE DSU TSD 21 (Flexible Methods for Survival Analysis) as a real named reference; cure-fraction and mixture cure models explained with difficult-terminology boxes; a pitfall on cure assumptions needing external corroboration, not just curve-fit plausibility. R example fits both `flexsurvreg()` (Weibull) and `flexsurvcure()` (mixture=TRUE, link="logistic") on simulated oncology-style data — independently executed, recovers an estimated cure fraction (~0.327) matching the simulated true value (0.30).
+
+**32.2 Rare diseases and ultra-orphan drugs.** The standard CEA paradigm straining for ultra-rare diseases; NICE's real Highly Specialised Technologies (HST) route with verified threshold figures (£20-30k standard TA range, £100k HST base, up to £300k weighted); single-arm trial and historical control difficult-terminology boxes; Bayesian borrowing of external data (power priors, commensurate priors) named correctly. R example runs `survfit()`/`coxph()` comparing a tiny single-arm trial against a historical control dataset — independently executed, produces a valid (if explicitly flagged as unadjusted/illustrative-only) Cox model output.
+
+**32.3 Vaccines and public health programmes.** Herd immunity/indirect protection as the structural reason cohort Markov models understate vaccine benefit; dynamic transmission models cross-referenced to Chapter 22's `deSolve::ode()`/SEIR content (verified present); a heor-practice box on deciding whether indirect protection matters before choosing a model structure; societal perspective discussion; multi-year budget impact cross-referenced to Chapter 23; WHO's SAGE role discussed with appropriate hedging on specific document titles not independently verifiable.
+
+**32.4 Diagnostics, screening and medical devices.** The full test-and-treat pathway as the core structural difference from drug HTA; sensitivity/specificity cross-referenced to Chapter 6 (not re-explained); a pitfall on not compressing accuracy to one headline statistic; NICE's real Diagnostics Assessment Programme (DAP, cost-effectiveness route) and Medical Technologies Evaluation Programme (MTEP, cost-minimisation route) named and correctly distinguished; device-specific challenges (short innovation cycles, learning-curve effects, weaker comparative evidence).
+
+**32.5 Digital health technologies and AI-enabled interventions.** The timeline and comparator mismatches DHTs create for a slower HTA process; a pitfall on pre/post designs vs. stepped-wedge/interrupted-time-series; NICE's real Evidence Standards Framework (ESF) for Digital Health Technologies, correctly described with its tiered evidence structure; SaMD (software as a medical device) difficult-terminology box; model drift/dataset shift and the FDA's "predetermined change control plan" concept for AI/ML SaMD, with an agency-note hedging appropriately on the unsettled re-review question. R illustration frames explicit `model_version` tracking in evaluation data.
+
+**32.6 Gene and cell therapies and outcome-based agreements.** The upfront-payment-vs-decades-of-benefit mismatch unique to one-time curative therapies; durability/waning-of-effect difficult-terminology box; outcomes-based managed entry agreements correctly cross-referenced to Chapter 24 §24.5 (verified that box exists, not re-explained from scratch); annuity/staged-payment models as a complementary mechanism; a heor-practice box on keeping the clinical durability model and payment schedule as separate linked objects. R example parameterises three competing waning-curve structural scenarios (durable forever, constant waning, accelerating waning) via `cumprod()` — independently executed and verified: all three scenarios are identical through cycle 10, then diverge sharply by cycle 40, exactly as the prose claims.
+
+**32.7 Infectious diseases and TB: programmatic and cascade-of-care models.** Explicitly threads together the book's running TB case study: Chapter 17/19's Markov states (On Treatment, Cured, Treatment Failure, Death — verified exact match), Chapter 22's SEIR transmission model, Chapter 23's budget impact, Chapter 31's HTAIn/ERG content. New cascade-of-care difficult-terminology box (confirmed not previously defined in the book) explaining the diagnosis→treatment-initiation→completion→cure framework with compounding attrition at each stage; new DOTS (directly observed treatment, short-course) difficult-terminology box; WHO's End TB Strategy's three pillars named correctly; a heor-practice box on keeping diagnosis/initiation/completion as separate parameters rather than folding them into the existing Markov transition probabilities. R example computes cascade attrition via `cumprod()` — independently executed and verified exactly: 10,000 → 7,000 → 5,950 → 4,760 → 4,284 (42.8% final cure rate), matching the accompanying `report-table` precisely.
+
+**32.8 Health systems modelling and resource allocation.** Zooms from single-technology HTA to system-level, budget-constrained resource allocation; opportunity cost cross-referenced to Chapter 26's VOI framing; portfolio-level/multi-criteria prioritization cross-referenced to Chapter 24's MCDA/EVIDEM content; PBMA (programme budgeting and marginal analysis) named as a real technique with an agency-note on real-world precedent, appropriately hedged on specific current status; honestly scopes system dynamics/whole-system simulation as beyond the book's depth rather than overclaiming. Closes with an explicit transition to Chapter 33 (Patient-Reported Outcomes and Preference Research).
+
+## Verification discipline
+Independently executed and verified all four R code examples before finalizing (not just checked for plausibility): (1) the `flexsurvcure()` mixture cure model recovers a cure fraction matching its simulated ground truth; (2) the single-arm/historical-control `coxph()` example produces valid statistical output; (3) the three durability/waning-of-effect scenarios diverge as claimed after their shared early-follow-up window; (4) the TB cascade attrition calculation's four intermediate numbers and final 42.8% cure rate match the chapter's own `report-table` exactly. Independently cross-checked every cross-chapter claim against the actual source `.typ` files rather than trusting the sub-agents' self-report: confirmed Chapter 19's four Markov states match verbatim, confirmed Chapter 22's `deSolve::ode()`/SEIR content exists as described, confirmed Chapter 24's §24.5 outcomes-based managed entry agreement box exists (not duplicated), confirmed `flexsurvcure()`'s real function signature (`formula, data, dist, mixture, link`) matches the installed package exactly.
+
+**Caught and fixed ONE real rendering bug**: the §32.7 cascade-of-care `report-table`'s first column was originally sized `2.2fr` against three `auto`-width columns with long header text ("Conditional probability", "Cumulative probability", "Patients remaining (of 10,000)"); Typst's `auto` sizing claimed excessive width for those headers, squeezing the first column down to near-unreadable single-letter word-wrapping ("Pre-", "sump-", "tive", "TB") with the header row visibly overlapping. Fixed by switching to proportional `fr` widths across all four columns and shortening the header labels (e.g. "Cond. prob." instead of "Conditional probability"); re-verified visually clean on the recompiled page.
+
+## Mandatory per-tick steps
+- **Image tracker**: 1 new genuine Track-1 candidate logged and left Pending (C28 — a TB cascade-of-care stage-flow diagram for §32.7, since the concept is new to the book and sequential/branching content communicates faster as a diagram); 1 new explicit skip (C29 — the remaining 7 subsections are narrative/comparative, already made concrete via 4 worked R code examples, no additional diagram judged necessary).
+- **Shiny candidates**: 2 new genuine candidates added — Durability/Waning-of-Effect Explorer (§32.6, sliders for waning-start/rate with a live relapse-free curve) and TB Cascade-of-Care Attrition Explorer (§32.7, per-stage sliders with a live waterfall chart and recalculating final cure rate). Total now 59 across 29 chapters.
+- **Code extraction**: 5 R code blocks extracted to `code/ch32_special_topics/`.
+- **renv.lock**: 5 packages identified (dplyr, flexsurv, flexsurvcure, survival, tibble — all 5 verified installed on this machine, zero unverified markers, fully honest manifest).
+- **Difficult terminology**: 10 boxes inserted (immature survival data, cure-fraction model, mixture cure model, single-arm trial, historical control, MTEP/DAP, Software as a medical device (SaMD), Durability (waning of effect), Cascade of care, DOTS) — confirmed none duplicate an earlier chapter's box.
+
+## Compile result
+Compiled cleanly on the first pass after the table-width fix, zero warnings. `book.pdf` grew from 568 to **590 pages**. No new Part divider needed (second chapter of Part VII, opened by Chapter 31).
+
+## Continuity notes for Chapter 33
+Chapter 33 (Patient-Reported Outcomes and Preference Research) is the next chapter, continuing Part VII: HTA in Practice (confirmed against the TOC — Part VIII: Case Studies does not start until Chapter 35, so no new Part divider needed for Chapter 33 either). It should pick up directly on §32.8's closing transition: "how the outcomes that feed every one of these models are actually measured from the patient's own perspective" — PRO analysis and psychometrics in R (`lavaan`, `mirt`) per TOC §33.1. No outstanding open items carried forward from Chapter 32.

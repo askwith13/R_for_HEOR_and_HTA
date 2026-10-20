@@ -468,6 +468,20 @@ zero candidates, consistent with how Chapters 1-2, 28, and 29 were handled).
 
 Total candidates now 57 across 28 chapters with content.
 
+## Chapter 32. Special Topics
+
+### Durability / Waning-of-Effect Explorer
+- **Section:** 32.6
+- **What it does:** Sliders let the user vary the waning-start cycle and the per-cycle relapse hazard rate (or switch between the three structural scenarios -- durable forever, constant waning, accelerating waning -- from the chapter's R example) for a one-time curative gene/cell therapy, with a live-updating relapse-free-proportion curve over a 20-year horizon. Makes directly visible the chapter's key point that a single-scenario base case silently picks one of several plausible 20-year futures, and that the three scenarios look identical for the first several years (while trial follow-up still covers them) before diverging sharply -- the kind of divergence static prose/one fixed plot cannot convey as viscerally as dragging the waning-rate slider and watching the curve drop.
+- **Likely packages:** `shiny, ggplot2, bslib, dplyr`
+
+### TB Cascade-of-Care Attrition Explorer
+- **Section:** 32.7
+- **What it does:** Five sliders, one per cascade stage (diagnosis, treatment initiation, treatment completion, bacteriological cure), each 0-100%, with a live-updating waterfall/funnel chart showing the cohort shrinking stage by stage and the final population-level cure rate recalculating instantly. Directly demonstrates the chapter's compounding-attrition point -- that a 10-percentage-point improvement at one stage changes the final cured proportion by a different amount depending on which stage it's applied to and how much attrition has already occurred upstream -- letting a user discover this for themselves rather than only reading the worked numeric example.
+- **Likely packages:** `shiny, ggplot2, bslib, dplyr`
+
+Total candidates now 59 across 29 chapters with content.
+
 ## When we build these
 
 Each app, when built, should get its own folder under a new top-level `shiny_apps/` 
