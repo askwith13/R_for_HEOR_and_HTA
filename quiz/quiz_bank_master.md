@@ -6618,3 +6618,104 @@ A complete question bank for a quiz application, drawn from all 27 written chapt
 - D) A defensible, version-controlled audit trail tying each submitted number to the specific model version that produced it becomes a structural requirement, not a nice-to-have
 **Answer:** B
 **Explanation:** The chapter explicitly states the opposite: "the computational re-run itself is often the cheapest part of the exercise" -- the real maintenance burden is sustained data-pipeline upkeep and analyst time, not compute cost, while governance and versioning/audit-trail gaps are both named as genuine unresolved obstacles.
+
+
+### Q652 [Medium] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** Per the chapter's difficult-terminology box, what is a "frailty" term in the Case Study C microsimulation?
+- A) A measure of how physically weak an elderly patient is, used only for patients over 80
+- B) An unobserved, patient-specific multiplier applied to a baseline hazard or risk, drawn once per patient and applied to every relevant transition for that patient's entire simulated life, to represent heterogeneity not explained by other variables in the model
+- C) A random number redrawn every cycle to add short-term noise to each patient's risk
+- D) The probability that a patient drops out of the microsimulation before the horizon ends
+**Answer:** B
+**Explanation:** The chapter defines a frailty as "an unobserved, patient-specific multiplier applied to a baseline hazard or risk to represent heterogeneity that isn't explained by the variables in the model," noting that drawing one frailty value per patient (not re-drawn each cycle) is what creates lasting high-risk and low-risk subgroups within the cohort.
+
+### Q653 [Easy] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** In Case Study A's base-case Markov model CEA (CKD add-on therapy vs standard of care), what was the deterministic ICER?
+- A) 1,559 per QALY
+- B) 44,941 per QALY
+- C) 28,829 per QALY
+- D) 103,339 per QALY
+**Answer:** C
+**Explanation:** The chapter's report-table shows an incremental cost of 44,941 and an incremental QALY of 1.559 over the 25-year horizon, giving a deterministic base-case ICER of 44,941 / 1.559 = 28,829 per QALY.
+
+### Q654 [Medium] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** In Case Study B, where do the OS hazard ratio (0.68) and PFS hazard ratio (0.74) applied to the new agent's survival curves come from?
+- A) They are fitted directly from the comparator arm's own patient-level data using flexsurv
+- B) They are treated as already-validated outputs of a network meta-analysis (as covered conceptually in Chapter 12), taken as fixed inputs to project the new agent's curves from the comparator's fitted curves
+- C) They are assumed equal to 1.0 and then adjusted downward by expert judgement
+- D) They are estimated by comparing the new agent against platinum-based chemotherapy in a real head-to-head trial
+**Answer:** B
+**Explanation:** The case study explicitly states that no head-to-head trial exists against every comparator, so an NMA has "already been run elsewhere" to produce the OS and PFS hazard ratios; the case study takes these as fixed, already-validated inputs rather than re-deriving the NMA itself.
+
+### Q655 [Hard] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** Across Case Study B's three structural-uncertainty scenarios (Weibull base case, log-logistic OS extrapolation, and OS benefit waning months 24-36), which statement correctly describes how the ICER moves?
+- A) The ICER is identical across all three scenarios, since the hazard ratios are held fixed
+- B) The log-logistic extrapolation produces the highest ICER (448,345), the waning scenario produces an ICER closer to the Weibull base case (341,219) than to the log-logistic scenario, and the ICER moves by roughly 40% across the full range
+- C) The waning scenario produces the highest ICER, because waning always makes a treatment look worse than an alternative extrapolation choice
+- D) The base case has the highest ICER, since the log-logistic and waning scenarios both allow the new agent's benefit to persist indefinitely
+**Answer:** B
+**Explanation:** The chapter reports Weibull base case 321,271, log-logistic extrapolation 448,345 (highest), and waning 341,219 (closer to the Weibull base case than to the log-logistic scenario) -- because waning only erodes the benefit in years 2-3, while the log-logistic fit flattens the entire comparator tail. The chapter notes the ICER "moves by roughly 40% across the three scenarios."
+
+### Q656 [Medium] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** Case Study C's base-case result for the colorectal cancer screening microsimulation showed a negative incremental cost (-655.33) and a positive incremental QALY (+0.5050). How does the chapter say this result should be reported?
+- A) As a standard ICER of -1,297.69 per QALY, interpreted literally as "screening saves 1,297.69 per QALY lost"
+- B) As a "dominant" strategy -- screening is both cheaper and more effective, so the usual accept/reject-against-a-threshold logic does not apply, and the negative ratio should not be read as a literal cost-per-QALY figure
+- C) As an inconclusive result requiring a larger cohort before any interpretation is possible
+- D) As a "dominated" strategy, since a negative number in a CEA conventionally signals the comparator is preferred
+**Answer:** B
+**Explanation:** The chapter's heor-practice box states explicitly that a negative incremental cost paired with a positive incremental QALY means the strategy is "dominant," and that the arithmetic ratio should be labelled as such rather than reported as a bare cost-per-QALY number, since the same negative ratio could otherwise arise from the opposite (dominated) situation.
+
+### Q657 [Hard] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** In Case Study C's two-layer PSA, what distinguished the "first-order-only" ICER draws from the "second-order" ICER draws, and what did the comparison show?
+- A) First-order draws held all parameters fixed and only varied the patient-level random seed; second-order draws additionally resampled four structural parameters each draw. The second-order standard deviation was 2.32 times the first-order standard deviation, though all draws still showed screening as dominant
+- B) First-order draws used a smaller cohort size than second-order draws, so the difference was purely due to sample size
+- C) First-order and second-order draws produced identical spreads, confirming that parameter uncertainty does not matter once the cohort is large enough
+- D) Second-order draws removed patient-level stochastic noise entirely, leaving only parameter uncertainty
+**Answer:** A
+**Explanation:** The chapter runs 40 draws of each configuration: first-order-only varies just the random seed with parameters fixed (sd 214.8), while second-order additionally resamples sensitivity, presentation probability, treatment cost, and death hazard (sd 498.7) -- a ratio of 2.32. Every one of the 40 second-order draws still showed screening as cost-saving and QALY-gaining.
+
+### Q658 [Easy] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** In Case Study D's 5-year budget impact analysis for a long-acting injectable (LAI) antipsychotic, what happened to the net budget impact as a percentage of reference spend between year 1 and year 5?
+- A) It stayed roughly constant at 13.9% throughout
+- B) It fell from 22.9% in year 1 to 3.4% in year 5
+- C) It rose from roughly 3.4% in year 1 to roughly 22.9% in year 5, as uptake of the new LAI increased
+- D) It was negative in year 1 (cost-saving) before turning positive in later years
+**Answer:** C
+**Explanation:** The chapter's year-by-year table shows the net budget impact rising from 3.4% of reference spend in 2026 to 22.9% by 2030, tracking the uptake ramp from 4% to 27% of the eligible population, since the LAI's higher per-patient cost outweighs its relapse-cost offset at every point across the horizon.
+
+### Q659 [Medium] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** In Case Study E's propensity-score analysis (SGLT2i add-on vs standard intensification in type 2 diabetes), how did the naive unadjusted treatment-effect estimate compare to the matched and weighted estimates, relative to the true simulated effect of -0.55 percentage points?
+- A) The naive estimate (-0.473) was closer to the true effect than either the matched (-0.504) or weighted (-0.490) estimates
+- B) The naive estimate (-0.473) was further from the true effect than both the matched (-0.504) and weighted (-0.490) estimates, which both recovered the true effect more closely after propensity-score adjustment
+- C) All three estimates (naive, matched, weighted) were identical, since the confounders were fully measured
+- D) The matched estimate was further from the truth than the naive estimate, showing that matching introduced bias
+**Answer:** B
+**Explanation:** The naive comparison returned -0.473, while the matched estimate (-0.504, 95% CI -0.599 to -0.409) and the weighted estimate (-0.490, 95% CI -0.555 to -0.426) both landed closer to the true simulated effect of -0.55, with both confidence intervals including the true value -- demonstrating that propensity-score adjustment reduced the confounding bias present in the naive comparison.
+
+### Q660 [Medium] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** In Case Study F's TB active case-finding (ACF) cascade-of-care analysis for an LMIC setting, how did adding ACF to standard of care (SOC) change the number of patients completing treatment, out of 600 total active TB cases in the cohort?
+- A) Completions fell from 298 (SOC) to 186 (SOC + ACF), because ACF diverted resources away from passive case detection
+- B) Completions rose from 186 (SOC alone) to 298 (SOC + ACF), an increase of 113 additional patients completing a full course of treatment
+- C) Completions stayed at 186 in both arms, since ACF only affects diagnosis, not treatment completion
+- D) All 600 active cases completed treatment once ACF was added, since ACF screens the entire non-presenting population
+**Answer:** B
+**Explanation:** The chapter states that of 600 active TB cases, only 186 complete treatment under SOC alone (most loss occurring before diagnosis), while adding ACF -- which screens 189 of the 270 non-presenting cases -- lifts total completions to 298, a gain of 113 additional completers.
+
+### Q661 [Hard] [MCQ]
+**Chapter(s):** Chapter 35: End-to-End Worked Case Studies
+**Question:** Why does Case Study F deliberately avoid stating a specific country's official cost-effectiveness threshold figure when interpreting its ICER of roughly 52.5 LCU per DALY averted?
+- A) Because LMIC settings never use cost-effectiveness thresholds at all
+- B) Because inventing a specific country's official threshold would misrepresent a genuine, contested, country-specific policy parameter as a settled number; the chapter instead describes the general principle (per Chapter 31 SS31.4) that locally-derived thresholds, grounded in a health system's own budget constraints, are now considered more defensible than an imported "1-3x GDP per capita" rule of thumb
+- C) Because the ICER of 52.5 LCU per DALY averted is too small to be meaningfully compared against any threshold
+- D) Because DALYs cannot be compared against a monetary threshold, only QALYs can
+**Answer:** B
+**Explanation:** The chapter explains that the older "1-3x GDP per capita" convention is now generally regarded as too permissive and poorly grounded in actual opportunity cost, and that more defensible approaches (the iDSI reference-case approach, referenced back to Chapter 31 SS31.4) derive thresholds locally from the health system's own budget and forgone health gains -- so stating a specific invented country figure would misrepresent a real, contested policy parameter.
