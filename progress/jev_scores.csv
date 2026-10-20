@@ -50,3 +50,5 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T00:23:47.927214+00:00,13,Population-Adjusted Indirect Comparisons,,,,,,5.41,jev-latest,prose_only
 2026-10-20T01:53:41.601495+00:00,24,"Cost-Benefit, Distributional and Extended Cost-Effectiveness Analysis",8.52,6.86,6.93,8.23,8.43,jev-1.13.0
 2026-10-20T01:53:46.925252+00:00,24,"Cost-Benefit, Distributional and Extended Cost-Effectiveness Analysis",,,,,,6.76,jev-latest,prose_only
+2026-10-20T02:16:51.489802+00:00,25,Handling Uncertainty,8.59,7.63,7.87,6.21,8.16,jev-1.13.0
+2026-10-20T02:16:55.395596+00:00,25,Handling Uncertainty,,,,,,6.32,jev-latest,prose_only

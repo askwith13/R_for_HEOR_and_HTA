@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-24 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-25 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 46 across 22 chapters**
+**Total candidates so far: 49 across 23 chapters**
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -346,15 +346,33 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
+## Chapter 25 additions (Handling Uncertainty)
+
+### Tornado Diagram Parameter-Range Explorer
+- **Section:** 25.2
+- **What it does:** Sliders for each of the five one-way sensitivity analysis parameters' low/high bounds (New-regimen cure probability, shared p(Fail->Death), annual discount rate, New-regimen drug cost, shared on-treatment utility), re-running the chapter's `incremental_nmb()` function live to redraw the tornado diagram bars and re-sort them by swing width in real time. Makes concrete, interactively, the chapter's own observation that a tornado diagram ranks parameters by influence on the decision, not by how uncertain they intuitively feel -- a reader can directly widen or narrow any one parameter's range and watch its bar (and its rank) move.
+- **Likely packages:** `shiny, ggplot2, forcats`
+
+### PSA Distribution & CEAC Explorer
+- **Section:** 25.4-25.5
+- **What it does:** Sliders for the willingness-to-pay threshold ($0-$150,000/QALY) and for the assumed evidence strength behind the Beta-distributed failure probability (effective pseudo-count sample size), re-running the chapter's n=2000 PSA loop live and redrawing the CE plane, CEAC, and incremental-NMB histogram together. Directly operationalizes the chapter's own point that a reader's confidence in cost-effectiveness is WTP-threshold-dependent -- sliding the threshold line across the CE plane visibly moves the CEAC's reading at that exact threshold, making the single-threshold NMB histogram and the full CEAC curve legible as two views of the same underlying PSA draws.
+- **Likely packages:** `shiny, ggplot2, dplyr`
+
+### Threshold Analysis Breakeven Calculator
+- **Section:** 25.6
+- **What it does:** Sliders for the new regimen's incremental QALY gain and the WTP threshold re-compute the breakeven total cost live via the chapter's rearranged ICER formula (reused from Ch.24 §24.5's value-based-pricing relationship), displaying the result as a single live number alongside a marker on a cost-vs-ICER line plot. A simple, low-engineering-cost app that makes the "threshold analysis solves backward for one parameter" idea tangible without needing a full PSA re-run per interaction.
+- **Likely packages:** `shiny`
+
+---
+
 ## Standing note for future chapters (25-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Coverage currently extends through Chapter 24. Natural strong 
-candidates expected ahead: Chapter 25 (PSA — tornado diagrams, CEACs, the Dirichlet/
-Cholesky machinery flagged but deferred from Ch.19 §19.8), Chapter 26 (VOI/EVPI/EVPPI), 
-all of which are classically well-suited to live parameter exploration.
+rebuilding it from scratch. Coverage currently extends through Chapter 25. Natural strong 
+candidates expected ahead: Chapter 26 (VOI/EVPI/EVPPI), which is classically well-suited to 
+live parameter exploration.
 
 ## When we build these
 

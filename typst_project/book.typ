@@ -80,6 +80,10 @@
 #include "chapters/ch23_budget_impact.typ"
 #include "chapters/ch24_cba_dcea_ecea.typ"
 
+// ---- Part V: Uncertainty, Value of Information and Model Validation ----
+#part-divider("V", "Uncertainty, Value of Information and Model Validation")
+#include "chapters/ch25_handling_uncertainty.typ"
+
 // ---- Back matter ----
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Figures]
