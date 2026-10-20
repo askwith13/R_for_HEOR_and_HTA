@@ -614,6 +614,11 @@ cox_trans <- coxph(Surv(Tstart, Tstop, status) ~ strata(trans), data = msdat)
 msf <- msfit(cox_trans, trans = tmat)
 ```
 
+#figure(
+  image("../images/conceptual/ch10_tb_pathway_states.png", width: 90%),
+  caption: [The 4-state TB treatment pathway encoded by `transMat()` above: Treatment Success can move to Failure or Death; Failure can move to Retreatment or Death; Retreatment can only move to Death, which is reachable from every state as a competing risk.],
+) <fig-ch10-tb-pathway-states>
+
 `msprep()` is doing the unglamorous but essential work: for every patient and every transition they were at risk of, it creates a row with a start time, stop time, and event indicator, in the "counting process" format `coxph()` expects when combined with `Surv(Tstart, Tstop, status)`. `msfit()` then assembles the fitted cumulative hazards per transition into the full set of transition probabilities — the quantity that actually populates a multi-state Markov cohort model's transition-probability matrix.
 
 === Parametric extrapolation of transition-specific hazards with `flexsurv`

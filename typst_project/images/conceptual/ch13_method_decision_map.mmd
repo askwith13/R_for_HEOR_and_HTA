@@ -1,0 +1,13 @@
+flowchart LR
+    Q1{"How many<br/>trials in the<br/>comparison?"}
+    Q1 -->|"2 trials"| Q2{"AgD trial's<br/>covariate reporting<br/>detail?"}
+    Q1 -->|"3+ trials<br/>(network)"| ML["ML-NMR<br/><i>Full network, IPD + AgD<br/>mixed, distributional AgD<br/>(means, SDs, correlations)</i>"]
+
+    Q2 -->|"Means only"| MAIC["MAIC<br/><i>Reweight IPD to match<br/>AgD trial's reported<br/>covariate moments</i>"]
+    Q2 -->|"Means + confident<br/>in outcome model"| STC["STC<br/><i>Fit outcome regression<br/>on IPD, predict at AgD's<br/>covariate means</i>"]
+
+    style Q1 fill:#f1f5f9,stroke:#475569
+    style Q2 fill:#f1f5f9,stroke:#475569
+    style MAIC fill:#fef3c7,stroke:#92400e
+    style STC fill:#dbeafe,stroke:#1e3a8a
+    style ML fill:#dcfce7,stroke:#166534

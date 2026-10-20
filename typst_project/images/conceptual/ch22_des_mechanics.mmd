@@ -1,0 +1,16 @@
+flowchart LR
+    A["Entity arrives<br/>(e.g. patient)"] --> B{"Nurse (resource)<br/>free?"}
+    B -->|"Yes"| C["Seize resource<br/>(screening starts)"]
+    B -->|"No"| D["Join event queue<br/>(wait in line)"]
+    D --> C
+    C --> E["timeout()<br/>service duration"]
+    E --> F["Release resource<br/>(nurse becomes free)"]
+    F --> G["Entity leaves"]
+
+    style A fill:#dbeafe,stroke:#1e3a8a
+    style B fill:#f1f5f9,stroke:#475569
+    style C fill:#fef3c7,stroke:#92400e
+    style D fill:#fde68a,stroke:#92400e
+    style E fill:#fef3c7,stroke:#92400e
+    style F fill:#dcfce7,stroke:#166534
+    style G fill:#dcfce7,stroke:#166534

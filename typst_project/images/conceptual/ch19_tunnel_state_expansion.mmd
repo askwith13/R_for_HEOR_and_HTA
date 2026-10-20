@@ -1,0 +1,34 @@
+flowchart LR
+    subgraph Simple["Time-homogeneous (single state)"]
+        OT["On Treatment<br/><i>one fixed failure risk<br/>for the whole course</i>"]
+        OT --> C1["Cured"]
+        OT --> F1["Fail"]
+        OT --> D1["Death"]
+    end
+
+    subgraph Tunnel["Tunnel-state expansion (state_time-dependent)"]
+        T1["OnTx_cycle1"] --> T2["OnTx_cycle2"]
+        T2 --> T3["OnTx_cycle3"]
+        T3 --> T4["..."]
+        T1 --> C2["Cured"]
+        T1 --> F2["Fail"]
+        T1 --> D2["Death"]
+        T2 --> C2
+        T2 --> F2
+        T2 --> D2
+        T3 --> C2
+        T3 --> F2
+        T3 --> D2
+    end
+
+    style OT fill:#fef3c7,stroke:#92400e
+    style T1 fill:#dbeafe,stroke:#1e3a8a
+    style T2 fill:#dbeafe,stroke:#1e3a8a
+    style T3 fill:#dbeafe,stroke:#1e3a8a
+    style T4 fill:#f1f5f9,stroke:#475569
+    style C1 fill:#dcfce7,stroke:#166534
+    style C2 fill:#dcfce7,stroke:#166534
+    style F1 fill:#fde68a,stroke:#92400e
+    style F2 fill:#fde68a,stroke:#92400e
+    style D1 fill:#fecaca,stroke:#991b1b
+    style D2 fill:#fecaca,stroke:#991b1b

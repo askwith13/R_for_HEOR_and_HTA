@@ -28,6 +28,11 @@ Think of a single-nurse TB-screening clinic. Patients arrive one after another, 
 
 A DES engine advances time not in fixed steps (as a Markov cohort model does, one annual cycle at a time) but by jumping from event to event: "patient 14 arrives," "the nurse finishes with patient 11," "patient 9 gives up and leaves the queue." Between events, nothing in the model changes, so there is no point computing anything — the simulation clock simply fast-forwards to the next scheduled event.
 
+#figure(
+  image("../images/conceptual/ch22_des_mechanics.png", width: 100%),
+  caption: [The mechanical skeleton of a DES clinic model: an entity arrives, seizes the resource if it is free or joins the event queue if not, is served for a `timeout()` duration, then releases the resource and leaves.],
+) <fig-ch22-des-mechanics>
+
 #difficult-terminology("Event queue", [
   The *event queue* is not the patients' waiting line — it is the simulation engine's internal to-do list, ordered by time: "at t=4.2, patient 14 arrives," "at t=5.0, the nurse finishes with patient 11," and so on. The engine always executes whichever event is earliest, then recomputes what new events that triggers (an arrival event may schedule a "start service" event; a "finish service" event may schedule the next patient's "start service"). You never manipulate this queue directly in `simmer` — it is managed for you — but understanding that it exists explains why DES output is driven by *when* things happen, not by a fixed clock tick.
 ])
@@ -207,6 +212,11 @@ $ dif(I,t) = sigma E - gamma I $
 $ dif(R,t) = gamma I $
 
 where $sigma$ is the rate of progression from latent to active disease (so $1 slash sigma$ is the mean latent period).
+
+#figure(
+  image("../images/conceptual/ch22_seir_flow.png", width: 90%),
+  caption: [The SEIR compartment flow: Susceptible individuals move to Exposed at rate $beta$ (force of infection), then to Infectious at rate $sigma$ (progression), then to Recovered/Removed at rate $gamma$ (recovery), matching the ODE system above.],
+) <fig-ch22-seir-flow>
 
 #pitfall(
   [Real TB transmission dynamics are usually modelled with *more* than four compartments — separate latent-fast/latent-slow states, relapse pathways, drug-sensitive versus drug-resistant strains, and treatment compartments are all standard refinements in published TB transmission models. The SEIR structure here is a deliberately simplified teaching skeleton to show the mechanics of `deSolve::ode()`; a real TB policy model would need a substantially richer compartment structure built with epidemiological input, not just an R coding exercise.],

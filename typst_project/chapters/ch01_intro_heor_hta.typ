@@ -216,6 +216,11 @@ date; it is continuous across a technology's life, and the type of
 evidence that is credible, available and decision-relevant changes
 at each stage:
 
+#figure(
+  image("../images/conceptual/ch01_product_lifecycle.png", width: 100%),
+  caption: [The five stages of HEOR evidence generation across a product's lifecycle, with the characteristic R workflow emphasis at each stage (dashed boxes).],
+) <fig-ch01-product-lifecycle>
+
 + *Early pipeline / pre-clinical and Phase I-II*: indication selection,
   early value proposition modelling, target product profile
   cost-effectiveness thresholds, often using modelled (not yet

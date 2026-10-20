@@ -1,0 +1,24 @@
+flowchart LR
+    subgraph L1["Layer 1"]
+        A["Operating System<br/>(Windows / macOS / Linux)"]
+    end
+    subgraph L2["Layer 2"]
+        B["System libraries<br/>(e.g. libcurl, C++ toolchain)"]
+    end
+    subgraph L3["Layer 3"]
+        C["R interpreter version"]
+    end
+    subgraph L4["Layer 4 — renv covers this"]
+        D["R packages<br/>(exact versions via renv.lock)"]
+    end
+    subgraph L5["Layer 5 — Docker covers everything"]
+        E["Docker container<br/>wraps Layers 1-4 together"]
+    end
+
+    A --> B --> C --> D --> E
+
+    style A fill:#f1f5f9,stroke:#475569
+    style B fill:#f1f5f9,stroke:#475569
+    style C fill:#f1f5f9,stroke:#475569
+    style D fill:#dbeafe,stroke:#1e3a8a
+    style E fill:#fef3c7,stroke:#92400e

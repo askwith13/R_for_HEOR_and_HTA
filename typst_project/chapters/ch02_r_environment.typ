@@ -297,6 +297,11 @@ JAGS, used in some legacy HEOR network meta-analysis scripts via the `rjags` or 
 
 Docker addresses this by pinning the entire execution environment: the base operating system, the system libraries, the R version itself, and then the R packages on top. A container built from a `Dockerfile` today will — barring extreme edge cases such as architecture changes — produce bit-for-bit the same computational environment years later, regardless of what has changed on the host machine or in CRAN's current package index.
 
+#figure(
+  image("../images/conceptual/ch02_reproducibility_layers.png", width: 100%),
+  caption: [Reproducibility layers: `renv` (Section 2.3) pins only the R packages layer; Docker wraps every layer beneath and around it, producing a fully portable environment.],
+) <fig-ch02-reproducibility-layers>
+
 A minimal, HEOR-appropriate `Dockerfile` built on the Rocker Project's `rocker/r-ver` image, which pins an exact R version, looks like this:
 
 ```dockerfile

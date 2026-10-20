@@ -1,0 +1,18 @@
+flowchart LR
+    A["Prior elicitation /<br/>specification<br/>(14.1-14.2)"] --> B["Bayesian evidence<br/>synthesis<br/>(builds on Ch.12 NMA)"]
+    B --> C["MCMC fitting<br/>Stan / JAGS / brms<br/>(14.3)"]
+    C --> D["Diagnostics<br/>R-hat, ESS, posterior<br/>predictive check (14.4)"]
+    D --> E["Posterior draws<br/>used directly as<br/>PSA sample (14.5-14.6)"]
+    E --> F["Reporting<br/>(14.8)"]
+
+    E -.->|"hands off to"| G["Ch.25<br/>Uncertainty (PSA)"]
+    E -.->|"hands off to"| H["Ch.26<br/>Value of Information"]
+
+    style A fill:#f1f5f9,stroke:#475569
+    style B fill:#dbeafe,stroke:#1e3a8a
+    style C fill:#fef3c7,stroke:#92400e
+    style D fill:#fde68a,stroke:#92400e
+    style E fill:#dcfce7,stroke:#166534
+    style F fill:#f1f5f9,stroke:#475569
+    style G fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3
+    style H fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3

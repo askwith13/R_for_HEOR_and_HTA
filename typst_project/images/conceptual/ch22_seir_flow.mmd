@@ -1,0 +1,9 @@
+flowchart LR
+    S["Susceptible<br/>(S)"] -->|"beta<br/>(force of infection)"| E["Exposed<br/>(E)"]
+    E -->|"sigma<br/>(progression rate)"| I["Infectious<br/>(I)"]
+    I -->|"gamma<br/>(recovery rate)"| R["Recovered /<br/>Removed (R)"]
+
+    style S fill:#dbeafe,stroke:#1e3a8a
+    style E fill:#fde68a,stroke:#92400e
+    style I fill:#fecaca,stroke:#991b1b
+    style R fill:#dcfce7,stroke:#166534

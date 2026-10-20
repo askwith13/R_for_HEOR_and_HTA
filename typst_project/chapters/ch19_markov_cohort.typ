@@ -209,6 +209,11 @@ Consider the *On Treatment* state in our running TB model. A patient who has jus
 
 The fix is the *tunnel state*: instead of one "On Treatment" state, define a short chain of sub-states that a cohort passes through in strict sequence -- `OnTx_cycle1`, `OnTx_cycle2`, `OnTx_cycle3`, ... -- each carrying its own row of outbound transition probabilities. A patient entering treatment always starts at `OnTx_cycle1`; from there they can only move to `Cured`, `Fail`, `Death`, or forward into `OnTx_cycle2` (never back into `OnTx_cycle1`, and never skip ahead). This restores memorylessness *within* each tunnel sub-state while still letting the aggregate "on treatment" risk profile vary smoothly across state-time. Tunnel states are not a hack bolted onto the Markov formalism -- they are the textbook general-purpose device for representing any non-exponential (non-memoryless) sojourn-time effect inside a cohort Markov model, at the cost of a larger but still linear state space.
 
+#figure(
+  image("../images/conceptual/ch19_tunnel_state_expansion.png", width: 100%),
+  caption: [Tunnel-state expansion: the single time-homogeneous "On Treatment" state (bottom) versus its expansion into a chain of `OnTx_cycle1`, `OnTx_cycle2`, `OnTx_cycle3`, ... sub-states (top), each with its own outbound transition probabilities to Cured/Fail/Death.],
+) <fig-ch19-tunnel-state-expansion>
+
 Hand-building tunnel states is mechanical but tedious: every tunnel sub-state needs its own column of parameters, and with several time-varying quantities (failure risk, state cost, state utility) the bookkeeping grows quickly. `heemod` removes this burden with its `state_time` variable. Inside `define_transition()` or `define_state()`, any expression that references `state_time` is automatically recognised as state-time-dependent, and `heemod` expands the relevant state into the necessary tunnel states behind the scenes when the strategy is run -- the modeller writes one expression, not N hand-coded sub-states. This is a real, documented `heemod` feature, not an approximation layered on top of the package; the mechanics described above are exactly what `state_time` is implementing under the hood.
 
 ```r

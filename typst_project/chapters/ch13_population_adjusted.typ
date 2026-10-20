@@ -301,6 +301,11 @@ The call shapes for `set_ipd()`, `set_agd_arm()`, and `nma()` mirror Chapter 12 
   Think of ML-NMR as "STC done properly across a whole network." STC matches an AgD trial to one covariate value (its mean); ML-NMR matches it to the trial's *entire reported covariate distribution*, and does so simultaneously for every AgD trial in the network while preserving one internally consistent set of relative treatment effects. The price is data: ML-NMR only delivers its full benefit when AgD trials publish SDs and, where effect modifiers interact, correlations — not just means. When that reporting is thin, ML-NMR can gracefully fall back toward STC-like behaviour, but its defensibility advantage shrinks accordingly.
 ]
 
+#figure(
+  image("../images/conceptual/ch13_method_decision_map.png", width: 100%),
+  caption: [A quick triage map for choosing among MAIC, STC and ML-NMR, based on how many trials are in the evidence base and how much covariate detail the AgD trial(s) report. The §13.1-§13.4 prose walks through this same logic linearly; this is a fast index back into it, not a replacement for reading the assumptions each method actually requires.],
+) <fig-ch13-method-decision-map>
+
 #ref-table(
   [Comparison of the three population-adjustment methods covered in this chapter: data requirements, core assumption, and typical use case],
   academic-table(

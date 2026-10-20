@@ -1,0 +1,22 @@
+flowchart LR
+    A["Early pipeline /<br/>Phase I-II<br/><i>Indication selection,<br/>early value proposition,<br/>TPP thresholds</i>"] --> B["Phase III /<br/>pre-launch<br/><i>Pivotal trial models,<br/>SLRs/NMAs,<br/>early utility data</i>"]
+    B --> C["Launch / initial<br/>HTA submission<br/><i>Full value dossier:<br/>economic model, BIM,<br/>SLR, ITC</i>"]
+    C --> D["Post-launch<br/>RWE<br/><i>RWE studies, ERG<br/>responses, managed<br/>entry agreements</i>"]
+    D --> E["Re-assessment /<br/>loss of exclusivity<br/><i>Re-appraisal vs new<br/>comparators, biosimilars</i>"]
+
+    A2["Quick decision-tree /<br/>Markov prototypes<br/>(Ch.18-19)"] -.-> A
+    B2["Evidence synthesis<br/>inputs (Part III)"] -.-> B
+    C2["Validated, PSA-ready<br/>models (Ch.25, 27)"] -.-> C
+    D2["RWE pipelines,<br/>causal inference (Ch.15)"] -.-> D
+    E2["Updated modelling on<br/>existing codebase"] -.-> E
+
+    style A fill:#dbeafe,stroke:#1e3a8a
+    style B fill:#dbeafe,stroke:#1e3a8a
+    style C fill:#fef3c7,stroke:#92400e
+    style D fill:#dcfce7,stroke:#166534
+    style E fill:#fce7f3,stroke:#86198f
+    style A2 fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3
+    style B2 fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3
+    style C2 fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3
+    style D2 fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3
+    style E2 fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 3 3

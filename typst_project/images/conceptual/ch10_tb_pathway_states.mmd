@@ -1,0 +1,11 @@
+flowchart LR
+    A["Treatment<br/>Success"] --> B["Failure"]
+    A --> D["Death"]
+    B --> C["Retreatment"]
+    B --> D
+    C --> D
+
+    style A fill:#dcfce7,stroke:#166534
+    style B fill:#fef3c7,stroke:#92400e
+    style C fill:#fde68a,stroke:#92400e
+    style D fill:#fecaca,stroke:#991b1b
