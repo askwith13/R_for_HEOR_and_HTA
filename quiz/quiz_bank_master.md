@@ -6016,3 +6016,224 @@ A complete question bank for a quiz application, drawn from all 27 written chapt
 - D) One basic parameter, since a network ultimately reduces to a single pooled treatment effect
 **Answer:** B
 **Explanation:** The §12.3.3 difficult-terminology box on "basic parameters (of a network)" explains that rather than separately estimating all six pairwise comparisons among four treatments, one treatment is picked as reference (here C) and the basic parameters are just the effects of each other treatment relative to that reference (A-vs-C, B-vs-C, D-vs-C) -- always one fewer than the number of treatments. Every other comparison the league table reports (like D-vs-A) is then derived algebraically from these basic parameters rather than estimated separately.
+
+
+### Q592 [Easy] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.1, what is an R package fundamentally, in contrast to a loose folder of scripts?
+- A) A single large script that runs all model functions in sequence
+- B) A standardised bundle of R code, documentation, and metadata that R itself can install, load, and check for internal consistency
+- C) A compiled binary executable that no longer requires R to run
+- D) A cloud-hosted version of the model with no local installation needed
+**Answer:** B
+**Explanation:** §30.1 defines an R package as a standardised bundle of code, documentation, and metadata that R knows how to install, load, and check for consistency -- the same mechanism behind packages like `dplyr` or `survival` -- replacing the need to manually `source()` a dozen scripts in the right order.
+
+### Q593 [Easy] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** According to §30.2, what is the `DESCRIPTION` file of an R package?
+- A) A human-readable Word document describing the model's clinical rationale
+- B) A plain-text, machine-readable manifest read by R itself, recording the package name, version, and the `Imports`/`Depends` fields listing required dependencies
+- C) The main R script containing the model's core functions
+- D) A log file automatically generated after every `devtools::check()` run
+**Answer:** B
+**Explanation:** §30.2 states the `DESCRIPTION` file is a plain-text file of package metadata read by R, not documentation for humans to browse -- it records name, version, title, author, and the `Imports`/`Depends` fields so R can check required dependencies are present before anything runs.
+
+### Q594 [Medium] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Under semantic versioning (MAJOR.MINOR.PATCH) as described in §30.2, a health-economic model package moves from version 1.2.0 to 1.3.0. What does this change most likely indicate?
+- A) A bug fix was applied that does not change behaviour meaningfully
+- B) New functionality was added, but existing code still works as before
+- C) A change was made that could break code written against the earlier version
+- D) The package was simply renamed with no functional change
+**Answer:** B
+**Explanation:** §30.2 explains that under semantic versioning, PATCH increases for non-behaviour-changing bug fixes, MINOR increases when new functionality is added while existing code still works, and MAJOR increases when a change could break code written against an earlier version. Going from 1.2.0 to 1.3.0 is a MINOR bump.
+
+### Q595 [Medium] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.2, what specific problem does the `NAMESPACE` file solve for an R package?
+- A) It stores the version-controlled history of every commit made to the package
+- B) It prevents an internal helper function (e.g., one named `clean()`) from silently clashing with a same-named function from a different loaded package, by controlling which functions are exposed to users
+- C) It records the exact versions of all dependencies for reproducibility
+- D) It generates the browsable documentation website for the package
+**Answer:** B
+**Explanation:** §30.2 describes `NAMESPACE` as an auto-generated file that tells R which functions are available to a user of `library(heormodel)` versus which are purely internal helpers, which is what prevents an internal helper like `clean()` from clashing with a `clean()` function from an entirely different package.
+
+### Q596 [Medium] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** In the `roxygen2` worked example for `run_markov_model()` in §30.3, what specific consequence follows from omitting the `@export` tag on a function the author intended users to call?
+- A) The function is automatically deleted from the `R/` folder
+- B) The function remains an internal helper, invisible outside the package -- a common cause of "but it worked when I ran the script directly" confusion
+- C) `devtools::check()` will refuse to run until the tag is added
+- D) The function's documentation is rendered in red text on the `pkgdown` site
+**Answer:** B
+**Explanation:** §30.3's terminology box states that `@export` tells `roxygen2` a function should be listed in `NAMESPACE` as user-available; functions without it remain internal helpers invisible outside the package, which is called out as a common source of confusion after packaging.
+
+### Q597 [Hard] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** In the `targets` pipeline example of §30.4 (raw_data -> clean_data -> calibrated_params -> psa_results -> ceac_plot), what does the "pipeline / dependency graph" concept formally capture?
+- A) The physical order in which R scripts are saved on disk
+- B) The set of computational steps needed to go from raw inputs to final results, together with which steps depend on the outputs of others
+- C) A record of which collaborator last edited each function
+- D) The list of CRAN mirrors used to download package dependencies
+**Answer:** B
+**Explanation:** §30.4 defines a pipeline as the set of computational steps from raw inputs to final results plus the fact that some steps depend on others' outputs (e.g., PSA depends on calibrated parameters, which depend on cleaned data) -- `targets` builds this dependency graph explicitly from the code rather than leaving it implicit in script run order.
+
+### Q598 [Medium] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per the build cache / memoisation example in §30.4, if a labelling typo in the CEAC plot code is fixed and `tar_make()` is re-run, what happens to the 10,000-simulation PSA step?
+- A) It automatically reruns because any change to the pipeline file triggers a full rebuild
+- B) It is skipped and its previously stored result is reused, because its own inputs have not changed
+- C) It reruns with a reduced number of simulations to save time
+- D) `targets` deletes the cached PSA result to force fresh validation
+**Answer:** B
+**Explanation:** §30.4 explains that `targets`' build cache (memoisation) stores a step's result and reuses it as long as nothing it depends on has changed; fixing a labelling typo in the downstream CEAC plot code means only `ceac_plot` reruns, while the ten-thousand-simulation `psa_results` target is reused unchanged.
+
+### Q599 [Easy] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.5, what is continuous integration (CI) as applied to an R-based health-economic model package?
+- A) A manual checklist a reviewer completes once before a submission deadline
+- B) The practice of automatically building and testing code every time it changes, without relying on a person to remember to run the checks
+- C) A method for calibrating transition probabilities automatically
+- D) A licensing framework for open-source R packages
+**Answer:** B
+**Explanation:** §30.5 defines CI as automatically building and testing code every time it changes -- in the HEOR context, every push to GitHub triggers a robot that installs R and dependencies, runs the test suite and `R CMD check`, and reports pass or fail without the author needing to remember to do it.
+
+### Q600 [Easy] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.5, what is a YAML workflow file used for in the context of GitHub Actions CI for an R package?
+- A) It stores the model's probabilistic sensitivity analysis results
+- B) It is a plain-text configuration file telling GitHub Actions what sequence of steps to run and when to run them (e.g., on every push)
+- C) It is the compiled output of `devtools::check()`
+- D) It replaces the `DESCRIPTION` file for package metadata
+**Answer:** B
+**Explanation:** §30.5 describes YAML as a human-readable structured configuration format, and a "workflow file" as a YAML file telling GitHub Actions what sequence of steps to run (install R, install packages, run checks) and when (every push, only on main, nightly, etc.).
+
+### Q601 [Hard] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.6, why does the chapter recommend pointing an ERG reviewer at a tagged release rather than the live repository's default `main` branch view?
+- A) Tagged releases load faster on GitHub's servers than the default branch view
+- B) A tagged release is a fixed snapshot that does not change after the fact, so the model a reviewer received, reviewed, and cited in their report are provably the same artifact -- whereas `main` shows whatever changes have been pushed up to that moment
+- C) GitHub does not allow read-only collaborator access to the default branch
+- D) Tagged releases automatically include a `pkgdown` documentation site while `main` does not
+**Answer:** B
+**Explanation:** §30.6 explains that a release packages a tagged commit as a stable, downloadable snapshot that does not change after the fact; this matters because if the sponsor pushes a bug fix mid-review, a reviewer looking at `main` would be reviewing a moving target, whereas a tagged release pins exactly what was reviewed and cited.
+
+### Q602 [Medium] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.7, what does an "open-source license" legally accomplish when attached to a piece of code?
+- A) It automatically transfers copyright ownership to whoever downloads the code
+- B) It grants others specific permissions (e.g., to view, use, modify, redistribute) that copyright law would otherwise withhold by default -- code with no license attached carries no such permission, regardless of being publicly visible on GitHub
+- C) It guarantees the code has passed `devtools::check()` and all tests
+- D) It is required only for packages intended for commercial use
+**Answer:** B
+**Explanation:** §30.7 states that without an explicit license, "the code is on GitHub" does not mean anyone has the legal right to reuse it -- silence is not permission. A license is a legal document granting permissions that copyright law would otherwise withhold.
+
+### Q603 [Medium] [MCQ]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** Per §30.7's distinction between permissive and copyleft licenses, what is the key practical consequence of licensing a package under the GPL family (copyleft) rather than MIT (permissive)?
+- A) GPL-licensed code cannot legally be used by anyone outside the original author's organisation
+- B) Any derivative work incorporating the GPL-licensed code must itself be released under the same copyleft license, so it cannot be quietly absorbed into a closed, proprietary product
+- C) GPL licensing automatically expires after five years, unlike MIT
+- D) MIT-licensed code requires payment of a royalty for commercial reuse, while GPL code does not
+**Answer:** B
+**Explanation:** §30.7 explains that copyleft licenses (the GPL family) require any derivative work to be released under the same license -- "if you build on this, your building must stay open too" -- meaning copyleft code cannot be quietly absorbed into a closed, proprietary product, unlike permissively-licensed (MIT/Apache/BSD) code.
+
+### Q604 [Hard] [Image]
+**Chapter(s):** 30 -- R Packages and Pipelines
+**Question:** IMAGE PLACEHOLDER: the ref-table from §30.7 comparing three common license choices (MIT License, GPL-3, CC-BY) across the columns "Commercial reuse allowed?", "Derivatives must stay open?", and "Typical use case". Based on this table, which license is described as typically used for written content, data, and reports rather than code?
+- A) MIT License
+- B) GPL-3
+- C) CC-BY
+- D) Apache 2.0
+**Answer:** C
+**Explanation:** The §30.7 comparison table lists CC-BY as allowing commercial reuse with attribution, not requiring derivatives to stay open, with a typical use case of "written content, data, reports -- not typically used for code," distinguishing it from the code-oriented MIT and GPL-3 entries.
+
+### Q605 [Easy] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** What is a "reference case" in HTA methodology?
+- A) A legal contract between an agency and a manufacturer specifying price
+- B) An agency's defined "house style" for the base-case analysis -- a fixed set of choices (perspective, outcome measure, discount rate, time horizon) every submission must follow unless justified otherwise
+- C) A database of past appraisal decisions used only for audit purposes
+- D) A single numeric cost-effectiveness threshold published by the WHO
+**Answer:** B
+**Explanation:** As defined in the difficult-terminology box in Section 31.1, a reference case is a fixed set of methodological choices that allows submissions from different companies and diseases to be compared on a like-for-like basis; scenario/sensitivity analyses may deviate from it, but the base case cannot without justification.
+
+### Q606 [Medium] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** What is Ayushman Bharat PM-JAY, and why does it matter for HTAIn's work?
+- A) A private health insurance provider that commissions independent ERG critiques in India
+- B) India's DSU Technical Support Document series equivalent to NICE's TSDs
+- C) India's flagship public health insurance scheme providing cashless hospitalisation cover to lower-income households; HTAIn assessments feed into decisions about what its benefit package covers and at what reimbursement rate
+- D) A WHO-run threshold-setting committee for South Asian countries
+**Answer:** C
+**Explanation:** Per Section 31.3's difficult-terminology box, PM-JAY is India's 2018-launched flagship public health insurance scheme, and it is the policy vehicle that HTAIn technology assessments ultimately feed into -- the Indian analogue of what a NICE guidance recommendation does for the NHS.
+
+### Q607 [Medium] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** How does the iDSI reference case for LMIC settings relate to an agency reference case like NICE's, and what is its most debated recommendation?
+- A) It is unrelated to the NICE concept; its main recommendation is a mandatory societal perspective
+- B) It is the same general concept (a standardised checklist of methodological choices so evaluations can be fairly compared) but aimed at countries without their own, and its most debated element is the willingness-to-pay threshold -- historically the 1-3x GDP-per-capita heuristic
+- C) It replaces QALYs with life-years as the only permitted outcome measure
+- D) It is a legally binding international treaty enforced by the WHO on all LMIC governments
+**Answer:** B
+**Explanation:** Section 31.4's difficult-terminology box states a reference case is a standardised checklist (perspective, discount rate, uncertainty handling, comparators) so different models can be fairly compared, and that iDSI's version targets countries lacking their own; the chapter identifies the WTP threshold -- especially the now-deprecated 1-3x GDP-per-capita heuristic -- as its most consequential and debated recommendation.
+
+### Q608 [Easy] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** What is an Evidence Review Group (ERG) in the NICE Technology Appraisal process?
+- A) A NICE internal staff committee that sets the final GBP20,000-30,000/QALY threshold
+- B) The manufacturer's own in-house health economics team
+- C) An independent team, usually university-based health economists and clinicians (not NICE staff, not the manufacturer), commissioned to critically check a company's submitted model and evidence before the committee decides
+- D) A patient advocacy panel that votes on whether a drug should be reimbursed
+**Answer:** C
+**Explanation:** Section 31.6's difficult-terminology box defines the ERG as an independent, usually academic team performing a structured, published peer review of the submitted cost-effectiveness model, with the company then given a formal chance to respond via technical engagement.
+
+### Q609 [Hard] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** Why is a "reference case" (as generically defined) distinct from the "Reference case (LMIC context)" discussion in Section 31.4, even though both boxes define the same underlying term?
+- A) The LMIC box redefines a reference case as a legally binding treaty rather than a methodological checklist
+- B) They describe the same core concept, but Section 31.4's box emphasizes that iDSI's reference case is specifically aimed at countries that do not yet have their own established one, unlike NICE's or CADTH's long-standing in-house versions
+- C) The generic reference case concept applies only to discount rates, while the LMIC version applies only to WTP thresholds
+- D) The LMIC reference case box states that iDSI's reference case overrides and replaces NICE's for any multinational submission
+**Answer:** B
+**Explanation:** Both difficult-terminology boxes describe a reference case as a standardised methodological checklist enabling fair comparison across submissions; the distinguishing point raised in 31.4 is that the iDSI reference case exists precisely because many LMICs lack their own established reference case, unlike the mature NICE/CADTH versions covered earlier in the chapter.
+
+### Q610 [Medium] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** According to the Section 31.5 agency comparison table, which agency's approach deliberately avoids stating a cost-per-QALY threshold "by design" rather than simply omitting one?
+- A) NICE (UK)
+- B) PBAC (Australia)
+- C) IQWiG/G-BA (Germany)
+- D) ICER (USA)
+**Answer:** C
+**Explanation:** The table and surrounding prose state IQWiG/G-BA uses an efficiency-frontier method with "no cost/QALY threshold by design" -- the chapter explicitly notes this is a considered methodological stance (tied to the AMNOG early benefit assessment process), not an omission.
+
+### Q611 [Medium] [Image]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** IMAGE PLACEHOLDER: The Section 31.5 six-column agency comparison table (Agency, Perspective, Discount, WTP threshold, Comparator, Uncertainty) listing NICE, CADTH, PBAC, IQWiG/G-BA, HAS, ICER, and HTAIn. Based on this table, which agency's discount rate is explicitly listed as a fixed base-case percentage different from NICE's 3.5%?
+- A) CADTH -- "Per current guidance"
+- B) PBAC -- "5% base case"
+- C) HAS -- "Varies by guidance"
+- D) HTAIn -- "Per Indian guidance"
+**Answer:** B
+**Explanation:** Among the table's entries, PBAC (Australia) is the one with an explicit fixed numeric discount rate stated in the table -- "5% base case" -- unlike CADTH, HAS, and HTAIn, whose discount conventions are described only qualitatively ("per current guidance," "varies by guidance," "per Indian guidance").
+
+### Q612 [Hard] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** The chapter's R code example for an HTAIn-facing model parameterises a cost input across three scenarios: pmjay_tariff, public_tertiary, and private_estimate. What practical India-specific issue is this pattern designed to address?
+- A) The requirement to report results in both INR and USD simultaneously
+- B) The wide spread in unit costs for a given procedure across public, private, and PM-JAY empanelled-hospital tariffs, given sparser and more heterogeneous Indian cost data than UK/Canadian registries
+- C) A legal mandate that all HTAIn submissions must include exactly three discount rate scenarios
+- D) The need to convert QALYs into DALYs for every HTAIn submission
+**Answer:** B
+**Explanation:** Section 31.3 explains that Indian unit costs vary substantially between public, private, and PM-JAY empanelled-hospital tariffs, and that data sparsity relative to NHS/CIHI registries pushes HTAIn-facing models toward treating data-source assumptions as a first-class sensitivity dimension -- illustrated by the unit_cost_scenarios code example.
+
+### Q613 [Easy] [MCQ]
+**Chapter(s):** 31 -- Agency Requirements and Reference Cases
+**Question:** According to Section 31.2, why can a model built strictly to NICE's reference case not simply be "relabeled" for a German IQWiG/G-BA submission under AMNOG?
+- A) Because Germany requires all models to be built in a different programming language than R
+- B) Because IQWiG's early benefit assessment is explicitly not a cost-effectiveness exercise -- it centres patient-relevant outcomes relative to a comparator and produces an additional-benefit rating that feeds into price negotiation, not an ICER-versus-threshold decision
+- C) Because Germany does not allow QALYs to be measured using the EQ-5D instrument
+- D) Because German law requires a 10% discount rate on all cost inputs
+**Answer:** B
+**Explanation:** The chapter states that AMNOG's early benefit assessment centres patient-relevant outcomes and produces an "additional benefit" rating used in price negotiation rather than a cost-per-QALY decision, so a NICE-style QALY/ICER model needs substantial reworking -- not relabeling -- for a German submission.
