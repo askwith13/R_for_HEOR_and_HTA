@@ -193,3 +193,7 @@ this file).
 ## Chapter 30 additions (R Packages and Pipelines for Model Development)
 
 | C26 | Ch.30 | N/A (R packaging/pipeline content) | None | Checked per skill step 11b — 30.1-30.7 content (package scaffolding, documentation, targets pipelines, CI, sharing, licensing) is architectural/procedural, already made concrete via real worked code examples and one comparison table (`<tab-ch30-licenses>`); a dependency-graph diagram for `targets` was considered but the chapter's own `_targets.R` listing already shows the dependency chain linearly and explicitly, so a separate diagram was judged non-essential | Skipped (not needed) | — |
+
+## Chapter 31 additions (Agency Requirements and Reference Cases)
+
+| C27 | Ch.31 | 31.1 NICE Technology Appraisal process stages | Flowchart | A simple sequential flowchart of NICE's TA process (company submission -> ERG critique -> technical engagement -> committee meeting -> guidance), already described in prose per skill step 11b but genuinely sequential/structural content that would communicate faster as a diagram than a prose recap — deferred since 31.1's prose recap is adequate (this exact process was already explained in Chapters 27-30) and a diagram here would be the 4th or 5th repetition of the same process across the book | Pending (low priority — already explained multiple times in prose) | `images/conceptual/ch31_nice_ta_process.mmd` |

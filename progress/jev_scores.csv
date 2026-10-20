@@ -68,3 +68,6 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T13:30:12.314510+00:00,30,R Packages and Pipelines for Model Development,8.4,7.04,5.96,7.55,8.45,jev-1.13.0
 2026-10-20T13:31:12.833522+00:00,30,R Packages and Pipelines for Model Development,8.34,7.05,6.02,7.41,8.42,jev-1.13.0
 2026-10-20T13:31:18.089583+00:00,30,R Packages and Pipelines for Model Development,,,,,,7.15,jev-latest,prose_only
+2026-10-20T13:43:29.804588+00:00,31,Agency Requirements and Reference Cases,8.37,7.24,5.5,8.29,8.58,jev-1.13.0
+2026-10-20T13:44:30.426044+00:00,31,Agency Requirements and Reference Cases,8.25,7.45,6.15,8.28,8.58,jev-1.13.0
+2026-10-20T13:44:36.774267+00:00,31,Agency Requirements and Reference Cases,,,,,,6.73,jev-latest,prose_only

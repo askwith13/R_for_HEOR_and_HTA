@@ -92,6 +92,10 @@
 #include "chapters/ch29_shiny_apps.typ"
 #include "chapters/ch30_r_packages_pipelines.typ"
 
+// ---- Part VII: HTA in Practice ----
+#part-divider("VII", "HTA in Practice")
+#include "chapters/ch31_agency_requirements.typ"
+
 // ---- Back matter ----
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Figures]

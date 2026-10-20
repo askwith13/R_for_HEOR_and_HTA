@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 31,
+  "next_chapter_number": 32,
   "total_chapters": 35,
   "chapters": [
     {
@@ -216,7 +216,7 @@
       "num": 31,
       "title": "Agency Requirements and Reference Cases",
       "part": "VII. HTA in Practice",
-      "status": "pending"
+      "status": "complete"
     },
     {
       "num": 32,
@@ -492,6 +492,22 @@
       "revision_detail": "code_validity scored 5.96 on first draft (below 6/10 threshold) -- caused by a GitHub Actions YAML example incorrectly wrapped inside an ```r fence with every line commented out, not genuinely valid R. Fixed by moving it to a proper ```yaml fence matching Chapter 28's established convention. Re-scored to 6.02, cleared threshold -- single revision pass per skill rule.",
       "book_pdf_pages": "543 -> 556",
       "notes": "This book's own real LICENSE file was independently verified to match section 30.7's description verbatim (MIT for companion code, All Rights Reserved for prose) -- not an invented claim. 13 difficult-terminology boxes, 1 ref-table (license comparison). 0 Track-1/Shiny-candidate additions (architectural/procedural content, consistent with Ch.1/2/28/29 precedent). Code extraction: 12 blocks. renv.lock: 4 packages, all verified installed, zero unverified markers. FLAG FOR CHAPTER 31: it opens Part VII (HTA in Practice) and needs a new #part-divider('VII', 'HTA in Practice') call before its #include."
+    },
+    {
+      "timestamp": "2026-10-20T19:40:00+05:30",
+      "action": "Drafted, compiled, scored, and committed Chapter 31: Agency Requirements and Reference Cases (FIRST chapter of Part VII: HTA in Practice). Inserted a new Part VII divider before this chapter's include. Delegated 31.1-31.3 and 31.4-31.6 to two parallel sub-agents, assembled into one Typst file. Paused the heor-hta-book-writer cron during drafting to avoid a race condition (its next tick was ~20 minutes away) and will resume it after this commit.",
+      "jev_scores_raw": {
+        "coverage": 8.25,
+        "technical_correctness": 7.45,
+        "code_validity": 6.15,
+        "agency_grounding": 8.28,
+        "internal_consistency": 8.58,
+        "readability_prose_only": 6.73
+      },
+      "revision_triggered": true,
+      "revision_detail": "code_validity scored 5.5 on first draft (below 6/10 threshold) -- likely driven by this policy-heavy chapter's thin code density (only 2 short R blocks across 6 subsections) with undocumented cross-chapter function calls (run_cea_model(), run_tb_model()). Fixed by explicitly annotating both code blocks to state they call already-established functions from Chapters 17-27/30, not newly-invented undefined functions. Re-scored to 6.15, cleared threshold.",
+      "book_pdf_pages": "556 -> 568",
+      "notes": "Caught and fixed a real rendering bug independent of the Jev revision: the Section 31.5 agency-comparison ref-table was originally too tall for one page and visually overlapped its own caption -- compressed cell text, re-verified clean on a single page. Verified TSD 12=PSA and PBAC Guidelines v5.0 citations match Chapter 29's established precedent exactly (not newly fabricated). 4 difficult-terminology boxes. 1 new image-tracker entry (C27, NICE TA process flowchart, deferred as low priority -- already explained in prose multiple times across Ch.27-30). 1 new Shiny candidate (Cross-Agency Decision Explorer, total now 57 across 28 chapters). Code extraction: 2 blocks (genuinely low for this policy-heavy chapter). renv.lock: 1 package (quarto, genuinely not installed, correctly flagged unverified)."
     }
   ]
 }

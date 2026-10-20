@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 56 across 27 chapters.**
+**Total candidates so far: 57 across 28 chapters.**
 (Chapters 1, 2, 28, 29, 30 reviewed and judged to have none).
 
 ---
@@ -458,6 +458,15 @@ selection bar used throughout this file.
 
 Total candidates remain 56 across 27 chapters with content (Chapter 30 adds a chapter with
 zero candidates, consistent with how Chapters 1-2, 28, and 29 were handled).
+
+## Chapter 31. Agency Requirements and Reference Cases
+
+### Cross-Agency Decision Explorer
+- **Section:** 31.5
+- **What it does:** Sliders/dropdowns let the user pick an agency (NICE/CADTH/PBAC/ICER/HTAIn etc.) and vary a single ICER value; the app shows live whether that ICER falls below/above each agency's stated or inferred WTP threshold (where one is publicly stated -- explicitly showing "no threshold used by design" for IQWiG/G-BA rather than forcing a number), making the Section 31.5 comparison table's practical consequence ("the same ICER can be acceptable in one jurisdiction and inconclusive in another") directly visible rather than only read as a static table.
+- **Likely packages:** `shiny, ggplot2, bslib`
+
+Total candidates now 57 across 28 chapters with content.
 
 ## When we build these
 
