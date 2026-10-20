@@ -79,3 +79,8 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T18:47:53.877339+00:00,33,Patient-Reported Outcomes and Preference Research,,,,,,6.1,jev-latest,prose_only
 2026-10-20T19:01:43.247120+00:00,34,Emerging Methods and the Future of HEOR in R,8.55,8.02,8.24,6.91,8.74,jev-1.13.0
 2026-10-20T19:01:47.772013+00:00,34,Emerging Methods and the Future of HEOR in R,,,,,,6.56,jev-latest,prose_only
+2026-10-20T19:37:23.538337+00:00,35,End-to-End Worked Case Studies,7.92,6.97,6.0,4.45,8.29,jev-1.13.0
+2026-10-20T19:37:24.049323+00:00,35,End-to-End Worked Case Studies,,,,,,6.51,jev-latest,prose_only
+2026-10-20T19:39:22.621211+00:00,35,End-to-End Worked Case Studies,8.08,7.24,5.88,7.99,8.25,jev-1.13.0
+2026-10-20T19:41:17.214715+00:00,35,End-to-End Worked Case Studies,8.2,7.51,7.19,7.97,8.38,jev-1.13.0
+2026-10-20T19:41:23.255866+00:00,35,End-to-End Worked Case Studies,,,,,,6.31,jev-latest,prose_only

@@ -505,6 +505,20 @@ Total candidates now 61 across 30 chapters with content.
 
 Total candidates now 62 across 31 chapters with content.
 
+## Chapter 35. End-to-End Worked Case Studies
+
+### Budget Impact Uptake/Price Explorer
+- **Section:** 35.4
+- **What it does:** This is the exact app the case study itself describes building, conceptually, rather than a new idea -- sliders for the LAI's annual price, the relapse-rate reduction, and a 5-year uptake trajectory (either five individual year-sliders or one "ramp speed" slider), with the year-by-year budget-impact table and cost-trajectory chart from §35.4 recomputing live as any input moves. Directly demonstrates the case study's own stated point: uptake speed, not price, is the dominant driver of the 5-year net impact in the base case -- letting a payer committee discover that for themselves by dragging the uptake slider rather than being told it in prose.
+- **Likely packages:** `shiny, ggplot2, bslib`
+
+### CEAC/WTP Threshold Explorer (Case Studies A and B combined)
+- **Section:** 35.1, 35.2
+- **What it does:** A single willingness-to-pay slider (0 to 500,000) that, for either the chronic-disease Markov model or the oncology PSM, highlights the corresponding point on that case study's own PSA-derived CEAC curve and restates the probability-cost-effective figure live. Makes directly visible the chapter's own observation that the accept/reject conclusion for Case Study A flips sharply between a WTP of 20,000 and 50,000, while Case Study B's ICER never approaches a conventional oncology threshold at any reasonable WTP -- a genuinely different qualitative story for each case study that a static CEAC plot states but a live slider lets a reader feel.
+- **Likely packages:** `shiny, ggplot2, bslib`
+
+Total candidates now 64 across 32 chapters with content.
+
 ## When we build these
 
 Each app, when built, should get its own folder under a new top-level `shiny_apps/` 

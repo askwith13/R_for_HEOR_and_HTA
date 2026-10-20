@@ -99,6 +99,10 @@
 #include "chapters/ch33_pro_preference_research.typ"
 #include "chapters/ch34_emerging_methods.typ"
 
+// ---- Part VIII: Case Studies ----
+#part-divider("VIII", "Case Studies")
+#include "chapters/ch35_case_studies.typ"
+
 // ---- Back matter ----
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Figures]

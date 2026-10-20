@@ -29,7 +29,7 @@
       "status": "complete"
     }
   ],
-  "next_chapter_number": 35,
+  "next_chapter_number": null,
   "total_chapters": 35,
   "chapters": [
     {
@@ -240,7 +240,7 @@
       "num": 35,
       "title": "End-to-End Worked Case Studies",
       "part": "VIII. Case Studies",
-      "status": "pending"
+      "status": "complete"
     }
   ],
   "run_log": [
@@ -520,6 +520,11 @@
     {
       "timestamp": "2026-10-21T01:05:00+05:30",
       "summary": "Drafted, compiled, scored, and committed Chapter 34: Emerging Methods and the Future of HEOR in R (fourth and final chapter of Part VII: HTA in Practice; second-to-last chapter of the whole book -- Chapter 35 is the final chapter, opening Part VIII: Case Studies). Delegated 34.1-34.2 and 34.3-34.5 to two parallel sub-agents, assembled into one Typst file. Rejected Task 2's use of fabricated @ch-xxx Typst label references (not part of this book's label system, would have broken compilation) -- rewrote all cross-references in the book's established plain-text 'Chapter N' convention. Independently verified every cross-referenced chapter/section claim against the real source files via grep (Ch.16 causal_forest, Ch.27 AdViSHE/ISPOR-SMDM, Ch.30 SS30.4 targets pipeline and SS30.7 licensing, Ch.32 SS32.2 rare disease). Independently executed both R code examples: the randomForest predictive-risk example matched the prose's claimed 78% accuracy and variable-importance ranking exactly (79.4% actual); the synthetic-data-generation example had a REAL BUG (MASS::fitdistr(gamma) failed to converge on the sub-agent's simulated dataset) -- fixed with a method-of-moments shape/rate estimator, re-verified clean. Checked for duplicate difficult-terminology boxes against all prior chapters -- zero duplicates among 5 new terms. Zero Jev revision passes needed -- all 6 dimensions passed on first attempt: coverage 8.55, technical correctness 8.02, code validity 8.24, agency grounding 6.91, internal consistency 8.74, readability 6.56. book.pdf grew 603->617 pages."
+    },
+    {
+      "timestamp": "2026-10-21T01:35:00+05:30",
+      "summary": "Drafted, compiled, scored, and committed Chapter 35: End-to-End Worked Case Studies -- the FINAL chapter of the entire book, first and only chapter of the new Part VIII: Case Studies. Delegated 35.1-35.2, 35.3, and 35.4-35.6 to three parallel sub-agents, assembled into one Typst file with a new #part-divider('VIII', 'Case Studies') inserted in book.typ. Independently re-ran EVERY numeric claim across all 6 case studies from scratch and found exact matches on 5 of 6 -- Case Study B's Scenario 2 (treatment-effect waning) code was found to be a non-functional stub that never actually computed anything; rewrote it as a complete, real numerical-integration implementation and corrected the chapter's stated numbers (71,021/0.1821/389,943 -> the real verified 61,341/0.1798/341,219). Also fixed two structural Typst issues from sub-agent drafts: bracket-chained report-table/ref-table calls with named caption: arguments and nested-paren table bodies (fixed to the established comma-style convention across all 6 tables), and 11 fabricated @sec-XX label references (replaced with the book's plain-text 'Chapter N SSN.N' convention, same mistake as Chapter 34, each cross-reference independently verified against the real source files). TWO Jev revision passes needed on two DIFFERENT dimensions (not a repeated failure on the same one): agency_grounding scored 4.45 on first draft (3 generic unnamed agency-notes) -- fixed by naming NICE's real reference-case WTP range, DSU TSD 12, and the ISPOR BIA Task Force report (Sullivan et al. 2014), rescored to 7.97; this revision's table-footer/body fixes then surfaced code_validity at 5.88 (the Scenario 2 stub) -- fixed with the complete rewrite above, rescored to 7.19. Final scores: coverage 8.20, technical correctness 7.51, code validity 7.19, agency grounding 7.97, internal consistency 8.38, readability 6.31. book.pdf grew 617->647 pages. THIS IS THE LAST CHAPTER OF THE BOOK -- all 35 chapters now complete. next_chapter_number set to null; book_status field added as COMPLETE. The heor-hta-book-writer cron job must be paused/disabled to prevent a future tick from attempting to draft a nonexistent Chapter 36."
     }
-  ]
+  ],
+  "book_status": "COMPLETE - all 35 chapters drafted, scored, and compiled as of 2026-10-21. No Chapter 36 exists. The heor-hta-book-writer cron job should be paused/disabled, not left running, since its next tick would otherwise attempt to draft a nonexistent next chapter."
 }
