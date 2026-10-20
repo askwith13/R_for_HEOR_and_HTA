@@ -103,7 +103,25 @@
 #part-divider("VIII", "Case Studies")
 #include "chapters/ch35_case_studies.typ"
 
-// ---- Back matter ----
+// ---- Back matter: appendices ----
+#pagebreak(weak: true)
+#include "back_matter/appendix_a_cheatsheet.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_b_distributions.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_c_template.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_d_checklists.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_e_glossary.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_f_datasets.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_references.typ"
+#pagebreak(weak: true)
+#include "back_matter/appendix_index.typ"
+
+// ---- Back matter: lists ----
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Figures]
 #outline(title: none, target: figure.where(kind: image))

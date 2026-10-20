@@ -1,0 +1,432 @@
+#import "../common.typ": *
+
+= Index
+
+Typst (this book's typesetting system, version 0.15.1) has no native back-of-book page-indexing feature equivalent to LaTeX's `\index{}` + `makeindex` -- building one accurately from page numbers would require a dedicated external package not currently part of this project's toolchain. Rather than fabricate page numbers that could silently go stale on any future recompile, this index is built at the section/chapter level instead, which is stable across recompiles and arguably more useful for navigation in a technical reference this size.
+
+Two lists follow: a *topic index*, covering every numbered section heading across all 35 chapters (241 entries), and a *glossary cross-reference*, pointing each of Appendix E's 176 defined terms back to the chapter that introduced it.
+
+== Topic index
+
+- *Age-dependent transitions and background mortality* --- §19.7
+- *Analysing patient-level cost-effectiveness trial data and bootstrapping* --- §25.8
+- *Analysing utility data: censoring, bounded distributions, beta regression, mixture models* --- §8.4
+- *Applying costs and QALYs, discounting and half-cycle correction* --- §19.5
+- *Automating dossier and submission appendices* --- §28.7
+- *Automating routine reports across programmes or districts* --- §28.8
+- *Bayesian decision analysis: from posterior to PSA* --- §14.6
+- *Bayesian evidence synthesis as a pipeline* --- §14.5
+- *Bayesian health economic modelling workflows* --- §14.8
+- *Bayesian NMA (gemtc, multinma, bnma)* --- §12.4
+- *Bayesian thinking for decision makers* --- §14.1
+- *Best-worst scaling and conjoint analysis* --- §33.4
+- *Bucher method* --- §12.2
+- *Building a budget impact model in R* --- §23.3
+- *Building a Markov model in base R (matrix-based approach)* --- §19.3
+- *Building decision trees from scratch in R* --- §18.2
+- *Building PSMs from survival extrapolations* --- §20.2
+- *CADTH, PBAC, ICER, G-BA/IQWiG and HAS* --- §31.2
+- *Calibration and validation* --- §19.9
+- *Calibration methods: random search, Nelder-Mead, Bayesian calibration, ABC, IMIS* --- §27.1
+- *Case study A: a Markov model CEA for a chronic disease* --- §35.1
+- *Case study B: an oncology partitioned survival model with NMA inputs* --- §35.2
+- *Case study C: a microsimulation of a screening programme* --- §35.3
+- *Case study D: a budget impact model and Shiny application* --- §35.4
+- *Case study E: an RWE comparative effectiveness study with propensity scoring* --- §35.5
+- *Case study F: a TB programme cost-effectiveness analysis for an LMIC setting* --- §35.6
+- *Case study: a transparent, reviewable submission-ready model app* --- §29.8
+- *CHEERS 2022 reporting checklist implementation* --- §28.6
+- *Choosing a model type* --- §17.2
+- *Choosing between Markov, DES and dynamic models* --- §22.5
+- *Clinical trial data (CDISC SDTM/ADaM concepts)* --- §5.1
+- *Code review and peer review practices* --- §27.5
+- *Coding a first simple CEA in R* --- §4.8
+- *Combining a decision tree with a long-term Markov model* --- §18.5
+- *Common random numbers* --- §21.5
+- *Comparing evidence requirements across agencies* --- §31.5
+- *Competing events and time-to-event sampling* --- §22.3
+- *Competing risks and multi-state models* --- §10.10
+- *Complete-case versus imputation* --- §7.3
+- *Computing EVPI and EVPPI (BCEA, voi)* --- §26.2
+- *Concepts: events, queues, resources and attributes* --- §22.1
+- *Concepts: EVPI, EVPPI, EVSI and ENBS* --- §26.1
+- *Confounding and bias, with DAGs (`dagitty`, `ggdag`)* --- §15.3
+- *Consistency and inconsistency assessment* --- §12.5
+- *Containers (Docker) for reproducible models* --- §2.6
+- *Continuous integration with GitHub Actions* --- §30.5
+- *Cost data features: skewness, zero-inflation, heavy tails* --- §9.3
+- *Cost-of-illness and micro-costing studies* --- §9.5
+- *Costs, effects and the opportunity cost of health care* --- §4.1
+- *Count data and zero-inflated models* --- §16.3
+- *Covariate-adjusted and treatment-effect-specific models* --- §10.8
+- *Cross-validation of model structure* --- §27.2
+- *Data dictionaries, metadata and codebooks* --- §5.5
+- *Data extraction templates and extraction QA* --- §6.4
+- *Data governance, privacy and de-identification* --- §5.7
+- *Data quality checks (`pointblank`, `assertr`, `validate`)* --- §5.6
+- *Data structures: vectors, lists, data frames and tibbles, arrays and matrices* --- §3.1
+- *Data wrangling with `tidyverse` and `data.table`* --- §3.2
+- *Dates, durations and time-to-event data (`lubridate`)* --- §3.6
+- *Debugging and error handling* --- §3.7
+- *Deduplication and screening workflows* --- §6.2
+- *Deployment: shinyapps.io, Posit Connect, Docker, servers* --- §29.6
+- *DES with `simmer`* --- §22.2
+- *Designing a user interface for non-programmers* --- §29.2
+- *Deterministic sensitivity analysis: one-way, two-way, tornado plots* --- §25.2
+- *Diagnostic test accuracy meta-analysis* --- §11.6
+- *Diagnostics, screening and medical devices* --- §32.4
+- *Diagnostics: convergence, effective sample size, and posterior predictive checks* --- §14.4
+- *Difference-in-differences and interrupted time series* --- §15.7
+- *Digital health technologies and AI-enabled interventions* --- §32.5
+- *Digital twins and synthetic data* --- §34.3
+- *Discrete choice experiments (`mlogit`, `apollo`, `logitr`)* --- §33.3
+- *Distributional CEA and equity weighting* --- §24.2
+- *Documentation with `roxygen2` and `pkgdown`* --- §30.3
+- *Dominance, extended dominance and the efficiency frontier* --- §4.7
+- *Doubly robust estimators and g-methods* --- §15.5
+- *Downloadable reports and audit trails* --- §29.5
+- *E-values and quantitative bias analysis* --- §15.9
+- *Efficient EVPPI via regression and GAM approximations* --- §26.3
+- *Efficient implementation: vectorisation, data.table, parallel computing* --- §21.3
+- *Evidence needs across the product lifecycle* --- §1
+- *EVSI: moment-matching, importance sampling, Gaussian approximation* --- §26.4
+- *Expert elicitation methods (SHELF)* --- §14.7
+- *Exploring missingness (naniar, visdat, Shiny-based explorers)* --- §7.2
+- *Extended cost-effectiveness analysis: financial risk protection* --- §24.3
+- *Extrapolation: external data, background mortality, expert elicitation* --- §10.9
+- *Face validity, internal, cross and external validity* --- §27.6
+- *First-order versus second-order Monte Carlo uncertainty* --- §21.4
+- *Fit-for-purpose RWD and RWE frameworks* --- §15.1
+- *Fixed-effect and random-effects models* --- §11.1
+- *Flexible and spline-based models* --- §10.3
+- *Frequentist NMA (netmeta package)* --- §12.3
+- *Functional programming with `purrr` and vectorization* --- §3.3
+- *Gene and cell therapies and outcome-based agreements* --- §32.6
+- *Generalised linear models* --- §16.1
+- *Generic and disease-specific instruments (EQ-5D, SF-6D, HUI, etc.)* --- §8.1
+- *Good practice guidelines (ISPOR-SMDM, NICE reference case)* --- §17.7
+- *Handling censored cost data* --- §9.6
+- *Health systems modelling and resource allocation* --- §32.8
+- *Heterogeneity and its quantification* --- §11.2
+- *HTA in India: HTAIn, the Indian reference case, and Ayushman Bharat PM-JAY* --- §31.3
+- *HTA in LMICs: iDSI reference case, thresholds and capacity* --- §31.4
+- *ICERs, net monetary benefit (NMB) and net health benefit (NHB)* --- §4.4
+- *Identifying, measuring and valuing resources* --- §9.1
+- *Importing data: `readr`, `readxl`, `haven`, `DBI`, APIs* --- §5.4
+- *Infectious disease transmission models* --- §22.4
+- *Infectious diseases and TB: programmatic and cascade-of-care models* --- §32.7
+- *Installing R, RStudio/Positron and Quarto* --- §2.1
+- *Instrumental variables and regression discontinuity* --- §15.6
+- *Kaplan-Meier and life tables* --- §10.1
+- *Large language models in HEOR workflows (SLR, extraction, coding assistance) and their validation* --- §34.2
+- *Limitations compared with state-transition models* --- §20.5
+- *Limitations, assumptions and agency expectations (NICE DSU TSD 18)* --- §13.5
+- *Linking Shiny to the model engine and PSA outputs* --- §29.4
+- *Looking ahead: living models and living systematic reviews* --- §34.5
+- *Machine learning for prediction and heterogeneity of treatment effect* --- §16.5
+- *Machine learning in HEOR* --- §34.1
+- *Mapping algorithms (cross-walks and regression-based mapping)* --- §8.3
+- *Matching-adjusted indirect comparison (MAIC)* --- §13.2
+- *MCMC with Stan, JAGS and brms* --- §14.3
+- *Mechanisms: MCAR, MAR, MNAR* --- §7.1
+- *Meta-analysis of proportions and rates* --- §11.7
+- *Meta-analysis of time-to-event outcomes* --- §11.5
+- *Meta-regression* --- §11.4
+- *Minimal clinically important differences* --- §33.2
+- *Missing data in cost and QALY data* --- §7.6
+- *Mixed-effects and hierarchical models* --- §16.2
+- *Mixture-cure and non-mixture cure models* --- §10.4
+- *Model conceptualisation and problem scoping* --- §17.1
+- *Model documentation and transparency* --- §17.5
+- *Model selection: AIC/BIC, visual fit, clinical plausibility* --- §10.6
+- *Modelling with `hesim`, `flexsurv` and custom code* --- §20.4
+- *Modelling workflow in R: inputs -> engine -> outputs -> reporting* --- §17.6
+- *Modular Shiny with `golem` and `rhino`* --- §29.3
+- *Monetary valuation of health* --- §24.1
+- *Multi-criteria decision analysis (MCDA) in R* --- §24.4
+- *Multilevel network meta-regression (ML-NMR)* --- §13.4
+- *Multiple imputation (mice, Amelia, missForest)* --- §7.4
+- *Network meta-regression* --- §12.6
+- *NICE: reference case, DSU technical support documents, and submission templates* --- §31.1
+- *NMA of survival outcomes: fractional polynomials and time-varying hazard ratios* --- §12.7
+- *OHDSI/OMOP workflows in R* --- §15.10
+- *Oncology: immuno-oncology, long-term survival and cure assumptions* --- §32.1
+- *Open-source collaboration: the R Consortium, ISPOR's Open-Source Models SIG, and the HEOR R community* --- §34.4
+- *Open-source model licensing and the open-source HEOR movement* --- §30.7
+- *Package management with `renv`* --- §2.3
+- *Package structure with `usethis` and `devtools`* --- §30.2
+- *Parameter taxonomy and distributions* --- §17.4
+- *Parameterised reports* --- §28.2
+- *Parametric models* --- §10.2
+- *Patient heterogeneity and history dependence* --- §21.2
+- *Performance: profiling, `Rcpp`, parallelisation (`future`, `furrr`)* --- §3.5
+- *Perspective, time horizon, discounting and half-cycle correction* --- §4.6
+- *Piecewise and landmark models* --- §10.5
+- *Pipelines with `targets` and `renv`* --- §30.4
+- *Population, uptake and market-share structure* --- §23.2
+- *Presenting results to payers* --- §23.5
+- *Priors: informative, weakly informative and vague priors* --- §14.2
+- *PRISMA flow diagrams in R* --- §6.3
+- *PRO analysis and psychometrics in R (`lavaan`, `mirt`)* --- §33.1
+- *Probabilistic sensitivity analysis: choosing distributions* --- §25.4
+- *Probabilistic transition matrices (Dirichlet) and Cholesky decomposition* --- §19.8
+- *Producing Word, PDF, HTML and PowerPoint outputs* --- §28.3
+- *Project structure for HEOR analyses* --- §2.2
+- *Propensity scores: matching, weighting, stratification (`MatchIt`, `WeightIt`, `cobalt`)* --- §15.4
+- *Proportional hazards diagnostics and non-PH alternatives* --- §10.7
+- *Publication bias and small-study effects* --- §11.3
+- *Publication-ready graphics (ggplot2 themes, colour-blind-safe palettes)* --- §28.5
+- *Publication-ready tables (gt, gtsummary, flextable, kableExtra)* --- §28.4
+- *Published literature as a data source* --- §5.3
+- *Purpose and ISPOR guidance* --- §23.1
+- *QALYs, DALYs and life-years* --- §4.3
+- *Quantile and ordinal regression* --- §16.4
+- *Quarto and R Markdown for HEOR reports* --- §28.1
+- *Ranking, SUCRA and rankograms* --- §12.8
+- *Rare diseases and ultra-orphan drugs* --- §32.2
+- *Recommended package ecosystem (overview map)* --- §2.7
+- *Reconstructing individual patient data from published Kaplan-Meier curves* --- §10.11
+- *Registries, claims, electronic health records and surveys* --- §5.2
+- *Regression models for costs: GLMs, two-part models, gamma models* --- §9.4
+- *Reporting extrapolation following NICE DSU TSD 14 and 21* --- §10.12
+- *Reporting missing data handling for HTA* --- §7.7
+- *Reporting per NICE DSU TSD 2, ISPOR and PRISMA-NMA* --- §12.9
+- *Responding to technical engagement and evidence review group critiques with R* --- §31.6
+- *Risk of bias visualisation (`robvis`)* --- §6.5
+- *Scenario analyses* --- §23.4
+- *Scenario analysis scripts* --- §25.3
+- *Search strategy documentation* --- §6.1
+- *Security, validation and agency expectations for web-based models* --- §29.7
+- *Sensitivity analysis, including tipping-point and pattern-mixture approaches* --- §7.5
+- *Severity modifiers, value-based pricing, and managed entry agreements* --- §24.5
+- *Sharing models with HTA agencies and reviewers* --- §30.6
+- *Shiny fundamentals for model front-ends* --- §29.1
+- *Short-term models for screening, diagnostics and acute care* --- §18.4
+- *Simulated treatment comparison (STC)* --- §13.3
+- *States, transitions and cycles* --- §19.1
+- *Structural assumptions and model diagrams* --- §17.3
+- *Structural uncertainty and model averaging* --- §25.7
+- *Structure and expected-value calculations* --- §18.1
+- *Structure and when it is appropriate* --- §20.1
+- *Study design: cohort, case-control, target trial emulation* --- §15.2
+- *Subgroup analysis and effect modification* --- §16.6
+- *Text mining and ML-assisted screening* --- §6.6
+- *The HTA ecosystem* --- §1
+- *Threshold analysis* --- §25.6
+- *Time trade-off, standard gamble and discrete choice experiments* --- §8.6
+- *Time-homogeneous and time-dependent transition matrices* --- §19.2
+- *Treatment switching and crossover adjustment (RPSFTM, IPCW)* --- §15.8
+- *Treatment waning and relative-effect assumptions* --- §20.3
+- *Tunnel states and state residence time* --- §19.6
+- *Types of economic evaluation* --- §4.2
+- *Types of uncertainty: parameter, structural, methodological and heterogeneity* --- §25.1
+- *Typical deliverables* --- §1
+- *Unit costs and inflation or currency conversion (PPP adjustments)* --- §9.2
+- *Using `hesim` for individual-level models* --- §21.6
+- *Using `rdecision`* --- §18.3
+- *Using external control arms and synthetic control arms* --- §15.11
+- *Using heemod, hesim and dampack* --- §19.4
+- *Using VOI to design research and prioritise data collection* --- §26.6
+- *Utility decrements, age-adjusted utilities and background mortality* --- §8.5
+- *Vaccines and public health programmes* --- §32.3
+- *Validation frameworks (AdViSHE, TECH-VER, ISPOR-SMDM)* --- §27.4
+- *Value of implementation* --- §26.5
+- *Value sets and scoring in R (eq5d)* --- §8.2
+- *Verification: unit testing with `testthat`, extreme-value tests, replication* --- §27.3
+- *Version control with Git and GitHub* --- §2.4
+- *Visualising uncertainty: CE plane, CEAC, CEAF, NMB distributions* --- §25.5
+- *What HEOR is and what it is not* --- §1
+- *When microsimulation is needed* --- §21.1
+- *When population adjustment is needed* --- §13.1
+- *Where R fits in the HEOR workflow* --- §1
+- *Why indirect comparison is needed* --- §12.1
+- *Why package your model* --- §30.1
+- *Why R: the case for open-source and reproducible HEOR* --- §1
+- *Willingness-to-pay thresholds, including country-specific and LMIC thresholds* --- §4.5
+- *Worked example: a chronic-disease CEA* --- §19.10
+- *Worked example: a screening programme* --- §21.7
+- *Worked example: a TB screening/preventive-therapy intervention model* --- §22.6
+- *Worked example: an oncology CEA* --- §20.6
+- *Working with Stan, JAGS and C++ toolchains* --- §2.5
+- *Writing functions, parameter lists and defensive programming* --- §3.4
+
+== Glossary cross-reference
+
+For the definitions themselves, see Appendix E. This list exists purely as an alphabetical finding aid pointing each term back to its introducing chapter.
+
+- "ML" and "PM" as tau-squared estimators --- Appendix E, Ch. 11
+- anchor-based method --- Appendix E, Ch. 33
+- Approximate Bayesian Computation (ABC) --- Appendix E, Ch. 27
+- Attribute --- Appendix E, Ch. 22
+- audit trail --- Appendix E, Ch. 29
+- Ayushman Bharat PM-JAY --- Appendix E, Ch. 31
+- basic parameters (of a network) --- Appendix E, Ch. 12
+- best-worst scaling --- Appendix E, Ch. 33
+- bootstrapped estimate --- Appendix E, Ch. 9
+- Brant-type test --- Appendix E, Ch. 16
+- Budget impact analysis (BIA) --- Appendix E, Ch. 23
+- build cache / memoisation --- Appendix E, Ch. 30
+- calibration target --- Appendix E, Ch. 27
+- Cascade of care --- Appendix E, Ch. 32
+- Catastrophic health expenditure (CHE) --- Appendix E, Ch. 24
+- checklist-based reporting --- Appendix E, Ch. 28
+- chi-squared distribution --- Appendix E, Ch. 11
+- child document --- Appendix E, Ch. 28
+- Cholesky decomposition --- Appendix E, Ch. 14
+- chunk --- Appendix E, Ch. 28
+- Cohen's kappa --- Appendix E, Ch. 6
+- colour-blind-safe palette --- Appendix E, Ch. 28
+- conditional treatment effect / marginal treatment effect --- Appendix E, Ch. 13
+- confirmatory factor analysis (CFA) --- Appendix E, Ch. 33
+- conjugate posterior --- Appendix E, Ch. 19
+- continuous integration (CI) --- Appendix E, Ch. 30
+- Cost-benefit analysis (CBA) vs. cost-effectiveness analysis (CEA) --- Appendix E, Ch. 24
+- cost-effectiveness acceptability curve (CEAC) --- Appendix E, Ch. 25
+- cost-effectiveness acceptability frontier (CEAF) --- Appendix E, Ch. 25
+- Cronbach's alpha --- Appendix E, Ch. 33
+- cross-validation (health-economic sense) --- Appendix E, Ch. 27
+- cure-fraction model --- Appendix E, Ch. 32
+- DAG (directed acyclic graph) --- Appendix E, Ch. 16
+- degrees of freedom (pooled multiple-imputation estimates) --- Appendix E, Ch. 7
+- DESCRIPTION file --- Appendix E, Ch. 30
+- deviance / residual deviance --- Appendix E, Ch. 12
+- diagnostic odds ratio --- Appendix E, Ch. 11
+- digital twin --- Appendix E, Ch. 34
+- discrete event simulation --- Appendix E, Ch. 1
+- distribution-based method --- Appendix E, Ch. 33
+- distributional / extended cost-effectiveness analysis --- Appendix E, Ch. 1
+- Distributional cost-effectiveness analysis (DCEA) --- Appendix E, Ch. 24
+- Docker image / containerization --- Appendix E, Ch. 29
+- dominant / dominance (health economics) --- Appendix E, Ch. 28
+- dossier --- Appendix E, Ch. 28
+- DOTS (directly observed treatment, short-course) --- Appendix E, Ch. 32
+- downloadHandler() --- Appendix E, Ch. 29
+- Durability (waning of effect) --- Appendix E, Ch. 32
+- endogeneity / endogenous variable --- Appendix E, Ch. 15
+- Entity (or arrival) --- Appendix E, Ch. 22
+- Equity weighting --- Appendix E, Ch. 24
+- Event queue --- Appendix E, Ch. 22
+- EVIDEM --- Appendix E, Ch. 24
+- Evidence Review Group (ERG) --- Appendix E, Ch. 31
+- exchangeability --- Appendix E, Ch. 12
+- Expected Value of Perfect Information (EVPI) --- Appendix E, Ch. 26
+- exponential family --- Appendix E, Ch. 16
+- face validity --- Appendix E, Ch. 27
+- flame graph --- Appendix E, Ch. 3
+- forest plot --- Appendix E, Ch. 6
+- frailty distribution --- Appendix E, Ch. 35
+- funnel plot / Egger's test --- Appendix E, Ch. 5
+- funnel-shaped hierarchical priors (Neal's funnel) --- Appendix E, Ch. 14
+- g-estimation of structural nested models --- Appendix E, Ch. 15
+- Gaussian copula --- Appendix E, Ch. 13
+- generalised linear mixed model --- Appendix E, Ch. 11
+- Generalized Additive Model (GAM) --- Appendix E, Ch. 26
+- generalized gamma / generalized F distributions --- Appendix E, Ch. 12
+- Gibbs sampling --- Appendix E, Ch. 2
+- golem --- Appendix E, Ch. 29
+- hallucination --- Appendix E, Ch. 34
+- Hamiltonian Monte Carlo / No-U-Turn Sampler (NUTS) --- Appendix E, Ch. 2
+- hazard function / hazard rate --- Appendix E, Ch. 10
+- hierarchical structure ("borrowing strength") --- Appendix E, Ch. 2
+- historical control --- Appendix E, Ch. 32
+- Homogeneous mixing assumption --- Appendix E, Ch. 22
+- homoscedasticity --- Appendix E, Ch. 8
+- hot-reloading --- Appendix E, Ch. 29
+- Human capital approach --- Appendix E, Ch. 24
+- ICH E9(R1) estimand strategies + intercurrent events --- Appendix E, Ch. 15
+- ICH E9(R1) intercurrent-event strategies (treatment-policy, hypothetical, composite, while-on-treatment, principal-stratum) --- Appendix E, Ch. 7
+- immature survival data --- Appendix E, Ch. 32
+- input validation --- Appendix E, Ch. 29
+- Item Response Theory (IRT) --- Appendix E, Ch. 33
+- LaTeX --- Appendix E, Ch. 28
+- law of large numbers --- Appendix E, Ch. 21
+- law of total variance (posterior variance reduction) --- Appendix E, Ch. 26
+- leverage points --- Appendix E, Ch. 9
+- living systematic review --- Appendix E, Ch. 34
+- log-likelihood --- Appendix E, Ch. 10
+- logit link (in beta regression) --- Appendix E, Ch. 8
+- Mantel-Haenszel (MH) method --- Appendix E, Ch. 11
+- marginal structural models --- Appendix E, Ch. 15
+- Market share (in a BIA context) --- Appendix E, Ch. 23
+- microsimulation --- Appendix E, Ch. 1
+- Minimal Clinically Important Difference (MCID) --- Appendix E, Ch. 33
+- mixed logit model --- Appendix E, Ch. 33
+- mixture cure model --- Appendix E, Ch. 32
+- model averaging --- Appendix E, Ch. 25
+- Monte Carlo error --- Appendix E, Ch. 25
+- Moore-Penrose pseudoinverse / Laplacian-type matrix --- Appendix E, Ch. 12
+- MTEP/DAP --- Appendix E, Ch. 32
+- multi-state model --- Appendix E, Ch. 2
+- multivariate normal distribution --- Appendix E, Ch. 25
+- NAMESPACE --- Appendix E, Ch. 30
+- namespacing --- Appendix E, Ch. 29
+- Nelder-Mead optimization --- Appendix E, Ch. 27
+- net monetary benefit (NMB) --- Appendix E, Ch. 25
+- Network epidemic model --- Appendix E, Ch. 22
+- non-inferiority trial --- Appendix E, Ch. 4
+- non-parametric bootstrap --- Appendix E, Ch. 25
+- observer --- Appendix E, Ch. 29
+- open-source license --- Appendix E, Ch. 30
+- Outcomes-based managed entry agreement --- Appendix E, Ch. 24
+- parameterised report --- Appendix E, Ch. 28
+- parametric survival curve (extrapolation) --- Appendix E, Ch. 1
+- penetration testing --- Appendix E, Ch. 29
+- permissive vs. copyleft license --- Appendix E, Ch. 30
+- pipeline / dependency graph --- Appendix E, Ch. 30
+- positive/negative likelihood ratio --- Appendix E, Ch. 11
+- posterior distribution --- Appendix E, Ch. 2
+- Poverty cases averted --- Appendix E, Ch. 24
+- prediction interval (vs. confidence interval) --- Appendix E, Ch. 11
+- QALY shortfall (absolute and proportional) --- Appendix E, Ch. 24
+- R package --- Appendix E, Ch. 30
+- R6 class / R6-class objects --- Appendix E, Ch. 18
+- radix sort / hash-based grouping --- Appendix E, Ch. 3
+- random utility theory (McFadden) --- Appendix E, Ch. 8
+- reactive expression --- Appendix E, Ch. 29
+- reactive programming --- Appendix E, Ch. 29
+- reference case --- Appendix E, Ch. 31
+- Reference case (LMIC context) --- Appendix E, Ch. 31
+- render --- Appendix E, Ch. 28
+- residual deviance / degrees of freedom --- Appendix E, Ch. 16
+- Resource and its capacity --- Appendix E, Ch. 22
+- revealed preference --- Appendix E, Ch. 4
+- reverse proxy --- Appendix E, Ch. 29
+- rhino --- Appendix E, Ch. 29
+- robust (sandwich-type) standard errors --- Appendix E, Ch. 13
+- roxygen2 / \@export tag --- Appendix E, Ch. 30
+- Royston-Parmar spline model --- Appendix E, Ch. 12
+- S3 / S4 objects --- Appendix E, Ch. 3
+- Sargan (over-identification) test --- Appendix E, Ch. 15
+- scenario analysis vs. one-way/multi-way sensitivity analysis --- Appendix E, Ch. 25
+- Schoenfeld residuals --- Appendix E, Ch. 10
+- semantic versioning --- Appendix E, Ch. 30
+- Shiny module --- Appendix E, Ch. 29
+- shinyapps.io --- Appendix E, Ch. 29
+- Simpson's rule (half-cycle correction variant) --- Appendix E, Ch. 4
+- single-arm trial --- Appendix E, Ch. 32
+- Sobol' sequences / Quasi-Monte Carlo integration points --- Appendix E, Ch. 13
+- Software as a medical device (SaMD) --- Appendix E, Ch. 32
+- SQL injection --- Appendix E, Ch. 5
+- step-down allocation --- Appendix E, Ch. 9
+- stochastic (first-order) uncertainty --- Appendix E, Ch. 25
+- structural uncertainty vs. parameter uncertainty --- Appendix E, Ch. 25
+- synthetic data --- Appendix E, Ch. 34
+- tagged release --- Appendix E, Ch. 30
+- targets pipeline --- Appendix E, Ch. 28
+- threshold analysis --- Appendix E, Ch. 25
+- time trade-off / standard gamble --- Appendix E, Ch. 4
+- Trajectory --- Appendix E, Ch. 22
+- two-way fixed effects (TWFE) --- Appendix E, Ch. 15
+- Type I error --- Appendix E, Ch. 16
+- unit testing --- Appendix E, Ch. 27
+- Value of a statistical life (VSL) --- Appendix E, Ch. 24
+- Value of implementation (EVI) --- Appendix E, Ch. 26
+- value-of-a-statistical-life estimate --- Appendix E, Ch. 4
+- variable importance / SHAP values --- Appendix E, Ch. 34
+- Weighted sum versus weighted product --- Appendix E, Ch. 24
+- welfare economics, demand theory, public finance --- Appendix E, Ch. 1
+- Willingness-to-pay (WTP) approach --- Appendix E, Ch. 24
+- Wilson interval (Wilson score interval) --- Appendix E, Ch. 17
+- Wu-Hausman test --- Appendix E, Ch. 15
+- YAML --- Appendix E, Ch. 28
+- YAML workflow file --- Appendix E, Ch. 30

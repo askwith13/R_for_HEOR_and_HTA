@@ -165,3 +165,14 @@
     #text(size: 26pt, weight: "bold")[#title]
   ]
 ]
+
+// Appendix E (Glossary) entry: term in bold, a short chapter-source tag,
+// then the distilled 1-3 sentence definition. Deliberately lighter-weight
+// than the four callout boxes (no colored border/fill) since a glossary
+// page needs to scan quickly, not draw the eye to any one entry.
+#let glossary-entry(term, definition, chapter) = block(
+  above: 10pt, below: 4pt, breakable: true,
+)[
+  #text(weight: "bold")[#term] #text(size: 8pt, fill: rgb("#6b7280"))[(Ch. #chapter)] \
+  #definition
+]
