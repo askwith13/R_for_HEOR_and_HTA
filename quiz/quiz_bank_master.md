@@ -6237,3 +6237,384 @@ A complete question bank for a quiz application, drawn from all 27 written chapt
 - D) Because German law requires a 10% discount rate on all cost inputs
 **Answer:** B
 **Explanation:** The chapter states that AMNOG's early benefit assessment centres patient-relevant outcomes and produces an "additional benefit" rating used in price negotiation rather than a cost-per-QALY decision, so a NICE-style QALY/ICER model needs substantial reworking -- not relabeling -- for a German submission.
+
+
+### Q614 [Easy] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** According to Chapter 32, survival data are described as "immature" in an HTA submission when:
+- A) The trial Kaplan-Meier curve has flattened and reached its tail
+- B) A substantial fraction of patients have not yet died or progressed at the data cut, so the shape of the curve's tail is unknown and must be estimated
+- C) The sample size is too small for statistical significance
+- D) The trial used a single-arm design without a comparator
+**Answer:** B
+**Explanation:** The chapter defines immature survival data as data where "a substantial fraction of patients in a trial have not yet died (or progressed) at the time of the data cut used for the HTA submission -- the Kaplan-Meier curve has not flattened out or reached its tail, so the shape of that tail is unknown and must be estimated rather than observed."
+
+### Q615 [Medium] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** A cure-fraction model in oncology survival extrapolation makes which structural assumption?
+- A) All patients eventually die according to a single parametric distribution
+- B) A proportion of the cohort -- the cure fraction -- experiences no excess disease-related mortality risk after some point, behaving thereafter like the general population
+- C) The hazard of death is constant across the entire follow-up period
+- D) Cure can only be modeled using a Weibull distribution
+**Answer:** B
+**Explanation:** Per the chapter's difficult-terminology box, a cure-fraction model "explicitly assumes a proportion of the trial population -- the cure fraction -- will experience no excess risk of death from the disease once they pass some point, behaving thereafter like the general population... while the remaining patients continue to follow a standard survival distribution."
+
+### Q616 [Medium] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** What distinguishes a mixture cure model from a non-mixture cure model, per the chapter?
+- A) Mixture models require Bayesian priors; non-mixture models do not
+- B) A mixture model separates patients into two latent groups (cured vs. uncured, each following its own survival function); a non-mixture model instead rescales a single survival distribution so it asymptotes toward the cure proportion
+- C) Mixture models cannot be fitted using `flexsurvcure`
+- D) Non-mixture models always estimate a larger cure fraction than mixture models
+**Answer:** B
+**Explanation:** The chapter states: "In a mixture cure model, the overall survival function is modelled as a weighted combination of two distinct groups... This contrasts with non-mixture cure models, which instead rescale a single survival distribution so it asymptotes towards the cure proportion as time extends, without separating patients into two latent groups."
+
+### Q617 [Hard] [Image]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** A plot showing the chapter's simulated single-arm oncology-style Kaplan-Meier survival curve with a plateau beginning near the end of the 60-month follow-up window, overlaid with two fitted curves -- a standard Weibull `flexsurvreg` fit (monotonic hazard) and a `flexsurvcure` mixture cure model fit (asymptoting toward the cure fraction) -- as produced by the chapter's R code. Based on that code, what was the simulated "true" cure fraction, and what does the fitted `theta` parameter represent?
+- A) true_cure_fraction = 0.50; theta is the Weibull shape parameter
+- B) true_cure_fraction = 0.30; theta is the estimated cure fraction, comparable against the simulated truth
+- C) true_cure_fraction = 0.30; theta is the median survival time
+- D) true_cure_fraction = 0.70; theta is the restricted mean survival time
+**Answer:** B
+**Explanation:** The code sets `true_cure_fraction <- 0.30` and simulates ~30% of patients as administratively censored "cured" cases. The chapter notes: "The fitted 'theta' parameter is the estimated cure fraction, which can be compared against the simulated true_cure_fraction (0.30) as a sanity check."
+
+### Q618 [Easy] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** A single-arm trial, as defined in Chapter 32, is characterized by:
+- A) Patients randomized between the investigational treatment and placebo
+- B) All patients receiving the investigational treatment only, with effectiveness assessed against an external benchmark rather than a concurrent randomized comparator group
+- C) Two parallel non-randomized cohorts enrolled at different sites
+- D) A crossover design where each patient serves as their own control
+**Answer:** B
+**Explanation:** Per the difficult-terminology box: "A single-arm trial enrolls patients onto the investigational treatment only, with no concurrent randomized comparator group... effectiveness is assessed against some external benchmark (historical data, a different trial, or a modelled natural-history estimate)."
+
+### Q619 [Medium] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** Per the chapter, the validity of a historical control comparison in ultra-rare disease HTA depends most critically on:
+- A) The historical dataset being larger than the trial's sample size
+- B) How similar the historical population truly is to the trial population in case-mix, era of care, and measurement
+- C) Whether the historical data was analysed using R rather than another statistical package
+- D) Using a Cox proportional hazards model instead of Kaplan-Meier estimation
+**Answer:** B
+**Explanation:** The chapter states that historical controls' usefulness "is only as good as how similar the historical population truly is to the trial population in case-mix, era of care, and measurement -- differences that are easy to overlook and hard to fully correct for statistically."
+
+### Q620 [Easy] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** Why does Chapter 32 argue that a standard cohort Markov model tends to understate the benefit of a vaccination programme against a transmissible disease?
+- A) Markov models cannot incorporate discounting
+- B) Cohort Markov models treat transition probabilities as fixed inputs, with no mechanism for one simulated patient's vaccination status to alter another's risk, so they are blind to indirect (herd) protection
+- C) Markov models always assume 100% vaccine efficacy
+- D) Cohort models require a societal perspective that systematically overestimates programme costs
+**Answer:** B
+**Explanation:** The chapter explains a cohort Markov model "has no mechanism for one simulated patient's vaccination status to alter another simulated patient's risk; it treats transition probabilities as fixed inputs... the standard cohort approach understates the benefit of vaccination... because it is blind to everyone who never gets infected simply because the people around them were vaccinated."
+
+### Q621 [Medium] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** According to Chapter 32, what distinguishes NICE's MTEP pathway from its DAP pathway?
+- A) MTEP evaluates drugs; DAP evaluates devices
+- B) MTEP generally uses cost-minimisation for technologies expected to be cost-saving or cost-neutral, while DAP applies full cost-effectiveness modelling for technologies expected to raise net cost in exchange for better outcomes
+- C) MTEP applies the £100,000/QALY HST threshold; DAP applies the standard threshold
+- D) DAP evaluates only vaccines while MTEP evaluates only gene therapies
+**Answer:** B
+**Explanation:** Per the difficult-terminology box: "MTEP's use of cost-minimisation for technologies expected to be cost-saving or cost-neutral, against DAP's full cost-effectiveness modelling for technologies expected to raise net cost in exchange for better outcomes."
+
+### Q622 [Easy] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** Software as a Medical Device (SaMD), as defined in the chapter, refers to:
+- A) Software embedded inside a physical hardware medical device
+- B) Software intended for a medical purpose that performs that purpose without being embedded in a physical device -- the software itself, running on general-purpose hardware, is the medical device
+- C) Any mobile health app regardless of its intended function
+- D) Software used only for hospital billing and administration
+**Answer:** B
+**Explanation:** The chapter defines SaMD as software "intended to be used for a medical purpose... that performs that purpose without being embedded inside a physical hardware medical device -- the software itself, running on a general-purpose smartphone or server, *is* the medical device from a regulatory standpoint."
+
+### Q623 [Hard] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** Chapter 32 raises an unresolved regulatory/HTA question specific to AI-enabled SaMD. What is it?
+- A) Whether AI tools must always use a randomized comparator
+- B) Whether a retrained and updated model version is still "the same" technology originally evaluated, or requires re-evaluation as effectively a new product, given possible model drift/dataset shift
+- C) Whether AI software requires UKCA/CE marking at all
+- D) Whether the Evidence Standards Framework applies only to paediatric populations
+**Answer:** B
+**Explanation:** The chapter asks: "if a vendor retrains the underlying model on new data and pushes an update, is that update still 'the same' technology that was originally evaluated, or does it need re-evaluation as effectively a new product?" -- noting regulators like MHRA and FDA are actively working through this via concepts like a "predetermined change control plan."
+
+### Q624 [Medium] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** "Durability (waning of effect)," in the context of one-time gene/cell therapies, refers to:
+- A) How quickly the drug is metabolized after infusion
+- B) How long the treatment's benefit persists once achieved, and the possibility that the benefit is not permanent -- patients may lose benefit over time through relapse or declining corrected gene expression
+- C) The time required for regulatory approval of the therapy
+- D) The budget impact of spreading payments over multiple years
+**Answer:** B
+**Explanation:** Per the difficult-terminology box, durability "refers to how long a treatment's benefit persists once achieved, and 'waning of effect' describes the possibility that the benefit is not permanent -- that patients... may, at some point after treatment, begin losing that benefit, whether through biological relapse, loss of corrected gene expression over time, or simple regression toward the underlying disease's natural history."
+
+### Q625 [Easy] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** Per Chapter 32, which mechanism primarily reduces a payer's single-year budget shock from a one-time gene therapy's large upfront cost, rather than directly addressing durability-outcome uncertainty?
+- A) An outcomes-based refund triggered only by confirmed relapse
+- B) An annuity or staged-payment model spreading the single large payment over several years of instalments
+- C) A mixture cure model
+- D) The Evidence Standards Framework for Digital Health Technologies
+**Answer:** B
+**Explanation:** The chapter describes annuity/staged-payment models as spreading "the single very large payment over several years of instalments... it does reduce the payer's single-year budget shock... and keeps some portion of each instalment contingent on evidence of continued benefit."
+
+### Q626 [Easy] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** The "cascade of care" framework, as applied to TB in Chapter 32, tracks patients through which sequence of steps?
+- A) Screening, insurance approval, discharge, follow-up
+- B) Diagnosis, treatment initiation, treatment completion, and cure -- with attrition possible at any step
+- C) Vaccination, infection, recovery, immunity
+- D) Enrollment, randomization, blinding, and analysis
+**Answer:** B
+**Explanation:** The difficult-terminology box defines the cascade of care as tracking patients through "diagnosis... treatment initiation... treatment completion... and cure... attrition -- patients falling out of care -- can happen at *any* of these steps, not only at the final one."
+
+### Q627 [Medium] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** DOTS (directly observed treatment, short-course), as described in Chapter 32, is a WHO-promoted strategy whose core rationale is:
+- A) Reducing the cost of TB drugs through bulk procurement
+- B) Direct observation of each medication dose being swallowed, to assure adherence and reduce the risk of relapse and emergence of drug-resistant strains
+- C) Shortening TB treatment duration to under one month
+- D) Replacing sputum culture testing with chest X-ray screening
+**Answer:** B
+**Explanation:** Per the chapter: "a healthcare worker... directly observes the patient swallowing each dose... because an incomplete TB treatment course both risks relapse for the individual patient and risks selecting for drug-resistant bacterial strains... direct observation was adopted as a core structural safeguard."
+
+### Q628 [Hard] [Image]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** The chapter's report-table "Illustrative TB cascade-of-care attrition for a hypothetical cohort of 10,000 presumptive TB cases," with columns for Cascade stage, Conditional probability, Cumulative probability, and Remaining (of 10,000), listing five stages: Presumptive TB, Diagnosed, Initiated treatment, Completed treatment, Bacteriologically cured. Based on this table, what is the cumulative probability and remaining cohort size at the final "Bacteriologically cured" stage?
+- A) Cumulative probability 0.700, remaining 7,000
+- B) Cumulative probability 0.595, remaining 5,950
+- C) Cumulative probability 0.428, remaining 4,284
+- D) Cumulative probability 0.476, remaining 4,760
+**Answer:** C
+**Explanation:** The report-table's final row shows "Bacteriologically cured: Cond. prob. 0.90, Cum. prob. 0.428, Remaining 4,284" -- confirmed in the narrative text as "roughly 4,284 are ultimately confirmed cured -- a population-level cure rate of about 42.8%."
+
+### Q629 [Hard] [MCQ]
+**Chapter(s):** Chapter 32: Special Topics
+**Question:** Chapter 32 frames the health-system resource-allocation question (SS32.8) around which core economic concept?
+- A) A cost-effectiveness threshold represents an estimate of health forgone elsewhere in the system when money is spent on a new technology -- an opportunity cost -- applied explicitly across many competing claims on one fixed budget, as in a PBMA exercise
+- B) Cost-minimisation analysis should always be preferred over cost-utility analysis at the system level
+- C) Budget impact analysis entirely replaces the need for ICER thresholds
+- D) System-level allocation requires abandoning QALYs in favour of cost-per-life-year
+**Answer:** A
+**Explanation:** The chapter states a cost-effectiveness threshold "is, properly understood, an estimate of the health forgone elsewhere in the system when money is spent on a new technology -- an *opportunity cost*... Zooming out... simply takes that same opportunity-cost logic and applies it explicitly across *many* competing claims on the same budget at once," citing programme budgeting and marginal analysis (PBMA) as the practical mechanism.
+
+### Q630 [Easy] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** According to the chapter, what does Cronbach's alpha measure?
+- A) Whether a scale's items measure the "right" underlying construct
+- B) How closely a set of items on a scale move together across respondents (internal consistency)
+- C) The difficulty and discrimination parameters of individual items
+- D) Whether a hypothesised factor structure fits the observed response data
+**Answer:** B
+**Explanation:** The chapter defines Cronbach's alpha as "a single number...summarising how closely a set of items on a scale move together across respondents," explicitly noting that "Alpha is not a measure of whether the items measure the *right* construct, only of whether they move together."
+
+### Q631 [Easy] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** What does confirmatory factor analysis (CFA) test, as described in the chapter?
+- A) Whether a pre-specified hypothesis about which items load onto which latent factor(s) is supported by the data
+- B) Whether individual items differ in difficulty and discrimination
+- C) Whether a scale's Cronbach's alpha exceeds 0.70
+- D) Whether stated preferences match revealed preferences
+**Answer:** A
+**Explanation:** The chapter describes CFA as testing "a specific, pre-specified hypothesis about...structure," checking "how well real response data support that specific structure, rather than discovering a structure from scratch," likening it to "presenting a blueprint and asking 'does the building that was actually constructed match this blueprint?'"
+
+### Q632 [Medium] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** In the chapter's `lavaan::cfa()` example fitting a two-factor model (`physical =~ p1 + p2 + p3`) to six simulated six-item Likert data, what does the `=~` operator mean in lavaan model syntax?
+- A) "is measured by" -- the latent factor on the left is measured by the observed items listed on the right
+- B) "is regressed on" -- the factor predicts the items as a linear regression
+- C) "is correlated with" -- specifies a covariance between the listed variables
+- D) "is equal to" -- constrains the items to identical numeric values
+**Answer:** A
+**Explanation:** The chapter states: "Model structure is expressed with a compact formula syntax in which `=~` means 'is measured by' -- read `factor =~ item1 + item2 + item3` as 'this latent factor is measured by these observed items.'"
+
+### Q633 [Medium] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** How does Item Response Theory (IRT) differ fundamentally from classical test theory (CTT), per the chapter?
+- A) IRT produces a single reliability number for the whole scale, exactly like CTT
+- B) IRT estimates difficulty and discrimination parameters for each item individually, rather than one reliability figure for the whole scale, underpinning computer-adaptive testing
+- C) IRT cannot support computer-adaptive testing because items must all be answered by every respondent
+- D) IRT requires fewer respondents and simpler statistics than CTT
+**Answer:** B
+**Explanation:** The chapter notes "Unlike classical test theory, which produces one reliability number for the whole scale, IRT estimates parameters for each item individually," and that this "makes it statistically defensible for different patients to answer different subsets of items -- the basis of *computer-adaptive testing*."
+
+### Q634 [Hard] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** In the chapter's `mirt::mirt()` example modeling five binary mobility-limitation items with `itemtype = "2PL"`, what do the `a` and `d` outputs from `coef(irt_fit, simplify = TRUE)` represent?
+- A) "2PL" fits a one-parameter Rasch model; `coef()` returns only item difficulty
+- B) `a` is each item's discrimination parameter and `d` is its difficulty-related parameter, from a two-parameter logistic model
+- C) "2PL" is reserved for ordinal Likert items; `a` and `d` are standardised factor loadings
+- D) `a` and `d` are the estimated latent trait (theta) scores for each respondent
+**Answer:** B
+**Explanation:** The chapter states the model uses `itemtype = "2PL"` for binary items "with both difficulty and discrimination parameters," and that "`coef()` returns the estimated discrimination (`a`) and difficulty-related (`d`) parameters for each item."
+
+### Q635 [Easy] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** As defined in the chapter, what is the Minimal Clinically Important Difference (MCID)?
+- A) The smallest change in a score that is statistically significant at p < 0.05
+- B) The smallest change in a score that patients or clinicians would recognise as meaningful, as opposed to a change that is merely statistically detectable
+- C) The mean change observed in a placebo/control arm of a trial
+- D) The threshold above which a PRO instrument is considered fully validated
+**Answer:** B
+**Explanation:** The chapter defines MCID as "the smallest change in a score...that patients or clinicians would recognise as meaningful, as opposed to a change that is merely detectable by a statistical test."
+
+### Q636 [Easy] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** What is the anchor-based method for estimating an MCID, per the chapter?
+- A) Taking half the baseline standard deviation of the scale as the threshold
+- B) Comparing PRO score change against an independent external indicator (e.g., a patient global rating of change), with the average score change among patients reporting a small-but-real improvement becoming the MCID estimate
+- C) Using the standard error of measurement derived from the instrument's reliability
+- D) Adopting a regulatory agency's fixed numerical threshold regardless of population
+**Answer:** B
+**Explanation:** The chapter describes the anchor-based method as comparing "the change in a PRO score against an independent, external indicator ('anchor')," where "the average PRO score change among patients who selected 'a little better'...becomes the estimated MCID."
+
+### Q637 [Medium] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** The chapter describes the distribution-based method of estimating an MCID as relying on what?
+- A) Patient global ratings of change collected during follow-up visits
+- B) Qualitative interviews with clinicians about what matters most to patients
+- C) Statistical properties of the scale itself, such as half the baseline standard deviation (0.5 x SD) or the standard error of measurement, without needing additional patient input
+- D) A pre-registered clinical trial primary endpoint as the sole criterion
+**Answer:** C
+**Explanation:** The chapter defines the distribution-based method as "using only the statistical properties of the scale itself -- most commonly a fraction of the scale's baseline standard deviation (half a standard deviation...) or the standard error of measurement," noting these "are quick to compute from existing trial data and need no additional patient input."
+
+### Q638 [Medium] [Image]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** A two-column academic report table titled "Illustrative responder analysis using a distribution-based MCID threshold (0.5 x baseline SD) on the simulated treatment-arm data," with rows "Baseline SD," "Distribution-based MCID (0.5 x SD)," "Mean observed change," and "Responder rate (change >= MCID)," plus a footer noting the data is illustrative/simulated. Based on the values shown in this table, what responder rate was reported?
+- A) 42.0%
+- B) 52.0%
+- C) 66.4%
+- D) 11.32%
+**Answer:** B
+**Explanation:** The chapter's report table lists Baseline SD = 11.32 points, Distribution-based MCID (0.5 x SD) = 5.66 points, Mean observed change = 6.42 points, and Responder rate (change >= MCID) = 52.0%.
+
+### Q639 [Hard] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** How does a mixed logit model (random-parameters logit) relax the key simplifying assumption of the standard conditional logit model used in DCE analysis, per the chapter?
+- A) It estimates a distribution of coefficients across the respondent population -- a mean effect plus a measure of person-to-person variation -- instead of one coefficient assumed identical for every respondent
+- B) It removes the need for an experimental design that systematically varies attribute levels
+- C) It assumes every respondent has identical risk tolerance for a given attribute
+- D) It replaces the type I extreme value (Gumbel) error assumption with a normal distribution for the systematic utility component
+**Answer:** A
+**Explanation:** The chapter states mixed logit "relaxes the 'everyone has the same preferences' assumption of the standard conditional logit," estimating "a *distribution* of coefficients across the respondent population -- a mean effect plus a measure of how much that effect varies from person to person."
+
+### Q640 [Medium] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** In the chapter's illustrative DCE dataset (`dce_long`), how must the data be structured before fitting `mlogit`, `apollo`, or `logitr`?
+- A) One row per respondent, with each attribute's chosen alternative stored as a separate column
+- B) One row per alternative, per choice task, per respondent, with a column per attribute and a `chosen` indicator (1 for the picked alternative, 0 for the rest)
+- C) One row per attribute, aggregated across all respondents and choice tasks
+- D) One row per choice task, recording only the winning alternative's attribute values
+**Answer:** B
+**Explanation:** The chapter states the raw survey responses "have to be reshaped into the 'long' format that choice models expect: one row per alternative, per choice task, per respondent, with a column for each attribute and an indicator for whether that particular alternative was the one chosen," as shown in the `dce_long` example with `chosen` equal to 1 or 0.
+
+### Q641 [Easy] [MCQ]
+**Chapter(s):** Chapter 33: Patient-Reported Outcomes and Preference Research
+**Question:** What distinguishes best-worst scaling (BWS) from a plain rating-scale task, according to the chapter?
+- A) BWS asks respondents to rate every item independently on a 1-5 bothersomeness scale
+- B) BWS forces respondents to identify both the best and worst item/attribute-level in a shown set, revealing relative ranking information that plain rating scales (prone to ceiling effects) often fail to capture
+- C) BWS can only be applied to revealed-preference data, not stated-preference surveys
+- D) BWS removes any need for logit-family statistical models to analyse the resulting data
+**Answer:** B
+**Explanation:** The chapter contrasts rating five symptoms (where several might all get rated "5") with BWS, where showing the same items and asking "which bothers you most, and which bothers you least...force[s] a direct comparison that reveals relative ranking information even when absolute intensities are similar," avoiding the "ceiling-effect or scale-use bias" that "plain rating scales are notoriously prone to."
+
+### Q642 [Easy] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** According to Section 34.1, how do machine learning methods such as random forests and gradient boosting fundamentally differ from the parametric and semiparametric methods used elsewhere in this book?
+- A) They require larger sample sizes before any model can be fit
+- B) They let the data determine the shape of the relationship rather than requiring the analyst to pre-specify a functional form in advance
+- C) They always produce more transparent, auditable results than parametric methods
+- D) They eliminate the need for a held-out test set
+**Answer:** B
+**Explanation:** The chapter states that while prior methods require the analyst to "specify the functional form... before fitting it to data," ML methods "flip that order," letting "algorithms such as random forests and gradient boosting... let the data determine the shape of the relationship," at a real cost to interpretability and auditability.
+
+### Q643 [Medium] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** In the chapter's worked example, `randomForest::randomForest()` is fit to simulated patient data to predict `high_cost_next_year`. What did the chapter report as the outcome of this run?
+- A) Roughly 78% test-set accuracy, with `n_comorbidities` and `prior_admissions` ranked as the strongest variable-importance predictors
+- B) Roughly 95% test-set accuracy, with `age` as the sole important predictor
+- C) Roughly 50% test-set accuracy, indicating the model failed to learn any signal
+- D) Roughly 78% test-set accuracy, with `baseline_cost` and `age` ranked as the top predictors
+**Answer:** A
+**Explanation:** The text reports "the forest achieves roughly 78% accuracy on the held-out test set, and the variable-importance output ranks `n_comorbidities` and `prior_admissions` as the strongest predictors," matching clinical intuition about repeat high-cost patients.
+
+### Q644 [Hard] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Why does the chapter's pitfall box caution that variable importance and SHAP values do not make a random forest an acceptable replacement for a transparent decision-analytic model in most HTA submissions?
+- A) Because `randomForest::importance()` cannot be computed in R without `caret`
+- B) Because these measures are approximations layered on top of the black box after the fact, not the underlying structure itself, so an ensemble of hundreds of trees still has no equivalent to a Markov model's transition table that a reviewer can trace by hand
+- C) Because variable importance always contradicts clinical intuition and therefore cannot be trusted
+- D) Because HTA bodies formally prohibit any model with test accuracy above 80%
+**Answer:** B
+**Explanation:** The pitfall box states that variable importance plots and SHAP values "genuinely help explain what the model is doing, but they are an approximation layered on top of the black box after the fact, not the box itself -- they do not make the underlying ensemble of hundreds of trees auditable in the way a transparent state-transition structure is."
+
+### Q645 [Easy] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Per Section 34.2, which three tasks does the chapter identify as the current, genuine pilot uses of large language models in HEOR workflows?
+- A) SLR screening triage, structured data extraction from published reports, and coding assistance for R-based HEOR models
+- B) Replacing dual-reviewer screening entirely, writing final submission conclusions, and setting discount rates
+- C) Running Markov cohort simulations unsupervised and generating input parameters without review
+- D) Conducting automated negotiations with HTA agencies
+**Answer:** A
+**Explanation:** The chapter lists "three uses... common enough to be worth covering honestly": SLR screening assistance (triage, not decision), structured data extraction from published reports, and coding assistance for R-based HEOR models.
+
+### Q646 [Medium] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Per the chapter's difficult-terminology box, what is a "hallucination" in the context of LLM use?
+- A) The model refusing to generate output whenever it is uncertain
+- B) A fluent, confident, plausible-sounding statement that is factually wrong or entirely fabricated, with no signal in the output distinguishing it from a correct statement
+- C) A visual artifact that only occurs when an LLM processes images
+- D) An error message produced only when the model exceeds its context window
+**Answer:** B
+**Explanation:** The box defines hallucination as the model "generating a statement that is fluent, confident, and plausible-sounding, but factually wrong or entirely fabricated, with no signal in the model's output to distinguish it from a correct statement."
+
+### Q647 [Easy] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Per Section 34.3, what genuinely distinguishes an ambitious health-care "digital twin" claim from the microsimulation and DES models already built elsewhere in this book?
+- A) The use of Markov transition probabilities instead of individual trajectories
+- B) Mainly the data pipeline -- a digital twin aspires to be calibrated continuously or near-continuously to a specific patient's real-world data stream, rather than the underlying simulation algorithm
+- C) Digital twins exclusively use discrete-event simulation engines
+- D) Digital twins involve no simulated patients at all
+**Answer:** B
+**Explanation:** The chapter states that "what distinguishes the more ambitious 'digital twin' framings... is less the modelling algorithm and more the *data pipeline* feeding it," since a true digital twin aims to be "calibrated, continuously or near-continuously, to a specific patient's real-world data stream."
+
+### Q648 [Medium] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Per Section 34.3's pitfall box, why can synthetic data not substitute for real patient-level evidence in an HTA submission?
+- A) It is prohibitively expensive to generate compared with real data collection
+- B) It preserves the source data's statistical patterns but carries no independent evidentiary status of its own, and a generative model fitted to biased or erroneous real data can "launder" those flaws into output that looks clean
+- C) Regulators have legally banned the use of synthetic data in any health context
+- D) Synthetic data always requires more computing power than the original analysis
+**Answer:** B
+**Explanation:** The pitfall box states synthetic data "must never be presented to a reimbursement agency as if it carries the same evidential weight as the real IPD... synthetic data has no independent evidentiary status of its own," and the surrounding text warns a generative model can reproduce the source data's "bias or error... often without any visible warning sign."
+
+### Q649 [Easy] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Per Section 34.4, what is the stated general mission of ISPOR's Open-Source Models Special Interest Group?
+- A) To mandate that all HTA submissions be built exclusively in Excel
+- B) To promote the development, use, and transparent review of open-source health-economic models, including those built in R, as a counterpoint to closed, proprietary modelling environments
+- C) To formally certify individual R packages before they are accepted onto CRAN
+- D) To replace the R Consortium as the primary funder of core R infrastructure
+**Answer:** B
+**Explanation:** The chapter describes the SIG's "general mission" as promoting "the development, use, and transparent review of health-economic models built in open-source tools, including R, as a counterpoint to the historically dominant closed, proprietary modelling environments."
+
+### Q650 [Medium] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Per the chapter's difficult-terminology box in Section 34.5, how is a "living systematic review" defined?
+- A) A review repeated completely from scratch on a fixed multi-year schedule
+- B) A systematic review maintained as an ongoing process, where new studies are continuously or on a short regular cycle searched for, screened, and incorporated, rather than being redone from scratch only periodically
+- C) A review conducted entirely by an LLM with no human screening step
+- D) A meta-analysis restricted to surviving (not deceased) trial participants
+**Answer:** B
+**Explanation:** The box defines it as "a systematic review that is maintained as an ongoing process rather than a one-off project -- new studies are continuously (or on a short, regular cycle) searched for, screened, and incorporated... rather than the review being redone from scratch only every few years."
+
+### Q651 [Hard] [MCQ]
+**Chapter(s):** Chapter 34: Emerging Methods and the Future of HEOR in R
+**Question:** Which of the following is explicitly contradicted by the chapter's discussion of the obstacles currently limiting living economic models to an aspiration rather than standard HTA practice?
+- A) There is an open governance question about who approves an updated model and what threshold of change should trigger formal agency re-review
+- B) The computational cost of re-running the model is, by itself, the single largest and most underestimated burden of a living model
+- C) Genuinely continuous updating requires sustained data-pipeline maintenance, monitoring for upstream data changes, and ongoing analyst time
+- D) A defensible, version-controlled audit trail tying each submitted number to the specific model version that produced it becomes a structural requirement, not a nice-to-have
+**Answer:** B
+**Explanation:** The chapter explicitly states the opposite: "the computational re-run itself is often the cheapest part of the exercise" -- the real maintenance burden is sustained data-pipeline upkeep and analyst time, not compute cost, while governance and versioning/audit-trail gaps are both named as genuine unresolved obstacles.
