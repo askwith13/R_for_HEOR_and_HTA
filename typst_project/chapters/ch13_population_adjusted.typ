@@ -187,6 +187,57 @@ The appeal is efficiency: STC uses all $N$ IPD patients in the regression rather
   For a linear model on a continuous outcome, "predict the outcome at the covariate means" and "the average outcome across the covariate distribution" give the same answer, so STC is relatively safe there. For _nonlinear_ outcome models — logistic regression on odds ratios, Cox regression on hazard ratios — they do not. The reason has a name: _non-collapsibility_. The conditional treatment effect (adjusted for covariates, evaluated at their mean) and the marginal treatment effect (averaged over the whole covariate distribution) are two different quantities on the odds-ratio or hazard-ratio scale. This is true even when the model is perfectly specified. So plugging the AgD trial's mean covariate values into a fitted logistic or Cox model, and reading off the "treatment effect," gives a *conditional* effect at those particular covariate values. It does not give the *population-average* effect that an aggregate-data trial reports — and that the indirect comparison needs to match. Treating these as interchangeable biases the comparison, even when every covariate is balanced and the outcome model is otherwise correct. The fix: simulate outcomes across the full joint covariate distribution implied by the AgD trial's reported summary statistics, average the simulated individual predictions on the natural outcome scale, then transform back to odds ratios or hazard ratios. This simulation step is the "simulated" in the method's name. Skipping it is the single most common STC implementation error.
 ]
 
+#difficult-terminology("conditional treatment effect / marginal treatment effect")[
+These two phrases sound like they should mean almost the same thing, but on
+a nonlinear scale (odds ratio, hazard ratio) they genuinely do not, and the
+gap between them is the whole reason non-collapsibility matters. A
+*conditional* effect is "the treatment effect for a patient (or group of
+patients) who all share one specific set of covariate values" — e.g. "the
+odds ratio for a 61-year-old patient with a severity score of 2.1," read
+straight off a fitted regression's coefficient. A *marginal* effect is "the
+treatment effect averaged across the whole population's actual mix of
+covariate values" — the number an aggregate-data trial's reported odds
+ratio or hazard ratio actually represents, since that trial never
+conditioned on anyone's individual covariates in the first place.
+
+A quick worked example makes the gap concrete. Simulate 100,000 patients,
+half with mild disease and half with severe, with a treatment that has
+exactly the same true log-odds effect (0.7, i.e. an odds ratio of about
+2.0) in both subgroups — no genuine effect modification by severity at
+all, by construction:
+```r
+set.seed(1)
+n <- 100000
+severity <- rbinom(n, 1, 0.5)   # 0 = mild, 1 = severe
+treat <- rbinom(n, 1, 0.5)
+lp <- -1 + 0.7 * treat + 1.5 * severity  # constant treatment log-odds effect
+y <- rbinom(n, 1, plogis(lp))
+
+m <- glm(y ~ treat + severity, family = binomial)
+exp(coef(m)["treat"])  # conditional OR, adjusted for severity
+```
+Fitting a logistic regression recovers a *conditional* odds ratio of
+about *1.98* — close to the true 2.0, as expected. But now average the
+model's predicted probabilities under "everyone treated" versus "no one
+treated," across the real mix of mild and severe patients in the sample,
+and convert that to an odds ratio:
+```r
+p1 <- mean(predict(m, newdata = transform(df, treat = 1), type = "response"))
+p0 <- mean(predict(m, newdata = transform(df, treat = 0), type = "response"))
+(p1 / (1 - p1)) / (p0 / (1 - p0))  # marginal OR
+```
+This gives a *marginal* odds ratio of about *1.82* — noticeably smaller,
+despite the underlying model being exactly right and having no real
+effect modification at all. Nothing is wrong with the model; odds ratios
+themselves simply don't average the way risk differences do (a risk
+difference, by contrast, collapses cleanly — this is specifically an
+odds-ratio/hazard-ratio problem, not a general statistics problem). STC's
+entire extra "simulate across the covariate distribution" step described
+above exists purely to convert the easy-to-fit conditional estimate into
+the marginal estimate that can actually be compared against an aggregate
+trial's reported result.
+]
+
 The practical trade-off between the two methods comes down to *which* model you must get right. MAIC's validity rests on correctly specifying the _weighting/matching model_ — which covariates drive the propensity-style weights — but it makes no assumption about the outcome's functional form; the weighted outcome analysis can be as simple as a weighted Kaplan–Meier curve. STC's validity rests on correctly specifying the _outcome regression model_, including its functional form and the covariate-by-treatment interactions that encode effect modification. But STC uses the full IPD sample, with no ESS penalty. Neither assumption dominates the other in general. The choice usually comes down to how much confidence you have in modelling the outcome mechanism versus modelling the covariate-balancing mechanism, and how severe the expected ESS loss would be under MAIC given how much the two trial populations actually overlap.
 
 #agency-note[
