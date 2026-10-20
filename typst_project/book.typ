@@ -89,6 +89,7 @@
 // ---- Part VI: Reporting, Communication and Deployment ----
 #part-divider("VI", "Reporting, Communication and Deployment")
 #include "chapters/ch28_reproducible_reporting.typ"
+#include "chapters/ch29_shiny_apps.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)

@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-26 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-29 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,8 +12,8 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 56 across 25 chapters.**
-(Chapters 1, 2 reviewed and judged to have none).
+**Total candidates so far: 56 across 26 chapters.**
+(Chapters 1, 2, 28, 29 reviewed and judged to have none).
 
 ---
 
@@ -428,6 +428,21 @@ genuine continuous/non-trivial exploration, so it does not meet the selection ba
 
 Total candidates remain 56 across 25 chapters with content (Chapter 28 adds a chapter with
 zero candidates, consistent with how Chapters 1-2 were handled).
+
+## Chapter 29. Interactive Models and Web Applications with Shiny
+
+No genuine candidates identified. Checked per the mandatory per-tick scan: 29.1-29.8 are
+THEMSELVES about how to build a Shiny app (architecture, UI design, modularity, model
+linkage, downloads/audit trails, deployment, security, a capstone case study) rather than
+a methodological HEOR concept whose parameter effects would benefit from being wrapped
+in an interactive app -- the chapter teaches the tool used to build such apps, so adding a
+"Shiny app candidate" entry about Shiny itself would be circular. Every illustrative code
+example in the chapter already IS, in effect, a worked Shiny snippet (the toy ICER
+calculator in 29.1, the TB model PSA explorer in 29.4 and 29.8), so there is no further
+unaddressed interactivity gap to log here.
+
+Total candidates remain 56 across 26 chapters with content (Chapter 29 adds a chapter with
+zero candidates, consistent with how Chapters 1-2 and 28 were handled).
 
 ## When we build these
 

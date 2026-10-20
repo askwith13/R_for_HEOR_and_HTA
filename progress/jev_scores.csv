@@ -63,3 +63,5 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T03:40:56.832267+00:00,27,"Model Calibration, Validation and Quality Assurance",,,,,,6.92,jev-latest,prose_only
 2026-10-20T08:52:48.913354+00:00,28,Reproducible Reporting,7.87,7.51,6.13,7.46,8.46,jev-1.13.0
 2026-10-20T08:52:53.521729+00:00,28,Reproducible Reporting,,,,,,7.16,jev-latest,prose_only
+2026-10-20T09:23:55.863339+00:00,29,Interactive Models and Web Applications with Shiny,8.2,7.94,6.34,7.24,8.05,jev-1.13.0
+2026-10-20T09:24:00.419327+00:00,29,Interactive Models and Web Applications with Shiny,,,,,,7.29,jev-latest,prose_only
