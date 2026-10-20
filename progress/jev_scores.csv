@@ -73,3 +73,7 @@ timestamp,chapter_num,chapter_title,coverage,technical_correctness,code_validity
 2026-10-20T13:44:36.774267+00:00,31,Agency Requirements and Reference Cases,,,,,,6.73,jev-latest,prose_only
 2026-10-20T18:35:25.124854+00:00,32,Special Topics,8.25,7.77,7.66,8.65,8.62,jev-1.13.0
 2026-10-20T18:35:30.598497+00:00,32,Special Topics,,,,,,6.56,jev-latest,prose_only
+2026-10-20T18:46:19.782472+00:00,33,Patient-Reported Outcomes and Preference Research,8.51,8.0,7.95,5.88,8.32,jev-1.13.0
+2026-10-20T18:46:26.662652+00:00,33,Patient-Reported Outcomes and Preference Research,,,,,,6.09,jev-latest,prose_only
+2026-10-20T18:47:47.050212+00:00,33,Patient-Reported Outcomes and Preference Research,8.41,7.75,7.92,8.07,8.19,jev-1.13.0
+2026-10-20T18:47:53.877339+00:00,33,Patient-Reported Outcomes and Preference Research,,,,,,6.1,jev-latest,prose_only

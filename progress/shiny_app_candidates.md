@@ -482,6 +482,20 @@ Total candidates now 57 across 28 chapters with content.
 
 Total candidates now 59 across 29 chapters with content.
 
+## Chapter 33. Patient-Reported Outcomes and Preference Research
+
+### IRT Item Characteristic Curve Explorer
+- **Section:** 33.1
+- **What it does:** Sliders let the user vary an item's discrimination (a) and difficulty (b) parameters, with a live-updating item characteristic curve (probability of a positive response vs. underlying trait level theta) overlaid against a fixed reference item. Makes directly visible the conceptual distinction the chapter draws between difficulty (where on the trait scale the item is most informative -- shifts the curve left/right) and discrimination (how sharply it distinguishes respondents just above vs. below that point -- changes the curve's steepness), which is otherwise easy to read as prose but hard to feel intuitively from the `mirt::itemplot()` static output alone.
+- **Likely packages:** `shiny, ggplot2, bslib`
+
+### MCID Threshold / Responder-Rate Explorer
+- **Section:** 33.2
+- **What it does:** A slider for the distribution-based MCID fraction (e.g. 0.3x to 0.8x baseline SD, the chapter's worked example uses 0.5x) applied to the same simulated treatment-arm PRO data, with a live-updating responder-rate percentage and histogram of patient-level changes with the MCID threshold marked as a vertical line. Directly demonstrates the chapter's key closing point -- that the specific threshold chosen is "doing a great deal of work" in determining how good a treatment looks under a responder-based model structure -- by letting the user watch the responder rate swing as they drag the threshold, rather than only reading the one fixed 52% result in the report-table.
+- **Likely packages:** `shiny, ggplot2, bslib, dplyr`
+
+Total candidates now 61 across 30 chapters with content.
+
 ## When we build these
 
 Each app, when built, should get its own folder under a new top-level `shiny_apps/` 

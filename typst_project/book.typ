@@ -96,6 +96,7 @@
 #part-divider("VII", "HTA in Practice")
 #include "chapters/ch31_agency_requirements.typ"
 #include "chapters/ch32_special_topics.typ"
+#include "chapters/ch33_pro_preference_research.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)
