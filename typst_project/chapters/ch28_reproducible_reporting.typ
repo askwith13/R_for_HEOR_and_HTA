@@ -478,6 +478,11 @@ simulate_cvd(c("#440154", "#21918c", "#fde725"), deutan(1))
   GitHub-only packages (not distributed via CRAN) can be finicky to install in a restricted or offline environment, since they typically require the `remotes` or `devtools` package plus a working internet connection to GitHub rather than a simple `install.packages()` call. If a GitHub-only colour-blind-simulation add-on fails to install, fall back to `colorspace::simulate_cvd()` for a quick simulated-vision preview, or simply default to a known colour-blind-safe palette family (viridis, or the `RColorBrewer` "Dark2"/"Set2" qualitative palettes, which were also designed with colour-vision deficiency in mind) and skip the simulation step rather than blocking your report on a brittle dependency.
 ]
 
+#figure(
+  image("../images/r_generated/ch28_cvd_simulation_grid.png", width: 95%),
+  caption: [A simulated three-arm cost-effectiveness plane (illustrative data) compared under the ggplot2 default qualitative palette (top row) and the viridis palette (bottom row), each shown under normal vision (left) and a simulated deuteranopia colour-vision deficiency (right, via `colorspace::deutan()`). Under the default palette, "Novel combination" and "Shortened 4-month" become visually indistinguishable once deuteranopia is simulated; all three arms remain distinguishable under viridis.],
+) <fig-ch28-cvd-comparison>
+
 #heor-practice[
   Never rely on colour alone to distinguish lines or bars in a figure that may be printed in greyscale or viewed by a colour-blind reviewer. Pair colour with a second visual channel -- line type (`linetype =`), point shape (`shape =`), or direct text labels on the lines -- so the figure survives both greyscale printing and colour vision deficiency simultaneously.
 ]
