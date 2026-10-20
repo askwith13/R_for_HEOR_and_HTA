@@ -189,3 +189,7 @@ this file).
 ## Chapter 29 additions (Interactive Models and Web Applications with Shiny)
 
 | C25 | Ch.29 | N/A (Shiny app-design content) | None | Checked per skill step 11b — 29.1-29.8 content (Shiny architecture, UI design, modular app structure, model-engine linkage, downloadable reports/audit trails, deployment, security, capstone case study) is architectural/procedural and already made concrete via real worked code examples and two comparison tables (`<tab-ch29-golem-rhino>`, `<tab-ch29-deployment>`); no structural/process diagram judged necessary | Skipped (not needed) | — |
+
+## Chapter 30 additions (R Packages and Pipelines for Model Development)
+
+| C26 | Ch.30 | N/A (R packaging/pipeline content) | None | Checked per skill step 11b — 30.1-30.7 content (package scaffolding, documentation, targets pipelines, CI, sharing, licensing) is architectural/procedural, already made concrete via real worked code examples and one comparison table (`<tab-ch30-licenses>`); a dependency-graph diagram for `targets` was considered but the chapter's own `_targets.R` listing already shows the dependency chain linearly and explicitly, so a separate diagram was judged non-essential | Skipped (not needed) | — |

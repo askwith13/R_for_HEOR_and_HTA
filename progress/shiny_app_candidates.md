@@ -12,8 +12,8 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 56 across 26 chapters.**
-(Chapters 1, 2, 28, 29 reviewed and judged to have none).
+**Total candidates so far: 56 across 27 chapters.**
+(Chapters 1, 2, 28, 29, 30 reviewed and judged to have none).
 
 ---
 
@@ -443,6 +443,21 @@ unaddressed interactivity gap to log here.
 
 Total candidates remain 56 across 26 chapters with content (Chapter 29 adds a chapter with
 zero candidates, consistent with how Chapters 1-2 and 28 were handled).
+
+## Chapter 30. R Packages and Pipelines for Model Development
+
+No genuine candidates identified. Checked per the mandatory per-tick scan: 30.1-30.7 cover
+package scaffolding, documentation tooling, `targets` pipelines, CI, sharing mechanisms,
+and licensing -- all procedural/infrastructure content about HOW to package and ship a
+model, not a methodological HEOR parameter whose live-varying effect would benefit from an
+interactive app. The closest candidate considered and rejected: a "targets dependency-graph
+explorer" letting a user click a node and see which downstream targets would re-run --
+interesting as a developer tool, but not a genuine HEOR-methodology exploration the way
+e.g. a WTP-threshold slider or a transition-probability sandbox is, so it does not meet the
+selection bar used throughout this file.
+
+Total candidates remain 56 across 27 chapters with content (Chapter 30 adds a chapter with
+zero candidates, consistent with how Chapters 1-2, 28, and 29 were handled).
 
 ## When we build these
 

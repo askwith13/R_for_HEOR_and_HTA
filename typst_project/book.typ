@@ -90,6 +90,7 @@
 #part-divider("VI", "Reporting, Communication and Deployment")
 #include "chapters/ch28_reproducible_reporting.typ"
 #include "chapters/ch29_shiny_apps.typ"
+#include "chapters/ch30_r_packages_pipelines.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)
