@@ -163,7 +163,7 @@ adj_sets <- dagitty::adjustmentSets(tb_dag, exposure = "regimen", outcome = "suc
 adj_sets
 ```
 
-Running `adjustmentSets()` on this graph returns `{hiv}` as the minimal sufficient set — critically, `nutrition` is correctly *excluded* because it is a mediator, not a confounder, and `ggdag::ggdag_adjustment_set()` will draw the same set visually, which is a useful sanity check to pair with the programmatic answer.
+Running `adjustmentSets()` on this graph returns `{hiv, site_capacity}` as the minimal sufficient set — both are common causes of regimen *and* success, so both must be adjusted for to block confounding. Critically, `nutrition` is correctly *excluded* because it is a mediator, not a confounder (adjusting for it would block part of the regimen's true causal effect), and `ggdag::ggdag_adjustment_set()` will highlight the same two-variable set visually, which is a useful sanity check to pair with the programmatic answer.
 
 ```r
 # Visual confirmation of the same adjustment set
@@ -171,6 +171,11 @@ ggdag::ggdag_adjustment_set(tb_dag, exposure = "regimen", outcome = "success",
                              text = FALSE, use_labels = "label") +
   ggdag::theme_dag()
 ```
+
+#figure(
+  image("../images/r_generated/ch15_dag_tb_regimen.png", width: 100%),
+  caption: [Left: the TB regimen confounding DAG as encoded by `dagify()`. Right: `ggdag_adjustment_set()`'s visual confirmation that `{hiv, site_capacity}` is the minimal sufficient adjustment set — both coloured red as "adjusted" — while `nutrition` (a mediator) is correctly left unadjusted.]
+) <fig-ch15-dag>
 
 Once the adjustment set is settled by the DAG rather than by convenience, the question of *how* to report the resulting observational comparison is itself standardised. The *STROBE statement* (Strengthening the Reporting of Observational Studies in Epidemiology) — and its TREND and RECORD extensions for routinely collected and non-randomised data respectively — specifies a 22-item checklist covering exactly the design, confounding, and bias elements this section has walked through: how participants were selected, how confounders were identified and measured, how missing data were handled, and how potential biases were addressed, mapped item-by-item into the manuscript or dossier. Treat the STROBE checklist as a drafting template, not a post-hoc audit — filling it in alongside the DAG and target-trial protocol from §15.2, rather than after the analysis is finished, will save you from discovering a reporting gap only when a reviewer asks for it.
 
@@ -253,6 +258,11 @@ love.plot(
 ```
 
 `bal.tab()` prints standardized mean differences (and variance ratios for continuous covariates) before (`un = TRUE`) and after weighting; `love.plot()` renders the now-standard dot plot with a vertical reference line at the balance threshold, letting you see at a glance whether every covariate crossed under 0.1 after weighting.
+
+#figure(
+  image("../images/r_generated/ch15_love_plot.png", width: 85%),
+  caption: [A love plot for a toy TB cohort (n = 600): absolute standardized mean differences before (red) and after (teal) inverse-probability-of-treatment weighting. Every covariate, including the propensity score itself, collapses from well above the conventional 0.1 threshold (dashed line) to effectively zero after weighting.]
+) <fig-ch15-love-plot>
 
 === A worked numeric example: IPTW ATE by hand
 
@@ -472,6 +482,11 @@ rdplot(
 
 `rdrobust()` reports three estimates (conventional, bias-corrected, and robust), and the robust bias-corrected confidence interval is the one you should report — it accounts for the fact that the optimal bandwidth for point estimation is not the optimal bandwidth for inference. `rdplot()` produces the canonical RD scatter-with-binned-means-and-fitted-lines figure that should accompany every RD analysis, so a reviewer can see the jump at the cutoff directly rather than trusting the number alone.
 
+#figure(
+  image("../images/r_generated/ch15_rd_plot.png", width: 85%),
+  caption: [`rdrobust::rdplot()` output for the CD4-count RD example: culture conversion time against CD4 count, with the policy cutoff at CD4 = 200 marked by the vertical line. The fitted local-polynomial curves on either side show a visible downward jump just below the cutoff, where the new regimen becomes mandated.]
+) <fig-ch15-rd-plot>
+
 #pitfall[
 RD estimates are *local*: the effect is identified only for patients near the cutoff (CD4 close to 200 in the example), and should never be extrapolated to patients far from it (e.g., CD4 of 50 or 600) without additional structural assumptions. Always run `rdrobust`'s built-in manipulation/density check (`rddensity` package) to confirm patients were not able to manipulate which side of the cutoff they landed on — in a TB programme, a clinician who knows the CD4 threshold and orders a repeat test for a borderline patient to secure the new regimen would silently invalidate the whole design.
 ]
@@ -532,6 +547,11 @@ ggdid(agg_dyn)
 ```
 
 `att_gt()` estimates a separate average treatment effect for every (group, time) pair defined by *when* a district first adopted, then `aggte()` aggregates those into either a single summary number or a dynamic event-study plot, avoiding the staggered-adoption bias of plain TWFE entirely.
+
+#figure(
+  image("../images/r_generated/ch15_did_event_study.png", width: 85%),
+  caption: [`did::ggdid()` output for a simulated staggered-rollout TB programme: group-time average treatment effects by quarters since rollout (negative x-axis = pre-treatment, positive = post). Pre-treatment estimates hover around zero with overlapping confidence intervals (supporting the parallel-trends assumption), while post-treatment estimates show a consistent negative effect on culture conversion time.]
+) <fig-ch15-did-event-study>
 
 #heor-practice[
 *Practical rule of thumb.* If every treated unit in your rollout switched on the same calendar date (a single national go-live), plain TWFE DiD is fine. If adoption is staggered across districts/facilities — almost always true of a phased national rollout — default to `did::att_gt()` rather than TWFE, even if the TWFE coefficient "looks reasonable"; the bias from staggered TWFE can be large enough to flip the sign of the estimated effect.

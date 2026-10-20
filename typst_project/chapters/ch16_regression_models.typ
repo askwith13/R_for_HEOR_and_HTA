@@ -505,6 +505,11 @@ also provides `best_linear_projection()` and related diagnostics to
 summarise *which* covariates drive it — useful for generating hypotheses
 that a pre-specified subgroup analysis (§16.6) can then test formally.
 
+#figure(
+  image("../images/r_generated/ch16_causal_forest_hte.png", width: 85%),
+  caption: [Distribution of per-patient estimated treatment effects (`tau_hat`) from `grf::causal_forest()` on a simulated TB-regimen dataset. The bimodal spread — one cluster near zero, another around 0.25-0.3 — is itself evidence of real heterogeneity: a single average effect (solid red line) would mask the fact that some patients benefit far more than others.]
+) <fig-ch16-hte>
+
 *LASSO and elastic net for variable selection.* When the candidate
 covariate list is long relative to sample size — dozens of biomarkers,
 comorbidity flags, or lab values — ordinary regression overfits.
@@ -584,6 +589,11 @@ either a `ggplot2` point-and-error-bar plot, or `metafor::forest()`
 applied to a set of subgroup-specific effect estimates and standard
 errors in place of study-specific ones. No new plotting machinery is
 needed here; only the question "study" versus "subgroup" changes.
+
+#figure(
+  image("../images/r_generated/ch16_subgroup_forest.png", width: 85%),
+  caption: [A subgroup forest plot (ggplot2 point-and-error-bar, log odds-ratio scale) comparing the overall treatment effect against the HIV-positive and HIV-negative subgroups. The overlapping confidence intervals here would not meet a pre-specified threshold for a confirmed interaction — illustrating why the formal interaction test, not a pair of separate within-subgroup p-values, is the correct way to test effect modification.]
+) <fig-ch16-subgroup-forest>
 
 *Prognostic factor versus effect modifier, again.* Chapter 15 §15.3 drew
 this distinction using a DAG: a prognostic factor predicts outcome

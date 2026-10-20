@@ -281,11 +281,19 @@ mcmc_trace(posterior_array, pars = c("d[1]", "d[2]", "tau"))
 
 A healthy trace plot looks like a "fat hairy caterpillar" — four overlapping bands with no trend, no chain visibly separated from the others, and no long flat stretches where the sampler got stuck.
 
-// TODO-IMAGE: bayesplot::mcmc_trace() output for a fitted Stan model
-// (e.g. the chapter's own Beta-Binomial Stan fit, extended to a
-// hierarchical version with a visible tau parameter) -- a real trace
-// plot showing 4 overlapping healthy chains, for Dr Aswath to supply
-// after running the above code locally.
+#figure(
+  image("../images/r_generated/ch14_mcmc_trace.png", width: 90%),
+  caption: [
+    Illustrative `bayesplot::mcmc_trace()` diagnostic on *simulated* MCMC
+    draws (4 chains x 2,000 post-warmup iterations, hand-constructed with
+    mild autocorrelation around the chapter's own Beta-Binomial posterior
+    mean of 0.793), shown on both the natural ($theta$) and logit scales.
+    This is *not* output from an actually-fitted Stan/brms model — the
+    book's environment does not have rstan/brms installed/fittable — it is
+    provided purely to demonstrate what a healthy, well-mixed "fat hairy
+    caterpillar" trace plot looks like in practice.
+  ],
+) <fig-ch14-mcmc-trace>
 
 === Effective sample size: why 20,000 draws can be worth 200
 
@@ -325,10 +333,20 @@ ppc_dens_overlay(y = observed_outcomes, yrep = y_rep[1:50, ])
 
 This overlays the density of your observed outcome on top of 50 densities simulated from posterior draws. A model that fits well produces a tight bundle of replicated curves hugging the observed curve. A model that systematically misses — too much dispersion, wrong skew, a mode in the wrong place — shows up as replicated curves that visibly diverge from the observed data, which is a much more concrete signal than a residual plot for an analyst still building intuition for what "model misfit" looks like in a Bayesian setting.
 
-// TODO-IMAGE: bayesplot::ppc_dens_overlay() output comparing observed
-// outcome density to posterior-predictive replicated densities, for
-// Dr Aswath to supply after running a fitted model through the code
-// above (any of the chapter's Stan/brms model fits would work).
+#figure(
+  image("../images/r_generated/ch14_ppc_dens_overlay.png", width: 90%),
+  caption: [
+    Illustrative `bayesplot::ppc_dens_overlay()` diagnostic comparing a
+    *simulated* observed-outcome density to 20 *simulated* posterior-predictive
+    replicate densities, both drawn from Beta distributions perturbed around
+    the chapter's Beta-Binomial posterior parameters ($alpha_"post"=184$,
+    $beta_"post"=48$). This is *not* output from an actually-fitted
+    Stan/brms model — the book's environment does not have rstan/brms
+    installed/fittable — it is provided purely to demonstrate what a tight,
+    well-fitting bundle of replicated curves looks like against the observed
+    data.
+  ],
+) <fig-ch14-ppc-dens-overlay>
 
 #heor-practice[
   For a Bayesian NMA feeding a cost-effectiveness model, run PPCs on each trial's observed event counts against the model's posterior predictive event counts before trusting the pooled treatment effects. A network that fits the overall deviance well can still badly misfit one influential trial — exactly the trial that might be driving your incremental cost-effectiveness ratio.
@@ -518,10 +536,10 @@ SHELF::plotfit(fit, lp = TRUE)
 
 The package also provides feedback-style diagnostics — comparing implied probabilities from the fitted distribution back against further quantiles the expert supplies, as a sanity check that the fit captures their actual judgement — via a function along the lines of `SHELF::feedback()`. Not every argument name and default in the current `feedback()` signature has been independently re-checked against the live CRAN documentation here, so treat the call above as illustrative of the _idea_ rather than a copy-paste guarantee; always run `?SHELF::fitdist` and `?SHELF::feedback` in your own R session before relying on the precise arguments, since package APIs do shift across versions. The package also ships a Shiny app for live group elicitation sessions — genuinely useful if you expect to run this more than once.
 
-// TODO-IMAGE: SHELF::plotfit() output showing a fitted beta/gamma/
-// normal candidate distribution overlaid on the elicited quantile
-// points from the response-rate example above, for Dr Aswath to
-// supply after running the code locally.
+#figure(
+  image("../images/r_generated/ch14_shelf_plotfit.png", width: 85%),
+  caption: [`SHELF::plotfit()` overlay of fitted candidate distributions against the elicited response-rate quantiles (25th/50th/75th percentiles = 0.30/0.45/0.60). By `fit$ssq` least-squares scoring, SHELF's default ranking places the unbounded skew-normal and normal families as the closest numerical fit to these three points (ssq on the order of $10^(-32)$ -- essentially exact, because a symmetric three-point quantile set is fit almost perfectly by a two/three-parameter symmetric family). The beta fit scores a higher but still small ssq ($1.99 times 10^(-5)$), with gamma and log-normal trailing further behind. For a HEOR prior on a probability, this is the practical lesson: the *lowest-ssq* family is not automatically the *right* one to carry into the model -- a response rate is bounded on $[0,1]$, and the normal/skew-normal fits can assign positive density outside that range, which is nonsensical for a probability parameter. The beta fit, despite its slightly larger ssq, is the one that should feed the prior, precisely because it respects the support of the parameter being elicited.]
+) <fig-ch14-shelf>
 
 #pitfall[
   A beta or gamma fit to elicited quantiles is a _summary_ of judgement, not a measurement. Resist the temptation to report the fitted distribution's standard error with the same confident precision you would give a trial estimate's standard error — it reflects how confident the expert group felt, filtered through a parametric approximation, not a sampling distribution of anything. Always report, alongside the fitted parameters, who was elicited, how many experts, and whether reconciliation changed the picture materially.

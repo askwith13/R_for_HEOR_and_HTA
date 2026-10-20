@@ -85,6 +85,11 @@ w <- w / mean(w)                  # optional rescaling, mean weight = 1
   ),
 ) <tab-ch13-maic-covariate-balance>
 
+#figure(
+  image("../images/r_generated/ch13_maic_love_plot.png", width: 85%),
+  caption: [A love plot of the same covariate balance shown in @tab-ch13-maic-covariate-balance: absolute standardized mean differences between the IPD trial and the AgD trial's reported target, before (red) and after (green) MAIC odds-weighting. By construction, MAIC drives every matched covariate's SMD to exactly zero — the diagnostic that matters is whether any *unmatched* effect modifier remains imbalanced. SMDs computed against illustrative typical-scale standard deviations for each covariate type, since the chapter's worked example reports only means, not SDs.]
+) <fig-ch13-maic-love-plot>
+
 _Effective sample size (ESS)._ Reweighting trades bias reduction for a loss of precision, and that loss must be quantified and reported, not buried in a supplementary table. The standard diagnostic is
 $ "ESS" = (sum_i w_i)^2 / sum_i w_i^2 $
 which answers "how many *unweighted* patients would given this much statistical information?" A MAIC that starts with $N=400$ IPD patients but produces $"ESS" = 120$ has thrown away roughly 70% of its effective information — a real quality-of-evidence red flag. A large ESS drop usually signals that the IPD and AgD populations barely overlap on the matched covariates, that a few patients are carrying almost all the weight, and that the resulting estimate's confidence interval will be much wider (and its extrapolation much less trustworthy) than the nominal sample size would suggest. Reviewers and HTA bodies expect ESS reported alongside the original N for exactly this reason.

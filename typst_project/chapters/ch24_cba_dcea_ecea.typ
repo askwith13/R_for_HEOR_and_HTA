@@ -442,6 +442,11 @@ not just the R output).
   ),
 ) <tab-ch24-dcea-toy>
 
+#figure(
+  image("../images/r_generated/ch24_equity_impact_plane.png", width: 75%),
+  caption: [The equity impact plane plotted for @tab-ch24-dcea-toy's toy example: net health benefit (total unweighted QALYs = 200) on the x-axis against net equity impact (equity-weighted minus unweighted QALYs = +60) on the y-axis. This example lands in the win-win quadrant — equity weighting happened to favour the subgroup already receiving the larger QALY gain. Had the most-deprived group received the *smaller* gain instead, the same exercise would land in the "efficient but unfair" quadrant, the genuine trade-off this plane exists to visualize.]
+) <fig-ch24-equity-plane>
+
 The direction of the effect is the point of the illustration, not the
 specific weight chosen: because the equity weight was applied to the
 subgroup that was *already* receiving the larger QALY gain, up-weighting
@@ -577,6 +582,11 @@ The poverty calculation works differently: a household falls into poverty when i
     ),
   ),
 ) <tab-ch24-ecea-frp>
+
+#figure(
+  image("../images/r_generated/ch24_ecea_frp_by_quintile.png", width: 85%),
+  caption: [Financial risk protection outcomes from @tab-ch24-ecea-frp plotted by income quintile: catastrophic-health-expenditure cases averted (blue) and poverty cases averted (orange). Essentially all of the policy's financial protection accrues to the three poorest quintiles — Q4 and Q5 see zero effect — exactly the pro-poor distributional pattern the pooled total (53,333 CHE cases averted) alone would hide.]
+) <fig-ch24-ecea-frp>
 
 #heor-practice[
 Report financial risk protection results *by quintile*, never only as a single pooled figure. The pooled total of 53,333 CHE cases averted is true but hides the policy-relevant finding: essentially all of the financial protection accrues to the three poorest quintiles, with zero effect on Q4 and Q5. A payer or ministry deciding between a universal subsidy and a means-tested subsidy targeted at the bottom three quintiles needs exactly this quintile breakdown to see that the latter could capture almost the same financial-protection benefit at a fraction of the fiscal cost -- a comparison the aggregate number alone cannot support.

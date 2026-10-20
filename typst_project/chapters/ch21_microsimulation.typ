@@ -341,6 +341,11 @@ To keep the summary table honest, report counts rather than an invented cost-eff
   ),
 ) <tab-ch21-screening>
 
+#figure(
+  image("../images/r_generated/ch21_screening_detection_bars.png", width: 85%),
+  caption: [Detection pathway by arm from the chapter's own `run_arm()` common-random-numbers microsimulation (N = 1,000 patients, 20 annual cycles). Screening shifts detections earlier — 78 more patients detected within 2 years of onset — without changing the total number eventually detected, exactly the timing-shift mechanism @tab-ch21-screening reports.]
+) <fig-ch21-screening-bars>
+
 The "Patients ever Undetected TB" row is identical across arms by construction: CRN means both arms progress the same patients through disease onset in the same cycles, so any difference in the remaining rows is attributable to the detection rule, not to simulation noise. Every detection in the screening arm that would otherwise have been a self-presentation is relabelled, not double-counted -- the "Detected via self-presentation" and "Detected via screening" rows in the screening column sum to the same 268 total detections as the no-screening arm's self-presentation column, by construction of the simulation logic above. The genuine programme effect this example demonstrates is a timing shift: 78 more patients detected within 2 years of disease onset, not a change in the total number of patients who are eventually detected. Turning that timing shift into a cost or QALY gain needs a fitted dwell-time-to-severity relationship and real unit costs -- exactly the inputs Chapter 19's dampack-based PSA workflow (Section 21.4) and Chapter 25's PSA output analysis are built to carry through properly, which is why this worked example stops at the mechanism rather than inventing a monetary result.
 
 Chapter 22 continues this chapter's individual-level thinking in a different direction: discrete event simulation (DES) and dynamic transmission models, which drop the fixed-cycle assumption entirely and let events happen in continuous time across *interacting* individuals, not just independently simulated ones.

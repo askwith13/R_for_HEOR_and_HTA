@@ -48,6 +48,11 @@ p_hidden_best_rs <- p_hidden_candidates[best_idx]
 
 Random search is easy to parallelize and never gets stuck in a local optimum the way gradient-based methods can, but it is inefficient: with only one free parameter, 500 draws is already overkill, and with five or more unknown parameters the same grid density becomes computationally prohibitive (the number of draws needed to maintain the same coverage grows exponentially with the number of parameters -- the so-called curse of dimensionality).
 
+#figure(
+  image("../images/r_generated/ch27_calibration_search_landscape.png", width: 85%),
+  caption: [The 500 random-search `p_hidden` candidates (x-axis) against their squared distance from the 32% mortality target (y-axis). The red point marks random search's closest draw; the dashed green line marks the Nelder-Mead-converged value (0.084) from the next subsection -- visibly sitting near the bottom of the same illustrative response curve both methods are searching.]
+) <fig-ch27-calibration-landscape>
+
 #pitfall[
   A single calibration target is a weak test. If `p_hidden` is calibrated only to match 5-year mortality, many different combinations of _other_ model parameters could also have been adjusted to hit that same single number -- the calibration is underdetermined, and the chosen value of `p_hidden` could be compensating for an error elsewhere in the model rather than reflecting the true biological transition rate. Where possible, calibrate against _multiple_ independent targets simultaneously (e.g. 5-year mortality _and_ 2-year treatment failure rate) and check that the single calibrated parameter set reproduces all of them adequately -- not just the one you happened to check.
 ]
@@ -342,7 +347,12 @@ So the model's prediction is 4 percentage points higher than the illustrative ob
     ),
     footer: (table.cell(colspan: 3)[Figures for the observed cohort are illustrative, not drawn from a published source, and are used only to demonstrate the external-validity calculation.],),
   ),
-)
+) <tab-ch27-external-validity>
+
+#figure(
+  image("../images/r_generated/ch27_external_validity_comparison.png", width: 70%),
+  caption: [The external-validity comparison from the table above: model-predicted (78%) vs illustrative observed (74%) 10-year survival for the New regimen. The gap is small in absolute terms (4 percentage points) but, per the pitfall below, a single cohort comparison is evidence to weigh, not a verdict.]
+) <fig-ch27-external-validity>
 
 #pitfall[
 Do not treat a close match between model predictions and real-world outcomes as proof the model is "correct." A single cohort's 10-year outcome is one noisy data point; close agreement could be coincidental, and disagreement could reflect a real-world population that differs from the model's target population rather than a flawed model. External validity checks are evidence to weigh, not a verdict to declare from one comparison.
