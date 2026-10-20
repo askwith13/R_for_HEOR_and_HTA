@@ -2,7 +2,7 @@
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
 **No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-23 (current book progress); 
+not a backlog to execute immediately. Covers Chapters 1-24 (current book progress); 
 extend this file as each new chapter is drafted (see the standing note at the bottom).
 
 ## Selection criteria
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 43 across 21 chapters**
+**Total candidates so far: 46 across 22 chapters**
 (Chapters 1, 2 reviewed and judged to have none).
 
 ---
@@ -327,16 +327,34 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ---
 
-## Standing note for future chapters (24-35)
+## Chapter 24. Cost-Benefit, Distributional and Extended Cost-Effectiveness Analysis
+
+### Equity-Weighted ICER Explorer
+- **Section:** 24.2
+- **What it does:** Sliders for each subgroup's QALY gain and an adjustable equity weight (1.0 to 3.0) for the most-deprived group re-run the chapter's toy two-subgroup `icer_unweighted`/`icer_weighted` calculation live, redrawing both ICERs side by side and plotting the result as a point on a simplified equity-impact-plane quadrant chart. Makes the chapter's central "win-win vs genuine trade-off" distinction directly explorable — dragging the deprived group's QALY gain below the less-deprived group's instantly flips which quadrant the result lands in, a relationship the static toy example can only show once.
+- **Likely packages:** `shiny, dplyr, ggplot2`
+
+### ECEA Financial Risk Protection Dashboard
+- **Section:** 24.3
+- **What it does:** Sliders for the status-quo and new-policy out-of-pocket cost, the catastrophic-expenditure threshold (%), and the poverty line re-run the chapter's `ecea_frp()` function live across all five income quintiles, redrawing the CHE-cases-averted and poverty-cases-averted bar chart. Strong candidate because the quintile-by-quintile distribution genuinely depends non-trivially on where each cutoff falls relative to each quintile's income band — exactly the kind of threshold-crossing behaviour that is far clearer dragged live than read from a single static scenario.
+- **Likely packages:** `shiny, dplyr, ggplot2`
+
+### MCDA Weight Sensitivity Explorer
+- **Section:** 24.4
+- **What it does:** Four sliders (one per criterion: efficacy, safety, severity, economic value, constrained to sum to 1) re-run the chapter's `mcda_weighted_score()` function live against the same three-drug example, instantly re-ranking the drugs and showing how close the ranking is to flipping. Directly operationalizes the chapter's own pitfall box ("every MCDA result should be accompanied by a weight-sensitivity analysis") as something a reader can actually do rather than just be told to do.
+- **Likely packages:** `shiny, dplyr`
+
+---
+
+## Standing note for future chapters (25-35)
 
 As each new chapter is drafted by the `heor-hta-book-writer` cron job, re-run this same 
 review (read the chapter, identify genuine slider-and-live-recalculation candidates, be 
 selective, say explicitly when a chapter has none) and append to this file rather than 
-rebuilding it from scratch. Coverage currently extends through Chapter 22. Natural strong 
+rebuilding it from scratch. Coverage currently extends through Chapter 24. Natural strong 
 candidates expected ahead: Chapter 25 (PSA — tornado diagrams, CEACs, the Dirichlet/
 Cholesky machinery flagged but deferred from Ch.19 §19.8), Chapter 26 (VOI/EVPI/EVPPI), 
-and the budget-impact-model chapters, all of which are classically well-suited to live 
-parameter exploration.
+all of which are classically well-suited to live parameter exploration.
 
 ## When we build these
 

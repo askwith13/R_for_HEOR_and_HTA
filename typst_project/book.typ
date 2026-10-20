@@ -78,6 +78,7 @@
 #include "chapters/ch21_microsimulation.typ"
 #include "chapters/ch22_des_dynamic_models.typ"
 #include "chapters/ch23_budget_impact.typ"
+#include "chapters/ch24_cba_dcea_ecea.typ"
 
 // ---- Back matter ----
 #pagebreak(weak: true)
