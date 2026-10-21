@@ -28,8 +28,10 @@ R_for_HEOR_and_HTA/
 │   ├── chapters/               <- ch01_slug.typ .. ch35_slug.typ, all complete
 │   ├── images/                <- r_generated/ (R plots) + conceptual/ (diagrams)
 │   └── back_matter/            <- Appendices A-F, References, Index (.typ),
-│                                  all complete; Appendix G formally dropped
-│                                  (the quiz/ bank below serves that role)
+│                                  all complete; Appendix G added for the
+│                                  Shiny app list (originally earmarked for
+│                                  "Solutions to exercises", now repurposed
+│                                  since the quiz/ bank below serves that role)
 ├── Chapter Markdowns/
 │   ├── 00_front_matter.md     <- summary of front matter content
 │   └── chNN_slug.md            <- one summary per chapter, written AFTER
@@ -123,10 +125,14 @@ before public release.
   Shiny app in `quiz/app/`) spanning all 35 chapters. This formally
   serves the role originally earmarked for Appendix G ("Solutions to
   exercises") since no chapter has formal end-of-chapter exercises —
-  see `quiz/README.md`.
+  see `quiz/README.md`. Appendix G itself was repurposed for a List
+  of Interactive Shiny Apps once the companion repository was
+  published.
 
-There used to be a `solutions/` placeholder folder matching a planned
-Appendix G; it has been removed. The quiz bank above replaces it.
+There used to be a `solutions/` placeholder folder matching the
+original plan for Appendix G ("Solutions to exercises"); it has been
+removed. The quiz bank above replaces that role; Appendix G itself
+now lists the 64 companion Shiny apps.
 
 ## Pace
 

@@ -122,6 +122,10 @@
 #pagebreak(weak: true)
 #include "back_matter/appendix_index.typ"
 
+// ---- Back matter: list of interactive Shiny apps ----
+#pagebreak(weak: true)
+#include "back_matter/appendix_g_shiny_apps.typ"
+
 // ---- Back matter: lists ----
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Figures]
