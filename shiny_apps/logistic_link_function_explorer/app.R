@@ -59,7 +59,8 @@ server <- function(input, output, session) {
     if (input$scale == "response") {
       ggplot(df, aes(x = x, y = prob)) +
         geom_line(color = "#2166ac", linewidth = 1.2) +
-        geom_point(aes(x = q_x, y = q_prob), color = "#d6604d", size = 5) +
+        geom_point(data = data.frame(x = q_x, y = q_prob), aes(x = x, y = y),
+                   color = "#d6604d", size = 5) +
         geom_hline(yintercept = c(0, 1), linetype = "dotted", color = "grey60") +
         coord_cartesian(ylim = c(0, 1)) +
         labs(x = "Covariate (x)", y = "Predicted probability",
@@ -67,7 +68,8 @@ server <- function(input, output, session) {
     } else {
       ggplot(df, aes(x = x, y = log_odds)) +
         geom_line(color = "#2166ac", linewidth = 1.2) +
-        geom_point(aes(x = q_x, y = q_log_odds), color = "#d6604d", size = 5) +
+        geom_point(data = data.frame(x = q_x, y = q_log_odds), aes(x = x, y = y),
+                   color = "#d6604d", size = 5) +
         labs(x = "Covariate (x)", y = "Log-odds",
              title = "Link scale: log-odds (straight line)")
     } +
