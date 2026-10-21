@@ -20,7 +20,7 @@ R_for_HEOR_and_HTA/
 ├── typst_project/
 │   ├── book.typ              <- main assembly file: page setup, callout
 │   │                            box functions, #include list, compile this
-│   ├── book.pdf               <- compiled output, 707 pages
+│   ├── book.pdf               <- compiled output, 711 pages
 │   ├── common.typ             <- shared callout/table helper functions
 │   ├── front_matter/          <- title_page, foreword, preface,
 │   │                            companion_website, conventions,
@@ -46,7 +46,7 @@ R_for_HEOR_and_HTA/
 ├── appendix-c-template/        <- forkable starter R project structure (Chapter 2 §2.2,
 │                                  Appendix C)
 ├── shiny_apps/                 <- interactive Shiny apps illustrating selected book
-│                                  concepts, one subfolder per app (8 of 64 candidates
+│                                  concepts, one subfolder per app (all 64 candidates
 │                                  built and verified — see shiny_apps/README.md and
 │                                  progress/shiny_app_candidates.md)
 ├── quiz/                       <- 661-question quiz bank spanning all 35 chapters,
@@ -115,10 +115,10 @@ before public release.
 - **`appendix-c-template/`** — a ready-to-fork starter R project,
   built directly from Chapter 2 §2.2's project-structure guidance and
   pointed to by Appendix C.
-- **`shiny_apps/`** — 8 of 64 planned candidates now built, run, and
-  verified (see `shiny_apps/README.md` for the list and
-  `progress/shiny_app_candidates.md` for the full planning inventory
-  and selection criteria for the remaining 56).
+- **`shiny_apps/`** — all 64 planned candidates now built, run, and
+  verified (see `shiny_apps/README.md` for the full list and
+  `progress/shiny_app_candidates.md` for the planning inventory and
+  selection criteria used to build them).
 - **`quiz/`** — a 661-question quiz bank (CSV + Markdown + a runnable
   Shiny app in `quiz/app/`) spanning all 35 chapters. This formally
   serves the role originally earmarked for Appendix G ("Solutions to
