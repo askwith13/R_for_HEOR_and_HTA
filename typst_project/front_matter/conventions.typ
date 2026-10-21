@@ -24,7 +24,7 @@
 Each chapter's code is developed and checked against the CRAN package
 versions current at the time that chapter is drafted; the exact
 versions are pinned in that chapter's own `renv.lock` in the companion
-repository (§ Companion Website, above) rather than hard-coded into
+repository (§ Companion GitHub Repository, above) rather than hard-coded into
 the printed text, because HEOR-relevant packages — `flexsurv`,
 `hesim`, `heemod`, `BCEA`, `netmeta`, `mice`, among others — update
 frequently enough that a version number printed in a book is stale

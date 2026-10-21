@@ -4,17 +4,18 @@ Machine-readable quiz question bank for building a Shiny quiz application.
 
 ## Files
 
-- **`quiz_bank.csv`** — the file to load into the app. 426 rows, one per question.
+- **`quiz_bank.csv`** — the file to load into the app. 661 rows, one per question, covering all 35 book chapters.
 - `quiz_bank_master.md` — human-readable assembled markdown version (same content, for review/editing).
-- `quiz_ch01-03.md` ... `quiz_ch25-27.md` — the original per-batch markdown source files.
-- `images/` — 55 PNG images for all image-based questions, named `Q<id>.png` matching `image_filepath` in the CSV.
+- `quiz_ch01-03.md` ... `quiz_ch34-35.md` — the original per-batch markdown source files.
+- `images/` — 79 PNG images for all image-based questions, named `Q<id>.png` matching `image_filepath` in the CSV.
+- `app/` — the runnable Shiny quiz app (`app.R`), with its own synced copy of `quiz_bank.csv` and `www/` image folder.
 
 ## CSV columns
 
 | Column | Description |
 |---|---|
 | `question_id` | Stable ID, e.g. `Q001` |
-| `chapter_num` | Integer 1–27 |
+| `chapter_num` | Integer 1–35 |
 | `chapter` | `"Chapter N: Title"` |
 | `difficulty` | `Easy` / `Medium` / `Hard` |
 | `type` | `MCQ` or `Image` |
@@ -26,14 +27,21 @@ Machine-readable quiz question bank for building a Shiny quiz application.
 
 ## Stats
 
-- 426 questions total (27 chapters, 13–23 questions each)
-- 90 Easy / 218 Medium / 118 Hard
-- 371 standard MCQ / 55 image-based
+- 661 questions total, covering all 35 chapters of the finished book
+- 162 Easy / 335 Medium / 164 Hard
+- 582 standard MCQ / 79 image-based
 
 ## Image provenance
 
-- 30 of the 55 images are reused directly from the book's own rendered figures (`typst_project/images/`) — same chart, same underlying data as the chapter.
-- 25 are newly built for this quiz (folder-tree diagram, missing-data visualizations, decision tree, M/M/1 queue diagram, Markov state diagram, several reference tables, etc.), each visually verified before inclusion.
+- A majority of the 79 images are newly built for this quiz (folder-tree diagrams, missing-data visualizations, decision trees, Markov/cascade diagrams, reference tables matching the book's own verified numbers, survival-curve/cure-model plots, etc.), each visually verified before inclusion; a smaller number are reused directly from the book's own rendered figures (`typst_project/images/`) — same chart, same underlying data as the chapter.
+
+## Appendix G
+
+This quiz bank formally serves the role the Table of Contents originally
+assigned to Appendix G ("Solutions to exercises"), per the author's
+decision that no formal end-of-chapter exercises would be added to the
+book — see `../typst_project/back_matter/` for the back matter this
+replaces that appendix letter in.
 
 ## Known limitation
 

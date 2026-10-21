@@ -19,5 +19,5 @@
   #text(size: 13pt)[Dr Aswath Karunakaran]
 
   #v(0.5cm)
-  #text(size: 10pt, fill: rgb("#718096"))[Draft edition — compiled progressively, chapter by chapter]
+  #text(size: 10pt, style: "italic", fill: rgb("#718096"))[Dedicated to my students, colleagues, and family]
 ]

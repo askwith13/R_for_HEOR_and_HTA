@@ -1,9 +1,10 @@
 # R for HEOR and HTA — Book Project
 
-Progressive, chapter-by-chapter book draft, written in Typst, with
-Markdown context summaries maintained alongside for continuity across
-writing sessions and cron ticks, plus a companion code repository
-auto-extracted from the book's own typeset code blocks.
+A completed 35-chapter book, written in Typst, with a companion
+GitHub repository (no separate website) containing runnable code,
+interactive Shiny apps, a 661-question quiz bank, and example data
+sets, plus the Markdown chapter summaries and progress-tracking files
+used during drafting.
 
 ## Folder layout
 
@@ -15,14 +16,16 @@ R_for_HEOR_and_HTA/
 ├── typst_project/
 │   ├── book.typ              <- main assembly file: page setup, callout
 │   │                            box functions, #include list, compile this
-│   ├── book.pdf               <- compiled output (regenerate after each chapter)
+│   ├── book.pdf               <- compiled output, 707 pages
 │   ├── common.typ             <- shared callout/table helper functions
 │   ├── front_matter/          <- title_page, foreword, preface,
 │   │                            companion_website, conventions,
 │   │                            abbreviations (.typ)
-│   ├── chapters/               <- chNN_slug.typ, one per chapter
+│   ├── chapters/               <- ch01_slug.typ .. ch35_slug.typ, all complete
 │   ├── images/                <- r_generated/ (R plots) + conceptual/ (diagrams)
-│   └── back_matter/            <- appendices A-G, references, index (.typ) [not yet started]
+│   └── back_matter/            <- Appendices A-F, References, Index (.typ),
+│                                  all complete; Appendix G formally dropped
+│                                  (the quiz/ bank below serves that role)
 ├── Chapter Markdowns/
 │   ├── 00_front_matter.md     <- summary of front matter content
 │   └── chNN_slug.md            <- one summary per chapter, written AFTER
@@ -36,13 +39,20 @@ R_for_HEOR_and_HTA/
 │       └── renv.lock                 <- honest per-chapter package manifest (see below)
 ├── data/                       <- synthetic/openly-licensed datasets (Appendix F);
 │                                  see data/README.md for current placeholder status
-├── appendix-c-template/        <- forkable starter R project structure (Chapter 2 SS2.2)
-├── solutions/                  <- end-of-chapter exercise solutions (Appendix G) [not yet applicable]
+├── appendix-c-template/        <- forkable starter R project structure (Chapter 2 §2.2,
+│                                  Appendix C)
+├── shiny_apps/                 <- interactive Shiny apps illustrating selected book
+│                                  concepts, one subfolder per app (planning complete,
+│                                  64 candidates; apps not yet built — see
+│                                  shiny_apps/README.md and progress/shiny_app_candidates.md)
+├── quiz/                       <- 661-question quiz bank spanning all 35 chapters,
+│                                  as CSV/Markdown plus a runnable Shiny quiz app
+│                                  in quiz/app/ — see quiz/README.md
 └── progress/
-    ├── book_progress.json      <- single source of truth for what's done,
-    │                              what's next; read/updated every cron tick
+    ├── book_progress.json      <- single source of truth for what's done
     ├── chapter_quality_rubric.md <- 6-dimension scoring rubric
     ├── image_tracker.md          <- Track 1 (conceptual diagrams) / Track 2 (R plots)
+    ├── shiny_app_candidates.md   <- Shiny app planning inventory
     └── jev_scores.csv           <- raw Jev scores per chapter, append-only
 ```
 
@@ -91,47 +101,57 @@ before public release.
 
 ## Other companion folders
 
-- **`data/`** — per `data/README.md`: no real data is shipped yet.
+- **`data/`** — per `data/README.md`: no real data is shipped.
   Several extracted code snippets reference illustrative placeholder
   filenames (e.g. `unit_costs_2023q4.csv`) that do not exist as real
-  files here — see that README for the full list and the two honest
-  paths (inline-generate synthetically, or ship a real synthetic CSV
-  with a data-dictionary entry) to resolve each one before public
-  release.
+  files here — see that README and Appendix F for the full list and
+  the two honest paths (inline-generate synthetically, or ship a real
+  synthetic CSV with a data-dictionary entry) to resolve each one
+  before public release.
 - **`appendix-c-template/`** — a ready-to-fork starter R project,
-  built directly from Chapter 2 SS2.2's already-finalised project
-  structure guidance (`data-raw/`, `data/`, `R/`, `analysis/`,
-  `output/`, `renv.lock`), since Appendix C's own prose has not been
-  drafted yet.
-- **`solutions/`** — placeholder only; no chapter currently includes
-  formal end-of-chapter exercises, so this folder exists to match
-  `companion_website.typ`'s stated structure but has nothing to hold
-  yet. See `solutions/README.md`.
+  built directly from Chapter 2 §2.2's project-structure guidance and
+  pointed to by Appendix C.
+- **`shiny_apps/`** — planning complete (64 candidates across the
+  book, in `progress/shiny_app_candidates.md`), apps not yet built.
+  See `shiny_apps/README.md` for the folder convention each app
+  should follow once built.
+- **`quiz/`** — a 661-question quiz bank (CSV + Markdown + a runnable
+  Shiny app in `quiz/app/`) spanning all 35 chapters. This formally
+  serves the role originally earmarked for Appendix G ("Solutions to
+  exercises") since no chapter has formal end-of-chapter exercises —
+  see `quiz/README.md`.
+
+There used to be a `solutions/` placeholder folder matching a planned
+Appendix G; it has been removed. The quiz bank above replaces it.
 
 ## Pace
 
-One chapter every cron tick (5-hour interval), via the
-`heor-hta-book-writer` cron job. Front matter was written first,
-outside the cron pace, to establish the Typst infrastructure
-(callout box functions, page styling) that every chapter reuses.
+The book was drafted one chapter per cron tick (5-hour interval), via
+the `heor-hta-book-writer` cron job, with manual acceleration on
+request throughout. All 35 chapters plus the full back matter
+(Appendices A-F, References, Index) are now complete; the cron job is
+paused.
 
 ## Quality gate
 
-Every chapter is self-critiqued by Claude, then scored by Jev
+Every chapter was self-critiqued by Claude, then scored by Jev
 (TypeSafe AI) across 6 dimensions (see `progress/chapter_quality_rubric.md`).
 5 dimensions (coverage, technical_correctness, code_validity,
 agency_grounding, internal_consistency) are scored against a compact
 structured summary of the chapter; the 6th (readability) is scored
 separately against the chapter's actual prose text (see
 `jev_score_readability_prose.py` and the rubric doc for why this
-split exists). Any dimension below 6/10 triggers one revision pass
-before the chapter is marked complete in `book_progress.json`; two
-consecutive low scores on the same dimension stops the loop and flags
-the issue for the author rather than revising indefinitely.
+split exists). Any dimension below 6/10 triggered one revision pass
+before the chapter was marked complete in `book_progress.json`; two
+consecutive low scores on the same dimension stopped the loop and
+flagged the issue rather than revising indefinitely (see
+`progress/book_progress.json`'s run log for the handful of chapters
+this applied to).
 
 ## License
 
 See `LICENSE`. Companion code (`code/`, `appendix-c-template/`,
-`solutions/`) is MIT-licensed. The book's own prose and typeset
-content (`typst_project/`, `Chapter Markdowns/`) remain All Rights
-Reserved pending a publishing decision by the author.
+`shiny_apps/` once built) is MIT-licensed. The book's own prose and
+typeset content (`typst_project/`, `Chapter Markdowns/`) remain All
+Rights Reserved pending a publishing decision by the author. The quiz
+bank (`quiz/`) follows the companion-code MIT license.
