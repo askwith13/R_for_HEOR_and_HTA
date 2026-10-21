@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+message: >-
+  If you use this book, its companion code, Shiny apps, or quiz bank,
+  please cite it as below. Replace the placeholder repository URL
+  once this project is published to its permanent GitHub location.
+title: "R for Health Economics and Outcomes Research (HEOR) and Health Technology Assessment (HTA)"
+type: book
+authors:
+  - family-names: Karunakaran
+    given-names: Aswath
+    name-particle: Dr
+abstract: >-
+  A 35-chapter technical book teaching R for health economics and
+  outcomes research (HEOR) and health technology assessment (HTA),
+  covering data management, statistical methods (survival analysis,
+  meta-analysis, network meta-analysis, population-adjusted indirect
+  comparisons, Bayesian methods, real-world evidence and causal
+  inference, regression modelling), decision-analytic modelling
+  (decision trees, Markov cohort models, partitioned survival models,
+  microsimulation, discrete event simulation, budget impact analysis),
+  uncertainty/value-of-information/validation, reproducible reporting
+  and Shiny deployment, HTA agency practice, and six end-to-end worked
+  case studies. Includes a companion GitHub repository with runnable
+  R code for every chapter, interactive Shiny apps, a 661-question
+  quiz bank, and example data sets.
+keywords:
+  - health economics
+  - health technology assessment
+  - HEOR
+  - HTA
+  - R
+  - cost-effectiveness analysis
+  - decision modelling
+  - survival analysis
+  - pharmacoeconomics
+license-url: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA/blob/main/LICENSE"
+# NOTE: licensing is split and cannot be expressed in a single SPDX
+# identifier -- companion code (code/, appendix-c-template/,
+# shiny_apps/, quiz/) is MIT-licensed; the book's own prose and
+# typeset content (typst_project/, Chapter Markdowns/) remain All
+# Rights Reserved pending a publishing decision. See LICENSE for the
+# full scope notice.
+repository-code: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA"
+date-released: "2026-10-21"
+version: "1.0.0"
+identifiers:
+  - type: url
+    value: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA"
+    description: Companion GitHub repository (code, Shiny apps, quiz bank, data)
+preferred-citation:
+  type: book
+  title: "R for Health Economics and Outcomes Research (HEOR) and Health Technology Assessment (HTA)"
+  authors:
+    - family-names: Karunakaran
+      given-names: Aswath
+      name-particle: Dr
+  date-released: "2026-10-21"
+  version: "1.0.0"
+  url: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA"

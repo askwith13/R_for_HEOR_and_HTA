@@ -44,5 +44,12 @@ a flipped sign in a discounting formula or a mis-specified
 transition matrix can silently produce a materially wrong ICER. Any
 reader who finds an error in this book's code or its statistical
 claims should treat that as worth flagging immediately rather than
-working around it quietly; the companion repository's issue tracker
-will be the designated channel once published.
+working around it quietly; the companion repository's issue tracker,
+and its `CONTRIBUTING.md` file, are the designated channel.
+
+== Citing this book
+
+The companion repository includes a `CITATION.cff` file with
+machine-readable citation metadata, which GitHub reads automatically
+to generate an APA or BibTeX citation via its "Cite this repository"
+button.

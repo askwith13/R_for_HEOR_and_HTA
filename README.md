@@ -12,6 +12,10 @@ used during drafting.
 R_for_HEOR_and_HTA/
 ├── LICENSE                     <- MIT for companion code only; book content
 │                                  All Rights Reserved pending publishing decision
+├── CITATION.cff                 <- machine-readable citation metadata (GitHub's
+│                                  "Cite this repository" button reads this)
+├── CONTRIBUTING.md               <- how to report errors / contribute code,
+│                                  quiz fixes, Shiny apps, or data sets
 ├── R_for_HEOR_and_HTA_Table_of_Contents.md   <- source TOC (35 chapters, 8 parts)
 ├── typst_project/
 │   ├── book.typ              <- main assembly file: page setup, callout
