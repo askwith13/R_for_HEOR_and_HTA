@@ -1,9 +1,9 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**No apps have been built yet** -- this is a selectivity-first inventory to build from later, 
-not a backlog to execute immediately. Covers Chapters 1-29 (current book progress); 
-extend this file as each new chapter is drafted (see the standing note at the bottom).
+**8 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
+Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
 ## Selection criteria
 A concept qualifies only if interactivity (sliders, live recalculation, what-if exploration) 
@@ -12,7 +12,7 @@ effect on a result is non-trivial, non-monotonic, or easiest understood by watch
 Procedural/administrative/taxonomic chapter content (installing software, agency landscapes, 
 data governance policy, coding-style conventions) is deliberately excluded even where plentiful.
 
-**Total candidates so far: 57 across 28 chapters.**
+**Total candidates: 64 across 32 chapters with content (8 now built -- see table above).**
 (Chapters 1, 2, 28, 29, 30 reviewed and judged to have none).
 
 ---
@@ -43,10 +43,11 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders for discount rate and time horizon show the present-value decay curve update live, with NICE/CADTH/HTAIn preset buttons, making the equal-vs-differential discounting debate concrete.
 - **Likely packages:** `shiny, ggplot2`
 
-### Efficiency Frontier Builder
+### Efficiency Frontier Builder [BUILT]
 - **Section:** 4.7-4.8
 - **What it does:** Edit cost/QALY for 3-5 treatments live; the app re-runs simple- and extended-dominance pruning and redraws the CE-plane with dominated points greyed out and the frontier connected. Best early-book candidate: the whole point of the section is a result that depends non-monotonically on inputs.
 - **Likely packages:** `shiny, dplyr, ggplot2`
+- **Built at:** `shiny_apps/efficiency_frontier_builder/`
 
 ---
 
@@ -117,10 +118,11 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 10. Survival Analysis for Economic Evaluation
 
-### Parametric Hazard Shape Explorer
+### Parametric Hazard Shape Explorer [BUILT]
 - **Section:** 10.2
 - **What it does:** Select a distribution family (exponential/Weibull/Gompertz/log-logistic/log-normal/gen.gamma) and drag shape/scale sliders; survival/hazard curves overlay live against a loaded KM curve, extended to a user-set extrapolation horizon — makes visible why 'fits the trial period' and 'extrapolates plausibly' differ.
 - **Likely packages:** `shiny, flexsurv, survival`
+- **Built at:** `shiny_apps/parametric_hazard_shape_explorer/`
 
 ### Spline Knot-Count Explorer
 - **Section:** 10.3
@@ -150,10 +152,11 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 12. Indirect Treatment Comparisons and Network Meta-Analysis
 
-### Bucher ITC Calculator
+### Bucher ITC Calculator [BUILT]
 - **Section:** 12.2
 - **What it does:** Four sliders (d_AC, SE_AC, d_BC, SE_BC) let the user vary each trial's estimate/precision and watch the indirect A-vs-B estimate and its always-wider CI update live — targets the most commonly mis-learned fact that uncertainty never cancels in an indirect comparison.
 - **Likely packages:** `shiny (pure arithmetic; optionally metafor/meta to overlay a forest plot)`
+- **Built at:** `shiny_apps/bucher_itc_calculator/`
 
 ### Covariate Re-Centering Explorer
 - **Section:** 12.6
@@ -173,10 +176,11 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 14. Bayesian Methods for HEOR
 
-### Prior-Likelihood-Posterior Tug-of-War
+### Prior-Likelihood-Posterior Tug-of-War [BUILT]
 - **Section:** 14.2
 - **What it does:** Sliders for the Beta prior's alpha/beta and a new cohort's observed successes/total redraw prior density, likelihood, and the conjugate posterior with its 95% credible interval live — the clearest way to make the prior-vs-data 'tug-of-war' metaphor tangible.
 - **Likely packages:** `shiny, base R dbeta/qbeta (note SHELF for elicitation-based priors)`
+- **Built at:** `shiny_apps/prior_likelihood_posterior_tug_of_war/`
 
 ---
 
@@ -253,10 +257,11 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders set failure-risk at each tunnel sub-state (cycle 1, 2, 3+); flat vs front-loaded time-since-entry-dependent occupancy traces and final cost/QALY totals plot side by side, showing why ignoring state-time biases short-vs-long-course comparisons.
 - **Likely packages:** `shiny, heemod (state_time), ggplot2`
 
-### SoC vs. DMT Live ICER Dashboard
+### SoC vs. DMT Live ICER Dashboard [BUILT]
 - **Section:** 19.10
 - **What it does:** Sliders for each arm's transition probabilities, state costs, state utilities, and discount rate recompute the full discounted 10-year cost/QALY totals and ICER live, with a CE-plane point and WTP line — the single best match in the book to 'vary a transition probability or cost and watch the ICER update live.'
 - **Likely packages:** `shiny, base R or heemod, dampack::calculate_icers(), ggplot2`
+- **Built at:** `shiny_apps/soc_vs_dmt_icer_dashboard/`
 
 ---
 
@@ -306,10 +311,11 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ## Chapter 22. Discrete Event Simulation and Dynamic Models
 
-### M/M/1 Queue Utilisation Explorer
+### M/M/1 Queue Utilisation Explorer [BUILT]
 - **Section:** 22.2
 - **What it does:** Sliders for mean inter-arrival time and mean service time (equivalently, arrival rate lambda and service rate mu) drive a live `simmer` re-run of the §22.2 single-nurse clinic model; the app shows simulated average wait, average queue length, and nurse utilisation updating live, alongside the closed-form M/M/1 benchmark lines (W_q, L_q, L) computed from the same sliders — directly visualises the non-linear blow-up in wait time as utilisation rho approaches 1 (queueing theory's well-known non-monotonic/explosive behaviour near saturation), which is far more vivid watched live than read as a formula.
 - **Likely packages:** `shiny, simmer, ggplot2`
+- **Built at:** `shiny_apps/mm1_queue_utilisation_explorer/`
 
 ### SEIR Epidemic Curve and Herd-Effect Explorer
 - **Section:** 22.4/22.6
@@ -353,10 +359,11 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **What it does:** Sliders for each of the five one-way sensitivity analysis parameters' low/high bounds (New-regimen cure probability, shared p(Fail->Death), annual discount rate, New-regimen drug cost, shared on-treatment utility), re-running the chapter's `incremental_nmb()` function live to redraw the tornado diagram bars and re-sort them by swing width in real time. Makes concrete, interactively, the chapter's own observation that a tornado diagram ranks parameters by influence on the decision, not by how uncertain they intuitively feel -- a reader can directly widen or narrow any one parameter's range and watch its bar (and its rank) move.
 - **Likely packages:** `shiny, ggplot2, forcats`
 
-### PSA Distribution & CEAC Explorer
+### PSA Distribution & CEAC Explorer [BUILT]
 - **Section:** 25.4-25.5
 - **What it does:** Sliders for the willingness-to-pay threshold ($0-$150,000/QALY) and for the assumed evidence strength behind the Beta-distributed failure probability (effective pseudo-count sample size), re-running the chapter's n=2000 PSA loop live and redrawing the CE plane, CEAC, and incremental-NMB histogram together. Directly operationalizes the chapter's own point that a reader's confidence in cost-effectiveness is WTP-threshold-dependent -- sliding the threshold line across the CE plane visibly moves the CEAC's reading at that exact threshold, making the single-threshold NMB histogram and the full CEAC curve legible as two views of the same underlying PSA draws.
 - **Likely packages:** `shiny, ggplot2, dplyr`
+- **Built at:** `shiny_apps/psa_distribution_ceac_explorer/`
 
 ### Threshold Analysis Breakeven Calculator
 - **Section:** 25.6
@@ -377,10 +384,11 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ## Chapter 26 additions (Value of Information Analysis)
 
-### EVPI-vs-WTP Curve Explorer
+### EVPI-vs-WTP Curve Explorer [BUILT]
 - **Section:** 26.1-26.2
 - **What it does:** A single WTP-threshold slider ($0-$150,000/QALY) re-running the chapter's `calculate_evpi()` function live against the existing Ch.25 PSA draws, redrawing the EVPI-vs-WTP curve and marking where the current slider value sits on it. Directly demonstrates the chapter's core finding that EVPI peaks near the WTP at which the CEAC crosses 50% -- a reader can drag the threshold and watch EVPI rise and fall in real time, making the EVPI-CEAC link far more concrete than a static table.
 - **Likely packages:** `shiny, ggplot2`
+- **Built at:** `shiny_apps/evpi_vs_wtp_curve_explorer/`
 
 ### GAM EVPPI Smoothness Explorer
 - **Section:** 26.3

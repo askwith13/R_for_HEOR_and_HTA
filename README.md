@@ -46,9 +46,9 @@ R_for_HEOR_and_HTA/
 ├── appendix-c-template/        <- forkable starter R project structure (Chapter 2 §2.2,
 │                                  Appendix C)
 ├── shiny_apps/                 <- interactive Shiny apps illustrating selected book
-│                                  concepts, one subfolder per app (planning complete,
-│                                  64 candidates; apps not yet built — see
-│                                  shiny_apps/README.md and progress/shiny_app_candidates.md)
+│                                  concepts, one subfolder per app (8 of 64 candidates
+│                                  built and verified — see shiny_apps/README.md and
+│                                  progress/shiny_app_candidates.md)
 ├── quiz/                       <- 661-question quiz bank spanning all 35 chapters,
 │                                  as CSV/Markdown plus a runnable Shiny quiz app
 │                                  in quiz/app/ — see quiz/README.md
@@ -115,10 +115,10 @@ before public release.
 - **`appendix-c-template/`** — a ready-to-fork starter R project,
   built directly from Chapter 2 §2.2's project-structure guidance and
   pointed to by Appendix C.
-- **`shiny_apps/`** — planning complete (64 candidates across the
-  book, in `progress/shiny_app_candidates.md`), apps not yet built.
-  See `shiny_apps/README.md` for the folder convention each app
-  should follow once built.
+- **`shiny_apps/`** — 8 of 64 planned candidates now built, run, and
+  verified (see `shiny_apps/README.md` for the list and
+  `progress/shiny_app_candidates.md` for the full planning inventory
+  and selection criteria for the remaining 56).
 - **`quiz/`** — a 661-question quiz bank (CSV + Markdown + a runnable
   Shiny app in `quiz/app/`) spanning all 35 chapters. This formally
   serves the role originally earmarked for Appendix G ("Solutions to
