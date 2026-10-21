@@ -33,19 +33,19 @@ keywords:
   - decision modelling
   - survival analysis
   - pharmacoeconomics
-license-url: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA/blob/main/LICENSE"
+license-url: "https://github.com/askwith13/R_for_HEOR_and_HTA/blob/main/LICENSE"
 # NOTE: licensing is split and cannot be expressed in a single SPDX
 # identifier -- companion code (code/, appendix-c-template/,
 # shiny_apps/, quiz/) is MIT-licensed; the book's own prose and
 # typeset content (typst_project/, Chapter Markdowns/) remain All
 # Rights Reserved pending a publishing decision. See LICENSE for the
 # full scope notice.
-repository-code: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA"
+repository-code: "https://github.com/askwith13/R_for_HEOR_and_HTA"
 date-released: "2026-10-21"
 version: "1.0.0"
 identifiers:
   - type: url
-    value: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA"
+    value: "https://github.com/askwith13/R_for_HEOR_and_HTA"
     description: Companion GitHub repository (code, Shiny apps, quiz bank, data)
 preferred-citation:
   type: book
@@ -56,4 +56,4 @@ preferred-citation:
       name-particle: Dr
   date-released: "2026-10-21"
   version: "1.0.0"
-  url: "https://github.com/aswathkarunakaran/R_for_HEOR_and_HTA"
+  url: "https://github.com/askwith13/R_for_HEOR_and_HTA"
