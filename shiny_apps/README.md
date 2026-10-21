@@ -4,29 +4,36 @@ Companion interactive Shiny apps for this book, one subfolder per
 app, each illustrating a single book concept with live parameter
 sliders rather than a static plot.
 
-## Status: first batch of 8 apps built and verified
+## Status: 16 apps built, verified, and explanatory-layer complete
 
 `progress/shiny_app_candidates.md` holds the full planning inventory
 -- 64 candidate apps identified by reading every chapter's actual
 content and applying a selectivity filter (only concepts where a
 parameter's live-varying effect on a result is genuinely non-trivial
-or non-monotonic qualify). The 8 highest-value candidates (spanning
-Parts I-V of the book, chosen for being either strong single teaching
-aids or genuinely non-monotonic/surprising relationships) have now
-been built, run, and visually verified in a real browser session:
+or non-monotonic qualify). 16 candidates (spanning Parts I-VII of the
+book) have now been built, run, and visually verified in a real
+browser session:
 
 | App | Book section |
 |---|---|
 | `efficiency_frontier_builder/` | Chapter 4, §4.7-4.8 |
+| `diagnostic_tree_icer_dashboard/` | Chapter 18, §18.1-18.2 |
+| `maic_weight_ess_explorer/` | Chapter 13, §13.2 |
 | `bucher_itc_calculator/` | Chapter 12, §12.2 |
 | `prior_likelihood_posterior_tug_of_war/` | Chapter 14, §14.2 |
 | `parametric_hazard_shape_explorer/` | Chapter 10, §10.2 |
 | `soc_vs_dmt_icer_dashboard/` | Chapter 19, §19.10 |
 | `mm1_queue_utilisation_explorer/` | Chapter 22, §22.2 |
+| `seir_epidemic_herd_effect_explorer/` | Chapter 22, §22.4/22.6 |
+| `budget_impact_scenario_explorer/` | Chapter 23, §23.2-23.4 |
+| `equity_weighted_icer_explorer/` | Chapter 24, §24.2 |
 | `psa_distribution_ceac_explorer/` | Chapter 25, §25.4-25.5 |
+| `tornado_diagram_parameter_range_explorer/` | Chapter 25, §25.2 |
 | `evpi_vs_wtp_curve_explorer/` | Chapter 26, §26.1-26.2 |
+| `tb_cascade_of_care_attrition_explorer/` | Chapter 32, §32.7 |
+| `random_forest_risk_threshold_explorer/` | Chapter 34, §34.1 |
 
-The remaining 56 candidates in `progress/shiny_app_candidates.md` are
+The remaining 48 candidates in `progress/shiny_app_candidates.md` are
 not yet built.
 
 ## What each app folder contains
@@ -38,7 +45,7 @@ not yet built.
   how its logic was verified.
 - `renv.lock` -- an honest package manifest (same policy as `code/`'s
   per-chapter lockfiles, see Chapter 2 §2.3) generated via
-  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 8
+  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 16
   built apps currently show 100% verified-installed packages (no
   `NOT_VERIFIED_IN_THIS_ENVIRONMENT` markers).
 
@@ -46,12 +53,24 @@ not yet built.
 
 Each app's computational core was checked two ways before being
 treated as correct: (1) independently re-implemented in a standalone
-R script and compared against known closed-form results where one
-exists (e.g. the M/M/1 queueing formulas, the Bucher method's
-variance-addition rule, conjugate Beta-Binomial posterior algebra),
-and (2) the running app itself was loaded in a real browser session
-and its live output visually confirmed to match, not just assumed to
-work because the code looked plausible.
+R or Python script and compared against known closed-form results
+where one exists (e.g. the M/M/1 queueing formulas, the Bucher
+method's variance-addition rule, conjugate Beta-Binomial posterior
+algebra, the SEIR model's threshold behaviour as R_effective crosses
+1, the MAIC effective-sample-size formula), and (2) the running app
+itself was loaded in a real browser session and its live output
+visually confirmed to match, not just assumed to work because the
+code looked plausible.
+
+## Interpretive layer
+
+Every app (not just the first 8) includes a reactive "What you're
+seeing" panel, computed live from the current slider state, and a
+fixed "Pitfall" callout warning about a real, specific
+misinterpretation risk for that app's concept -- matching the book's
+own callout-box density. These panels were independently re-verified
+against each app's own displayed numbers before being accepted, not
+just read for plausibility.
 
 ## Building more apps
 

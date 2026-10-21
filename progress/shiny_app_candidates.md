@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**8 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**16 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -167,7 +167,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 13. Population-Adjusted Indirect Comparisons
 
-### MAIC Weight & ESS Explorer
+### MAIC Weight & ESS Explorer [BUILT]
 - **Section:** 13.2
 - **What it does:** Sliders adjust how far the IPD trial's covariate distribution sits from the AgD trial's target means; method-of-moments weights, ESS, and the weighted treatment effect recompute live — turns 'a large ESS loss is a credibility red flag' into something watched happening in real time.
 - **Likely packages:** `shiny, base R optim, optionally survival`
@@ -233,7 +233,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 18. Decision Trees
 
-### Diagnostic Tree ICER Dashboard
+### Diagnostic Tree ICER Dashboard [BUILT]
 - **Section:** 18.1-18.2
 - **What it does:** Sliders for TB prevalence, each test's sensitivity/specificity, and costs of tests/outcomes recompute the rollback expected cost/QALYs for both strategies live, with the ICER and a CE-plane point updating instantly — runs the exact scenario the chapter's own pitfall poses (prevalence 0.30 -> 0.10) but never executes.
 - **Likely packages:** `shiny, dplyr, tibble, ggplot2 (optionally rdecision for the tree structure)`
@@ -317,7 +317,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **Likely packages:** `shiny, simmer, ggplot2`
 - **Built at:** `shiny_apps/mm1_queue_utilisation_explorer/`
 
-### SEIR Epidemic Curve and Herd-Effect Explorer
+### SEIR Epidemic Curve and Herd-Effect Explorer [BUILT]
 - **Section:** 22.4/22.6
 - **What it does:** Sliders for R0 (beta/gamma), the latent-period rate sigma, and the intervention effectiveness `ve` re-run the §22.4/22.6 `deSolve::ode()` SEIR model live, re-plotting the infectious-compartment curve for both the baseline and intervention arms on one chart and recalculating cumulative infections averted. Makes the compounding/indirect-protection effect from the §22.4 pitfall directly visible: small changes in `ve` produce disproportionately large changes in the final epidemic size once R0 is close to 1, a genuinely non-linear relationship that a single static worked example cannot convey.
 - **Likely packages:** `shiny, deSolve, ggplot2`
@@ -326,7 +326,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ## Chapter 23. Budget Impact Analysis
 
-### Budget Impact Scenario Explorer
+### Budget Impact Scenario Explorer [BUILT]
 - **Section:** 23.2-23.4
 - **What it does:** Sliders for terminal uptake share (the peak market-share parameter in the linear/logistic diffusion curves), new-drug list price, and the per-patient hospitalization offset drive a live re-run of the chapter's `build_bia()` function, instantly recomputing and redrawing the year-by-year and cumulative budget-impact table/chart. The non-linear interaction between uptake-curve shape and net price materially changes WHEN cumulative spend crosses a given affordability threshold — far more intuitive to explore live via slider than to read across three separate static scenario tables (base case, faster uptake, managed-entry agreement) as the chapter currently presents them.
 - **Likely packages:** `shiny, dplyr, ggplot2`
@@ -335,7 +335,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ## Chapter 24. Cost-Benefit, Distributional and Extended Cost-Effectiveness Analysis
 
-### Equity-Weighted ICER Explorer
+### Equity-Weighted ICER Explorer [BUILT]
 - **Section:** 24.2
 - **What it does:** Sliders for each subgroup's QALY gain and an adjustable equity weight (1.0 to 3.0) for the most-deprived group re-run the chapter's toy two-subgroup `icer_unweighted`/`icer_weighted` calculation live, redrawing both ICERs side by side and plotting the result as a point on a simplified equity-impact-plane quadrant chart. Makes the chapter's central "win-win vs genuine trade-off" distinction directly explorable — dragging the deprived group's QALY gain below the less-deprived group's instantly flips which quadrant the result lands in, a relationship the static toy example can only show once.
 - **Likely packages:** `shiny, dplyr, ggplot2`
@@ -354,7 +354,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ## Chapter 25 additions (Handling Uncertainty)
 
-### Tornado Diagram Parameter-Range Explorer
+### Tornado Diagram Parameter-Range Explorer [BUILT]
 - **Section:** 25.2
 - **What it does:** Sliders for each of the five one-way sensitivity analysis parameters' low/high bounds (New-regimen cure probability, shared p(Fail->Death), annual discount rate, New-regimen drug cost, shared on-treatment utility), re-running the chapter's `incremental_nmb()` function live to redraw the tornado diagram bars and re-sort them by swing width in real time. Makes concrete, interactively, the chapter's own observation that a tornado diagram ranks parameters by influence on the decision, not by how uncertain they intuitively feel -- a reader can directly widen or narrow any one parameter's range and watch its bar (and its rank) move.
 - **Likely packages:** `shiny, ggplot2, forcats`
@@ -483,7 +483,7 @@ Total candidates now 57 across 28 chapters with content.
 - **What it does:** Sliders let the user vary the waning-start cycle and the per-cycle relapse hazard rate (or switch between the three structural scenarios -- durable forever, constant waning, accelerating waning -- from the chapter's R example) for a one-time curative gene/cell therapy, with a live-updating relapse-free-proportion curve over a 20-year horizon. Makes directly visible the chapter's key point that a single-scenario base case silently picks one of several plausible 20-year futures, and that the three scenarios look identical for the first several years (while trial follow-up still covers them) before diverging sharply -- the kind of divergence static prose/one fixed plot cannot convey as viscerally as dragging the waning-rate slider and watching the curve drop.
 - **Likely packages:** `shiny, ggplot2, bslib, dplyr`
 
-### TB Cascade-of-Care Attrition Explorer
+### TB Cascade-of-Care Attrition Explorer [BUILT]
 - **Section:** 32.7
 - **What it does:** Five sliders, one per cascade stage (diagnosis, treatment initiation, treatment completion, bacteriological cure), each 0-100%, with a live-updating waterfall/funnel chart showing the cohort shrinking stage by stage and the final population-level cure rate recalculating instantly. Directly demonstrates the chapter's compounding-attrition point -- that a 10-percentage-point improvement at one stage changes the final cured proportion by a different amount depending on which stage it's applied to and how much attrition has already occurred upstream -- letting a user discover this for themselves rather than only reading the worked numeric example.
 - **Likely packages:** `shiny, ggplot2, bslib, dplyr`
@@ -506,7 +506,7 @@ Total candidates now 61 across 30 chapters with content.
 
 ## Chapter 34. Emerging Methods and the Future of HEOR in R
 
-### Random Forest Risk-Threshold / Confusion-Matrix Explorer
+### Random Forest Risk-Threshold / Confusion-Matrix Explorer [BUILT]
 - **Section:** 34.1
 - **What it does:** A slider for the predicted-probability cutoff used to classify a patient as "high-cost" (default 0.5, applied to the fitted random forest's predicted probabilities on the chapter's worked example), with a live-updating confusion matrix and accuracy/sensitivity/specificity figures recalculating as the threshold moves. Directly demonstrates a point the chapter's static accuracy figure can't show on its own -- that a single "78% accuracy" number hides a sensitivity/specificity trade-off that shifts as the decision threshold moves, which matters directly for how many case-management slots a predictive-targeting programme would actually trigger at a given cutoff.
 - **Likely packages:** `shiny, ggplot2, bslib, randomForest`
