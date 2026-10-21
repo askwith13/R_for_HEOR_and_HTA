@@ -51,7 +51,8 @@ server <- function(input, output, session) {
 
     p <- ggplot(df, aes(x = qaly, y = cost)) +
       geom_line(color = "#2166ac", linewidth = 1.2) +
-      geom_point(aes(x = input$inc_qaly, y = breakeven()), color = "#d6604d", size = 6) +
+      geom_point(data = data.frame(qaly = input$inc_qaly, cost = breakeven()),
+                 aes(x = qaly, y = cost), color = "#d6604d", size = 6) +
       labs(x = "Incremental QALY gain", y = "Breakeven total incremental cost ($)",
            title = sprintf("Breakeven cost line at WTP = $%s/QALY", format(input$wtp, big.mark = ","))) +
       theme_minimal(base_size = 13)
