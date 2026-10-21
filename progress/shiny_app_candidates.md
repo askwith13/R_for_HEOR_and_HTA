@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**60 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**64 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -53,7 +53,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 5. Data Sources and Data Management
 
-### Validation Rule Threshold Tuner
+### Validation Rule Threshold Tuner [BUILT]
 - **Section:** 5.6
 - **What it does:** Sliders set bounds for each data-validation rule on the chapter's cost_qaly_tbl example; pass/fail counts update live, showing how loosening/tightening a rule changes what gets caught. (Moderate candidate — limited live value.)
 - **Likely packages:** `shiny, pointblank or validate, dplyr`
@@ -62,7 +62,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 6. Systematic Literature Review (SLR) Support in R
 
-### Dedup Threshold Explorer
+### Dedup Threshold Explorer [BUILT]
 - **Section:** 6.2
 - **What it does:** Drag a similarity-threshold slider (string_osa distance cutoff) over a loaded reference set and watch duplicate-flag counts change live; a toggle switches exact-title vs fuzzy matching.
 - **Likely packages:** `shiny, synthesisr, dplyr`
@@ -76,7 +76,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Pick MCAR/MAR/MNAR and drag a slider controlling how strongly missingness depends on the utility value; the app regenerates the dataset live and shows a complete-case mean diverging from truth under MNAR but not MCAR.
 - **Likely packages:** `shiny, tidyverse, mice`
 
-### Interactive Missingness Explorer
+### Interactive Missingness Explorer [BUILT]
 - **Section:** 7.2
 - **What it does:** Filter a loaded extract by site/arm/variable via dropdowns; naniar::vis_miss()/gg_miss_var()/gg_miss_upset() plots regenerate live rather than being pre-generated as static figures.
 - **Likely packages:** `shiny, naniar, visdat`
@@ -520,7 +520,7 @@ Total candidates now 62 across 31 chapters with content.
 - **What it does:** This is the exact app the case study itself describes building, conceptually, rather than a new idea -- sliders for the LAI's annual price, the relapse-rate reduction, and a 5-year uptake trajectory (either five individual year-sliders or one "ramp speed" slider), with the year-by-year budget-impact table and cost-trajectory chart from §35.4 recomputing live as any input moves. Directly demonstrates the case study's own stated point: uptake speed, not price, is the dominant driver of the 5-year net impact in the base case -- letting a payer committee discover that for themselves by dragging the uptake slider rather than being told it in prose.
 - **Likely packages:** `shiny, ggplot2, bslib`
 
-### CEAC/WTP Threshold Explorer (Case Studies A and B combined)
+### CEAC/WTP Threshold Explorer (Case Studies A and B combined) [BUILT]
 - **Section:** 35.1, 35.2
 - **What it does:** A single willingness-to-pay slider (0 to 500,000) that, for either the chronic-disease Markov model or the oncology PSM, highlights the corresponding point on that case study's own PSA-derived CEAC curve and restates the probability-cost-effective figure live. Makes directly visible the chapter's own observation that the accept/reject conclusion for Case Study A flips sharply between a WTP of 20,000 and 50,000, while Case Study B's ICER never approaches a conventional oncology threshold at any reasonable WTP -- a genuinely different qualitative story for each case study that a static CEAC plot states but a live slider lets a reader feel.
 - **Likely packages:** `shiny, ggplot2, bslib`

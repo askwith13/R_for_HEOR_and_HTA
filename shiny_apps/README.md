@@ -4,15 +4,14 @@ Companion interactive Shiny apps for this book, one subfolder per
 app, each illustrating a single book concept with live parameter
 sliders rather than a static plot.
 
-## Status: 60 apps built, verified, and explanatory-layer complete
+## Status: all 64 candidate apps built, verified, and explanatory-layer complete
 
 `progress/shiny_app_candidates.md` holds the full planning inventory
 -- 64 candidate apps identified by reading every chapter's actual
 content and applying a selectivity filter (only concepts where a
 parameter's live-varying effect on a result is genuinely non-trivial
-or non-monotonic qualify). 60 candidates -- 15/16 of the inventory --
-(spanning Parts I-VII of the book) have now been built, run, and
-visually verified in a real browser session:
+or non-monotonic qualify). All 64 candidates have now been built, run,
+and visually verified in a real browser session:
 
 | App | Book section |
 |---|---|
@@ -21,7 +20,10 @@ visually verified in a real browser session:
 | `wtp_threshold_sensitivity_dashboard/` | Chapter 4, §4.5 |
 | `discount_rate_time_horizon_explorer/` | Chapter 4, §4.6 |
 | `efficiency_frontier_builder/` | Chapter 4, §4.7-4.8 |
+| `validation_rule_threshold_tuner/` | Chapter 5, §5.6 |
+| `dedup_threshold_explorer/` | Chapter 6, §6.2 |
 | `missingness_mechanism_simulator/` | Chapter 7, §7.1 |
+| `interactive_missingness_explorer/` | Chapter 7, §7.2 |
 | `tipping_point_delta_explorer/` | Chapter 7, §7.5 |
 | `eq5d_tariff_comparator/` | Chapter 8, §8.2 |
 | `age_adjusted_utility_decrement_explorer/` | Chapter 8, §8.5 |
@@ -76,9 +78,10 @@ visually verified in a real browser session:
 | `mcid_threshold_responder_rate_explorer/` | Chapter 33, §33.2 |
 | `random_forest_risk_threshold_explorer/` | Chapter 34, §34.1 |
 | `budget_impact_uptake_price_explorer/` | Chapter 35, §35.4 |
+| `ceac_wtp_threshold_explorer/` | Chapter 35, §35.1 & 35.2 |
 
-The remaining 4 candidates in `progress/shiny_app_candidates.md` are
-not yet built.
+The full planning inventory in `progress/shiny_app_candidates.md` is
+now 100% built out.
 
 ## What each app folder contains
 
@@ -89,11 +92,11 @@ not yet built.
   how its logic was verified.
 - `renv.lock` -- an honest package manifest (same policy as `code/`'s
   per-chapter lockfiles, see Chapter 2 §2.3) generated via
-  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 60
+  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 64
   built apps currently show 100% verified-installed packages (no
   `NOT_VERIFIED_IN_THIS_ENVIRONMENT` markers).
 
-## Verification discipline for every app built so far
+## Verification discipline for every app built
 
 Each app's computational core was checked two ways before being
 treated as correct: (1) independently re-implemented in a standalone
@@ -125,9 +128,13 @@ model, common-random-numbers variance reduction in a two-arm Monte
 Carlo comparison, real `mgcv::gam()` under/over-fit behaviour under a
 fixed (unpenalized) basis dimension, EVSI/ENBS diminishing-returns
 trial-size optimisation, extreme-value verification across a full 0-1
-parameter range, and multi-lever (price vs. uptake-speed) budget-
-impact sensitivity), and (2) the running app itself was loaded in a
-real browser session and its live output -- including, where
+parameter range, multi-lever (price vs. uptake-speed) budget-impact
+sensitivity, data-validation-rule tightness trade-offs against
+deliberately injected genuine errors, fuzzy vs. exact title-matching
+deduplication rates, subgroup-concentrated missingness via real
+`naniar::vis_miss()`, and two independently-simulated CEAC curves
+contrasted side by side), and (2) the running app itself was loaded in
+a real browser session and its live output -- including, where
 relevant, after live slider interaction -- visually confirmed to
 match, not just assumed to work because the code looked plausible.
 
@@ -165,17 +172,30 @@ impact app's overclaiming that uptake speed always dominates price
 depending on the exact ranges compared, so the text was softened to
 state that finding accurately rather than overstate it).
 
+## Note on data
+
+Every app, including the final 4 (Validation Rule Threshold Tuner,
+Dedup Threshold Explorer, Interactive Missingness Explorer, and the
+CEAC/WTP Threshold Explorer for Case Studies A+B), uses a fully
+self-contained simulated dataset generated in-app with `set.seed()`
+for reproducibility, rather than loading an external reference
+extract. Several original candidate descriptions in
+`progress/shiny_app_candidates.md` suggested a "loaded extract," but a
+self-contained simulation keeps every app runnable standalone with no
+external data dependency -- consistent across the whole collection.
+Where a candidate's pedagogical point depends on injected genuine
+errors or duplicates (the validation tuner, the dedup explorer), those
+are deliberately built into the simulated data with a documented
+ground truth, so the app's pass/fail behaviour can be checked against
+a known-correct answer rather than an arbitrary "it looks plausible"
+standard.
+
 ## Building more apps
 
 Folder names should be short, lowercase, underscore-separated slugs
 describing the app's subject (e.g. `maic_weight_ess_explorer`), not
 the chapter number alone, since several chapters contribute more than
-one candidate. `progress/shiny_app_candidates.md`'s selection criteria
-section notes which remaining candidates are the strongest teaching
-aids; start there for the next batch rather than working strictly
-chapter-by-chapter. The 4 remaining unbuilt candidates (Validation
-Rule Threshold Tuner, Dedup Threshold Explorer, Interactive
-Missingness Explorer, and the CEAC/WTP Threshold Explorer combining
-Case Studies A and B) all require a pre-loaded external reference
-dataset or extract rather than a fully self-contained simulated
-dataset, which is why they were deferred from this batch-of-8 cycle.
+one candidate. The full 64-candidate inventory is now built; any
+future additions should start by re-reading newly added or revised
+chapters and applying the same selectivity filter documented in
+`progress/shiny_app_candidates.md`'s selection criteria section.
