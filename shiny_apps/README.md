@@ -4,13 +4,13 @@ Companion interactive Shiny apps for this book, one subfolder per
 app, each illustrating a single book concept with live parameter
 sliders rather than a static plot.
 
-## Status: 44 apps built, verified, and explanatory-layer complete
+## Status: 52 apps built, verified, and explanatory-layer complete
 
 `progress/shiny_app_candidates.md` holds the full planning inventory
 -- 64 candidate apps identified by reading every chapter's actual
 content and applying a selectivity filter (only concepts where a
 parameter's live-varying effect on a result is genuinely non-trivial
-or non-monotonic qualify). 44 candidates -- 11/16 of the inventory --
+or non-monotonic qualify). 52 candidates -- 13/16 of the inventory --
 (spanning Parts I-VII of the book) have now been built, run, and
 visually verified in a real browser session:
 
@@ -27,10 +27,15 @@ visually verified in a real browser session:
 | `age_adjusted_utility_decrement_explorer/` | Chapter 8, §8.5 |
 | `cost_distribution_model_fit_explorer/` | Chapter 9, §9.3-9.4 |
 | `censored_cost_estimator_comparator/` | Chapter 9, §9.6 |
+| `parametric_hazard_shape_explorer/` | Chapter 10, §10.2 |
+| `spline_knot_count_explorer/` | Chapter 10, §10.3 |
+| `cure_fraction_followup_length_simulator/` | Chapter 10, §10.4 |
 | `meta_analysis_pooling_model_playground/` | Chapter 11, §11.1-11.2 |
+| `funnel_asymmetry_lab/` | Chapter 11, §11.3 |
 | `bucher_itc_calculator/` | Chapter 12, §12.2 |
 | `maic_weight_ess_explorer/` | Chapter 13, §13.2 |
 | `prior_likelihood_posterior_tug_of_war/` | Chapter 14, §14.2 |
+| `extreme_weights_trimming_simulator/` | Chapter 15, §15.4 |
 | `e_value_sensitivity_dashboard/` | Chapter 15, §15.9 |
 | `logistic_link_function_explorer/` | Chapter 16, §16.1 |
 | `overdispersion_zero_inflation_visualizer/` | Chapter 16, §16.3 |
@@ -44,16 +49,19 @@ visually verified in a real browser session:
 | `soc_vs_dmt_icer_dashboard/` | Chapter 19, §19.10 |
 | `curve_crossing_explorer/` | Chapter 20, §20.1 & 20.5 |
 | `treatment_waning_assumption_visualizer/` | Chapter 20, §20.3 |
-| `parametric_hazard_shape_explorer/` | Chapter 10, §10.2 |
-| `spline_knot_count_explorer/` | Chapter 10, §10.3 |
 | `first_order_noise_convergence_explorer/` | Chapter 21, §21.4 |
 | `mm1_queue_utilisation_explorer/` | Chapter 22, §22.2 |
 | `seir_epidemic_herd_effect_explorer/` | Chapter 22, §22.4/22.6 |
 | `budget_impact_scenario_explorer/` | Chapter 23, §23.2-23.4 |
 | `equity_weighted_icer_explorer/` | Chapter 24, §24.2 |
-| `psa_distribution_ceac_explorer/` | Chapter 25, §25.4-25.5 |
+| `ecea_financial_risk_protection_dashboard/` | Chapter 24, §24.3 |
+| `mcda_weight_sensitivity_explorer/` | Chapter 24, §24.4 |
 | `tornado_diagram_parameter_range_explorer/` | Chapter 25, §25.2 |
+| `psa_distribution_ceac_explorer/` | Chapter 25, §25.4-25.5 |
+| `structural_model_averaging_weight_explorer/` | Chapter 25, §25.7 |
+| `bootstrap_resampling_method_comparator/` | Chapter 25, §25.8 |
 | `evpi_vs_wtp_curve_explorer/` | Chapter 26, §26.1-26.2 |
+| `calibration_target_search_explorer/` | Chapter 27, §27.1 |
 | `cross_agency_decision_explorer/` | Chapter 31, §31.5 |
 | `durability_waning_of_effect_explorer/` | Chapter 32, §32.6 |
 | `tb_cascade_of_care_attrition_explorer/` | Chapter 32, §32.7 |
@@ -61,7 +69,7 @@ visually verified in a real browser session:
 | `mcid_threshold_responder_rate_explorer/` | Chapter 33, §33.2 |
 | `random_forest_risk_threshold_explorer/` | Chapter 34, §34.1 |
 
-The remaining 20 candidates in `progress/shiny_app_candidates.md` are
+The remaining 12 candidates in `progress/shiny_app_candidates.md` are
 not yet built.
 
 ## What each app folder contains
@@ -73,7 +81,7 @@ not yet built.
   how its logic was verified.
 - `renv.lock` -- an honest package manifest (same policy as `code/`'s
   per-chapter lockfiles, see Chapter 2 §2.3) generated via
-  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 44
+  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 52
   built apps currently show 100% verified-installed packages (no
   `NOT_VERIFIED_IN_THIS_ENVIRONMENT` markers).
 
@@ -95,11 +103,18 @@ tariffs via the `eq5d` package, Lin's-partitioned-style censored-cost
 bias reduction via `survival::survfit()`, flexsurvspline AIC/log-
 likelihood tradeoffs, first-order sampling-noise convergence,
 MCAR/MAR/MNAR complete-case bias, tipping-point delta sensitivity
-analysis, and beginning/end/half-cycle discounted-total differences),
-and (2) the running app itself was loaded in a real browser session
-and its live output -- including, where relevant, after live slider
-interaction -- visually confirmed to match, not just assumed to work
-because the code looked plausible.
+analysis, beginning/end/half-cycle discounted-total differences, real
+mixture-cure-model short-follow-up bias via `flexsurvcure`, funnel-
+plot/Egger's-test/trim-and-fill behaviour via `meta`, real IPTW
+weight distributions and ATE bias via `WeightIt`, distributional
+financial-risk-protection effects by income quintile, MCDA weight-
+driven ranking flips, structural model-averaging linear interpolation,
+correct-vs-incorrect bootstrap resampling bias direction, and real
+`optim()` Nelder-Mead calibration-target sensitivity), and (2) the
+running app itself was loaded in a real browser session and its live
+output -- including, where relevant, after live slider interaction --
+visually confirmed to match, not just assumed to work because the
+code looked plausible.
 
 ## Interpretive layer
 
@@ -109,13 +124,18 @@ warning about a real, specific misinterpretation risk for that app's
 concept -- matching the book's own callout-box density. These panels
 were independently re-verified against each app's own displayed
 numbers before being accepted, not just read for plausibility. A few
-pitfall-text claims across the full build were caught overstating
-what the app's own simulation actually demonstrates (the cost-
-distribution app's OLS/gamma-GLM divergence, the spline app's "AIC
-always falls" claim, and the tipping-point app's original true-effect
-size placing the tipping point outside the visible slider range) and
-corrected to match the real, verified behaviour rather than left as
-plausible-sounding but inaccurate copy.
+pitfall-text claims across the full build were caught overstating or
+simply getting wrong what the app's own simulation actually
+demonstrates and corrected before being accepted: the cost-
+distribution app's OLS/gamma-GLM divergence claim, the spline app's
+"AIC always falls" claim, the tipping-point app's original true-effect
+size placing the tipping point outside the visible slider range, and
+most notably the bootstrap-resampling app's original claim that
+incorrect independent-column resampling OVERSTATES uncertainty --
+standalone verification showed the opposite (it UNDERSTATES
+uncertainty under a realistic negative cost-QALY correlation,
+producing a falsely narrow, overconfident interval), so the text was
+rewritten entirely to match the real, verified direction of the bias.
 
 ## Building more apps
 

@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**44 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**52 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -129,7 +129,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** A knot-count slider (k=0-3) for flexsurvspline() live-refits against the KM curve within the trial period and updates an AIC/BIC readout, showing more knots always reduce in-sample AIC while risking an erratic extrapolated tail.
 - **Likely packages:** `shiny, flexsurv`
 
-### Cure-Fraction vs. Follow-up-Length Simulator
+### Cure-Fraction vs. Follow-up-Length Simulator [BUILT]
 - **Section:** 10.4
 - **What it does:** Sliders for true simulated cure fraction and trial follow-up duration regenerate a censored cohort and refit a mixture cure model live, showing how short/administratively-censored follow-up can manufacture a spuriously large cure estimate indistinguishable from a genuine plateau.
 - **Likely packages:** `shiny, flexsurvcure, flexsurv`
@@ -143,7 +143,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Switch between fixed-effect/random-effects pooling and tau-squared estimators (DL/REML/PM); forest plot, pooled estimate, CI width, and I2/tau2/Q all redraw live — lets the user watch the interval breathe as estimator choice changes, the core 'don't model-shop' lesson.
 - **Likely packages:** `shiny, meta, metafor`
 
-### Funnel Asymmetry Lab
+### Funnel Asymmetry Lab [BUILT]
 - **Section:** 11.3
 - **What it does:** A slider controls how many small 'missing' studies are synthetically suppressed; funnel plot, Egger's test, and trim-and-fill re-run live, showing the pooled estimate chase a moving target as suppression changes — makes concrete that trim-and-fill is a sensitivity check, not a correction.
 - **Likely packages:** `shiny, meta, metafor`
@@ -186,7 +186,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 15. Real-World Evidence and Causal Inference
 
-### Extreme Weights & Trimming Simulator
+### Extreme Weights & Trimming Simulator [BUILT]
 - **Section:** 15.4
 - **What it does:** A propensity-score trimming-bounds slider over a toy/uploaded cohort live-redraws the IPTW weight distribution and recomputes the ATE, showing extreme weights dominate before trimming and stabilize after.
 - **Likely packages:** `shiny, WeightIt, cobalt`
@@ -340,12 +340,12 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **What it does:** Sliders for each subgroup's QALY gain and an adjustable equity weight (1.0 to 3.0) for the most-deprived group re-run the chapter's toy two-subgroup `icer_unweighted`/`icer_weighted` calculation live, redrawing both ICERs side by side and plotting the result as a point on a simplified equity-impact-plane quadrant chart. Makes the chapter's central "win-win vs genuine trade-off" distinction directly explorable — dragging the deprived group's QALY gain below the less-deprived group's instantly flips which quadrant the result lands in, a relationship the static toy example can only show once.
 - **Likely packages:** `shiny, dplyr, ggplot2`
 
-### ECEA Financial Risk Protection Dashboard
+### ECEA Financial Risk Protection Dashboard [BUILT]
 - **Section:** 24.3
 - **What it does:** Sliders for the status-quo and new-policy out-of-pocket cost, the catastrophic-expenditure threshold (%), and the poverty line re-run the chapter's `ecea_frp()` function live across all five income quintiles, redrawing the CHE-cases-averted and poverty-cases-averted bar chart. Strong candidate because the quintile-by-quintile distribution genuinely depends non-trivially on where each cutoff falls relative to each quintile's income band — exactly the kind of threshold-crossing behaviour that is far clearer dragged live than read from a single static scenario.
 - **Likely packages:** `shiny, dplyr, ggplot2`
 
-### MCDA Weight Sensitivity Explorer
+### MCDA Weight Sensitivity Explorer [BUILT]
 - **Section:** 24.4
 - **What it does:** Four sliders (one per criterion: efficacy, safety, severity, economic value, constrained to sum to 1) re-run the chapter's `mcda_weighted_score()` function live against the same three-drug example, instantly re-ranking the drugs and showing how close the ranking is to flipping. Directly operationalizes the chapter's own pitfall box ("every MCDA result should be accompanied by a weight-sensitivity analysis") as something a reader can actually do rather than just be told to do.
 - **Likely packages:** `shiny, dplyr`
@@ -370,12 +370,12 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **What it does:** Sliders for the new regimen's incremental QALY gain and the WTP threshold re-compute the breakeven total cost live via the chapter's rearranged ICER formula (reused from Ch.24 §24.5's value-based-pricing relationship), displaying the result as a single live number alongside a marker on a cost-vs-ICER line plot. A simple, low-engineering-cost app that makes the "threshold analysis solves backward for one parameter" idea tangible without needing a full PSA re-run per interaction.
 - **Likely packages:** `shiny`
 
-### Structural Model Averaging Weight Explorer
+### Structural Model Averaging Weight Explorer [BUILT]
 - **Section:** 25.7
 - **What it does:** A single slider for the weight assigned to the 4-state structure (with the 3-state structure's weight auto-set to 1 minus that value), re-computing the model-averaged NMB live from the chapter's own two fixed structure-specific NMB values ($8,044.05 and $5,357.89). Makes concrete, interactively, how sensitive the final blended answer is to a largely judgement-based weighting choice -- a reader can drag from "trust the simple structure completely" to "trust the detailed structure completely" and watch the averaged NMB move smoothly between the two endpoints, directly illustrating the chapter's own caution that model-averaging weights are often expert judgement, not a hard empirical fact.
 - **Likely packages:** `shiny`
 
-### Bootstrap Resampling Method Comparator
+### Bootstrap Resampling Method Comparator [BUILT]
 - **Section:** 25.8
 - **What it does:** A toggle between "correct" (row-preserving) and "incorrect" (independent-column) bootstrap resampling, re-running B=500 replicates live on the chapter's own simulated trial dataset and overlaying both resulting incremental-NMB distributions on one histogram. Makes the chapter's own pitfall box viscerally obvious -- a reader can watch the independent-column version visibly widen relative to the correct version in real time, rather than just reading the stated ~17% SD inflation figure.
 - **Likely packages:** `shiny, ggplot2`
@@ -411,7 +411,7 @@ rebuilding it from scratch. Coverage currently extends through Chapter 27.
 
 ## Chapter 27. Model Calibration, Validation and Quality Assurance
 
-### Calibration Target Search Explorer
+### Calibration Target Search Explorer [BUILT]
 - **Section:** 27.1
 - **What it does:** A slider for the calibration target value (e.g. the registry's 5-year mortality rate, adjustable around the illustrative 32% base case) that live-reruns the `optim()` Nelder-Mead search for `p_hidden` and redraws both the random-search scatter and the converged value, letting a reader see how sensitive the calibrated parameter is to the exact target value chosen -- directly demonstrates why a calibration target's own uncertainty matters, not just its point estimate.
 - **Likely packages:** `shiny, ggplot2`
