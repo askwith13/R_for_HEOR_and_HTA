@@ -30,7 +30,18 @@ ui <- fluidPage(
     ),
     mainPanel(
       verbatimTextOutput("summaryOut"),
-      plotOutput("waitPlot", height = "350px")
+      plotOutput("waitPlot", height = "350px"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "Staffing decisions based on average utilisation alone can badly ",
+        "underestimate wait times. Compare \u03c1 = 0.70 against \u03c1 = 0.90: utilisation ",
+        "only rose about 29%, but wait time rose far more sharply \u2014 the Wq curve is ",
+        "convex, not linear, in \u03c1. A clinic running \"comfortably busy\" at 70% ",
+        "utilisation and a clinic running \"almost always busy\" at 90% are not ",
+        "proportionally different in patient experience; they are qualitatively ",
+        "different.")
     )
   )
 )
@@ -117,6 +128,20 @@ server <- function(input, output, session) {
            title = "M/M/1 theoretical wait time vs. utilisation (\u03c1)",
            subtitle = "Dashed line: current slider setting") +
       theme_minimal(base_size = 13)
+  })
+
+  output$interpretation <- renderText({
+    r <- sim_result()
+    if (r$unstable) {
+      return("The queue is unstable at this setting \u2014 no meaningful wait-time comparison is possible until \u03c1 < 1.")
+    }
+    pct_err <- (r$sim_wait - r$Wq_theory) / r$Wq_theory * 100
+    sprintf(paste0("At \u03c1 = %.2f, the simulated average wait (%.1f min) is within %.1f%% of the ",
+                   "closed-form M/M/1 prediction (%.1f min) \u2014 the small gap is pure simulation ",
+                   "noise, not a modelling error. As \u03c1 climbs toward 1, Wq grows roughly as ",
+                   "1/(1\u2212\u03c1): doubling how close you get to full utilisation can multiply the ",
+                   "expected wait many times over, not just double it."),
+            r$rho, r$sim_wait, abs(pct_err), r$Wq_theory)
   })
 }
 

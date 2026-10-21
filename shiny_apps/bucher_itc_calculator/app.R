@@ -33,7 +33,18 @@ ui <- fluidPage(
       plotOutput("forestPlot", height = "350px"),
       helpText("d_AB = d_AC \u2212 d_BC;  Var(d_AB) = SE_AC\u00b2 + SE_BC\u00b2  ",
                "(variances always add; the indirect CI can never be narrower ",
-               "than either direct trial's own CI.)")
+               "than either direct trial's own CI.)"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "The Bucher method assumes the two trials are otherwise exchangeable \u2014 ",
+        "similar enough populations, comparators, and designs that comparator C ",
+        "would have performed the same way in both trials. Nothing in this ",
+        "calculator checks that assumption; it only propagates the stated ",
+        "uncertainty correctly. If the two trials' patient populations differ ",
+        "meaningfully, see Chapter 13 (MAIC/STC) for population-adjustment methods ",
+        "that attempt to correct for it before comparing.")
     )
   )
 )
@@ -86,6 +97,25 @@ server <- function(input, output, session) {
       labs(x = xlab_txt, y = NULL,
            title = "Direct trial estimates vs. Bucher indirect estimate") +
       theme_minimal(base_size = 13)
+  })
+
+  output$interpretation <- renderText({
+    b <- bucher()
+    width_AB <- 2 * 1.96 * b$se_AB
+    width_AC <- 2 * 1.96 * input$se_AC
+    width_BC <- 2 * 1.96 * input$se_BC
+    wider_than <- max(width_AC, width_BC)
+    pct_wider <- (width_AB / wider_than - 1) * 100
+    sig_txt <- if ((b$ci_lo > 0 && b$ci_hi > 0) || (b$ci_lo < 0 && b$ci_hi < 0)) {
+      "statistically significant (CI excludes the null)"
+    } else {
+      "not statistically significant (CI crosses the null)"
+    }
+    sprintf(paste0("The indirect A-vs-B interval is %.0f%% wider than the widest of the two direct ",
+                   "trial intervals it was built from, and %s. This widening is NOT a modelling ",
+                   "choice \u2014 it's the mathematical consequence of SE_AB\u00b2 = SE_AC\u00b2 + SE_BC\u00b2, ",
+                   "and happens every single time, regardless of which point estimates you pick."),
+            pct_wider, sig_txt)
   })
 }
 

@@ -65,7 +65,19 @@ ui <- fluidPage(
     ),
     mainPanel(
       plotOutput("survPlot", height = "350px"),
-      plotOutput("hazPlot", height = "300px")
+      plotOutput("hazPlot", height = "300px"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "A curve can overlay the black KM line almost perfectly within the trial ",
+        "period (up to month 18) while implying very different long-run survival ",
+        "once extrapolated. Try the Exponential family (constant hazard) vs. Weibull ",
+        "with shape > 1 (increasing hazard) \u2014 both can look reasonable up to month ",
+        "18, but the Exponential curve keeps gliding downward far more slowly beyond ",
+        "it. \"Fits the trial period\" and \"extrapolates plausibly\" are genuinely ",
+        "different claims; NICE DSU TSD 14 requires both AIC/BIC AND visual/clinical ",
+        "plausibility checks for exactly this reason.")
     )
   )
 )
@@ -129,6 +141,30 @@ server <- function(input, output, session) {
       geom_vline(xintercept = 18, linetype = "dashed", color = "#d6604d") +
       labs(x = "Time (months)", y = "Hazard", title = "Implied hazard function") +
       theme_minimal(base_size = 13)
+  })
+
+  output$interpretation <- renderText({
+    tg <- t_grid()
+    cv <- curves()
+    # Survival at the end of trial follow-up (18mo) vs. at the extrapolation horizon
+    idx_18 <- which.min(abs(tg - 18))
+    surv_at_18 <- cv$surv[idx_18]
+    surv_at_horizon <- cv$surv[length(cv$surv)]
+    haz_start <- cv$haz[1]
+    haz_end <- cv$haz[length(cv$haz)]
+    shape_desc <- if (haz_end > haz_start * 1.05) {
+      "rising (patients accumulate risk over time)"
+    } else if (haz_end < haz_start * 0.95) {
+      "falling (patients who survive longest face the lowest ongoing risk)"
+    } else {
+      "roughly flat (constant risk regardless of time already survived)"
+    }
+    sprintf(paste0("At month 18 (end of observed follow-up), fitted survival = %.1f%%. ",
+                   "Extrapolated out to month %d, survival falls to %.1f%% \u2014 ",
+                   "%.1f percentage points of that gap happens entirely in the ",
+                   "extrapolated region, not the observed data. The hazard is %s."),
+            surv_at_18 * 100, round(input$horizon), surv_at_horizon * 100,
+            (surv_at_18 - surv_at_horizon) * 100, shape_desc)
   })
 }
 

@@ -70,7 +70,17 @@ ui <- fluidPage(
         column(6, h4("Results"), tableOutput("resultsTable")),
         column(6, h4("ICER"), verbatimTextOutput("icerOut"))
       ),
-      plotOutput("cePlanePlot", height = "400px")
+      plotOutput("cePlanePlot", height = "400px"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "A negative ICER is ambiguous on its own \u2014 it can mean DMT dominates ",
+        "(cheaper AND more effective, the good outcome) or that DMT is dominated ",
+        "(costlier AND less effective, the bad outcome). Always check the sign of ",
+        "incremental cost and incremental QALYs separately before quoting an ICER; ",
+        "the dashboard does this for you above, but a report that quotes only the ",
+        "ratio can hide which situation actually occurred.")
     )
   )
 )
@@ -123,6 +133,22 @@ server <- function(input, output, session) {
       labs(x = "Incremental QALYs (DMT \u2212 SoC)", y = "Incremental cost (DMT \u2212 SoC)",
            title = "Cost-effectiveness plane") +
       theme_minimal(base_size = 13)
+  })
+
+  output$interpretation <- renderText({
+    dc <- dmt()$disc_cost - soc()$disc_cost
+    dq <- dmt()$disc_qaly - soc()$disc_qaly
+    quadrant <- if (dc < 0 && dq > 0) {
+      "the south-east quadrant \u2014 DMT dominates (cheaper and more effective)"
+    } else if (dc > 0 && dq < 0) {
+      "the north-west quadrant \u2014 DMT is dominated by SoC (costlier and less effective)"
+    } else if (dc > 0 && dq > 0) {
+      "the north-east quadrant \u2014 the usual trade-off: DMT costs more and delivers more QALYs, so whether it's worth it depends on your willingness-to-pay threshold"
+    } else {
+      "the south-west quadrant \u2014 DMT costs less but also delivers fewer QALYs, a genuine trade-off in the other direction"
+    }
+    sprintf("The point sits in %s. The DMT arm's lower Well\u2192Diseased transition probability (%.2f vs. SoC's %.2f) is driving most of the QALY gain.",
+            quadrant, input$dmt_p_wd, input$soc_p_wd)
   })
 }
 

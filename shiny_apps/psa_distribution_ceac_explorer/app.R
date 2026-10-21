@@ -49,7 +49,16 @@ ui <- fluidPage(
         column(6, plotOutput("ceacPlot", height = "350px"))
       ),
       plotOutput("nmbHist", height = "300px"),
-      verbatimTextOutput("summaryOut")
+      verbatimTextOutput("summaryOut"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "P(cost-effective) at a single WTP threshold is NOT the same question as ",
+        "\"is the mean NMB positive?\" \u2014 with a skewed PSA cloud, a point estimate's ",
+        "NMB can be positive while fewer than half the draws are, or vice versa. ",
+        "Check the CEAC panel, not just the summary numbers, before reporting a ",
+        "single P(cost-effective) figure in isolation.")
     )
   )
 )
@@ -120,6 +129,24 @@ server <- function(input, output, session) {
     cat(sprintf("Mean incremental NMB at WTP=$%s: %.2f\n",
                 format(input$wtp, big.mark = ","), mean(nmb)))
     cat(sprintf("P(cost-effective) at this WTP: %.1f%%\n", mean(nmb > 0) * 100))
+  })
+
+  output$interpretation <- renderText({
+    df <- psa_data()
+    nmb <- input$wtp * df$inc_qaly - df$inc_cost
+    p_ce <- mean(nmb > 0) * 100
+    mean_nmb <- mean(nmb)
+    agree <- (mean_nmb > 0 && p_ce > 50) || (mean_nmb < 0 && p_ce < 50)
+    agreement_txt <- if (agree) {
+      "consistent with"
+    } else {
+      "NOT fully consistent with (a sign of real skew in the PSA cloud)"
+    }
+    sprintf(paste0("At WTP = $%s/QALY, %.1f%% of the %d PSA draws fall above the dashed ",
+                   "WTP line (cost-effective). The mean NMB ($%.0f) is %s that ",
+                   "percentage \u2014 when the two disagree, it signals the underlying cost/QALY ",
+                   "distribution is meaningfully skewed, not symmetric."),
+            format(input$wtp, big.mark = ","), p_ce, nrow(df), mean_nmb, agreement_txt)
   })
 }
 

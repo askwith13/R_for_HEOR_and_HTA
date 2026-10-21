@@ -36,8 +36,19 @@ ui <- fluidPage(
     ),
     mainPanel(
       plotOutput("cePlane", height = "450px"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
       h4("Dominance classification"),
-      tableOutput("dominanceTable")
+      tableOutput("dominanceTable"),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "An extended-dominated treatment is NOT beaten outright by any single other ",
+        "treatment on both cost and QALYs \u2014 that's simple dominance. It is beaten ",
+        "by a hypothetical mix of its two frontier neighbours that would deliver the ",
+        "same QALYs for less cost (or more QALYs for the same cost), which is why it ",
+        "still gets pruned even though it looks \"undominated\" at first glance. Try ",
+        "moving treatment C's cost toward 4000 \u2014 watch its status flip from Extended ",
+        "dominance back to Efficient once its own ICER vs. B stops exceeding D's ICER vs. B.")
     )
   )
 )
@@ -142,6 +153,17 @@ server <- function(input, output, session) {
     df$cost <- round(df$cost, 2)
     df$qaly <- round(df$qaly, 3)
     df[, c("name", "cost", "qaly", "status")]
+  })
+
+  output$interpretation <- renderText({
+    df <- frontier_result()
+    n_eff <- sum(df$status == "Efficient")
+    n_simple <- sum(df$status == "Simple dominance")
+    n_ext <- sum(df$status == "Extended dominance")
+    parts <- c(sprintf("%d treatment(s) on the efficient frontier (blue line)", n_eff))
+    if (n_simple > 0) parts <- c(parts, sprintf("%d simply dominated (grey, strictly beaten by one other treatment)", n_simple))
+    if (n_ext > 0) parts <- c(parts, sprintf("%d extended-dominated (red, beaten by a mix of two frontier treatments)", n_ext))
+    paste0(paste(parts, collapse = "; "), ".")
   })
 }
 

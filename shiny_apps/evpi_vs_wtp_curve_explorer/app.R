@@ -38,7 +38,18 @@ ui <- fluidPage(
     ),
     mainPanel(
       plotOutput("evpiCurvePlot", height = "350px"),
-      plotOutput("ceacComparePlot", height = "300px")
+      plotOutput("ceacComparePlot", height = "300px"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "EVPI is near zero at both very low and very high WTP thresholds \u2014 not ",
+        "because uncertainty disappears there, but because the decision is so ",
+        "clear-cut at the extremes that no amount of additional information could ",
+        "change it. A near-zero EVPI does NOT mean \"this decision is well-",
+        "understood\"; it can equally mean \"this decision is obvious regardless of ",
+        "the remaining uncertainty.\" Always check where on the WTP axis you're ",
+        "reading EVPI from before interpreting a low value as reassuring.")
     )
   )
 )
@@ -90,6 +101,23 @@ server <- function(input, output, session) {
       labs(x = "WTP threshold ($/QALY)", y = "P(cost-effective)",
            title = "CEAC (for comparison): EVPI tends to peak where this crosses 0.5") +
       theme_minimal(base_size = 13)
+  })
+
+  output$interpretation <- renderText({
+    ec <- evpi_curve()
+    cc <- ceac_curve()
+    peak_wtp <- wtp_grid[which.max(ec)]
+    # find WTP where CEAC is closest to 0.5
+    crossing_wtp <- wtp_grid[which.min(abs(cc - 0.5))]
+    gap <- abs(peak_wtp - crossing_wtp)
+    sprintf(paste0("EVPI peaks near WTP = $%s/QALY. The CEAC crosses 50%% near WTP = $%s/QALY ",
+                   "\u2014 a gap of only $%s. That's not a coincidence: EVPI is highest exactly ",
+                   "where the decision is most finely balanced (closest to a coin flip), and ",
+                   "the CEAC's 50%% crossing is precisely where the probability of being ",
+                   "cost-effective is most uncertain."),
+            format(round(peak_wtp, -3), big.mark = ","),
+            format(round(crossing_wtp, -3), big.mark = ","),
+            format(round(gap, -2), big.mark = ","))
   })
 }
 

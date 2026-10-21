@@ -28,7 +28,19 @@ ui <- fluidPage(
     mainPanel(
       plotOutput("densityPlot", height = "420px"),
       h4("Posterior summary"),
-      verbatimTextOutput("posteriorOut")
+      verbatimTextOutput("posteriorOut"),
+      tags$div(style = "background-color:#eef3fa; border-left:4px solid #2166ac; padding:10px 15px; margin:12px 0;",
+        tags$strong("What you're seeing: "), textOutput("interpretation", inline = TRUE)),
+      tags$div(style = "background-color:#fdf2f2; border-left:4px solid #d6604d; padding:10px 15px; margin:12px 0;",
+        tags$strong("Pitfall: "),
+        "The posterior's position between prior and likelihood is driven by their ",
+        "relative pseudo-counts, not by which one \"feels\" more authoritative. A ",
+        "prior built from a confident clinician's guess (\u03b1=50, \u03b2=50, equivalent to ",
+        "a 100-patient trial) will barely move even against a genuinely large new ",
+        "cohort, while a weak/vague prior (\u03b1=0.5, \u03b2=0.5) gets swamped almost ",
+        "entirely by a small new dataset. Always report the prior's effective ",
+        "sample size (\u03b1+\u03b2) alongside its mean \u2014 the mean alone hides how much ",
+        "influence it actually has.")
     )
   )
 )
@@ -83,6 +95,27 @@ server <- function(input, output, session) {
                 s_capped(), input$n_total, s_capped() / input$n_total))
     cat(sprintf("Posterior: Beta(%.1f, %.1f), mean = %.3f\n", pa, pb, pa / (pa + pb)))
     cat(sprintf("95%% credible interval: %.3f to %.3f\n", ci[1], ci[2]))
+  })
+
+  output$interpretation <- renderText({
+    prior_n <- input$alpha + input$beta
+    data_n <- input$n_total
+    prior_share <- prior_n / (prior_n + data_n) * 100
+    data_share <- 100 - prior_share
+    pa <- post_alpha(); pb <- post_beta()
+    posterior_mean <- pa / (pa + pb)
+    prior_mean <- input$alpha / (input$alpha + input$beta)
+    data_mean <- s_capped() / input$n_total
+    closer_to <- if (abs(posterior_mean - prior_mean) < abs(posterior_mean - data_mean)) {
+      "closer to the prior"
+    } else {
+      "closer to the observed data"
+    }
+    sprintf(paste0("The prior carries %.0f pseudo-observations' worth of weight (\u03b1+\u03b2) ",
+                   "against %d real observations \u2014 roughly a %.0f%%/%.0f%% split of ",
+                   "influence. The posterior mean (%.3f) ends up %s, exactly as that ",
+                   "split would predict."),
+            prior_n, data_n, prior_share, data_share, posterior_mean, closer_to)
   })
 }
 
