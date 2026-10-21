@@ -20,7 +20,8 @@ R_for_HEOR_and_HTA/
 ├── typst_project/
 │   ├── book.typ              <- main assembly file: page setup, callout
 │   │                            box functions, #include list, compile this
-│   ├── book.pdf               <- compiled output, 711 pages
+│   ├── book.pdf               <- compiled output (661-question quiz bank
+│   │                            and 64 companion Shiny apps linked throughout)
 │   ├── common.typ             <- shared callout/table helper functions
 │   ├── front_matter/          <- title_page, foreword, preface,
 │   │                            companion_website, conventions,
