@@ -92,7 +92,8 @@ server <- function(input, output, session) {
 
     ggplot(df, aes(x = est, y = comparison)) +
       geom_vline(xintercept = vline, linetype = "dashed", color = "grey50") +
-      geom_errorbarh(aes(xmin = lo, xmax = hi), height = 0.2, color = "#2166ac") +
+      geom_errorbar(aes(xmin = lo, xmax = hi), width = 0.2, color = "#2166ac",
+                    orientation = "y") +
       geom_point(size = 3, color = "#2166ac") +
       labs(x = xlab_txt, y = NULL,
            title = "Direct trial estimates vs. Bucher indirect estimate") +
