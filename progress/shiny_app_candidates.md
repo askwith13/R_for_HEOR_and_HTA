@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**16 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**24 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -28,7 +28,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 4. Core Concepts in Health Economics
 
-### ICER Quadrant & Net Benefit Explorer
+### ICER Quadrant & Net Benefit Explorer [BUILT]
 - **Section:** 4.4
 - **What it does:** Drag ΔC/ΔE on the cost-effectiveness plane while a third slider sets the WTP threshold (λ); the app live-recomputes ICER, NMB, NHB and flags the quadrant. Directly illustrates why a negative ICER alone is ambiguous (dominant vs. dominated) while NMB/NHB are not.
 - **Likely packages:** `shiny, ggplot2`
@@ -138,7 +138,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 11. Meta-Analysis
 
-### Pooling Model Playground
+### Pooling Model Playground [BUILT]
 - **Section:** 11.1-11.2
 - **What it does:** Switch between fixed-effect/random-effects pooling and tau-squared estimators (DL/REML/PM); forest plot, pooled estimate, CI width, and I2/tau2/Q all redraw live — lets the user watch the interval breathe as estimator choice changes, the core 'don't model-shop' lesson.
 - **Likely packages:** `shiny, meta, metafor`
@@ -191,7 +191,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** A propensity-score trimming-bounds slider over a toy/uploaded cohort live-redraws the IPTW weight distribution and recomputes the ATE, showing extreme weights dominate before trimming and stabilize after.
 - **Likely packages:** `shiny, WeightIt, cobalt`
 
-### E-value Sensitivity Dashboard
+### E-value Sensitivity Dashboard [BUILT]
 - **Section:** 15.9
 - **What it does:** User inputs an effect estimate and CI (RR/OR/HR/coefficient); the app live-computes the point-estimate and CI-limit E-values with a fragile-vs-robust gauge — turns a one-off calculation into a what-if tool usable directly during write-up.
 - **Likely packages:** `shiny, EValue`
@@ -200,7 +200,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 16. Regression Models for HEOR Data
 
-### Link-Function Explorer
+### Link-Function Explorer [BUILT]
 - **Section:** 16.1
 - **What it does:** Sliders for a logistic-regression coefficient and intercept reshape the predicted-probability S-curve live, with a toggle between link (log-odds) and response (probability) scale — illustrates why raw GLM coefficients mean nothing until back-transformed.
 - **Likely packages:** `shiny, ggplot2, base glm()`
@@ -210,7 +210,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders for Poisson mean, negative-binomial dispersion (theta), and proportion of structural zeros morph a simulated count histogram between Poisson/NB/zero-inflated shapes, with the residual-deviance/df ratio updating live.
 - **Likely packages:** `shiny, MASS, pscl, ggplot2`
 
-### Quantile Regression Tau Slider
+### Quantile Regression Tau Slider [BUILT]
 - **Section:** 16.4
 - **What it does:** A tau slider (0-1) re-fits quantreg::rq() live on toy cost/LOS data and redraws the fitted quantile line against the scatter, showing the median vs. 90th-percentile ('costly tail') estimates diverge.
 - **Likely packages:** `shiny, quantreg, ggplot2`
@@ -267,7 +267,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 20. Partitioned Survival Models
 
-### Curve-Crossing Explorer
+### Curve-Crossing Explorer [BUILT]
 - **Section:** 20.1 & 20.5
 - **What it does:** Shape/scale sliders for independently-fit PFS and OS Weibull curves live-replot both survival curves plus the derived P(Progressed) = S_OS(t) - S_PFS(t) line across an extendable time horizon, with the region where it goes negative shaded in red. Makes the chapter's central structural-flaw pitfall (curve crossing happens far out in the tail, easy to miss on a quick plot) directly visible and draggable into existence rather than described in prose.
 - **Likely packages:** `shiny, ggplot2, base R (stats::pweibull or a hand-written weib_S())`
@@ -469,7 +469,7 @@ zero candidates, consistent with how Chapters 1-2, 28, and 29 were handled).
 
 ## Chapter 31. Agency Requirements and Reference Cases
 
-### Cross-Agency Decision Explorer
+### Cross-Agency Decision Explorer [BUILT]
 - **Section:** 31.5
 - **What it does:** Sliders/dropdowns let the user pick an agency (NICE/CADTH/PBAC/ICER/HTAIn etc.) and vary a single ICER value; the app shows live whether that ICER falls below/above each agency's stated or inferred WTP threshold (where one is publicly stated -- explicitly showing "no threshold used by design" for IQWiG/G-BA rather than forcing a number), making the Section 31.5 comparison table's practical consequence ("the same ICER can be acceptable in one jurisdiction and inconclusive in another") directly visible rather than only read as a static table.
 - **Likely packages:** `shiny, ggplot2, bslib`
@@ -497,7 +497,7 @@ Total candidates now 59 across 29 chapters with content.
 - **What it does:** Sliders let the user vary an item's discrimination (a) and difficulty (b) parameters, with a live-updating item characteristic curve (probability of a positive response vs. underlying trait level theta) overlaid against a fixed reference item. Makes directly visible the conceptual distinction the chapter draws between difficulty (where on the trait scale the item is most informative -- shifts the curve left/right) and discrimination (how sharply it distinguishes respondents just above vs. below that point -- changes the curve's steepness), which is otherwise easy to read as prose but hard to feel intuitively from the `mirt::itemplot()` static output alone.
 - **Likely packages:** `shiny, ggplot2, bslib`
 
-### MCID Threshold / Responder-Rate Explorer
+### MCID Threshold / Responder-Rate Explorer [BUILT]
 - **Section:** 33.2
 - **What it does:** A slider for the distribution-based MCID fraction (e.g. 0.3x to 0.8x baseline SD, the chapter's worked example uses 0.5x) applied to the same simulated treatment-arm PRO data, with a live-updating responder-rate percentage and histogram of patient-level changes with the MCID threshold marked as a vertical line. Directly demonstrates the chapter's key closing point -- that the specific threshold chosen is "doing a great deal of work" in determining how good a treatment looks under a responder-based model structure -- by letting the user watch the responder rate swing as they drag the threshold, rather than only reading the one fixed 52% result in the report-table.
 - **Likely packages:** `shiny, ggplot2, bslib, dplyr`
