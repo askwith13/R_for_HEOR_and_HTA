@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**24 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**32 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -33,12 +33,12 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Drag ΔC/ΔE on the cost-effectiveness plane while a third slider sets the WTP threshold (λ); the app live-recomputes ICER, NMB, NHB and flags the quadrant. Directly illustrates why a negative ICER alone is ambiguous (dominant vs. dominated) while NMB/NHB are not.
 - **Likely packages:** `shiny, ggplot2`
 
-### Threshold Sensitivity Dashboard
+### Threshold Sensitivity Dashboard [BUILT]
 - **Section:** 4.5
 - **What it does:** A WTP slider (λ) spanning HTAIn/NICE/WHO-CHOICE conventions recomputes NMB and the cost-effective/not classification live for a fixed ΔC/ΔE pair, with jurisdiction markers showing exactly where a decision flips.
 - **Likely packages:** `shiny, ggplot2`
 
-### Discount Rate & Time Horizon Explorer
+### Discount Rate & Time Horizon Explorer [BUILT]
 - **Section:** 4.6
 - **What it does:** Sliders for discount rate and time horizon show the present-value decay curve update live, with NICE/CADTH/HTAIn preset buttons, making the equal-vs-differential discounting debate concrete.
 - **Likely packages:** `shiny, ggplot2`
@@ -205,7 +205,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders for a logistic-regression coefficient and intercept reshape the predicted-probability S-curve live, with a toggle between link (log-odds) and response (probability) scale — illustrates why raw GLM coefficients mean nothing until back-transformed.
 - **Likely packages:** `shiny, ggplot2, base glm()`
 
-### Overdispersion & Zero-Inflation Visualizer
+### Overdispersion & Zero-Inflation Visualizer [BUILT]
 - **Section:** 16.3
 - **What it does:** Sliders for Poisson mean, negative-binomial dispersion (theta), and proportion of structural zeros morph a simulated count histogram between Poisson/NB/zero-inflated shapes, with the residual-deviance/df ratio updating live.
 - **Likely packages:** `shiny, MASS, pscl, ggplot2`
@@ -219,7 +219,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 17. Principles of Decision Modelling
 
-### Beta Distribution Fitter
+### Beta Distribution Fitter [BUILT]
 - **Section:** 17.4
 - **What it does:** Sliders for a trial's reported mean probability and 95% CI width recompute method-of-moments alpha/beta live and redraw the Beta density — shows a tighter CI (bigger trial) concentrating the distribution vs a wide CI from a small arm.
 - **Likely packages:** `shiny, ggplot2, base R`
@@ -242,7 +242,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 19. Markov Cohort Models
 
-### Cohort Trace Builder
+### Cohort Trace Builder [BUILT]
 - **Section:** 19.1 & 19.3
 - **What it does:** Sliders for each outbound transition probability (stay-probability auto-computed to sum to 1) redraw the 20-cycle state-occupancy trace live, making visible how small transition-probability changes compound over many cycles.
 - **Likely packages:** `shiny, base R matrix algebra, ggplot2`
@@ -277,7 +277,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders for each arm's PFS/OS shape+scale and state costs/utilities feed the chapter's own `run_arm()` discounting loop; discounted cost, QALYs, and ICER recompute live for both arms with a cost-effectiveness-plane point, while a crossing-check readout (min(p_progressed) across the horizon) flags red if either arm's curves ever cross — combines this chapter's two main teaching points (worked CEA mechanics + the crossing pitfall) into one app.
 - **Likely packages:** `shiny, flexsurv, dplyr, ggplot2`
 
-### Waning Assumption Visualizer
+### Waning Assumption Visualizer [BUILT]
 - **Section:** 20.3
 - **What it does:** A toggle (no waning / linear waning) plus a waning-onset and waning-duration slider reshapes the intervention arm's OS extrapolation live against a fixed "no waning" reference curve, showing directly how much of the lifetime QALY gain depends on an untested post-trial assumption about whether the treatment's benefit persists indefinitely.
 - **Likely packages:** `shiny, flexsurv, ggplot2`
@@ -478,7 +478,7 @@ Total candidates now 57 across 28 chapters with content.
 
 ## Chapter 32. Special Topics
 
-### Durability / Waning-of-Effect Explorer
+### Durability / Waning-of-Effect Explorer [BUILT]
 - **Section:** 32.6
 - **What it does:** Sliders let the user vary the waning-start cycle and the per-cycle relapse hazard rate (or switch between the three structural scenarios -- durable forever, constant waning, accelerating waning -- from the chapter's R example) for a one-time curative gene/cell therapy, with a live-updating relapse-free-proportion curve over a 20-year horizon. Makes directly visible the chapter's key point that a single-scenario base case silently picks one of several plausible 20-year futures, and that the three scenarios look identical for the first several years (while trial follow-up still covers them) before diverging sharply -- the kind of divergence static prose/one fixed plot cannot convey as viscerally as dragging the waning-rate slider and watching the curve drop.
 - **Likely packages:** `shiny, ggplot2, bslib, dplyr`
@@ -492,7 +492,7 @@ Total candidates now 59 across 29 chapters with content.
 
 ## Chapter 33. Patient-Reported Outcomes and Preference Research
 
-### IRT Item Characteristic Curve Explorer
+### IRT Item Characteristic Curve Explorer [BUILT]
 - **Section:** 33.1
 - **What it does:** Sliders let the user vary an item's discrimination (a) and difficulty (b) parameters, with a live-updating item characteristic curve (probability of a positive response vs. underlying trait level theta) overlaid against a fixed reference item. Makes directly visible the conceptual distinction the chapter draws between difficulty (where on the trait scale the item is most informative -- shifts the curve left/right) and discrimination (how sharply it distinguishes respondents just above vs. below that point -- changes the curve's steepness), which is otherwise easy to read as prose but hard to feel intuitively from the `mirt::itemplot()` static output alone.
 - **Likely packages:** `shiny, ggplot2, bslib`
