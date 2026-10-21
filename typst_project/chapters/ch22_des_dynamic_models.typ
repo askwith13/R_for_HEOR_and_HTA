@@ -61,6 +61,8 @@ A DES engine advances time not in fixed steps (as a Markov cohort model does, on
 
 `simmer` (Ucar & Smeets) is the standard R package for process-oriented DES. Its central idea is exactly the *trajectory* concept introduced above: you describe the path an entity follows using a small, chainable set of activities — `seize()` a resource, `timeout()` for a duration, `release()` it again — and then attach generators that create new entities over time and send them down that trajectory. simmer builds and advances the event queue for you; you never touch it directly.
 
+#shiny-app-box("mm1_queue_utilisation_explorer", [Drag arrival and service rates and watch simulated wait time blow up non-linearly as utilisation approaches 1, alongside the closed-form M/M/1 benchmark.])
+
 The core building blocks, all verified against the current `simmer` CRAN documentation (v4.4.x):
 
 - `trajectory(name)` — starts a new trajectory object that activities are piped into with `%>%`.
@@ -191,6 +193,8 @@ patient_simple <- trajectory("simple triage") %>%
 == 22.4 Infectious disease transmission models
 
 Sections 22.1-22.3 introduced DES with `simmer` as a way to let simulated individuals *interact* — queue for the same nurse, compete for the same hospital bed, wait behind each other in a pathway. Infectious disease transmission models are the other major family of "interacting individual" models, and the interaction they capture is more fundamental still: one person's disease status directly changes another person's risk. If more people are infectious today, a susceptible person's chance of becoming infected tomorrow goes up. This feedback loop — formally, the *force of infection* depends on the current number of infectious individuals in the population — is what makes these models *dynamic*. It is also why you cannot decompose a transmission model into independent per-person simulations the way you could with the Markov cohort model of Chapter 19 or the microsimulation of Chapter 21: those patients never meet each other, but in a transmission model they do, and that contact is the entire mechanism of disease spread.
+
+#shiny-app-box("seir_epidemic_herd_effect_explorer", [Drag R0 and intervention effectiveness and watch the epidemic curve and cumulative infections averted respond non-linearly once R0 is close to 1.])
 
 For a TB data analyst this should feel like familiar territory dressed in new notation: incidence depends on prevalence, prevalence depends on past incidence, and an intervention that reduces transmission today keeps paying dividends for years because it shrinks tomorrow's pool of infectious people too.
 

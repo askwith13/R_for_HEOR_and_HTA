@@ -188,6 +188,8 @@ where YLL (years of life lost) captures premature mortality relative to a refere
 
 Chapter 1 introduced the incremental cost-effectiveness ratio in its canonical form, $"ICER" = (Delta C) / (Delta E)$, where $Delta C = C_2 - C_1$ is the incremental cost of a new treatment (treatment 2) relative to a comparator (treatment 1), and $Delta E$ is the incremental effect, almost always measured in quality-adjusted life years (QALYs) in HTA work. The ICER answers a narrow but useful question: how much extra does it cost, per unit of extra health gained, to adopt the new treatment instead of the old one?
 
+#shiny-app-box("icer_quadrant_net_benefit_explorer", [Drag the cost/effect difference and WTP threshold and watch the ICER quadrant, NMB and NHB recompute live -- shows why a negative ICER alone is ambiguous while NMB/NHB are not.])
+
 Consider a worked example. A new oral anticoagulant costs £1,800 per patient per year versus £400 for standard warfarin monitoring, and modelling over a patient's lifetime projects 0.28 additional QALYs for the new drug due to fewer strokes and bleeds.
 
 ```r
@@ -258,6 +260,8 @@ With ΔE = 0.28 and ΔC = £16,800: NMB = 0.28 × £20,000 − £16,800 = £5,60
 
 A willingness-to-pay (WTP) or cost-effectiveness threshold, denoted $lambda$ in §4.4, represents the maximum amount a payer is prepared to pay for one additional unit of health gained — conventionally one QALY. It is the single parameter that converts an ICER (or NMB/NHB) from a descriptive statistic into an actionable reimbursement decision: if $"ICER" < lambda$, the intervention is judged cost-effective at that threshold; if $"ICER" > lambda$, it is not (subject to the quadrant caveats of §4.4).
 
+#shiny-app-box("wtp_threshold_sensitivity_dashboard", [Drag the WTP threshold across HTAIn/NICE/WHO-CHOICE conventions and watch the cost-effective/not classification flip live for a fixed cost/effect pair.])
+
 The most widely cited threshold range in the HTA literature is NICE's (England and Wales) historical £20,000–£30,000 per QALY range, used since the early 2000s as an informal reference point in appraisals, with values above £30,000 requiring increasingly strong justification (e.g., end-of-life criteria, severity modifiers) and values below £20,000 treated as straightforwardly acceptable. It is worth being explicit that this range was never a hard legislative threshold, was not derived from a formal empirical exercise at the time of adoption, and has been persistently criticised — including by health economists associated with NICE's own methods reviews — as arbitrary and not clearly linked to the opportunity cost of displaced NHS spending. Claxton and colleagues' empirical work estimating the NHS's own marginal productivity (health forgone per pound spent elsewhere in the system) suggested a supply-side threshold closer to £12,000–£15,000 per QALY, considerably below the £20,000–£30,000 range, triggering substantial debate about whether NICE's reference range was too generous.
 
 #agency-note[
@@ -323,6 +327,8 @@ India's HTA body, HTAIn (Health Technology Assessment in India), operationalised
 == 4.6 Perspective, time horizon, discounting and half-cycle correction
 
 Four further modelling choices — perspective, time horizon, discounting, and (in Markov models) half-cycle correction — jointly determine what counts as a cost or effect, over what period, and how future values are weighted. Each is a source of real controversy and, unlike the ICER/NMB arithmetic above, each requires an explicit judgement call that should be justified and reported transparently.
+
+#shiny-app-box("discount_rate_time_horizon_explorer", [Drag discount rate and time horizon and watch the present-value decay curve update live, with NICE/CADTH/HTAIn preset buttons.])
 
 *Perspective* defines whose costs and whose effects enter the analysis. The two most common are:
 
@@ -405,6 +411,8 @@ any genuinely novel calculus.
 == 4.7 Dominance, extended dominance and the efficiency frontier
 
 Section 4.4 gave you the ICER as a ratio, $Delta C \/ Delta E$, and left a loose thread: an ICER only tells you something useful once you know *which two options* belong on either side of the slash. Compare the wrong pair — a brand-new drug against some arbitrary older comparator that was never really in contention — and the number you compute is technically arithmetic but economically meaningless. This section ties that thread off by introducing the idea of *dominance* and the *efficiency frontier*, the two concepts that tell you which comparisons are legitimate in the first place.
+
+#shiny-app-box("efficiency_frontier_builder", [Edit cost/QALY for several treatments live and watch simple- and extended-dominance pruning redraw the efficient frontier with dominated points greyed out.])
 
 Start with the simplest case. Suppose Treatment A costs more than Treatment B *and* delivers fewer QALYs than Treatment B. A is strictly worse on both axes: no rational decision-maker would ever choose it, regardless of budget or willingness to pay. We say A is *dominated* (specifically, *simply* or *strictly* dominated) by B, and the correct analytical move is to delete A from the comparison set entirely. You do not compute an ICER for a dominated option — dividing a positive cost difference by a negative effect difference produces a number that looks like a ratio but describes a trade nobody would make. Simple dominance is easy to spot on a cost-effectiveness plane (cost on the vertical axis, effect on the horizontal axis): A sits up and to the left of B, in the "worse in every way" quadrant relative to B.
 

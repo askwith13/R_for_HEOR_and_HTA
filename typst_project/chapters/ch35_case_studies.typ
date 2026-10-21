@@ -18,6 +18,8 @@ This final chapter does not introduce new statistical or modelling theory. Every
 
 This case study walks a single disease area -- chronic kidney disease (CKD) progression -- through a complete cohort Markov cost-effectiveness analysis (CEA), from states to ICER to probabilistic sensitivity analysis (PSA). The modelling mechanics follow the matrix-based base-R approach first introduced in Chapter 19 SS19.3, but the disease, states, and all numbers here are new: nothing is copied from that earlier worked example.
 
+#shiny-app-box("ceac_wtp_threshold_explorer", [Drag a single WTP slider and watch two independently-simulated CEAC curves (Case Studies A and B) tell two very different accept/reject stories.])
+
 === The decision problem
 
 A national payer is considering reimbursing an add-on SGLT2-inhibitor-class therapy for adults with CKD stages 3-5, layered on top of standard of care (SoC: ACE-inhibitor/ARB therapy, blood-pressure control, dietary counselling). Trial and real-world evidence suggest the add-on slows the rate of renal functional decline. The question for the submission is simple to state and, as always, hard to answer cleanly: does the added drug cost buy enough extra quality-adjusted survival, and at what cost per quality-adjusted life year (QALY), relative to a willingness-to-pay (WTP) threshold?
@@ -628,6 +630,8 @@ This capstone microsimulation took the single-state heterogeneity and efficient-
 == 35.4 Case study D: a budget impact model and Shiny application
 
 This case study builds a complete budget impact analysis (BIA) for a long-acting injectable (LAI) antipsychotic entering the maintenance-therapy pathway for adults with schizophrenia in a regional mental-health service, and then discusses -- without re-deriving code already covered -- how the same calculation engine becomes an interactive payer-facing tool. It follows the structural logic of the worked BIA in Chapter 23 §23.2 (eligible population, uptake trajectory, reference vs. new scenario) but with a new clinical context, new cost inputs, and new numbers, so treat the Chapter 23 example as the template and this one as an independent application of it.
+
+#shiny-app-box("budget_impact_uptake_price_explorer", [Drag LAI price, relapse-rate reduction, and a 5-year uptake ramp speed and watch which lever actually moves the 5-year budget impact more.])
 
 === Defining the eligible population and uptake trajectory
 

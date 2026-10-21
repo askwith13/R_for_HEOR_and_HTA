@@ -90,6 +90,8 @@ ggsurvplot(fit, data = trial_df, risk.table = TRUE,
 
 The KM curve only describes survival for as long as you have follow-up data. For a cost-effectiveness model you almost always need survival projected over a lifetime horizon, far beyond the trial's observation window — and that requires fitting a parametric distribution whose tail behaviour you can defend analytically, rather than just eyeballing where the KM curve seems to be heading.
 
+#shiny-app-box("parametric_hazard_shape_explorer", [Pick a survival-distribution family and drag shape/scale and watch the fitted curve extrapolate live beyond the trial period against a Kaplan-Meier benchmark.])
+
 The `flexsurv` package is the standard R workhorse for this. `flexsurv::flexsurvreg()` has the same `Surv(time, status) ~ ...` formula interface you already know, plus a `dist = ` argument selecting the parametric family:
 
 ```r
@@ -139,6 +141,8 @@ plot(fit_gompertz, main = "Gompertz fit vs KM")
 
 The six standard parametric families in §10.2 each assume a fixed, simple hazard shape. Real disease hazards — especially in conditions with changing treatment effect over time, or where a trial's hazard shape genuinely does something unusual (e.g. a drop-off after a defined treatment-stopping point) — can need more flexibility than any single-shape parametric curve offers without overfitting the whole dataset to force it.
 
+#shiny-app-box("spline_knot_count_explorer", [Drag a spline knot-count slider and watch in-sample AIC fall while the extrapolated tail grows more erratic.])
+
 The Royston-Parmar spline-based survival model, implemented in R as `flexsurv::flexsurvspline()`, solves this by modelling a spline on the log-cumulative-hazard (or related) scale, with the number of "knots" controlling flexibility:
 
 ```r
@@ -185,6 +189,8 @@ Because splines are piecewise and fit the observed data very closely, they are e
 == 10.4 Mixture-cure and non-mixture cure models
 
 *In plain terms first:* every model in §10.2 assumes that, eventually, everyone has the event — the survival curve always keeps falling toward zero, however slowly. But some conditions genuinely leave a fraction of patients who are, in effect, "cured": they never relapse, no matter how long you follow them. If that is true of your data, forcing an ordinary Weibull or Gompertz curve onto it is a category error — the curve will keep sliding downward long after the real data has flattened out, systematically understating long-term survival. A *cure model* fixes this by explicitly fitting two things at once: the proportion who are cured, and a separate survival curve just for the ones who are not.
+
+#shiny-app-box("cure_fraction_followup_length_simulator", [Drag true cure fraction and trial follow-up length and watch a mixture cure model's estimated cure fraction overstate the truth under short follow-up.])
 
 Every parametric curve fitted in §10.2 — Weibull, Gompertz, log-logistic, generalised gamma — assumes that, given enough follow-up, every patient in the model eventually experiences the event. For many TB treatment outcomes that assumption is fine: everyone who survives active disease is still at risk of relapse or death indefinitely. But for some oncology indications, and arguably for a "treatment-success" endpoint sustained well beyond the biological window for TB relapse, a meaningful fraction of patients may never experience the event at all — they are statistically "cured." Ordinary parametric models forced to fit such data either underestimate the plateau (the Weibull tail keeps falling) or overestimate it (the log-logistic tail flattens for the wrong reason, as a pure curve-fitting artefact rather than a clinical one).
 

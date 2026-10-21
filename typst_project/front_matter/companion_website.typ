@@ -1,3 +1,5 @@
+#import "../common.typ": *
+
 = Companion GitHub Repository, Code, Shiny App, Quiz and Data Sets
 
 This book has no separate companion website. Everything it points
@@ -8,6 +10,10 @@ repository, organised to mirror the book's chapter structure
 standalone given the chapter's own `renv.lock` file (see Chapter 2
 §2.3 for why each chapter -- not just the book as a whole -- pins its
 own package versions).
+
+#agency-note[
+  Repository: #link("https://github.com/askwith13/R_for_HEOR_and_HTA")[github.com/askwith13/R\_for\_HEOR\_and\_HTA]. Clone it, open any chapter's `code/chNN_slug/` folder or any app's `shiny_apps/` subfolder, and run -- nothing in this book depends on data or infrastructure you don't already have once you've cloned the repository.
+]
 
 Repository contents:
 
@@ -20,22 +26,16 @@ Repository contents:
   in this book.
 - `/appendix-c-template/` -- the full template R project structure
   from Appendix C, ready to fork for a new real-world analysis.
-- `/shiny_apps/` -- interactive Shiny apps illustrating selected
+- `/shiny_apps/` -- 64 interactive Shiny apps illustrating specific
   concepts across the book (parameter sliders driving a live-updating
   ICER, CEAC, Markov trace, or similar), one subfolder per app, each
-  README linking back to the exact book section it illustrates.
+  README linking back to the exact book section it illustrates -- see
+  Appendix G for the full list, and look for the small "Try it live"
+  boxes beside the relevant topic throughout the chapters.
 - `/quiz/` -- a 661-question quiz bank spanning all 35 chapters, as
   both a structured CSV/Markdown question bank and a runnable Shiny
   quiz app, intended as this book's self-assessment companion to
   worked examples and end-of-chapter review.
-
-Until the repository is published, all of the above already exist and
-are actively maintained inside this project's own working directory
-(`typst_project/` for the book source, plus the sibling `code/`,
-`shiny_apps/`, `quiz/`, `data/` and `appendix-c-template/` folders),
-which together serve as the working source of truth during drafting
-and are what gets pushed into the public repository once it is
-published.
 
 == Reporting errors
 

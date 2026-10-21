@@ -128,6 +128,8 @@ Capacity constraints shape how these reference cases get implemented in practice
 
 Sections 31.1-31.3 introduced NICE, CADTH, PBAC, IQWiG/G-BA, HAS, ICER, and HTAIn individually. Submitting the same intervention to several of these agencies -- increasingly common for multinational launches -- means confronting real differences in what each one requires, not just cosmetic formatting differences. The table below collects the practical dimensions that most often require rework between submissions: analytic perspective, discounting convention, how (or whether) a WTP threshold is stated, comparator requirements, and expectations around uncertainty analysis.
 
+#shiny-app-box("cross_agency_decision_explorer", [Pick an HTA agency and drag an ICER value and watch live whether it falls below or above that agency's stated or inferred WTP threshold.])
+
 #ref-table(
   [Comparison of key methodological requirements across major HTA agencies],
   academic-table(

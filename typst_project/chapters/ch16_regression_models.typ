@@ -48,6 +48,8 @@ fit?" becomes "which distribution matches my outcome's support, and
 which link makes the linear predictor behave?" — rather than a new
 method to memorise every time.
 
+#shiny-app-box("logistic_link_function_explorer", [Drag a logistic-regression coefficient and intercept and watch the predicted-probability S-curve reshape live on the link vs. response scale.])
+
 #difficult-terminology("exponential family")[
 "Exponential family" is not a statement about exponential growth — it's
 a technical label for a whole group of probability distributions
@@ -255,6 +257,8 @@ up many events while most have none or one, so the variance outruns the
 mean. This is overdispersion, and ignoring it gives you standard errors
 that are too small and p-values that look better than they should.
 
+#shiny-app-box("overdispersion_zero_inflation_visualizer", [Drag Poisson mean, NB dispersion, and structural-zero proportion sliders and watch a simulated count histogram morph between Poisson, NB, and zero-inflated shapes.])
+
 The fix for plain overdispersion is the negative binomial model, fit
 with `MASS::glm.nb()`. It has the same formula interface as `glm()` but
 estimates an extra dispersion parameter instead of assuming it away:
@@ -374,6 +378,8 @@ link or gamma family were preferred over OLS on raw costs. Quantile
 regression takes a different route to the same problem: instead of
 modelling the *mean* cost (transformed or not), it models a chosen
 *percentile* of the cost distribution directly.
+
+#shiny-app-box("quantile_regression_tau_slider", [Drag a tau slider and watch a quantile-regression fit move from the median toward the costly tail, diverging from the mean-based fit.])
 
 This matters because the mean and the median (or the 90th percentile)
 can tell different stories. A budget-holder asking "what does a typical

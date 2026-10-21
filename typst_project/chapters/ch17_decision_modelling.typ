@@ -128,6 +128,8 @@ A model diagram is not optional polish added for a report's appendix. If you can
 
 Every decision-analytic model is built from four kinds of parameters, and getting the taxonomy straight matters because each kind draws its evidence from a different place in this book and takes a different distribution in probabilistic sensitivity analysis (PSA).
 
+#shiny-app-box("beta_distribution_fitter", [Drag a trial's reported mean and 95% CI width and watch the method-of-moments Beta density recompute live.])
+
 *Transition probabilities* move patients between health states each cycle: cured, on treatment, lost to follow-up, dead. *Costs* attach resource use in each state to a price. *Utilities* convert time in a state into quality-adjusted life years (QALYs). *Relative treatment effects* (hazard ratios, risk ratios, odds ratios) scale one arm's parameters relative to a comparator.
 
 Costs and utilities are not estimated inside the decision model -- they are imported. Chapter 9 covered fitting GLMs to costing data and the gamma/lognormal distributions that describe the resulting uncertainty; Chapter 8 covered sourcing utility weights (EQ-5D mapping, vignette studies, literature tariffs) and their beta-like uncertainty. Chapter 17 does not re-derive any of that -- it just slots the fitted mean and standard error into the model's parameter table. Likewise, relative treatment effects come from the pooled estimates in Chapters 11 (pairwise meta-analysis) and 12 (network meta-analysis): the pooled log hazard ratio and its standard error from a random-effects model there become the treatment-effect parameter here.
@@ -231,6 +233,8 @@ The TMD and the executable model are two views of the same object. Treat the TMD
 == 17.6 Modelling workflow in R: inputs -> engine -> outputs -> reporting
 
 A decision model is a pipeline, not a script. Treating it as one script -- parameters hard-coded inline, calculations and formatting tangled together -- is the single most common cause of models that cannot be audited, extended, or debugged six months later. The fix is architectural, not statistical: separate the model into four layers that each do one job and talk to the next through a clean interface.
+
+#shiny-app-box("toy_regimen_icer_explorer", [Drag drug cost and cure-probability sliders for two regimens and watch the ICER/NMB table recalculate live.])
 
 *The four layers.* An _inputs layer_ defines every parameter the model needs, as a named list or a tidy tibble, with nothing else happening in that file. An _engine layer_ is a function that takes the parameter object and returns raw model output -- total cost and total QALYs per strategy -- with no knowledge of how those numbers will later be displayed. A _results layer_ takes engine output and computes the comparative statistics analysts actually want: incremental cost-effectiveness ratios (ICERs) and net monetary benefit (NMB). Section 4.4 already derived both formulas in full; this layer simply applies them to whatever the engine produced, so nothing here is re-derived. A _reporting layer_ turns results into tables, plots, and narrative text. Chapter 28 (Reproducible Reporting) covers this layer properly; for now, treat it as "whatever renders the results object into something a decision-maker reads."
 

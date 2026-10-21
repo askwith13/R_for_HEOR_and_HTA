@@ -176,3 +176,25 @@
   #text(weight: "bold")[#term] #text(size: 8pt, fill: rgb("#6b7280"))[(Ch. #chapter)] \
   #definition
 ]
+
+// Small inline "try it live" box pointing to one specific companion Shiny
+// app, placed right after the chapter section whose topic it illustrates
+// (NOT a full-width callout like heor-practice/pitfall/agency-note --
+// deliberately narrower and lighter so it reads as a pointer, not another
+// explanatory box competing for the reader's attention).
+//
+// `slug`: the app's folder name under shiny_apps/, e.g.
+//   "icer_quadrant_net_benefit_explorer" (no trailing slash).
+// `blurb`: a single short sentence on what dragging the app's sliders
+//   shows -- not a restatement of the section's prose, the SPECIFIC
+//   live behaviour a reader gets by running it.
+#let shiny-app-box(slug, blurb) = block(
+  fill: rgb("#fdf4ff"), stroke: (left: 2pt + rgb("#9333ea")),
+  inset: 8pt, radius: 3pt, width: 100%, above: 8pt, below: 8pt,
+)[
+  #text(size: 9.5pt)[
+    #text(weight: "bold", fill: rgb("#7e22ce"))[Try it live:]
+    #link("https://github.com/askwith13/R_for_HEOR_and_HTA/tree/main/shiny_apps/" + slug)[shiny\_apps/#slug]
+    -- #blurb
+  ]
+]

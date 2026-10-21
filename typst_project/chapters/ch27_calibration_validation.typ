@@ -15,6 +15,8 @@
 
 Every Markov cohort model built so far in this book -- the 4-state TB model from Chapter 19, with its PSA in Chapter 25 and VOI analysis in Chapter 26 -- has relied on transition probabilities drawn from published trial data or expert elicitation. In practice, at least one transition is rarely observed directly. Suppose the probability of moving from "On-treatment-failed" to "Cured" without ever being recorded as such in the trial (a silent spontaneous resolution) is not reported anywhere in the literature. We cannot look this number up; we must infer it by _calibration_: finding the parameter value (or set of values) that makes the model's predicted outputs match a known real-world target.
 
+#shiny-app-box("calibration_target_search_explorer", [Drag the calibration target value and watch a real optim() search re-converge on a different calibrated parameter live.])
+
 #difficult-terminology("calibration target")[
   A calibration target is an external, independently-measured outcome that the model should be able to reproduce if its hidden parameters are set correctly -- for example, a national registry's reported 5-year all-cause mortality rate among TB patients, or a published cure rate from a large cohort study. Think of it like fitting a key to a lock: the lock (the real-world target) is fixed and known; the calibration process tries different keys (parameter values) until the model's output matches the target closely enough. The target itself should come from a different data source than whatever was used to build the rest of the model, or the exercise merely confirms the model reproduces its own inputs.
 ]
@@ -158,6 +160,8 @@ A second, complementary cross-validation approach for structure specifically (ra
 == 27.3 Verification: unit testing with `testthat`, extreme-value tests, replication
 
 Calibration and structural cross-validation both assume the underlying code correctly implements the intended model. _Verification_ is the separate, more basic question: does the code do what we believe it does, independent of any external calibration target? A model can be perfectly calibrated to a real-world target purely by chance, while still containing a coding error (e.g. a transition-probability matrix whose rows do not sum to 1, silently losing or creating cohort members every cycle). Verification catches this class of error directly, by testing the code's internal logic rather than its external fit.
+
+#shiny-app-box("extreme_value_test_sandbox", [Drag a transition probability across its full 0-1 range and watch the cohort survival trace degrade continuously toward each predictable mathematical extreme.])
 
 #difficult-terminology("unit testing")[
   Unit testing means writing small, automated pieces of code whose only job is to check that another specific piece of code behaves as expected, and running those checks automatically every time the underlying code changes. It is analogous to a hospital's routine quality-control check on a diagnostic machine -- rather than trusting that the machine is well-calibrated because it was built correctly once, staff run a known reference sample through it periodically and confirm the reported result matches the known answer; if it does not, the machine is flagged before it is used on real patients. `testthat` is the standard R package for writing these automated checks.

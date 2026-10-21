@@ -160,6 +160,8 @@ ingredient, cost per patient, is a straightforward unit-cost exercise
 similar to costing work done in Chapter 9 and is assembled together with
 these population terms into a working model in Section 23.3.
 
+#shiny-app-box("budget_impact_scenario_explorer", [Drag terminal uptake share, list price, and hospitalization-offset sliders and watch the year-by-year budget-impact table and chart recompute live.])
+
 === Eligible population
 
 The eligible population is not simply "everyone with the diagnosis."

@@ -262,6 +262,8 @@ feeding into NICE's thinking on equity, that makes this distribution
 visible and lets a decision-maker weigh it explicitly against the
 average result.
 
+#shiny-app-box("equity_weighted_icer_explorer", [Drag each subgroup's QALY gain and the equity weight and watch unweighted vs. weighted ICERs move -- and sometimes flip quadrants -- live on the equity-impact plane.])
+
 === Why the average can mask unequal distribution
 
 Consider a screening programme that, on average across the eligible
@@ -485,6 +487,8 @@ ICER is an expected deliverable or a supplementary exhibit.
 
 Every method in this book so far shares one structural assumption: health gain -- a QALY, a DALY averted, a life-year -- is the only outcome dimension that matters once costs are on the table. That assumption is reasonable in a high-income system with near-universal insurance, where a diagnosis rarely bankrupts a household. It is far less reasonable in a low- or middle-income country (LMIC) context with large out-of-pocket (OOP) health spending, where the *same* clinical event -- a TB diagnosis, a complicated delivery, a cancer admission -- can simultaneously improve health and push a family into poverty. Extended cost-effectiveness analysis (ECEA, also written eCEA or EEA) is the method built specifically to put that second consequence on the same footing as the first.
 
+#shiny-app-box("ecea_financial_risk_protection_dashboard", [Drag out-of-pocket cost, the catastrophic-expenditure threshold, and the poverty line and watch cases averted redraw live by income quintile.])
+
 ECEA originates from the Disease Control Priorities Network's third edition (DCP3) and the associated Gates Foundation-funded programme of work, most closely associated with Stéphane Verguet and colleagues (Verguet, Laxminarayan & Jamison 2015; Verguet, Kim & Jamison 2016). Its central move is to compute, alongside the conventional health and cost outcomes, an explicit *financial risk protection* (FRP) outcome: how many households are protected from catastrophic health expenditure, or from falling into poverty, by a policy -- a public health programme, a subsidy, an insurance expansion -- that reduces out-of-pocket spending. A policy can therefore be judged cost-effective on health grounds *and* valuable on financial-protection grounds, and the two numbers are reported side by side rather than collapsed into one.
 
 #difficult-terminology("Catastrophic health expenditure (CHE)")[
@@ -599,6 +603,8 @@ ECEA's financial risk protection outcome is not a substitute for a conventional 
 == 24.4 Multi-criteria decision analysis (MCDA) in R
 
 Every method covered in this book so far -- cost-effectiveness analysis, budget impact analysis, extended CEA -- ultimately reduces a decision to one or two explicit numeric axes: cost and a single health outcome (or cost and a financial-protection outcome, in §24.3's case). Many real coverage decisions are not actually made on one or two axes. A reimbursement committee weighing a new orphan drug is also, explicitly or not, weighing disease severity, unmet need, quality of the clinical evidence, budget affordability, and sometimes equity or innovation considerations that have no natural place inside an ICER. Multi-criteria decision analysis (MCDA) is the family of methods built to make that multi-axis weighing *explicit and reproducible* rather than leaving it as an unstated, inconsistent judgement call made differently in every committee meeting.
+
+#shiny-app-box("mcda_weight_sensitivity_explorer", [Drag the four MCDA criterion weights and watch the three-drug ranking re-sort live -- and sometimes flip which drug comes first.])
 
 The general MCDA idea is simple to state even though implementations vary: define a set of criteria relevant to the decision (efficacy, safety, disease severity, budget impact, quality of evidence, equity, and so on); assign each criterion a *weight* reflecting how much the decision-maker cares about it relative to the others (weights conventionally sum to 1); score each alternative (each drug, each programme) on each criterion, usually on a common 0-100 or 0-1 scale after normalizing the criterion's raw units away; and combine weights and scores into a single overall score per alternative, most commonly by a *weighted sum* (additive combination) or occasionally a *weighted product* (multiplicative combination). The alternative with the highest combined score is, by the model's own logic, the most preferred -- though MCDA's real value is usually less about producing a single ranking and more about forcing the weighting judgement into the open where it can be debated, revisited, and sensitivity-tested, exactly as a one-way or probabilistic sensitivity analysis does for an ICER.
 

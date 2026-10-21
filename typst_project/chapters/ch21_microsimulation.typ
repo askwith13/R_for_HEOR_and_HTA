@@ -136,6 +136,8 @@ A practical build order for a microsimulation model: (1) write a correct but slo
 
 A microsimulation produces two kinds of randomness at once. Keeping them apart is the single most important idea in this section.
 
+#shiny-app-box("first_order_noise_convergence_explorer", [Drag the simulated-cohort size N and watch the gap between two independent microsimulation runs shrink live as N grows -- a direct answer to "how many patients is enough?"])
+
 *First-order uncertainty* is patient-level variability. Fix every parameter in the model. Simulate one patient, then another, then another. Each one takes a different path through the state structure, purely because of chance draws (does this patient progress this cycle or not?). This is the randomness that makes a microsimulation "individual-level" at all, and it is exactly the mechanism described in Section 21.2.
 
 *Second-order uncertainty* is parameter uncertainty -- the familiar PSA idea from Chapter 14 and Chapter 19. Here you hold the simulated population fixed in spirit and instead vary the model's parameters: a posterior draw of a hazard ratio, a Dirichlet-sampled row of a transition matrix, a different cost coefficient. Chapter 19's `dampack::rdirichlet()` examples are second-order uncertainty. Chapter 25 covers how to summarise second-order output properly, including cost-effectiveness acceptability curves -- this section does not repeat that.
@@ -183,6 +185,8 @@ Briggs et al. (2012), "Model Parameter Estimation and Uncertainty: A Report of t
 == 21.5 Common random numbers
 
 Comparing two strategies in a microsimulation means simulating two populations -- one per strategy -- and subtracting the results. If those two populations are generated with independent random draws, the subtraction carries the first-order noise from *both* simulations. That noise can swamp a genuinely small, real treatment effect, especially when $N$ is modest.
+
+#shiny-app-box("common_random_numbers_variance_reduction_demo", [Toggle independent vs. common random numbers and watch the incremental-QALY distribution across repeated simulation runs visibly narrow under CRN.])
 
 *Common random numbers (CRN)* fixes this. Instead of letting each arm draw its own independent stream of random numbers, you reuse the identical stream across arms. Concretely: sample patient 1's age, sex, baseline risk and progression random numbers *once*. Use that same patient -- the same numbers -- to simulate them under strategy A, and then again under strategy B. Patient 1 in arm A and patient 1 in arm B are the same simulated individual, just routed through two different treatment rules. Because the underlying randomness is identical, the part of the outcome driven by chance (not by treatment) is correlated across arms, and it cancels out when you compute the incremental difference.
 

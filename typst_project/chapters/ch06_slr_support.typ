@@ -100,6 +100,8 @@ The output isn't a search string you paste in blind — it's a candidate term li
 
 Running the same concept across three databases guarantees duplicate records — often 20–40% of a combined pull. Deduplicating by exact title match alone will miss records that differ by punctuation, case, or a trailing journal abbreviation, so you need fuzzy matching on title/author/year, and ideally DOI matching as a first, cheap pass before falling back to string similarity.
 
+#shiny-app-box("dedup_threshold_explorer", [Drag a fuzzy-match similarity threshold and watch duplicate-flag counts change live, with a toggle to compare against exact-title matching.])
+
 `synthesisr` standardizes bibliographic imports (RIS/Bibtex/CSV exports from different databases rarely use identical field names) and performs similarity-based deduplication; `revtools` builds on the same ecosystem and adds an interactive screening interface. `ASySD` (Automated Systematic Search Deduplicator) is purpose-built for the messier reality of SLR exports and handles multi-stage matching (DOI exact match, then title/author fuzzy match) more robustly than a single string-distance cutoff.
 
 ```r

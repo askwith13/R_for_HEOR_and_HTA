@@ -63,6 +63,8 @@ regardless of statistical significance. The *distribution* of net
 benefit around that mean matters only for a separate, later question:
 is it worth acquiring more information before deciding?
 
+#shiny-app-box("evpi_vs_wtp_curve_explorer", [Drag the WTP threshold and watch EVPI rise and fall live, peaking near where the CEAC crosses 50%.])
+
 The specific technique this chapter develops quantifies that value in
 the actual units of the decision problem -- dollars, or whatever
 currency the model works in. It traces to Felli and Hazen's
@@ -431,6 +433,8 @@ just one, multiplying the cost further. This is often simply not
 feasible within a normal project timeline, which is the real,
 practical gap that motivates everything in this section.
 
+#shiny-app-box("gam_evppi_smoothness_explorer", [Drag a GAM basis-dimension slider and watch the fitted NMB-vs-parameter curve go from under-fit to over-fit, with the EVPPI number swinging accordingly.])
+
 The breakthrough that removed this barrier is the regression-based
 approach to EVPPI introduced by Strong, Oakley and Brennan in
 "Estimating Multiparameter Partial Expected Value of Perfect
@@ -599,6 +603,8 @@ study be worth -- a trial that enrols, say, 200 patients and estimates
 `p_ontx_fail` with the sampling noise that comes with 200 patients, no more
 and no less. EVSI is what a research funder actually needs before writing a
 cheque, because funders fund studies of a particular size, not omniscience.
+
+#shiny-app-box("enbs_trial_size_comparator", [Drag proposed trial sample size and cost and watch ENBS peak at an intermediate size, not the largest feasible trial.])
 
 That specificity is also what makes EVSI so much harder to compute than
 EVPPI. The naive recipe for EVSI nests three simulations inside one another:

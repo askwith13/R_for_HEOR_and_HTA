@@ -481,6 +481,8 @@ For HTA submissions in particular, data documentation is not optional polish —
 
 Every dominance and efficiency-frontier computation in Chapter 4 assumed that the input tibble of costs and QALYs was clean: no negative costs, no utilities above 1, no silently missing arms. That assumption rarely survives contact with a real data extract. Claims databases carry transcription errors, trial case report forms arrive with "9999" placeholder codes for missing fields, and TB programme registers accumulate duplicate patient IDs across reporting quarters. Before any cost-effectiveness logic runs, the data must be validated — not eyeballed, but checked programmatically against explicit rules that encode what "valid" means for health-economic data. R has three mature packages for this: `pointblank`, `assertr`, and `validate`, each with a slightly different philosophy but the same goal of turning implicit assumptions into explicit, auditable checks.
 
+#shiny-app-box("validation_rule_threshold_tuner", [Drag each validation rule's bounds and watch pass/fail counts update live against a simulated dataset with known, deliberately injected errors.])
+
 `pointblank` builds an *agent* that holds a set of validation rules and then runs them all at once via `interrogate()`, producing a report of which rows and columns failed which rule. This is well suited to a formal, documented QA step — the kind an HTA submission's data management appendix might reference.
 
 ```r

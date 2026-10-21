@@ -18,6 +18,8 @@ Chapter 6 closed by building a reproducible evidence pool from the published lit
 
 Every HEOR analysis built on trial or real-world data eventually runs into the same quiet problem: some values are simply not there. A patient skips a follow-up visit, a claims extract has a null cost field for a quarter, an EQ-5D questionnaire comes back with three dimensions ticked and two left blank. Before you can decide what to do about it — delete the rows, impute them, or model around them — you need a working theory of *why* the data are missing. Donald Rubin's 1976 framework gives the vocabulary for that theory, and it remains the backbone of every modern missing-data guideline used in health technology assessment.
 
+#shiny-app-box("missingness_mechanism_simulator", [Pick MCAR/MAR/MNAR and watch a complete-case mean diverge from the truth under MNAR but not MCAR, as the missingness-strength slider moves.])
+
 Rubin defined three mechanisms by asking whether the probability that a value is missing depends on the data itself:
 
 #list(
@@ -47,6 +49,8 @@ In practice, no HEOR dataset wears a label saying which mechanism generated it. 
 == 7.2 Exploring missingness (naniar, visdat, Shiny-based explorers)
 
 Before choosing an imputation strategy or defending a mechanism assumption, you need to actually look at your missingness — not just count NAs with `colSums(is.na(df))`, but see where they fall, whether they cluster by variable, by patient, by visit, or by arm, and whether they co-occur in patterns that hint at a shared cause. The `naniar` and `visdat` packages, both built around tidyverse conventions, turn this into a few lines of code rather than a manual audit, and they should be a standard first step on any trial or claims extract destined for a cost-effectiveness model.
+
+#shiny-app-box("interactive_missingness_explorer", [Filter a simulated multi-site trial extract by site/arm and watch real naniar::vis_miss() and gg_miss_var() plots regenerate live, revealing subgroup-concentrated missingness a pooled summary would hide.])
 
 `visdat::vis_dat()` gives an overview of an entire data frame in one plot: each column is a vertical strip, coloured by data type (character, numeric, logical), with missing cells picked out distinctly, so you immediately see whether missingness is concentrated in a few columns (say, a late-added quality-of-life variable) or scattered everywhere. `visdat::vis_miss()` narrows this to missingness specifically, shading missing cells and printing the percentage missing per column, which is often the single most useful diagnostic plot to drop into an analysis log.
 
@@ -208,6 +212,8 @@ The convenience of `missForest` comes with a real limitation, though: it produce
 == 7.5 Sensitivity analysis, including tipping-point and pattern-mixture approaches
 
 Multiple imputation under the missing-at-random assumption, as covered in SS7.4, produces a single headline estimate and a confidence interval that already account for imputation uncertainty. It is tempting to treat that output as the final word. It is not. Recall from SS7.1 that MCAR, MAR, and MNAR cannot be distinguished using the observed data alone — the very information that would tell you whether the unseen values differ systematically from the seen ones is, by definition, unseen. Multiple imputation by chained equations assumes MAR conditional on the variables in the imputation model. That assumption is plausible, sometimes highly plausible, but it is never verifiable from the dataset in front of you. Any analysis that stops after reporting "MI point estimate, MI confidence interval" without asking "what if the missing values are systematically worse (or better) than what the model predicted" is incomplete. Sensitivity analysis is the second half of a credible missing-data analysis, not an optional appendix.
+
+#shiny-app-box("tipping_point_delta_explorer", [Drag a delta-adjustment slider on imputed values and watch the risk difference/ICER vs. WTP conclusion flip at its tipping point.])
 
 Tipping-point analysis is the most direct way to operationalise this concern, and it is intuitive enough to explain to a clinical reviewer without a statistics background. The idea: take your primary imputation model's results, then systematically shift the imputed values for one or more groups by a fixed offset (often called delta), re-run the analysis, and see how extreme that offset has to become before your conclusion reverses. If a trivially small, clinically implausible delta is enough to flip the conclusion, your result is fragile. If only an extreme, clinically implausible delta would flip it, your result is robust to departures from MAR.
 

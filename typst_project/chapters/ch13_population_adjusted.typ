@@ -42,6 +42,8 @@ The two workhorse methods for this setting — matching-adjusted indirect compar
 
 MAIC reweights the IPD-trial patients so that the *weighted* IPD population's covariate moments — typically the means, occasionally also variances for continuous covariates — match the moments reported in the AgD trial's publication (usually just means and sometimes SDs, since that is all an aggregate table ever gives you). The weights are not arbitrary: they come from a logistic-regression-style propensity model fit by method of moments, so that the resulting population looks, on the matched covariates, like the comparator trial's population.
 
+#shiny-app-box("maic_weight_ess_explorer", [Drag how far the IPD trial's covariates sit from the AgD trial's targets and watch MAIC weights, effective sample size, and the weighted treatment effect update live.])
+
 _The weighting mechanism._ For each matched covariate $x_j$, define the IPD patient's covariate vector centered on the AgD trial's reported mean: $z_i = x_i - bar(x)^"AgD"$. MAIC assigns each IPD patient $i$ an odds-weight
 $ w_i = exp(z_i^T alpha) $
 where $alpha$ is chosen so that the weighted means of $z$ in the IPD data are exactly zero — i.e., the weighted IPD sample's covariate means equal the AgD trial's reported means. This is a method-of-moments problem solved by minimizing a convex objective (the method is numerically identical to calibrating a logistic propensity score without ever observing the AgD patients' outcomes or covariates individually — only their published moments are needed).

@@ -50,6 +50,8 @@ $ hat(d)_(A B)^("indirect") = hat(d)_(A C) - hat(d)_(B C) $
 
 This is simply the statement that if A is $hat(d)_(A C)$ better than C, and B is $hat(d)_(B C)$ better than C, then A is $(hat(d)_(A C) - hat(d)_(B C))$ better than B. The subtraction is on the *treatment-effect scale* (log HR, log OR, mean difference) — it is not a subtraction of absolute outcome levels, and it still relies on nothing but the two within-trial comparisons.
 
+#shiny-app-box("bucher_itc_calculator", [Drag each trial's estimate and precision and watch the indirect A-vs-B estimate's CI widen live — uncertainty never cancels in an indirect comparison.])
+
 === 12.2.2 Why the variance adds
 
 This is the detail most often got wrong by newcomers, and it is worth dwelling on precisely because the point estimate is a *subtraction* while the variance is a *sum*:
@@ -490,6 +492,8 @@ NICE DSU TSD 4 (Dias et al.), *"Inconsistency in Networks of Evidence Based on R
 == 12.6 Network meta-regression
 
 §11.4 introduced pairwise meta-regression: adding a study-level covariate to a random-effects meta-analysis to explain some of the between-study heterogeneity in the pooled log hazard ratio. Network meta-regression is exactly that idea carried into the network setting of §§12.1–12.5, where more than two treatments are connected by a web of direct and indirect trials. Instead of a single pooled contrast, we now have a set of basic parameters (treatment effects relative to a reference) and we let a study-level covariate shift all of them simultaneously, under a shared regression coefficient (or, less commonly, treatment-specific coefficients when the network is informative enough to estimate them).
+
+#shiny-app-box("covariate_recentering_explorer", [Drag the covariate value at which a network estimate is evaluated and watch it slide from the network mean toward a re-centred, wider-CI target-population estimate.])
 
 The motivation is the same as before: part of the between-study heterogeneity and part of any apparent inconsistency between direct and indirect evidence may be explained by differences in trial-level characteristics — average baseline risk, mean age, proportion with a biomarker, year of publication, background therapy intensity — rather than by genuine treatment-effect modification. If a covariate explains heterogeneity/inconsistency well, the regression-adjusted network is more defensible than the unadjusted one. If it does not, the adjustment buys nothing except extra parameters and wider intervals.
 

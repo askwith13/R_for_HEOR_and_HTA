@@ -16,6 +16,8 @@
 
 Almost everything you will ever compute in a health-economic evaluation — costs, utilities, probabilities, model traces — ultimately lives inside one of a handful of R data structures. Before Chapter 4 introduces any economic concepts, it is worth being fluent in these containers, because the structure you choose determines how easy (or treacherous) later calculations will be.
 
+#shiny-app-box("transition_matrix_explorer", [Drag each transition-probability cell and watch the cohort-occupancy trace over N cycles update live, with a running row-sum validity check -- previews Chapter 19's Markov machinery.])
+
 The atomic vector is the most basic unit. R has no true scalars: even a single number like `42` is a vector of length one. Vectors are homogeneous — every element shares one type (`logical`, `integer`, `double`, `character`) — and R exploits this to *vectorize* arithmetic, meaning operations apply element-by-element without an explicit loop:
 
 ```r

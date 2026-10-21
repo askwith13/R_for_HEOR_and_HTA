@@ -19,6 +19,8 @@ PSMs dominate oncology health technology assessment for a simple reason. PFS and
 
 A Partitioned Survival Model (PSM) is the dominant model structure in oncology health technology assessment. A Markov model, from Chapter 19, pushes a cohort through states using a transition matrix. A PSM skips the matrix entirely. State occupancy comes straight from two survival curves, fitted independently: progression-free survival (PFS) and overall survival (OS).
 
+#shiny-app-box("curve_crossing_explorer", [Drag independent PFS and OS Weibull shape/scale sliders and watch the region where OS dips below PFS -- a structurally invalid crossing -- shade in red live.])
+
 The model has three health states: pre-progression (on treatment, alive, not yet progressed), post-progression (alive, progressed), and death. At any time $t$:
 
 - $P("PFS") = S_"PFS"(t)$
@@ -70,6 +72,8 @@ Fit PFS and OS independently, pick the best-fitting family for each by AIC/BIC *
 == 20.3 Treatment waning and relative-effect assumptions
 
 A second, distinct PSM pitfall sits on top of the curve-crossing problem. How far do you trust the trial's relative treatment effect once you extrapolate past the trial's own follow-up window?
+
+#shiny-app-box("treatment_waning_assumption_visualizer", [Toggle no-waning vs. linear waning and drag onset/duration sliders and watch how much of the lifetime QALY gain depends on this untested post-trial assumption.])
 
 A trial typically reports a hazard ratio (HR) for OS, estimated over its observed follow-up -- say, 24 months. Extrapolating the fitted intervention and comparator OS curves out to a 10- or 20-year lifetime horizon implicitly assumes something about that HR: either it holds forever ("constant relative effect"), or it changes in some specified way. Many PSM base cases silently assume the former. They fit proportional-hazards-style extrapolations with no waning, treating an untested assumption as a default rather than a choice.
 
@@ -124,6 +128,8 @@ These are reasons for caution, not reasons to avoid PSMs. Oncology submissions u
 == 20.6 Worked example: an oncology CEA
 
 Two arms, new drug vs standard of care (SOC), each with independently-fit Weibull PFS and OS curves (shape/scale chosen only to be plausible, not from a real trial):
+
+#shiny-app-box("psm_oncology_icer_dashboard", [Drag each arm's PFS/OS shape+scale and cost/utility sliders and watch discounted cost, QALYs and the ICER recompute live, with a live curve-crossing check.])
 
 ```r
 library(flexsurv)

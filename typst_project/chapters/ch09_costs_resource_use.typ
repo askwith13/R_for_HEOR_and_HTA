@@ -135,6 +135,8 @@ Report which conversion was used — nominal exchange rate or PPP — and the so
 
 Cost data in a TB programme context — drug costs, hospitalisation costs, outpatient visit costs, diagnostic costs (GeneXpert cartridges, chest X-rays, culture/DST) — share a statistical signature that rhymes with the bounded utility data of Section 8.4 but is mechanistically different. Utilities were bounded on the [0,1] interval with a ceiling spike at 1; costs are bounded only below at 0, have no natural upper ceiling, and the "spike" sits at the *floor*, not a ceiling. Where Section 8.4 needed beta or censored regression to respect a bounded, two-sided support, cost data needs methods that respect a one-sided (non-negative), unbounded-above, heavy-tailed support with an honest mass of exact zeros. Same family problem — "the arithmetic mean and OLS assumptions quietly break down" — different geometry.
 
+#shiny-app-box("cost_distribution_model_fit_explorer", [Drag zero-inflation, gamma shape/scale, and outlier sliders and watch OLS vs. gamma-GLM predicted means diverge live as the cost distribution's skew changes.])
+
 Three features recur in almost every patient-level cost dataset you will pull from a TB programme's billing or case-management system:
 
 #list(
@@ -353,6 +355,8 @@ This gives a defensible mean cost per TB episode *provided every patient in `res
 == 9.6 Handling censored cost data
 
 The gamma GLM and two-part models of Section 9.4 assumed every patient had a complete, fully observed total cost. In longitudinal cost studies — a TB treatment trial following patients for 6-24 months, or a programmatic cohort tracked to cure/default/death — that assumption routinely fails: patients are lost to follow-up, transfer out, or the study closes before their course of treatment (and its costs) is finished. Their total cost is only *partially observed*, and critically, the amount observed is correlated with how long they survived or stayed in care. This is the same right-censoring you will formalise in Chapter 10, but applied to a *cumulative, time-accruing* outcome rather than to a single event time, which makes it behave differently from a textbook Kaplan-Meier problem.
+
+#shiny-app-box("censored_cost_estimator_comparator", [Drag a censoring-rate slider and watch naive-mean, Lin's partitioned estimator, and IPCW diverge live as censoring worsens.])
 
 #heor-practice[Before reaching for any estimator, check why patients are censored. If censoring is administrative (study end date, same calendar cutoff for everyone, unrelated to prognosis) the methods below are well justified. If patients drop out *because* they are doing badly (or unusually well) and their costs would have been systematically different, you have informative censoring that no reweighting scheme fully fixes — flag it as a limitation rather than silently correcting it away.]
 
