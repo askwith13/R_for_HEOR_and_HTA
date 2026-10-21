@@ -1,0 +1,29 @@
+{
+  "_comment": "This is an honest best-effort package manifest for this Shiny app, NOT a true renv::snapshot() lockfile. Packages with verified_installed_this_environment=true have a real version number confirmed on the machine that built this app. A true frozen lockfile requires running a real renv::snapshot() in this app's own project directory before public release.",
+  "R": {
+    "Version": "4.6.0"
+  },
+  "Packages": {
+    "ggplot2": {
+      "Package": "ggplot2",
+      "Version": "4.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "mgcv": {
+      "Package": "mgcv",
+      "Version": "1.9.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    },
+    "shiny": {
+      "Package": "shiny",
+      "Version": "1.13.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "verified_installed_this_environment": true
+    }
+  }
+}

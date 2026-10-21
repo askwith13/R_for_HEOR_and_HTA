@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**52 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**60 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -158,7 +158,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **Likely packages:** `shiny (pure arithmetic; optionally metafor/meta to overlay a forest plot)`
 - **Built at:** `shiny_apps/bucher_itc_calculator/`
 
-### Covariate Re-Centering Explorer
+### Covariate Re-Centering Explorer [BUILT]
 - **Section:** 12.6
 - **What it does:** A slider moves the covariate value at which regression-adjusted network estimates are evaluated, sliding continuously between network-mean and target-population estimates; the league-table and forest plot update live — makes concrete the reviewer complaint that network-mean-centred estimates understate effect in a sicker target population.
 - **Likely packages:** `shiny, gemtc (or netmeta/metafor for a lighter version)`
@@ -272,7 +272,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Shape/scale sliders for independently-fit PFS and OS Weibull curves live-replot both survival curves plus the derived P(Progressed) = S_OS(t) - S_PFS(t) line across an extendable time horizon, with the region where it goes negative shaded in red. Makes the chapter's central structural-flaw pitfall (curve crossing happens far out in the tail, easy to miss on a quick plot) directly visible and draggable into existence rather than described in prose.
 - **Likely packages:** `shiny, ggplot2, base R (stats::pweibull or a hand-written weib_S())`
 
-### PSM Oncology ICER Dashboard
+### PSM Oncology ICER Dashboard [BUILT]
 - **Section:** 20.6
 - **What it does:** Sliders for each arm's PFS/OS shape+scale and state costs/utilities feed the chapter's own `run_arm()` discounting loop; discounted cost, QALYs, and ICER recompute live for both arms with a cost-effectiveness-plane point, while a crossing-check readout (min(p_progressed) across the horizon) flags red if either arm's curves ever cross — combines this chapter's two main teaching points (worked CEA mechanics + the crossing pitfall) into one app.
 - **Likely packages:** `shiny, flexsurv, dplyr, ggplot2`
@@ -302,7 +302,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **What it does:** A slider for N (number of simulated patients, e.g. 100 to 50,000, log scale) re-runs the chapter's fixed-parameter microsimulation twice with two independent patient cohorts of that size and live-plots the gap between the two runs' headline outputs (mean cost, mean QALYs) shrinking as N grows — makes the first-order-vs-second-order distinction (§21.4) directly visible rather than asserted, and gives a concrete answer to "how many patients is enough?"
 - **Likely packages:** `shiny, ggplot2`
 
-### Common Random Numbers Variance-Reduction Demo
+### Common Random Numbers Variance-Reduction Demo [BUILT]
 - **Section:** 21.5
 - **What it does:** A toggle switches between independent-random-draws and common-random-numbers simulation of the same two-arm comparison; a live histogram of the incremental QALY difference across repeated simulation runs visibly narrows under CRN — directly demonstrates the variance-reduction claim in §21.5 rather than describing it in prose only.
 - **Likely packages:** `shiny, ggplot2`
@@ -365,7 +365,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **Likely packages:** `shiny, ggplot2, dplyr`
 - **Built at:** `shiny_apps/psa_distribution_ceac_explorer/`
 
-### Threshold Analysis Breakeven Calculator
+### Threshold Analysis Breakeven Calculator [BUILT]
 - **Section:** 25.6
 - **What it does:** Sliders for the new regimen's incremental QALY gain and the WTP threshold re-compute the breakeven total cost live via the chapter's rearranged ICER formula (reused from Ch.24 §24.5's value-based-pricing relationship), displaying the result as a single live number alongside a marker on a cost-vs-ICER line plot. A simple, low-engineering-cost app that makes the "threshold analysis solves backward for one parameter" idea tangible without needing a full PSA re-run per interaction.
 - **Likely packages:** `shiny`
@@ -390,12 +390,12 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 - **Likely packages:** `shiny, ggplot2`
 - **Built at:** `shiny_apps/evpi_vs_wtp_curve_explorer/`
 
-### GAM EVPPI Smoothness Explorer
+### GAM EVPPI Smoothness Explorer [BUILT]
 - **Section:** 26.3
 - **What it does:** A slider for `mgcv::gam()`'s `k=` basis-dimension argument, re-fitting the GAM regression of incremental NMB on `p_ontx_fail` live and redrawing both the fitted smooth curve against the raw PSA scatter and the resulting EVPPI number. Makes the chapter's own pitfall box (k too small underestimates EVPPI, too large overestimates it) directly visible and interactive -- a reader can watch the curve go from under-fit to over-fit and see the EVPPI number swing accordingly, reinforcing why REML's automatic smoothness selection is the recommended default.
 - **Likely packages:** `shiny, mgcv, ggplot2`
 
-### ENBS Trial-Size Comparator
+### ENBS Trial-Size Comparator [BUILT]
 - **Section:** 26.4, 26.6
 - **What it does:** Two side-by-side sliders (sample size and trial cost) for a proposed study targeting `p_ontx_fail`, re-computing the moment-matching EVSI and resulting ENBS live, so a reader can directly search for the sample size that maximises ENBS rather than assuming "bigger is always better." Operationalizes the chapter's own non-obvious finding (§26.6) that a larger, costlier trial can have lower, even negative, ENBS than a smaller one.
 - **Likely packages:** `shiny`
@@ -416,7 +416,7 @@ rebuilding it from scratch. Coverage currently extends through Chapter 27.
 - **What it does:** A slider for the calibration target value (e.g. the registry's 5-year mortality rate, adjustable around the illustrative 32% base case) that live-reruns the `optim()` Nelder-Mead search for `p_hidden` and redraws both the random-search scatter and the converged value, letting a reader see how sensitive the calibrated parameter is to the exact target value chosen -- directly demonstrates why a calibration target's own uncertainty matters, not just its point estimate.
 - **Likely packages:** `shiny, ggplot2`
 
-### Extreme-Value Test Sandbox
+### Extreme-Value Test Sandbox [BUILT]
 - **Section:** 27.3
 - **What it does:** A slider setting the "Well-on-treatment to Dead" transition probability anywhere from 0 to 1 (not just the extreme 0/1 values used in the chapter's own test), live-recomputing and plotting the resulting cohort survival trace, so a reader can watch the trace degrade continuously toward the mathematically predictable extreme and build intuition for why extreme-value testing works as a verification technique.
 - **Likely packages:** `shiny, ggplot2`
@@ -515,7 +515,7 @@ Total candidates now 62 across 31 chapters with content.
 
 ## Chapter 35. End-to-End Worked Case Studies
 
-### Budget Impact Uptake/Price Explorer
+### Budget Impact Uptake/Price Explorer [BUILT]
 - **Section:** 35.4
 - **What it does:** This is the exact app the case study itself describes building, conceptually, rather than a new idea -- sliders for the LAI's annual price, the relapse-rate reduction, and a 5-year uptake trajectory (either five individual year-sliders or one "ramp speed" slider), with the year-by-year budget-impact table and cost-trajectory chart from §35.4 recomputing live as any input moves. Directly demonstrates the case study's own stated point: uptake speed, not price, is the dominant driver of the 5-year net impact in the base case -- letting a payer committee discover that for themselves by dragging the uptake slider rather than being told it in prose.
 - **Likely packages:** `shiny, ggplot2, bslib`

@@ -4,13 +4,13 @@ Companion interactive Shiny apps for this book, one subfolder per
 app, each illustrating a single book concept with live parameter
 sliders rather than a static plot.
 
-## Status: 52 apps built, verified, and explanatory-layer complete
+## Status: 60 apps built, verified, and explanatory-layer complete
 
 `progress/shiny_app_candidates.md` holds the full planning inventory
 -- 64 candidate apps identified by reading every chapter's actual
 content and applying a selectivity filter (only concepts where a
 parameter's live-varying effect on a result is genuinely non-trivial
-or non-monotonic qualify). 52 candidates -- 13/16 of the inventory --
+or non-monotonic qualify). 60 candidates -- 15/16 of the inventory --
 (spanning Parts I-VII of the book) have now been built, run, and
 visually verified in a real browser session:
 
@@ -33,6 +33,7 @@ visually verified in a real browser session:
 | `meta_analysis_pooling_model_playground/` | Chapter 11, §11.1-11.2 |
 | `funnel_asymmetry_lab/` | Chapter 11, §11.3 |
 | `bucher_itc_calculator/` | Chapter 12, §12.2 |
+| `covariate_recentering_explorer/` | Chapter 12, §12.6 |
 | `maic_weight_ess_explorer/` | Chapter 13, §13.2 |
 | `prior_likelihood_posterior_tug_of_war/` | Chapter 14, §14.2 |
 | `extreme_weights_trimming_simulator/` | Chapter 15, §15.4 |
@@ -49,7 +50,9 @@ visually verified in a real browser session:
 | `soc_vs_dmt_icer_dashboard/` | Chapter 19, §19.10 |
 | `curve_crossing_explorer/` | Chapter 20, §20.1 & 20.5 |
 | `treatment_waning_assumption_visualizer/` | Chapter 20, §20.3 |
+| `psm_oncology_icer_dashboard/` | Chapter 20, §20.6 |
 | `first_order_noise_convergence_explorer/` | Chapter 21, §21.4 |
+| `common_random_numbers_variance_reduction_demo/` | Chapter 21, §21.5 |
 | `mm1_queue_utilisation_explorer/` | Chapter 22, §22.2 |
 | `seir_epidemic_herd_effect_explorer/` | Chapter 22, §22.4/22.6 |
 | `budget_impact_scenario_explorer/` | Chapter 23, §23.2-23.4 |
@@ -58,18 +61,23 @@ visually verified in a real browser session:
 | `mcda_weight_sensitivity_explorer/` | Chapter 24, §24.4 |
 | `tornado_diagram_parameter_range_explorer/` | Chapter 25, §25.2 |
 | `psa_distribution_ceac_explorer/` | Chapter 25, §25.4-25.5 |
+| `threshold_analysis_breakeven_calculator/` | Chapter 25, §25.6 |
 | `structural_model_averaging_weight_explorer/` | Chapter 25, §25.7 |
 | `bootstrap_resampling_method_comparator/` | Chapter 25, §25.8 |
 | `evpi_vs_wtp_curve_explorer/` | Chapter 26, §26.1-26.2 |
+| `gam_evppi_smoothness_explorer/` | Chapter 26, §26.3 |
+| `enbs_trial_size_comparator/` | Chapter 26, §26.4 & 26.6 |
 | `calibration_target_search_explorer/` | Chapter 27, §27.1 |
+| `extreme_value_test_sandbox/` | Chapter 27, §27.3 |
 | `cross_agency_decision_explorer/` | Chapter 31, §31.5 |
 | `durability_waning_of_effect_explorer/` | Chapter 32, §32.6 |
 | `tb_cascade_of_care_attrition_explorer/` | Chapter 32, §32.7 |
 | `irt_item_characteristic_curve_explorer/` | Chapter 33, §33.1 |
 | `mcid_threshold_responder_rate_explorer/` | Chapter 33, §33.2 |
 | `random_forest_risk_threshold_explorer/` | Chapter 34, §34.1 |
+| `budget_impact_uptake_price_explorer/` | Chapter 35, §35.4 |
 
-The remaining 12 candidates in `progress/shiny_app_candidates.md` are
+The remaining 4 candidates in `progress/shiny_app_candidates.md` are
 not yet built.
 
 ## What each app folder contains
@@ -81,7 +89,7 @@ not yet built.
   how its logic was verified.
 - `renv.lock` -- an honest package manifest (same policy as `code/`'s
   per-chapter lockfiles, see Chapter 2 §2.3) generated via
-  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 52
+  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 60
   built apps currently show 100% verified-installed packages (no
   `NOT_VERIFIED_IN_THIS_ENVIRONMENT` markers).
 
@@ -109,12 +117,19 @@ plot/Egger's-test/trim-and-fill behaviour via `meta`, real IPTW
 weight distributions and ATE bias via `WeightIt`, distributional
 financial-risk-protection effects by income quintile, MCDA weight-
 driven ranking flips, structural model-averaging linear interpolation,
-correct-vs-incorrect bootstrap resampling bias direction, and real
-`optim()` Nelder-Mead calibration-target sensitivity), and (2) the
-running app itself was loaded in a real browser session and its live
-output -- including, where relevant, after live slider interaction --
-visually confirmed to match, not just assumed to work because the
-code looked plausible.
+correct-vs-incorrect bootstrap resampling bias direction, real
+`optim()` Nelder-Mead calibration-target sensitivity, network meta-
+regression CI widening under covariate re-centring/extrapolation,
+genuine PFS/OS curve-crossing detection in a partitioned-survival
+model, common-random-numbers variance reduction in a two-arm Monte
+Carlo comparison, real `mgcv::gam()` under/over-fit behaviour under a
+fixed (unpenalized) basis dimension, EVSI/ENBS diminishing-returns
+trial-size optimisation, extreme-value verification across a full 0-1
+parameter range, and multi-lever (price vs. uptake-speed) budget-
+impact sensitivity), and (2) the running app itself was loaded in a
+real browser session and its live output -- including, where
+relevant, after live slider interaction -- visually confirmed to
+match, not just assumed to work because the code looked plausible.
 
 ## Interpretive layer
 
@@ -129,13 +144,26 @@ simply getting wrong what the app's own simulation actually
 demonstrates and corrected before being accepted: the cost-
 distribution app's OLS/gamma-GLM divergence claim, the spline app's
 "AIC always falls" claim, the tipping-point app's original true-effect
-size placing the tipping point outside the visible slider range, and
-most notably the bootstrap-resampling app's original claim that
-incorrect independent-column resampling OVERSTATES uncertainty --
-standalone verification showed the opposite (it UNDERSTATES
-uncertainty under a realistic negative cost-QALY correlation,
-producing a falsely narrow, overconfident interval), so the text was
-rewritten entirely to match the real, verified direction of the bias.
+size placing the tipping point outside the visible slider range, the
+bootstrap-resampling app's original claim that incorrect independent-
+column resampling OVERSTATES uncertainty (standalone verification
+showed the opposite under realistic negative cost-QALY correlation --
+it UNDERSTATES uncertainty, producing a falsely narrow, overconfident
+interval), the PSM oncology dashboard's crossing-check logic (the
+first draft silently `pmax()`-corrected the OS curve BEFORE checking
+for a crossing, so the check could never actually fire -- fixed to
+check the raw, uncorrected curves), the GAM EVPPI app's initial use of
+`mgcv`'s default REML smoothness selection (which self-regularizes
+regardless of the exposed `k` slider, erasing the intended under/over-
+fit demonstration -- fixed to use an unpenalized basis so `k` directly
+controls fit complexity), the ENBS comparator's original EVPPI-rate
+constant (which put the ENBS-maximising point at the slider's lower
+boundary rather than a genuine interior optimum -- recalibrated so the
+maximum sits clearly inside the explorable range), and the budget-
+impact app's overclaiming that uptake speed always dominates price
+(standalone testing showed the two levers can have comparable swings
+depending on the exact ranges compared, so the text was softened to
+state that finding accurately rather than overstate it).
 
 ## Building more apps
 
@@ -145,4 +173,9 @@ the chapter number alone, since several chapters contribute more than
 one candidate. `progress/shiny_app_candidates.md`'s selection criteria
 section notes which remaining candidates are the strongest teaching
 aids; start there for the next batch rather than working strictly
-chapter-by-chapter.
+chapter-by-chapter. The 4 remaining unbuilt candidates (Validation
+Rule Threshold Tuner, Dedup Threshold Explorer, Interactive
+Missingness Explorer, and the CEAC/WTP Threshold Explorer combining
+Case Studies A and B) all require a pre-loaded external reference
+dataset or extract rather than a fully self-contained simulated
+dataset, which is why they were deferred from this batch-of-8 cycle.
