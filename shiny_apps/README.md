@@ -4,22 +4,27 @@ Companion interactive Shiny apps for this book, one subfolder per
 app, each illustrating a single book concept with live parameter
 sliders rather than a static plot.
 
-## Status: 32 apps built, verified, and explanatory-layer complete
+## Status: 40 apps built, verified, and explanatory-layer complete
 
 `progress/shiny_app_candidates.md` holds the full planning inventory
 -- 64 candidate apps identified by reading every chapter's actual
 content and applying a selectivity filter (only concepts where a
 parameter's live-varying effect on a result is genuinely non-trivial
-or non-monotonic qualify). 32 candidates -- exactly half -- (spanning
-Parts I-VII of the book) have now been built, run, and visually
-verified in a real browser session:
+or non-monotonic qualify). 40 candidates -- 5/8 of the inventory --
+(spanning Parts I-VII of the book) have now been built, run, and
+visually verified in a real browser session:
 
 | App | Book section |
 |---|---|
+| `transition_matrix_explorer/` | Chapter 3, §3.1 |
 | `icer_quadrant_net_benefit_explorer/` | Chapter 4, §4.4 |
 | `wtp_threshold_sensitivity_dashboard/` | Chapter 4, §4.5 |
 | `discount_rate_time_horizon_explorer/` | Chapter 4, §4.6 |
 | `efficiency_frontier_builder/` | Chapter 4, §4.7-4.8 |
+| `eq5d_tariff_comparator/` | Chapter 8, §8.2 |
+| `age_adjusted_utility_decrement_explorer/` | Chapter 8, §8.5 |
+| `cost_distribution_model_fit_explorer/` | Chapter 9, §9.3-9.4 |
+| `censored_cost_estimator_comparator/` | Chapter 9, §9.6 |
 | `meta_analysis_pooling_model_playground/` | Chapter 11, §11.1-11.2 |
 | `bucher_itc_calculator/` | Chapter 12, §12.2 |
 | `maic_weight_ess_explorer/` | Chapter 13, §13.2 |
@@ -29,12 +34,15 @@ verified in a real browser session:
 | `overdispersion_zero_inflation_visualizer/` | Chapter 16, §16.3 |
 | `quantile_regression_tau_slider/` | Chapter 16, §16.4 |
 | `beta_distribution_fitter/` | Chapter 17, §17.4 |
+| `toy_regimen_icer_explorer/` | Chapter 17, §17.6 |
 | `diagnostic_tree_icer_dashboard/` | Chapter 18, §18.1-18.2 |
 | `markov_cohort_trace_builder/` | Chapter 19, §19.1 & 19.3 |
 | `soc_vs_dmt_icer_dashboard/` | Chapter 19, §19.10 |
 | `curve_crossing_explorer/` | Chapter 20, §20.1 & 20.5 |
 | `treatment_waning_assumption_visualizer/` | Chapter 20, §20.3 |
 | `parametric_hazard_shape_explorer/` | Chapter 10, §10.2 |
+| `spline_knot_count_explorer/` | Chapter 10, §10.3 |
+| `first_order_noise_convergence_explorer/` | Chapter 21, §21.4 |
 | `mm1_queue_utilisation_explorer/` | Chapter 22, §22.2 |
 | `seir_epidemic_herd_effect_explorer/` | Chapter 22, §22.4/22.6 |
 | `budget_impact_scenario_explorer/` | Chapter 23, §23.2-23.4 |
@@ -49,7 +57,7 @@ verified in a real browser session:
 | `mcid_threshold_responder_rate_explorer/` | Chapter 33, §33.2 |
 | `random_forest_risk_threshold_explorer/` | Chapter 34, §34.1 |
 
-The remaining 32 candidates in `progress/shiny_app_candidates.md` are
+The remaining 24 candidates in `progress/shiny_app_candidates.md` are
 not yet built.
 
 ## What each app folder contains
@@ -61,7 +69,7 @@ not yet built.
   how its logic was verified.
 - `renv.lock` -- an honest package manifest (same policy as `code/`'s
   per-chapter lockfiles, see Chapter 2 §2.3) generated via
-  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 32
+  `python3 ~/.hermes/scripts/generate_shiny_app_renvlock.py`. All 40
   built apps currently show 100% verified-installed packages (no
   `NOT_VERIFIED_IN_THIS_ENVIRONMENT` markers).
 
@@ -78,11 +86,14 @@ divergence under heteroscedasticity, E-values via the `EValue`
 package, fixed- vs. random-effects CI widths via `meta`, Markov
 transition-matrix compounding, Poisson-GLM residual-deviance ratios
 under NB/ZIP data, method-of-moments Beta fitting, restricted-mean
-survival gains under alternative waning assumptions), and (2) the
-running app itself was loaded in a real browser session and its live
-output -- including, where relevant, after live slider interaction --
-visually confirmed to match, not just assumed to work because the
-code looked plausible.
+survival gains under alternative waning assumptions, real country
+tariffs via the `eq5d` package, Lin's-partitioned-style censored-cost
+bias reduction via `survival::survfit()`, flexsurvspline AIC/log-
+likelihood tradeoffs, and first-order sampling-noise convergence),
+and (2) the running app itself was loaded in a real browser session
+and its live output -- including, where relevant, after live slider
+interaction -- visually confirmed to match, not just assumed to work
+because the code looked plausible.
 
 ## Interpretive layer
 
@@ -91,7 +102,12 @@ live from the current slider state, and a fixed "Pitfall" callout
 warning about a real, specific misinterpretation risk for that app's
 concept -- matching the book's own callout-box density. These panels
 were independently re-verified against each app's own displayed
-numbers before being accepted, not just read for plausibility.
+numbers before being accepted, not just read for plausibility. Two
+pitfall-text claims were caught overstating what the app's own
+simulation actually demonstrates (the cost-distribution app's OLS/
+gamma-GLM divergence, and the spline app's "AIC always falls" claim)
+and corrected to match the real, verified behaviour rather than left
+as plausible-sounding but inaccurate copy.
 
 ## Building more apps
 

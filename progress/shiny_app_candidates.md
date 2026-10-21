@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**32 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**40 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -19,7 +19,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 3. R Essentials for Health Economists
 
-### Transition Matrix Explorer
+### Transition Matrix Explorer [BUILT]
 - **Section:** 3.1
 - **What it does:** Sliders set each cell of a 3-state (Healthy/Sick/Dead) transition matrix (constrained to row-sum-to-1); a live cohort-occupancy trace over N cycles previews the Markov machinery of Chapter 19, with a running rowSums() validity check.
 - **Likely packages:** `shiny, ggplot2`
@@ -90,12 +90,12 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 8. Health-Related Quality of Life and Utilities
 
-### EQ-5D Tariff Comparator
+### EQ-5D Tariff Comparator [BUILT]
 - **Section:** 8.2
 - **What it does:** Set a 5-dimension EQ-5D health-state profile via sliders/dropdowns and select a country value set; the utility index recomputes live across two or more countries side by side, showing the same health state scoring differently under different tariffs.
 - **Likely packages:** `shiny, eq5d`
 
-### Age-Adjusted Utility & Decrement Explorer
+### Age-Adjusted Utility & Decrement Explorer [BUILT]
 - **Section:** 8.5
 - **What it does:** Sliders for baseline utility, decrement size, and an additive-vs-multiplicative toggle, plus an age-band selector, replot the utility trajectory live — showing additive adjustment drifting toward implausible/negative values over a long horizon while multiplicative compresses toward (not past) zero.
 - **Likely packages:** `shiny, dplyr, ggplot2`
@@ -104,12 +104,12 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 9. Costs and Resource Use
 
-### Cost Distribution & Model-Fit Explorer
+### Cost Distribution & Model-Fit Explorer [BUILT]
 - **Section:** 9.3-9.4
 - **What it does:** Sliders for zero-inflation probability, gamma shape/scale, and outlier probability/scale regenerate a simulated cost dataset live, updating the histogram and mean/median gap, overlaying OLS vs gamma-GLM predicted means to show exactly when/how badly naive OLS misbehaves.
 - **Likely packages:** `shiny, tidyverse, stats/glm`
 
-### Censored-Cost Estimator Comparator
+### Censored-Cost Estimator Comparator [BUILT]
 - **Section:** 9.6
 - **What it does:** A censoring-rate slider (plus informative/administrative toggle) regenerates a censored cohort live and shows naive-mean, Lin's partitioned estimator, and IPCW diverging as censoring worsens — operationalising the chapter's bias-direction table as something the user watches happen.
 - **Likely packages:** `shiny, survival, dplyr`
@@ -124,7 +124,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **Likely packages:** `shiny, flexsurv, survival`
 - **Built at:** `shiny_apps/parametric_hazard_shape_explorer/`
 
-### Spline Knot-Count Explorer
+### Spline Knot-Count Explorer [BUILT]
 - **Section:** 10.3
 - **What it does:** A knot-count slider (k=0-3) for flexsurvspline() live-refits against the KM curve within the trial period and updates an AIC/BIC readout, showing more knots always reduce in-sample AIC while risking an erratic extrapolated tail.
 - **Likely packages:** `shiny, flexsurv`
@@ -224,7 +224,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders for a trial's reported mean probability and 95% CI width recompute method-of-moments alpha/beta live and redraw the Beta density — shows a tighter CI (bigger trial) concentrating the distribution vs a wide CI from a small arm.
 - **Likely packages:** `shiny, ggplot2, base R`
 
-### Toy Regimen ICER Explorer
+### Toy Regimen ICER Explorer [BUILT]
 - **Section:** 17.6
 - **What it does:** Sliders for cost_drug and p_cure for Regimen A/B feed the chapter's own skeletal run_model() function; the ICER/NMB table recalculates live as any input varies — a minimal demonstration of why separating inputs/engine/results layers matters.
 - **Likely packages:** `shiny, dplyr, tibble`
@@ -297,7 +297,7 @@ not compelling, since its live value is mostly a pass/fail count ticking up or d
 
 ## Chapter 21. Individual-Level State-Transition Models (Microsimulation)
 
-### First-Order Noise Convergence Explorer
+### First-Order Noise Convergence Explorer [BUILT]
 - **Section:** 21.4
 - **What it does:** A slider for N (number of simulated patients, e.g. 100 to 50,000, log scale) re-runs the chapter's fixed-parameter microsimulation twice with two independent patient cohorts of that size and live-plots the gap between the two runs' headline outputs (mean cost, mean QALYs) shrinking as N grows — makes the first-order-vs-second-order distinction (§21.4) directly visible rather than asserted, and gives a concrete answer to "how many patients is enough?"
 - **Likely packages:** `shiny, ggplot2`
