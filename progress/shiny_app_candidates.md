@@ -1,7 +1,7 @@
 # Interactive Shiny App Candidates — R for HEOR and HTA
 
 Working notes only, built chapter-by-chapter per Dr Aswath's request (Oct 19, 2026). 
-**40 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
+**44 of 64 candidates have now been built** -- see `shiny_apps/` for the built apps and 
 their verification notes; entries below marked `[BUILT]` have a corresponding folder. 
 Covers Chapters 1-35 (full book); this file now reflects the complete planning pass.
 
@@ -71,7 +71,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 
 ## Chapter 7. Missing Data
 
-### Missingness Mechanism Simulator
+### Missingness Mechanism Simulator [BUILT]
 - **Section:** 7.1
 - **What it does:** Pick MCAR/MAR/MNAR and drag a slider controlling how strongly missingness depends on the utility value; the app regenerates the dataset live and shows a complete-case mean diverging from truth under MNAR but not MCAR.
 - **Likely packages:** `shiny, tidyverse, mice`
@@ -81,7 +81,7 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Filter a loaded extract by site/arm/variable via dropdowns; naniar::vis_miss()/gg_miss_var()/gg_miss_upset() plots regenerate live rather than being pre-generated as static figures.
 - **Likely packages:** `shiny, naniar, visdat`
 
-### Tipping-Point Delta Explorer
+### Tipping-Point Delta Explorer [BUILT]
 - **Section:** 7.5
 - **What it does:** A delta slider (applied to imputed intervention-arm values) live-recomputes and re-plots the risk difference/ICER vs WTP, highlighting the tipping point — lets a reviewer directly probe how implausible a departure from MAR would need to be to flip the conclusion.
 - **Likely packages:** `shiny, mice, dplyr`
@@ -247,12 +247,12 @@ data governance policy, coding-style conventions) is deliberately excluded even 
 - **What it does:** Sliders for each outbound transition probability (stay-probability auto-computed to sum to 1) redraw the 20-cycle state-occupancy trace live, making visible how small transition-probability changes compound over many cycles.
 - **Likely packages:** `shiny, base R matrix algebra, ggplot2`
 
-### Discounting & Half-Cycle Correction Comparator
+### Discounting & Half-Cycle Correction Comparator [BUILT]
 - **Section:** 19.5
 - **What it does:** A discount-rate slider and a beginning/end/life-table toggle recompute total discounted QALYs/costs live from a fixed cycle stream, turning the trapezoidal-averaging explanation into a visible before/after comparison.
 - **Likely packages:** `shiny, heemod, ggplot2`
 
-### Tunnel-State Risk Shape Explorer
+### Tunnel-State Risk Shape Explorer [BUILT]
 - **Section:** 19.6
 - **What it does:** Sliders set failure-risk at each tunnel sub-state (cycle 1, 2, 3+); flat vs front-loaded time-since-entry-dependent occupancy traces and final cost/QALY totals plot side by side, showing why ignoring state-time biases short-vs-long-course comparisons.
 - **Likely packages:** `shiny, heemod (state_time), ggplot2`
