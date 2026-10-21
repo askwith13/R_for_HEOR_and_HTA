@@ -26,7 +26,7 @@ This appendix is the data dictionary for those placeholder files: where each one
       [`national_life_table.csv`], [Chapter 10], [A national all-cause life table, used as a plausibility bound against which an extrapolated survival curve can be sanity-checked.],
       [`data/raw_cohort.csv`], [Chapter 30], [A raw cohort file illustrating the first `tar_target()` input of a `targets`-based reproducible pipeline.],
     ),
-    footer: (table.cell(colspan: 3)[All ten files are placeholder filenames only; no file of any of these names ships inside this book's companion repository. A reader adapting a worked example should either generate an equivalent synthetic dataset inline (the pattern most other chapters in this book already follow) or substitute their own real file at that path.],),
+    footer: none,
   ),
 )
 

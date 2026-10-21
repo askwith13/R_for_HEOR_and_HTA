@@ -30,6 +30,7 @@
 
 // ---- Front matter ----
 #include "front_matter/title_page.typ"
+#include "front_matter/dedication.typ"
 #include "front_matter/foreword.typ"
 #include "front_matter/preface.typ"
 #include "front_matter/companion_website.typ"
