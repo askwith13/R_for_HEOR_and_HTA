@@ -130,3 +130,6 @@
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[List of Tables]
 #outline(title: none, target: figure.where(kind: table))
+
+// ---- Back cover ----
+#include "back_matter/back_cover.typ"
