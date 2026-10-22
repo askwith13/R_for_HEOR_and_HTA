@@ -418,10 +418,10 @@ cost is \$2,000 times 2,000 patients = \$4,000,000. Total unweighted
 QALYs are (1,000 times 0.12) + (1,000 times 0.08) = 120 + 80 = 200, so
 the unweighted ICER is \$4,000,000 / 200 = *\$20,000 per QALY*. Applying
 the 1.5x equity weight to the most-deprived group's QALYs only, total
-equity-weighted QALYs become (120 times 1.5) + (80 times 1.0) = 180 + 80
-= 260, so the equity-weighted ICER is \$4,000,000 / 260 = *\$15,384.62
-per QALY* (both figures independently verified by direct calculation,
-not just the R output).
+equity-weighted QALYs become (120 times 1.5) + (80 times 1.0) = 180 +
+80 = 260, so the equity-weighted ICER is \$4,000,000 / 260 =
+*\$15,384.62 per QALY* (both figures independently verified by direct
+calculation, not just the R output).
 
 #report-table(
   [Unweighted vs. equity-weighted ICER for a toy two-subgroup screening example (equity weight of 1.5 applied to the most-deprived quintile's QALYs)],

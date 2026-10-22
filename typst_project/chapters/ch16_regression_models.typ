@@ -296,9 +296,9 @@ summary(fit_zinb)
 
 The formula has two parts separated by `|`: the left side models the
 count (how many events, given you're in the "can have events" group),
-the right side models the probability of being a structural zero. `dist
-= "negbin"` lets the count part also absorb ordinary overdispersion;
-`dist = "poisson"` is the simpler default.
+the right side models the probability of being a structural zero.
+`dist = "negbin"` lets the count part also absorb ordinary
+overdispersion; `dist = "poisson"` is the simpler default.
 
 A closely related but conceptually different model is the *hurdle*
 model, available via `pscl::hurdle()`. Zero-inflated and hurdle models
